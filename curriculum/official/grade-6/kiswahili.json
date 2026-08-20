@@ -1,0 +1,493 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 6",
+  "subject": "Kiswahili",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "LATEST 6.8.2024 KISWAHILI GRADE 6 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-six-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1p4DSwvmGPzn3ZHCZhRTN88Zvju3XtgYf/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      16,
+      18,
+      20,
+      22,
+      24,
+      26,
+      28,
+      30,
+      32,
+      34,
+      36,
+      38,
+      40,
+      42,
+      44,
+      46,
+      48,
+      50,
+      52,
+      53,
+      55,
+      57,
+      59,
+      63,
+      67,
+      69,
+      71,
+      73,
+      75,
+      77,
+      79,
+      81,
+      87,
+      89,
+      93,
+      95,
+      97,
+      99,
+      101,
+      103,
+      105,
+      107,
+      109,
+      111,
+      113,
+      115,
+      117,
+      119
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.1",
+      "name": "Kusikiliza na Kuzungumza",
+      "occurrenceCodes": [
+        "1.1",
+        "2.1",
+        "3.1",
+        "4.1",
+        "6.1",
+        "7.1",
+        "9.1",
+        "10.1",
+        "11.1"
+      ],
+      "sourcePages": [
+        16,
+        28,
+        40,
+        53,
+        69,
+        77,
+        93,
+        101,
+        109
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1.1",
+          "name": "Matamshi Bora d/nd,ch/sh,j/nj na g/ng",
+          "sourcePage": 16
+        },
+        {
+          "order": 2,
+          "code": "2.1.1",
+          "name": "Maamkuzi na Maagano",
+          "sourcePage": 28
+        },
+        {
+          "order": 3,
+          "code": "3.1.1",
+          "name": "Matamshi Bora",
+          "sourcePage": 40
+        },
+        {
+          "order": 4,
+          "code": "4.1.1",
+          "name": "Heshima, Adabu na Vyeo",
+          "sourcePage": 53
+        },
+        {
+          "order": 5,
+          "code": "6.1.1",
+          "name": "Matamshi Bora",
+          "sourcePage": 69
+        },
+        {
+          "order": 6,
+          "code": "7.1.1",
+          "name": "Nahau",
+          "sourcePage": 77
+        },
+        {
+          "order": 7,
+          "code": "9.1.1",
+          "name": "Mazungumzo ya Kimuktadha",
+          "sourcePage": 93
+        },
+        {
+          "order": 8,
+          "code": "10.1.1",
+          "name": "Sitiari za Tabia",
+          "sourcePage": 101
+        },
+        {
+          "order": 9,
+          "code": "11.1.1",
+          "name": "Kujieleza kwa Ufasaha",
+          "sourcePage": 109
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "1.2",
+      "name": "Kusoma",
+      "occurrenceCodes": [
+        "1.2",
+        "2.2",
+        "3.2",
+        "4.2",
+        "5.2",
+        "6.2",
+        "7.2",
+        "8.2",
+        "9.2",
+        "10.2",
+        "11.2"
+      ],
+      "sourcePages": [
+        18,
+        30,
+        42,
+        55,
+        63,
+        71,
+        79,
+        87,
+        95,
+        103,
+        111
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.2.1",
+          "name": "Kusoma kwa Ufahamu",
+          "sourcePage": 18
+        },
+        {
+          "order": 2,
+          "code": "2.2.1",
+          "name": "Kusoma kwa Kina",
+          "sourcePage": 30
+        },
+        {
+          "order": 3,
+          "code": "3.2.1",
+          "name": "Kusoma kwa Ufasaha",
+          "sourcePage": 42
+        },
+        {
+          "order": 4,
+          "code": "4.2.1",
+          "name": "Kusoma kwa Mapana",
+          "sourcePage": 55
+        },
+        {
+          "order": 5,
+          "code": "5.2.1",
+          "name": "Kusoma kwa Ufahamu",
+          "sourcePage": 63
+        },
+        {
+          "order": 6,
+          "code": "6.2.1",
+          "name": "Kusoma kwa Kina",
+          "sourcePage": 71
+        },
+        {
+          "order": 7,
+          "code": "7.2.1",
+          "name": "Kusoma kwa Mapana",
+          "sourcePage": 79
+        },
+        {
+          "order": 8,
+          "code": "8.2.1",
+          "name": "Kusoma kwa Ufahamu",
+          "sourcePage": 87
+        },
+        {
+          "order": 9,
+          "code": "9.2.1",
+          "name": "Kusoma kwa Mapana",
+          "sourcePage": 95
+        },
+        {
+          "order": 10,
+          "code": "10.2.1",
+          "name": "Kusoma kwa Mapana",
+          "sourcePage": 103
+        },
+        {
+          "order": 11,
+          "code": "11.2.1",
+          "name": "Kusoma kwa Ufasaha",
+          "sourcePage": 111
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "1.3",
+      "name": "Kuandika",
+      "occurrenceCodes": [
+        "1.3",
+        "2.3",
+        "3.3",
+        "4.3",
+        "6.3",
+        "7.3",
+        "8.3",
+        "9.3",
+        "10.3",
+        "11.3"
+      ],
+      "sourcePages": [
+        20,
+        32,
+        44,
+        57,
+        73,
+        81,
+        89,
+        97,
+        105,
+        113
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.3.1",
+          "name": "Insha ya Wasifu",
+          "sourcePage": 20
+        },
+        {
+          "order": 2,
+          "code": "2.3.1",
+          "name": "Insha za Masimulizi",
+          "sourcePage": 32
+        },
+        {
+          "order": 3,
+          "code": "3.3.1",
+          "name": "Kuandika kwa Tarakilishi",
+          "sourcePage": 44
+        },
+        {
+          "order": 4,
+          "code": "4.3.1",
+          "name": "Barua Rasmi",
+          "sourcePage": 57
+        },
+        {
+          "order": 5,
+          "code": "6.3.1",
+          "name": "Insha ya Wasifu",
+          "sourcePage": 73
+        },
+        {
+          "order": 6,
+          "code": "7.3.1",
+          "name": "Insha za Maelezo",
+          "sourcePage": 81
+        },
+        {
+          "order": 7,
+          "code": "8.3.1",
+          "name": "Insha za Masimulizi",
+          "sourcePage": 89
+        },
+        {
+          "order": 8,
+          "code": "9.3.1",
+          "name": "Insha za Maelezo",
+          "sourcePage": 97
+        },
+        {
+          "order": 9,
+          "code": "10.3.1",
+          "name": "Insha za Masimulizi",
+          "sourcePage": 105
+        },
+        {
+          "order": 10,
+          "code": "11.3.1",
+          "name": "Barua Rasmi",
+          "sourcePage": 113
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "1.4",
+      "name": "Sarufi",
+      "occurrenceCodes": [
+        "1.4",
+        "2.4",
+        "3.4",
+        "4.4",
+        "5.4",
+        "6.4",
+        "9.4",
+        "10.4",
+        "11.4"
+      ],
+      "sourcePages": [
+        22,
+        24,
+        26,
+        34,
+        36,
+        38,
+        46,
+        48,
+        50,
+        52,
+        59,
+        67,
+        75,
+        99,
+        107,
+        115,
+        117,
+        119
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.4.1",
+          "name": "Vivumishi vya Sifa",
+          "sourcePage": 22
+        },
+        {
+          "order": 2,
+          "code": "1.4.2",
+          "name": "Vivumishi Viashiria",
+          "sourcePage": 24
+        },
+        {
+          "order": 3,
+          "code": "1.4.3",
+          "name": "Vivumishi Vimilikishi",
+          "sourcePage": 26
+        },
+        {
+          "order": 4,
+          "code": "2.4.1",
+          "name": "Vivumishi vya Idadi",
+          "sourcePage": 34
+        },
+        {
+          "order": 5,
+          "code": "2.4.2",
+          "name": "Vivumishi Viulizi",
+          "sourcePage": 36
+        },
+        {
+          "order": 6,
+          "code": "2.4.3",
+          "name": "Kivumishi Kirejeshi (amba-)",
+          "sourcePage": 38
+        },
+        {
+          "order": 7,
+          "code": "3.4.1",
+          "name": "Viwakilishi vya Nafsi",
+          "sourcePage": 46
+        },
+        {
+          "order": 8,
+          "code": "3.4.2",
+          "name": "Viwakilishi Viashiria",
+          "sourcePage": 48
+        },
+        {
+          "order": 9,
+          "code": "3.4.3",
+          "name": "Viwakilishi vya Idadi",
+          "sourcePage": 50
+        },
+        {
+          "order": 10,
+          "code": "3.4.4",
+          "name": "Uakifishi",
+          "sourcePage": 52
+        },
+        {
+          "order": 11,
+          "code": "4.4.1",
+          "name": "Ngeli ya YA-YA",
+          "sourcePage": 59
+        },
+        {
+          "order": 12,
+          "code": "5.4.1",
+          "name": "Ngeli ya U-U",
+          "sourcePage": 67
+        },
+        {
+          "order": 13,
+          "code": "6.4.1",
+          "name": "Ngeli ya I-I",
+          "sourcePage": 75
+        },
+        {
+          "order": 14,
+          "code": "9.4.1",
+          "name": "Vinyume vya Vivumishi",
+          "sourcePage": 99
+        },
+        {
+          "order": 15,
+          "code": "10.4.1",
+          "name": "Hali ya Masharti (nge,ngali na ki)",
+          "sourcePage": 107
+        },
+        {
+          "order": 16,
+          "code": "11.4.1",
+          "name": "Ukanushaji wa Maneno",
+          "sourcePage": 115
+        },
+        {
+          "order": 17,
+          "code": "11.4.2",
+          "name": "Ukubwa na Udogo wa Nomino",
+          "sourcePage": 117
+        },
+        {
+          "order": 18,
+          "code": "11.4.3",
+          "name": "Ukubwa na Udogo wa Nomino",
+          "sourcePage": 119
+        }
+      ]
+    }
+  ]
+}

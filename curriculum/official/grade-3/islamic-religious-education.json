@@ -1,0 +1,267 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 3",
+  "subject": "Islamic Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 1-3 IRE - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/lower-primary/",
+    "officialDocument": "https://drive.google.com/file/d/1toUw1LJYL23CAdEl-tUJwjqn7wu89JIb/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      75,
+      76,
+      77,
+      78,
+      80,
+      81,
+      82,
+      87,
+      89,
+      91,
+      92,
+      93,
+      94,
+      96,
+      98,
+      100,
+      107
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Qur’an",
+      "sourcePages": [
+        75,
+        76,
+        77,
+        78
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Selected Chapters (Surah)",
+          "alternativeNames": [
+            "Selected"
+          ],
+          "sourcePage": 75
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Selected",
+          "sourcePage": 77
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Selected Surah",
+          "sourcePage": 78
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Hadith",
+      "sourcePages": [
+        80,
+        81,
+        82
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Hadith on Ihsaan",
+          "sourcePage": 80
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Hadith on Honesty",
+          "sourcePage": 81
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Hadith on Respect",
+          "sourcePage": 82
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Pillars of Iman",
+      "sourcePages": [
+        75
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Belief in the Last Day",
+          "sourcePage": 75
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Belief in His Power",
+          "sourcePage": 75
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Devotional Acts",
+      "sourcePages": [
+        75,
+        87
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Swalah Postures and Phrases in Swalah",
+          "sourcePage": 87
+        },
+        {
+          "order": 2,
+          "code": "4.1.1",
+          "name": "Swalah Postures and phrases of Prayers",
+          "sourcePage": 75
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Akhlaq (Moral Teachings)",
+      "sourcePages": [
+        75,
+        89,
+        91,
+        92,
+        93,
+        94
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Islamic etiquette (Manners of entering and leaving Masjid)",
+          "alternativeNames": [
+            "Islamic Etiquette"
+          ],
+          "sourcePage": 75
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Islamic phrases",
+          "sourcePage": 91
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Relationship (care and dua for the sick)",
+          "alternativeNames": [
+            "Relationship"
+          ],
+          "sourcePage": 75
+        },
+        {
+          "order": 4,
+          "code": "5.3.1",
+          "name": "Care and dua for the sick",
+          "alternativeNames": [
+            "places of worship"
+          ],
+          "sourcePage": 92
+        },
+        {
+          "order": 5,
+          "code": "5.3.2",
+          "name": "Places of Worship",
+          "sourcePage": 93
+        },
+        {
+          "order": 6,
+          "code": "5.4",
+          "name": "Environment Care (care for animals (domestic)",
+          "alternativeNames": [
+            "Environment"
+          ],
+          "sourcePage": 75
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Siirah",
+      "sourcePages": [
+        75,
+        96
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Early life of the Prophet (S.A.W.)",
+          "alternativeNames": [
+            "Early of the Prophet (S.A.W.)"
+          ],
+          "sourcePage": 96
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "code": "7.0",
+      "name": "Islamic Festivals",
+      "sourcePages": [
+        75,
+        98,
+        100,
+        107
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "7.1",
+          "name": "Miladu-Nabii Oral questions, Portfolio, and",
+          "alternativeNames": [
+            "Milad un – Nabii",
+            "Milad un Nabii"
+          ],
+          "sourcePage": 107
+        },
+        {
+          "order": 2,
+          "code": "7.2",
+          "name": "Aqiqa 03 Total Number of Lessons",
+          "alternativeNames": [
+            "Aqiqa"
+          ],
+          "sourcePage": 75
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 1",
+  "subject": "Mathematics",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 1-3 Mathematics - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/lower-primary/",
+    "officialDocument": "https://drive.google.com/file/d/1YlwoCFAVxhjUo_V1A-89GRcho0r0Gq1u/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      14,
+      16,
+      18,
+      20,
+      24,
+      26,
+      28,
+      30,
+      32,
+      36,
+      38
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Numbers",
+      "sourcePages": [
+        13,
+        14,
+        16,
+        18,
+        20
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Pre-number activities",
+          "sourcePage": 14
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Whole Numbers",
+          "sourcePage": 16
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Addition",
+          "sourcePage": 18
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Subtraction",
+          "sourcePage": 20
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Measurement",
+      "sourcePages": [
+        24,
+        26,
+        28,
+        30,
+        32
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Length",
+          "sourcePage": 24
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Mass",
+          "sourcePage": 26
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Capacity",
+          "sourcePage": 28
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Time",
+          "sourcePage": 30
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Money",
+          "sourcePage": 32
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Geometry",
+      "sourcePages": [
+        36,
+        38
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Lines",
+          "sourcePage": 36
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Shapes",
+          "sourcePage": 38
+        }
+      ]
+    }
+  ]
+}

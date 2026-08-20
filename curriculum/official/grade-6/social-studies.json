@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 6",
+  "subject": "Social Studies",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 6 Social studies - Revised Oct.pdf",
+    "version": "Revised Oct",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-six-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1H1QZ6wgFPsEL6S4A7dFdjukr2jEG8sS2/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      14,
+      16,
+      18,
+      20,
+      22,
+      26,
+      28,
+      30,
+      32,
+      36,
+      38,
+      42,
+      44,
+      46,
+      52,
+      54,
+      56,
+      58,
+      62,
+      64,
+      66,
+      88,
+      89
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Natural and the Built Environments",
+      "sourcePages": [
+        14,
+        16,
+        18,
+        20,
+        22
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Position and Size of Countries in Eastern Africa",
+          "sourcePage": 14
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Main physical features in Eastern Africa",
+          "sourcePage": 16
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Climatic regions in Eastern Africa",
+          "sourcePage": 18
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Vegetation in Eastern Africa",
+          "sourcePage": 20
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Historic Built Environments",
+          "sourcePage": 22
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "People and Social Organisation",
+      "sourcePages": [
+        26,
+        28,
+        30,
+        32
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Language groups in Eastern Africa",
+          "sourcePage": 26
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Population distribution in Eastern Africa",
+          "sourcePage": 28
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Culture and Social Organisation",
+          "sourcePage": 30
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "School and Community",
+          "sourcePage": 32
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Resources and Economic Activities in Eastern Africa",
+      "sourcePages": [
+        36,
+        38,
+        42,
+        44,
+        46
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Beef Farming",
+          "sourcePage": 36
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Fishing in Eastern Africa",
+          "sourcePage": 38
+        },
+        {
+          "order": 3,
+          "code": "3.4",
+          "name": "Transport in Eastern Africa",
+          "sourcePage": 42
+        },
+        {
+          "order": 4,
+          "code": "3.5",
+          "name": "Communicatio n in Eastern Africa",
+          "sourcePage": 44
+        },
+        {
+          "order": 5,
+          "code": "3.6",
+          "name": "Mining in Eastern Africa - Soda ash in Kenya - Gold in Tanzania - Limestone in Uganda",
+          "sourcePage": 46
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Political Systems",
+      "sourcePages": [
+        52,
+        54,
+        56,
+        58
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Traditional forms of Government",
+          "sourcePage": 52
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Regional co- operations",
+          "sourcePage": 54
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "Citizenship",
+          "sourcePage": 56
+        },
+        {
+          "order": 4,
+          "code": "4.4",
+          "name": "Human rights",
+          "sourcePage": 58
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Governance",
+      "sourcePages": [
+        62,
+        64,
+        66,
+        88,
+        89
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Peace and Conflict Resolution",
+          "alternativeNames": [
+            "Citizenship"
+          ],
+          "sourcePage": 62
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Government Revenue and Expenditure",
+          "alternativeNames": [
+            "Governance in Kenya"
+          ],
+          "sourcePage": 64
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "The Preamble of the Constitution of Kenya",
+          "sourcePage": 66
+        }
+      ]
+    }
+  ]
+}

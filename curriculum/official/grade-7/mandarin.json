@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 7",
+  "subject": "Mandarin",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Mandarin Grade 7 2024 - Revised Oct.pdf",
+    "version": "Revised Oct",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-seven-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1DEYhWOkEzMRq78C-jAnFj1VzCh9efb-7/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      14,
+      16,
+      18,
+      20,
+      22,
+      24,
+      26,
+      28,
+      30,
+      34,
+      36,
+      38,
+      40,
+      42,
+      44,
+      46,
+      48,
+      50,
+      54,
+      56,
+      58,
+      60,
+      62,
+      64,
+      66,
+      68,
+      70
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Listening and Speaking",
+      "sourcePages": [
+        14,
+        16,
+        18,
+        20,
+        22,
+        24,
+        26,
+        28,
+        30
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Oral Expression",
+          "sourcePage": 14
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Oral Expression",
+          "sourcePage": 16
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Oral Expression",
+          "sourcePage": 18
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Phonological Awareness",
+          "sourcePage": 20
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Phonological Awareness",
+          "sourcePage": 22
+        },
+        {
+          "order": 6,
+          "code": "1.6",
+          "name": "Listening for Information",
+          "sourcePage": 24
+        },
+        {
+          "order": 7,
+          "code": "1.7",
+          "name": "Oral Expression",
+          "sourcePage": 26
+        },
+        {
+          "order": 8,
+          "code": "1.8",
+          "name": "Interactive Speaking",
+          "sourcePage": 28
+        },
+        {
+          "order": 9,
+          "code": "1.9",
+          "name": "Listening for Information",
+          "sourcePage": 30
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Reading",
+      "sourcePages": [
+        34,
+        36,
+        38,
+        40,
+        42,
+        44,
+        46,
+        48,
+        50
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Reading for Understanding",
+          "alternativeNames": [
+            "Reading Aloud"
+          ],
+          "sourcePage": 36
+        },
+        {
+          "order": 2,
+          "code": "2.3",
+          "name": "Reading for Understanding",
+          "sourcePage": 38
+        },
+        {
+          "order": 3,
+          "code": "2.4",
+          "name": "Reading Aloud",
+          "sourcePage": 40
+        },
+        {
+          "order": 4,
+          "code": "2.5",
+          "name": "Guided Reading",
+          "sourcePage": 42
+        },
+        {
+          "order": 5,
+          "code": "2.6",
+          "name": "Reading Aloud",
+          "sourcePage": 44
+        },
+        {
+          "order": 6,
+          "code": "2.7",
+          "name": "Reading Aloud",
+          "sourcePage": 46
+        },
+        {
+          "order": 7,
+          "code": "2.8",
+          "name": "Reading for Fluency",
+          "sourcePage": 48
+        },
+        {
+          "order": 8,
+          "code": "2.9",
+          "name": "Reading for Understanding",
+          "sourcePage": 50
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Writing",
+      "sourcePages": [
+        54,
+        56,
+        58,
+        60,
+        62,
+        64,
+        66,
+        68,
+        70
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Guided Writing",
+          "sourcePage": 54
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Guided Writing",
+          "sourcePage": 56
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Guided Writing",
+          "sourcePage": 58
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Guided Writing",
+          "sourcePage": 60
+        },
+        {
+          "order": 5,
+          "code": "3.5",
+          "name": "Guided Writing",
+          "sourcePage": 62
+        },
+        {
+          "order": 6,
+          "code": "3.6",
+          "name": "Guided Writing",
+          "sourcePage": 64
+        },
+        {
+          "order": 7,
+          "code": "3.7",
+          "name": "Guided Writing",
+          "sourcePage": 66
+        },
+        {
+          "order": 8,
+          "code": "3.8",
+          "name": "Guided Writing",
+          "sourcePage": 68
+        },
+        {
+          "order": 9,
+          "code": "3.9",
+          "name": "Guided Writing",
+          "sourcePage": 70
+        }
+      ]
+    }
+  ]
+}

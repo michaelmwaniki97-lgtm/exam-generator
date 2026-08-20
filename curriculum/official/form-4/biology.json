@@ -1,0 +1,518 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 4",
+  "subject": "Biology",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "14.0.0",
+      "order": 1,
+      "name": "GENETICS",
+      "sourcePages": [
+        93
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "distinguish between continuous and discontinuous variations",
+          "sourcePages": [
+            93
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe the structure and properties of chromosomes",
+          "sourcePages": [
+            93
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state the first law of inheritance and describe Mendel‟s work",
+          "sourcePages": [
+            93
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "construct and use punnet square/checker board",
+          "sourcePages": [
+            93
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "distinguish between F1 and F2 generations, genotype and phenotype, haploidy and diploidy, homozygosity and heterozygosity, dominance and recessiveness, linkage and sex linkage, mutations and mutagens",
+          "sourcePages": [
+            93
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "predict and explain the inheritance of the ABO blood groups and Rhesus (Rh) factor",
+          "sourcePages": [
+            93
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "state examples of genetically inherited disorders",
+          "sourcePages": [
+            93
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "explain causes of chromosomal mutations",
+          "sourcePages": [
+            93
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "explain the practical application of genetics.",
+          "sourcePages": [
+            93
+          ],
+          "order": 9
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "14.2.1",
+          "order": 1,
+          "name": "Concepts of genetics",
+          "sourcePages": [
+            93
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.2",
+          "order": 2,
+          "name": "First law of heredity",
+          "sourcePages": [
+            93
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.3",
+          "order": 3,
+          "name": "Sex determination in humans",
+          "sourcePages": [
+            93
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.4",
+          "order": 4,
+          "name": "Linkage Sex linked genes, sex linked characteristics e.g. Colour blindness, Haemophilia, Hairy ears and Nose",
+          "sourcePages": [
+            93
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.5",
+          "order": 5,
+          "name": "Mutations",
+          "sourcePages": [
+            93
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.6",
+          "order": 6,
+          "name": "Practical applications of genetics",
+          "sourcePages": [
+            93
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "15.0.0",
+      "order": 2,
+      "name": "EVOLUTION",
+      "sourcePages": [
+        93
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "explain the meaning of evolution and the current concepts of evolution",
+          "sourcePages": [
+            93
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe the struggle for existence and survival for the fittest",
+          "sourcePages": [
+            93
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe the evidences for organic evolution",
+          "sourcePages": [
+            93
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain resistance to antibiotics, fungicides and pesticides.92",
+          "sourcePages": [
+            93,
+            94
+          ],
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "15.2.1",
+          "order": 1,
+          "name": "Meaning of evolution",
+          "sourcePages": [
+            94
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.2",
+          "order": 2,
+          "name": "The origin of life",
+          "sourcePages": [
+            94
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.3",
+          "order": 3,
+          "name": "Evidences for organic evolution",
+          "sourcePages": [
+            94
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.4",
+          "order": 4,
+          "name": "Mechanisms of evolution",
+          "sourcePages": [
+            94
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "16.0.0",
+      "order": 3,
+      "name": "RECEPTION, RESPONSE AND COORDINATION IN PLANTS AND ANIMALS",
+      "sourcePages": [
+        94
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define irritability, stimulus and response",
+          "sourcePages": [
+            94
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain differences between tactic and tropic responses and their survival values",
+          "sourcePages": [
+            94
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain the production of plant hormones and their effects on tropisms (growth responses)",
+          "sourcePages": [
+            94
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "relate the structure of the mammalian nervous system to its functions",
+          "sourcePages": [
+            94
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "distinguish between simple and conditioned reflex actions",
+          "sourcePages": [
+            94
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the role of endocrine system in humans",
+          "sourcePages": [
+            94
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "state the effects of drug abuse on the human health",
+          "sourcePages": [
+            94
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "relate structure to function of the human ear and eye",
+          "sourcePages": [
+            94
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "explain defects of the eye and ear and their corrections.",
+          "sourcePages": [
+            94
+          ],
+          "order": 9
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "16.2.1",
+          "order": 1,
+          "name": "Meaning of stimulus, response and irritability",
+          "sourcePages": [
+            94
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.2",
+          "order": 2,
+          "name": "Reception, response and coordination in plants",
+          "sourcePages": [
+            94
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.3",
+          "order": 3,
+          "name": "Reception, responses and coordination in animals",
+          "sourcePages": [
+            94
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.4",
+          "order": 4,
+          "name": "The role of hormones in coordination in a mammal",
+          "sourcePages": [
+            94
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.5",
+          "order": 5,
+          "name": "Effects of drug abuse on the human health",
+          "sourcePages": [
+            94
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.6",
+          "order": 6,
+          "name": "Structure and functions of parts of the mammalian eye (human)",
+          "sourcePages": [
+            94
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.7",
+          "order": 7,
+          "name": "Structure and functions of parts of the mammalian ear (human)",
+          "sourcePages": [
+            94
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "17.0.0",
+      "order": 4,
+      "name": "SUPPORT AND MOVEMENT IN PLANTS AND ANIMALS",
+      "sourcePages": [
+        95
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "explain the necessity of support and movement in animals and plants",
+          "sourcePages": [
+            95
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe the arrangement and the role of supporting tissues in young and old plants",
+          "sourcePages": [
+            95
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "list functions of the exo and endo\u0002skeletons",
+          "sourcePages": [
+            95
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe locomotion in a named finned fish",
+          "sourcePages": [
+            95
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "identify the bones of the axial and appendicular skeleton in a mammal",
+          "sourcePages": [
+            95
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "describe the structure and functions of different types of joints in a mammal and explain how muscles bring about movement",
+          "sourcePages": [
+            95
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "distinguish between the different types of muscles, their locations and functions.",
+          "sourcePages": [
+            95
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "17.2.1",
+          "order": 1,
+          "name": "Plants",
+          "sourcePages": [
+            95
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "17.2.2",
+          "order": 2,
+          "name": "Animals",
+          "sourcePages": [
+            95
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "17.2.3",
+          "order": 3,
+          "name": "Locomotion in a finned fish",
+          "sourcePages": [
+            95
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "17.2.4",
+          "order": 4,
+          "name": "Identification of the bones of axial and appendicular skeletons (names of individual bones of coccyx not required)",
+          "sourcePages": [
+            95
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "17.2.5",
+          "order": 5,
+          "name": "Types and functions of movable joints (ball and socket, hinge joint)",
+          "sourcePages": [
+            95
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "17.2.6",
+          "order": 6,
+          "name": "Structure, function and location of cardiac, smooth and skeletal muscles (Details of fine structure not required) Role of muscles in movement of the arm in humans",
+          "sourcePages": [
+            95
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 6",
+  "subject": "Hindu Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "HRE GRADE 6 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-six-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1DkJ_S-CX54BWOBbunQNSvL4htQkXHdcz/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      14,
+      16,
+      19,
+      22,
+      25,
+      27,
+      30,
+      33,
+      35,
+      38,
+      41
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Creation",
+      "sourcePages": [
+        13,
+        14,
+        16
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Creation as per Buddh and Sikh faiths",
+          "alternativeNames": [
+            "Creation in Buddh and Sikh faiths"
+          ],
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Gifts of Nature",
+          "sourcePage": 16
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Manifestations of Paramatma",
+      "sourcePages": [
+        19
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Enlightened Beings and Social Welfare",
+          "sourcePage": 19
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Scriptures",
+      "sourcePages": [
+        13,
+        22
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Scriptures and Moral values",
+          "sourcePage": 22
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Worship",
+      "sourcePages": [
+        13,
+        25,
+        27
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Basic chants and mantras in Buddh faith",
+          "alternativeNames": [
+            "Basic chants/mantras as per Buddhism"
+          ],
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Buddhist Vihaars in Africa",
+          "alternativeNames": [
+            "Buddhist Vihaar in Africa"
+          ],
+          "sourcePage": 13
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Sadachaar (Social Ethics)",
+      "sourcePages": [
+        30
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Managing Resources",
+          "sourcePage": 30
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Yoga (Holistic wellness)",
+      "sourcePages": [
+        13,
+        33,
+        35
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Asanas (Physical postures)",
+          "alternativeNames": [
+            "Asanas"
+          ],
+          "sourcePage": 33
+        },
+        {
+          "order": 2,
+          "code": "6.2",
+          "name": "Communal aspects of Yoga",
+          "alternativeNames": [
+            "Communal Aspect of Yoga"
+          ],
+          "sourcePage": 35
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "code": "7.0",
+      "name": "Principles of Dharma",
+      "sourcePages": [
+        13,
+        38
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "7.1",
+          "name": "Virtues and Principles of Dharma in Buddhism (based on Scriptural stories)",
+          "alternativeNames": [
+            "Virtues &amp; Principles of Dharma in Buddhist faith"
+          ],
+          "sourcePage": 38
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "code": "8.0",
+      "name": "Utsav (Festivals)",
+      "sourcePages": [
+        41
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "8.1",
+          "name": "Utsav from other faiths",
+          "sourcePage": 41
+        }
+      ]
+    }
+  ]
+}

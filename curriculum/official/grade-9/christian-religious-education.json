@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 9",
+  "subject": "Christian Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "CRE Grade 9 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-nine-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1FBMLUxBo1q4dHUkXLidZeqCiZWDzRBNI/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      17,
+      20,
+      22,
+      26,
+      28,
+      30,
+      32,
+      34,
+      36,
+      40,
+      42,
+      45,
+      47,
+      49,
+      52,
+      59,
+      60
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Creation",
+      "sourcePages": [
+        12,
+        13
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Work: God Worked",
+          "alternativeNames": [
+            "Work"
+          ],
+          "sourcePage": 13
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "The Bible Selected Teachings",
+      "sourcePages": [
+        12,
+        17,
+        20,
+        22,
+        59
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Christian Moral Values",
+          "sourcePage": 17
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Kings David and Solomon",
+          "alternativeNames": [
+            "Judge Deborah"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Kings David and Solomon",
+          "sourcePage": 22
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "The Life and Ministry of Jesus Christ",
+      "sourcePages": [
+        12,
+        26,
+        28,
+        30,
+        32,
+        34,
+        36,
+        60
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Raising of the Widow's son",
+          "alternativeNames": [
+            "Raising the Widow’s Son"
+          ],
+          "sourcePage": 60
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Healing of 10 the Lepers",
+          "alternativeNames": [
+            "Healing the 10 Lepers"
+          ],
+          "sourcePage": 60
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Parable on prayer",
+          "sourcePage": 30
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Nicodemus’ Encounter with Jesus Christ",
+          "alternativeNames": [
+            "Nicodemus Encounter with Jesus Christ"
+          ],
+          "sourcePage": 32
+        },
+        {
+          "order": 5,
+          "code": "3.5",
+          "name": "Jesus’ Ministry in Jerusalem",
+          "alternativeNames": [
+            "Jesus Ministry in Jerusalem"
+          ],
+          "sourcePage": 34
+        },
+        {
+          "order": 6,
+          "code": "3.6",
+          "name": "Jesus’ Passion, Death and Resurrection",
+          "sourcePage": 36
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "The Church",
+      "sourcePages": [
+        40,
+        42
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "The Early Church",
+          "sourcePage": 40
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "The Gifts of the Holy Spirit",
+          "sourcePage": 42
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Christian Living Today",
+      "sourcePages": [
+        12,
+        45,
+        47,
+        49,
+        52
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Courtship and Marriage",
+          "sourcePage": 45
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Responsible parenthood",
+          "sourcePage": 47
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Leisure",
+          "sourcePage": 49
+        },
+        {
+          "order": 4,
+          "code": "5.4",
+          "name": "Wealth, Money and Poverty",
+          "sourcePage": 52
+        }
+      ]
+    }
+  ]
+}

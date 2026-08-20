@@ -1,0 +1,697 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 2",
+  "subject": "Christian Religious Education",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Three",
+    "year": "2002",
+    "edition": "First published 2002; reprinted 2005, 2011 and 2012",
+    "archiveDocument": "https://www.scribd.com/document/867743223/Kicd-Syllabus-2002-Vol-3-1",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus",
+    "formReference": "printed pages 80-83"
+  },
+  "topics": [
+    {
+      "code": "10.00",
+      "order": 1,
+      "name": "OLD TESTAMENT PROPHESIES ABOUT THE MESSIAH",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "explain the Old Testament prophesies about the coming of the Messiah and the concept of the Messiah in the Old and the New Testaments",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain the role of John the Baptist as a link between the Old and the New Testament.",
+          "order": 2
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "10.21",
+          "sourceCode": "10.2.1",
+          "order": 1,
+          "name": "The Old Testament prophesies about the coming of the Messiah and the concept of the Messiah in the New Testament",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.22",
+          "sourceCode": "10.2.2",
+          "order": 2,
+          "name": "The role of John the Baptist (Isaiah 40:3-5; Malachi 3:1; 4:5-6; Luke 7:20-35).",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "11.00",
+      "order": 2,
+      "name": "THE INFANCY AND EARLY LIFE OF JESUS",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe the infancy and early life of Jesus",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "desire to grow in favour with God and fellow human beings.",
+          "order": 2
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "11.21",
+          "sourceCode": "11.2.1",
+          "order": 1,
+          "name": "The annunciation (Luke 1:5-56)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.22",
+          "sourceCode": "11.2.2",
+          "order": 2,
+          "name": "The birth of John the Baptist (Luke 1:57-80)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.23",
+          "sourceCode": "11.2.3",
+          "order": 3,
+          "name": "The birth of Jesus (Luke 2:1.20",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.24",
+          "sourceCode": "11.2.4",
+          "order": 4,
+          "name": "Dedication (Luke 2:21-40)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.25",
+          "sourceCode": "11.2.5",
+          "order": 5,
+          "name": "The boy Jesus at the Temple (Luke 2:41-52).",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "12.00",
+      "order": 3,
+      "name": "THE GALILEAN MINISTRY",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "outline and apply the teachings of John the Baptist to daily life",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe the baptism and temptations of Jesus",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain the relevance of the baptism and the temptations of Jesus to Christians today",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain why Jesus was rejected at Nazareth",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "describe and appreciate Jesus’ healing at Capernaum",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "describe the call of the first disciples",
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "explain why Jesus faced opposition from the Pharisees and the Scribes",
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "explain the choosing of the twelve disciples and identify Jesus’ teachings on the qualities of true discipleship",
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "explain Jesus’ teachings of the sermon on the plain and apply it to daily life",
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "explain and appreciate Jesus works of compassion",
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "emulate Jesus’ example by showing compassion to 0 1) narrate the parables of Jesus",
+          "order": 11
+        },
+        {
+          "label": "m)",
+          "text": "relate the significance of parables to daily life",
+          "order": 12
+        },
+        {
+          "label": "n)",
+          "text": "describe the mighty works Jesus",
+          "order": 13
+        },
+        {
+          "label": "o)",
+          "text": "explain the significance of teaching from the mighty works of Jesus to Christians today",
+          "order": 14
+        },
+        {
+          "label": "p)",
+          "text": "explain and appreciate the teaching of Jesus on discipleship, divine power, Messiahship, faith and humility",
+          "order": 15
+        },
+        {
+          "label": "q)",
+          "text": "appreciate God’s power as displayed in Jesus’ works.",
+          "order": 16
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "12.21",
+          "sourceCode": "12.2.1",
+          "order": 1,
+          "name": "John the Baptist and Jesus",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.23",
+          "sourceCode": "12.2.3",
+          "order": 2,
+          "name": "The relevance of the baptism and the temptations of Jesus to Christians today",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.24",
+          "sourceCode": "12.2.4",
+          "order": 3,
+          "name": "Jesus begins work in Galilee and is rejected at Nazareth (Luke 4: 14-30)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.26",
+          "sourceCode": "12.2.6",
+          "order": 4,
+          "name": "Jesus calls the first disciples (Luke5:1-11)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.27",
+          "sourceCode": "12.2.7",
+          "order": 5,
+          "name": "Jesus faces opposition (Luke 5:12-6:11)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.28",
+          "sourceCode": "12.2.8",
+          "order": 6,
+          "name": "The choosing of the twelve disciples and Jesus’ teaching on true discipleship (Luke 6:12-16, 27-49)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.29",
+          "sourceCode": "12.2.9",
+          "order": 7,
+          "name": "The sermon on the plain (Luke 6:17-49)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.30",
+          "sourceCode": "12.3.0",
+          "order": 8,
+          "name": "Jesus’ works of compassion",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.31",
+          "sourceCode": "12.3.1",
+          "order": 9,
+          "name": "Jesus teaches in parables (Luke 8:4-21)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.32",
+          "sourceCode": "12.3.2",
+          "order": 10,
+          "name": "Significance of the parables of Jesus",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.33",
+          "sourceCode": "12.3.3",
+          "order": 11,
+          "name": "Mighty works of Jesus (Luke 8:22-56)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.34",
+          "sourceCode": "12.3.4",
+          "order": 12,
+          "name": "Jesus and the twelve disciples",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "13.00",
+      "order": 4,
+      "name": "THE JOURNEY TO JERUSALEM",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "explain and evaluate the characteristics of a true follower of Jesus",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "apply the teaching of Jesus on true discipleship to the daily",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain and appreciate Jesus teaching on God’s power in overcoming evil",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "define the terms confession, honesty and hypocrisy",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "examine oneself and live according to Christian principles",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain and appreciate Jesus teaching on material possessions readiness and watchfulness",
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "relate Jesus’ teaching on material possessions, readiness and watchfulness to Christian living today",
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "explain and appreciate the spiritual teaching given by Jesus through the parables of the feasts",
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "narrate the parables of the lost",
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "explain and apply the parables’ teaching in daily Christian life",
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "explain and appreciate Jesus teaching on wealth and poverty",
+          "order": 11
+        },
+        {
+          "label": "l)",
+          "text": "apply the teaching of Jesus on proper attitude towards wealth",
+          "order": 12
+        },
+        {
+          "label": "m)",
+          "text": "explain Jesus’ teaching on the power of faith",
+          "order": 13
+        },
+        {
+          "label": "n)",
+          "text": "explain the significance of faith in Christian life",
+          "order": 14
+        },
+        {
+          "label": "o)",
+          "text": "explain and appreciate Jesus’ teaching on prayer and persistence",
+          "order": 15
+        },
+        {
+          "label": "p)",
+          "text": "develop a sense of persistence in prayer and learn to pursue goals as a Christian",
+          "order": 16
+        },
+        {
+          "label": "q)",
+          "text": "explain and appreciate Jesus’ teaching on the way of salvation",
+          "order": 17
+        },
+        {
+          "label": "r)",
+          "text": "appreciate the teaching of Jesus on the need for repentance. 13.2.1 Duties and privileges of discipleship (Luke 9:51-62)",
+          "order": 18
+        },
+        {
+          "label": "a)",
+          "text": "The mission of the seventy two (Luke 10:1-24)",
+          "order": 19
+        },
+        {
+          "label": "b)",
+          "text": "A committed follower of Jesus (Luke 10:25-11:1-13) 13.2.2 Use of God’s power to overcome evil (Luke 11:14-36) 13.2.3 Fearless confession without hypocrisy (Luke 11:37- 12:1-12",
+          "order": 20
+        },
+        {
+          "label": "a)",
+          "text": "Material possessions (Luke 12:13-34)",
+          "order": 21
+        },
+        {
+          "label": "b)",
+          "text": "Watchfulness and readiness (Luke 12:35-59) 13.2.4 The growth of God’s Kingdom (Luke 13: 13.25 A great feast for all who are prepared (Luke 14:1-35)",
+          "order": 22
+        },
+        {
+          "label": "a)",
+          "text": "The invited guests",
+          "order": 23
+        },
+        {
+          "label": "b)",
+          "text": "The great feast",
+          "order": 24
+        },
+        {
+          "label": "c)",
+          "text": "The cost of discipleship 13.26 Retrieving the lost (Luke 15:1-32)",
+          "order": 25
+        },
+        {
+          "label": "a)",
+          "text": "Parable of the lost sheep",
+          "order": 26
+        },
+        {
+          "label": "b)",
+          "text": "Parable of the lost coin 13.2.7 Wealth and poverty (Luke t6:1-32) 13.2.8 The power of faith (Luke 17:1-37) 13.2.9 Persistence in Prayer (Luke 18:1-14)",
+          "order": 27
+        },
+        {
+          "label": "a)",
+          "text": "Parable of the widow a the unjust judge (Luke 18:1-8)",
+          "order": 28
+        },
+        {
+          "label": "b)",
+          "text": "Parable of the Pharisee and the Tax Collector (Luke 18: 9-14)",
+          "order": 29
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "13.00",
+          "sourceCode": "13.00",
+          "order": 1,
+          "name": "THE JOURNEY TO JERUSALEM",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.10",
+          "sourceCode": "13.1.0",
+          "order": 2,
+          "name": "Specific Objectives",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.21",
+          "sourceCode": "13.2.1",
+          "order": 3,
+          "name": "Duties and privileges of discipleship (Luke 9:51-62)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.22",
+          "sourceCode": "13.2.2",
+          "order": 4,
+          "name": "Use of God’s power to overcome evil (Luke 11:14-36)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.23",
+          "sourceCode": "13.2.3",
+          "order": 5,
+          "name": "Fearless confession without hypocrisy (Luke 11:37- 12:1-12",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.24",
+          "sourceCode": "13.2.4",
+          "order": 6,
+          "name": "The growth of God’s Kingdom (Luke 13:",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.25",
+          "sourceCode": "13.25",
+          "order": 7,
+          "name": "A great feast for all who are prepared (Luke 14:1-35)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.26",
+          "sourceCode": "13.26",
+          "order": 8,
+          "name": "Retrieving the lost (Luke 15:1-32)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.27",
+          "sourceCode": "13.2.7",
+          "order": 9,
+          "name": "Wealth and poverty (Luke t6:1-32)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.28",
+          "sourceCode": "13.2.8",
+          "order": 10,
+          "name": "The power of faith (Luke 17:1-37)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.29",
+          "sourceCode": "13.2.9",
+          "order": 11,
+          "name": "Persistence in Prayer (Luke 18:1-14)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.30",
+          "sourceCode": "13.30",
+          "order": 12,
+          "name": "The way to salvation (Luke 18:15-19: 1-27).",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "14.00",
+      "order": 5,
+      "name": "JESUS’ MINISTRY IN JERUSALEM",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe the triumphant entry of Jesus into Jerusalem",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "desire to be humble and promote peace in society",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain the cleansing of the temple",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "develop respect and honour for God’s places of worship",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain Jesus’ conflict with Jewish leaders",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain Jesus’ teaching about eschatology.",
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "14.21",
+          "sourceCode": "14.2.1",
+          "order": 1,
+          "name": "The triumphant entry into Jerusalem (Luke 19:28-40)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.22",
+          "sourceCode": "14.2.2",
+          "order": 2,
+          "name": "Cleansing of the temple (Luke 19:41-48)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.23",
+          "sourceCode": "14.2.3",
+          "order": 3,
+          "name": "Jesus’ conflicts with the Jewish leaders (Luke 20:1 -21:1-4)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.24",
+          "sourceCode": "14.2.4",
+          "order": 4,
+          "name": "Eschatology (Luke 21:5-38).",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "15.00",
+      "order": 6,
+      "name": "JESUS’ PASSION, DEATH AND RESURRECTION",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "discuss the Lord’s supper and appreciate its meaning to Christians today",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe the events that took place at Mount Olives",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain the events that took place between the arrest and the burial of Jesus",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe the resurrection of Jesus",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain and relate the significance of the teaching on the passion, death and resurrection of Jesus to daily life",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "appreciate the saving work of Jesus. 15.2.1 The last supper (Luke 22:1-38) 15.2.2 Prayer on Mount Olives, betrayal and arrest (Luke 22:39-53) 15.2.3 The denial by Peter, trial, crucifixion, death and burial (Luke 22:54-71 23:1-56) 15.2.4 The resurrection (Luke 24:1-53)",
+          "order": 6
+        },
+        {
+          "label": "a)",
+          "text": "Witness to the risen Christ • testimony of the Holy women • the disciples on the way to Emmaus • appearance to the disciples",
+          "order": 7
+        },
+        {
+          "label": "b)",
+          "text": "Jesus ascension to heaven",
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "15.00",
+          "sourceCode": "15.00",
+          "order": 1,
+          "name": "JESUS’ PASSION, DEATH AND RESURRECTION",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.10",
+          "sourceCode": "15.1.0",
+          "order": 2,
+          "name": "Specific Objectives",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.21",
+          "sourceCode": "15.2.1",
+          "order": 3,
+          "name": "The last supper (Luke 22:1-38)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.22",
+          "sourceCode": "15.2.2",
+          "order": 4,
+          "name": "Prayer on Mount Olives, betrayal and arrest (Luke 22:39-53)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.23",
+          "sourceCode": "15.2.3",
+          "order": 5,
+          "name": "The denial by Peter, trial, crucifixion, death and burial (Luke 22:54-71 23:1-56)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.24",
+          "sourceCode": "15.2.4",
+          "order": 6,
+          "name": "The resurrection (Luke 24:1-53)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.25",
+          "sourceCode": "15.2.5",
+          "order": 7,
+          "name": "Significance of passion, death and the resurrection of Jesus to daily Christian life.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

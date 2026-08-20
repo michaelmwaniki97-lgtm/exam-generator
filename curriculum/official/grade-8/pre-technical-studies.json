@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 8",
+  "subject": "Pre-Technical Studies",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Pre-Technical Studies Grade 8 - July 2024 - Revised.pdf",
+    "version": "July 2024",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-eight-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1Cvh2JSBlrHU4z4FKt7uVMgTMXEWq9jdu/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      18,
+      19,
+      21,
+      22,
+      27,
+      32,
+      35,
+      37,
+      41,
+      46,
+      48,
+      49,
+      50
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Foundations of Pre-Technical Studies",
+      "sourcePages": [
+        12,
+        13,
+        46
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Fire Safety ● Question and Answer ●",
+          "alternativeNames": [
+            "Fire Safety"
+          ],
+          "sourcePage": 46
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Data Safety ●",
+          "alternativeNames": [
+            "Data Safety"
+          ],
+          "sourcePage": 46
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Communication in Pre-Technical Studies",
+      "sourcePages": [
+        12,
+        18,
+        19,
+        21,
+        22,
+        46,
+        48
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Plane Geometry",
+          "sourcePage": 18
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Dimensioning",
+          "sourcePage": 19
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Plain Scale Drawing",
+          "sourcePage": 21
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Visual programming ● Question and Answer ●",
+          "alternativeNames": [
+            "Visual Programming"
+          ],
+          "sourcePage": 48
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Materials for Production",
+      "sourcePages": [
+        12,
+        27,
+        48,
+        49
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Composite Materials ● Question and Answer ●",
+          "alternativeNames": [
+            "Composite Materials"
+          ],
+          "sourcePage": 48
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Ceramic materials ● Question and Answer ●",
+          "alternativeNames": [
+            "Ceramic Materials",
+            "Ceramics"
+          ],
+          "sourcePage": 49
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Tools and Production",
+      "sourcePages": [
+        12,
+        32,
+        49
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Cutting Tools ● Question and Answer ●",
+          "alternativeNames": [
+            "Cutting Tools"
+          ],
+          "sourcePage": 49
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Computer Software",
+          "sourcePage": 32
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Entrepreneurship",
+      "sourcePages": [
+        12,
+        35,
+        37,
+        41,
+        50
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Bookkeeping ● Portfolio ● Question and answer ● Learner’s profile ●",
+          "alternativeNames": [
+            "Bookkeeping"
+          ],
+          "sourcePage": 50
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Income and Budgeting ● Portfolio ● Question and answer ● Learner’s profile ●",
+          "alternativeNames": [
+            "Income and Budgeting"
+          ],
+          "sourcePage": 50
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Marketing goods and Services ● Portfolio ● Question and answer ● Learner’s profile ●",
+          "alternativeNames": [
+            "Marketing goods and Services"
+          ],
+          "sourcePage": 50
+        },
+        {
+          "order": 4,
+          "code": "5.4",
+          "name": "Distribution of Goods and Services",
+          "sourcePage": 41
+        }
+      ]
+    }
+  ]
+}

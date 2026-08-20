@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 1",
+  "subject": "English",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume One - English extract",
+    "year": "2002",
+    "edition": "Archived syllabus extract; exact reprint not stated in the mirror",
+    "archiveDocument": "https://drive.google.com/open?id=1ckKAELak19L3x9FvgCyV9H485KsqtUu4",
+    "crossCheckDocument": "https://drive.google.com/open?id=1j4AsRQqDIFGZMGfJEp1kp7kEalmeirjV",
+    "bibliographicRecord": "https://maktaba.pu.ac.ke/cgi-bin/koha/opac-detail.pl?biblionumber=12647",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus_extract",
+    "formReference": "Form 1 section in the archived English syllabus extract"
+  },
+  "topics": [
+    {
+      "code": null,
+      "order": 1,
+      "name": "LISTENING AND SPEAKING",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "demonstrate awareness that spelling in English may or may not be related to pronunciation;",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "pronounce correctly sounds they find problematic;",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "respond correctly to oral information on a variety of subjects;",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "communicate correctly, confidently and appropriately in different contexts;",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "Demonstrate acceptable communication skills;",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "identify the features of ogre and trickster stories, and riddles.",
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": null,
+          "order": 1,
+          "name": "Pronunciation",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 2,
+          "name": "Listening Comprehension and note-taking",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 3,
+          "name": "Mastery of Content",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 4,
+          "name": "Etiquette",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 5,
+          "name": "Non-verbal cues that enhance listening and speaking",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ],
+      "sourceDiscrepancy": "The archived Form extract provides the heading and objectives without a printed Form-level parent code; no code was invented."
+    },
+    {
+      "code": "2.0",
+      "order": 2,
+      "name": "GRAMMAR",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "use parts of speech correctly;",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "identify the constituents and the functions of the noun phrase;",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "construct different types of simple sentences.",
+          "order": 3
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": null,
+          "order": 1,
+          "name": "Parts of speech",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 2,
+          "name": "Phrases",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 3,
+          "name": "Simple sentences",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "3.0",
+      "order": 3,
+      "name": "READING",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "i)",
+          "text": "read efficiently and fluently",
+          "order": 1
+        },
+        {
+          "label": "i)",
+          "text": "use the dictionary effectively",
+          "order": 2
+        },
+        {
+          "label": "iii)",
+          "text": "use the library effectively",
+          "order": 3
+        },
+        {
+          "label": "iv)",
+          "text": "enjoy reading literary and non-literary materials",
+          "order": 4
+        },
+        {
+          "label": "v)",
+          "text": "trace the sequence of events in selected plays and short stones",
+          "order": 5
+        },
+        {
+          "label": "vi)",
+          "text": "demonstrate appropriate comprehension skills",
+          "order": 6
+        },
+        {
+          "label": "vii)",
+          "text": "build a wide range of vocabulary",
+          "order": 7
+        },
+        {
+          "label": "viii)",
+          "text": "demonstrate awareness of contemporary issues",
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": null,
+          "order": 1,
+          "name": "Reading Skills",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 2,
+          "name": "Intensive Reading",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 3,
+          "name": "Extensive Reading",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 4,
+          "name": "Comprehension Skills",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "4.0",
+      "order": 4,
+      "name": "WRITING",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "write legibly and neatly;",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "apply spelling rules correctly;",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "use punctuation marks correctly;",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "write clear and correct sentences, and organize ideas in a logical sequence;",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "use appropriate register and format for a variety of writing tasks; and",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "take and make intelligible notes.",
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": null,
+          "order": 1,
+          "name": "Handwriting",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 2,
+          "name": "Spelling rules",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 3,
+          "name": "Building sentence skills and paragraphing",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 4,
+          "name": "Punctuation",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 5,
+          "name": "Personal writing",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 6,
+          "name": "Social Writing",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 7,
+          "name": "Study Writing",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 8,
+          "name": "Creative Writing",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 9,
+          "name": "Institutional Writing",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

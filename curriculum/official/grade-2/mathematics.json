@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 2",
+  "subject": "Mathematics",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 1-3 Mathematics - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/lower-primary/",
+    "officialDocument": "https://drive.google.com/file/d/1YlwoCFAVxhjUo_V1A-89GRcho0r0Gq1u/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      46,
+      47,
+      49,
+      51,
+      53,
+      55,
+      57,
+      59,
+      64,
+      66,
+      68,
+      70,
+      72,
+      76,
+      78
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Numbers",
+      "sourcePages": [
+        46,
+        47,
+        49,
+        51,
+        53,
+        55,
+        57,
+        59
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Pre-Number Activities",
+          "alternativeNames": [
+            "Number Concept"
+          ],
+          "sourcePage": 46
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Whole Numbers",
+          "sourcePage": 49
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Addition",
+          "sourcePage": 51
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Subtraction",
+          "sourcePage": 53
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Multiplication",
+          "sourcePage": 55
+        },
+        {
+          "order": 6,
+          "code": "1.6",
+          "name": "Division",
+          "sourcePage": 57
+        },
+        {
+          "order": 7,
+          "code": "1.7",
+          "name": "Fractions",
+          "sourcePage": 59
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Measurement",
+      "sourcePages": [
+        64,
+        66,
+        68,
+        70,
+        72
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Length",
+          "sourcePage": 64
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Mass",
+          "sourcePage": 66
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Capacity",
+          "sourcePage": 68
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Time",
+          "sourcePage": 70
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Money",
+          "sourcePage": 72
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Geometry",
+      "sourcePages": [
+        76,
+        78
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Lines",
+          "sourcePage": 76
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Shapes",
+          "sourcePage": 78
+        }
+      ]
+    }
+  ]
+}

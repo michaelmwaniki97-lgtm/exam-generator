@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 9",
+  "subject": "Mathematics",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Mathematics Grade 9 - July 2024 - Revised.pdf",
+    "version": "July 2024",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-nine-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1HgntYl8nS1zydy8k00KrjEt_zJiMqISL/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      15,
+      17,
+      18,
+      22,
+      24,
+      26,
+      30,
+      33,
+      35,
+      37,
+      39,
+      41,
+      46,
+      48,
+      50,
+      52,
+      57,
+      59
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Numbers",
+      "sourcePages": [
+        12,
+        13,
+        15,
+        17,
+        18
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Integers Simple and combined operations on Integers",
+          "alternativeNames": [
+            "Integers"
+          ],
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Cubes and Cube Roots",
+          "sourcePage": 15
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Indices and Logarithms",
+          "sourcePage": 17
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Compound Proportions and Rates of Work",
+          "sourcePage": 18
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Algebra",
+      "sourcePages": [
+        12,
+        22,
+        24,
+        26
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Matrices",
+          "sourcePage": 22
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Equations of Straight Lines",
+          "alternativeNames": [
+            "Equation of a Straight Line"
+          ],
+          "sourcePage": 24
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Linear Inequalities",
+          "sourcePage": 26
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Measurements",
+      "sourcePages": [
+        12,
+        30,
+        33,
+        35,
+        37,
+        39,
+        41
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Area",
+          "sourcePage": 30
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Volume of Solids",
+          "sourcePage": 33
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Mass, Volume, Weight, and Density",
+          "alternativeNames": [
+            "Mass, Volume, Weight and Density"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Time, Distance, and Speed",
+          "alternativeNames": [
+            "Time, Distance and Speed"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 5,
+          "code": "3.5",
+          "name": "Money",
+          "sourcePage": 39
+        },
+        {
+          "order": 6,
+          "code": "3.6",
+          "name": "Approximations and Errors",
+          "sourcePage": 41
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Geometry",
+      "sourcePages": [
+        46,
+        48,
+        50,
+        52
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Coordinates and Graphs",
+          "sourcePage": 46
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Scale Drawing",
+          "sourcePage": 48
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "Similarity and Enlargement",
+          "sourcePage": 50
+        },
+        {
+          "order": 4,
+          "code": "4.4",
+          "name": "Trigonometry",
+          "sourcePage": 52
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Data Handling and Probability",
+      "sourcePages": [
+        57,
+        59
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Data Interpretation (Grouped Data)",
+          "sourcePage": 57
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Probability",
+          "sourcePage": 59
+        }
+      ]
+    }
+  ]
+}

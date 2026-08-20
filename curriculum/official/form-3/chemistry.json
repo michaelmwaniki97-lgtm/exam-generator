@@ -1,0 +1,768 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 3",
+  "subject": "Chemistry",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "12.0.0",
+      "order": 1,
+      "name": "GAS LAWS",
+      "sourcePages": [
+        68
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state Boyle‟s and Charles‟ laws",
+          "sourcePages": [
+            68
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "carry out calculations involving the gas laws",
+          "sourcePages": [
+            68
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "use combined gas law in calculations",
+          "sourcePages": [
+            68
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state Graham‟s law of diffusion",
+          "sourcePages": [
+            68
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain diffusion in liquids and gases in terms of kinetic theory",
+          "sourcePages": [
+            68
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "relate the rate of diffusion to the relative molecular mass of a gas.",
+          "sourcePages": [
+            68
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "12.2.1",
+          "order": 1,
+          "name": "Boyle’s law and Charles’ law",
+          "sourcePages": [
+            68
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.2.2",
+          "order": 2,
+          "name": "Grahams’ law of diffusion",
+          "sourcePages": [
+            68
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "13.0.0",
+      "order": 2,
+      "name": "THE MOLE: FORMULAE AND CHEMICAL EQUATIONS",
+      "sourcePages": [
+        68
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define the mole",
+          "sourcePages": [
+            68
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "relate the mole to the relative atomic mass",
+          "sourcePages": [
+            68
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "convert mass into moles and vice versa",
+          "sourcePages": [
+            68
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "determine the empirical and molecular formulae of compounds from experimental results and given data",
+          "sourcePages": [
+            68
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain the terms concentration, molarity and dilution of a solution",
+          "sourcePages": [
+            68
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "define and prepare molar solution",
+          "sourcePages": [
+            68
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "prepare molar solutions",
+          "sourcePages": [
+            68
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "carry out titrations and calculations involving molar solutions",
+          "sourcePages": [
+            68
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "write correct full formulae and ionic equations of reactions with state symbols",
+          "sourcePages": [
+            68
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "define molar gas volume and atomicity of gases",
+          "sourcePages": [
+            68
+          ],
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "state Avogadro‟s and Gay - Lussac‟s laws and carry out related calculations.",
+          "sourcePages": [
+            68
+          ],
+          "order": 11
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "13.2.1",
+          "order": 1,
+          "name": "The mole as a basic unit",
+          "sourcePages": [
+            68
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.2.2",
+          "order": 2,
+          "name": "Determination of formulae:",
+          "sourcePages": [
+            68
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.2.3",
+          "order": 3,
+          "name": "Molar solutions",
+          "sourcePages": [
+            68
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.2.4",
+          "order": 4,
+          "name": "Molar gas volume",
+          "sourcePages": [
+            69
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "14.0.0",
+      "order": 3,
+      "name": "ORGANIC CHEMISTRY I (HYDROCARBONS)",
+      "sourcePages": [
+        69
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "Define a hydrocarbon",
+          "sourcePages": [
+            69
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "name and draw the structures of simple hydrocarbons (alkanes, alkenes and alkynes).",
+          "sourcePages": [
+            69
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state the features of a homologous series",
+          "sourcePages": [
+            69
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "draw and name isomers of simple hydrocarbons containing not more than five carbon atoms",
+          "sourcePages": [
+            69
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "describe the general methods of preparing alkanes, alkenes and alkynes",
+          "sourcePages": [
+            69
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the physical and chemical properties of alkanes, alkenes and alkynes",
+          "sourcePages": [
+            69
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "state the uses of alkanes, alkenes and alkynes.",
+          "sourcePages": [
+            69
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "14.2.1",
+          "order": 1,
+          "name": "Alkanes",
+          "sourcePages": [
+            69
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.2",
+          "order": 2,
+          "name": "Alkenes",
+          "sourcePages": [
+            69
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.3",
+          "order": 3,
+          "name": "Alkynes",
+          "sourcePages": [
+            69
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "15.0.0",
+      "order": 4,
+      "name": "NITROGEN AND ITS COMPOUNDS",
+      "sourcePages": [
+        70
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe the isolation of nitrogen from air",
+          "sourcePages": [
+            70
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe the laboratory preparation of nitrogen and state its properties and uses",
+          "sourcePages": [
+            70
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe the laboratory preparation, and state the properties and uses of the oxides of nitrogen",
+          "sourcePages": [
+            70
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe the laboratory preparation of ammonia and state its properties and uses",
+          "sourcePages": [
+            70
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain the difference in chemical reactions of ammonia gas and its aqueous solution",
+          "sourcePages": [
+            70
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "describe the industrial manufacture of ammonia",
+          "sourcePages": [
+            70
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "calculate the percentage of nitrogen in nitrogen containing fertilizers",
+          "sourcePages": [
+            70
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "describe the preparation and manufacture of nitric acid",
+          "sourcePages": [
+            70
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "describe and explain the reactions of both dilute and concentrated nitric acid",
+          "sourcePages": [
+            70
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "state the uses of nitric acid",
+          "sourcePages": [
+            70
+          ],
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "identify the products formed when different nitrates are heated",
+          "sourcePages": [
+            70
+          ],
+          "order": 11
+        },
+        {
+          "label": "l)",
+          "text": "explain the pollution effects of nitrogen compounds in the environment.",
+          "sourcePages": [
+            70
+          ],
+          "order": 12
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "15.2.1",
+          "order": 1,
+          "name": "Isolation of nitrogen gas from air",
+          "sourcePages": [
+            70
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.2",
+          "order": 2,
+          "name": "Laboratory preparation of nitrogen gas",
+          "sourcePages": [
+            70
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.3",
+          "order": 3,
+          "name": "Oxides of nitrogen (nitrogen (I) oxide, nitrogen(II) oxide, nitrogen(IV) oxide)",
+          "sourcePages": [
+            70
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.4",
+          "order": 4,
+          "name": "Ammonia",
+          "sourcePages": [
+            70
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.5",
+          "order": 5,
+          "name": "Nitric acid",
+          "sourcePages": [
+            70
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.6",
+          "order": 6,
+          "name": "Action of heat on nitrates",
+          "sourcePages": [
+            70
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.7",
+          "order": 7,
+          "name": "Pollution effects of nitrogen compounds in the environment69",
+          "sourcePages": [
+            70,
+            71
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "16.0.0",
+      "order": 5,
+      "name": "SULPHUR AND ITS COMPOUNDS",
+      "sourcePages": [
+        71
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe the allotropes of sulphur",
+          "sourcePages": [
+            71
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe the extraction and state the properties and uses of sulphur",
+          "sourcePages": [
+            71
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe the preparation and state the properties and uses of sulphur(IV) oxide (sulphur dioxide) and sulphur(VI) oxide (sulphur trioxide)",
+          "sourcePages": [
+            71
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "carry out tests to distinguish between sulphite and sulphate ions",
+          "sourcePages": [
+            71
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain the preparation and manufacture of sulphuric acid and state its uses",
+          "sourcePages": [
+            71
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "distinguish between the reactions of dilute and concentrated sulphuric acid",
+          "sourcePages": [
+            71
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "describe the preparation and state properties of hydrogen sulphide",
+          "sourcePages": [
+            71
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "explain environmental pollution caused by sulphur containing compounds.",
+          "sourcePages": [
+            71
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "16.2.1",
+          "order": 1,
+          "name": "Occurrence and extraction of Sulphur",
+          "sourcePages": [
+            71
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.2",
+          "order": 2,
+          "name": "Sulphur(IV) oxide (sulphur dioxide)",
+          "sourcePages": [
+            71
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.3",
+          "order": 3,
+          "name": "Sulphur (VI) Oxide (Sulphur trioxide)",
+          "sourcePages": [
+            71
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.4",
+          "order": 4,
+          "name": "Manufacture of Sulphuric acid",
+          "sourcePages": [
+            71
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.5",
+          "order": 5,
+          "name": "Properties of Sulphuric acid",
+          "sourcePages": [
+            71
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.6",
+          "order": 6,
+          "name": "Hydrogen sulphide",
+          "sourcePages": [
+            71
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.7",
+          "order": 7,
+          "name": "Pollution of atmosphere by compounds of sulphur (hydrogen sulphide and oxides of sulphur)70",
+          "sourcePages": [
+            71,
+            72
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "17.0.0",
+      "order": 6,
+      "name": "CHLORINE AND ITS COMPOUNDS",
+      "sourcePages": [
+        72
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe and explain the laboratory preparation of chlorine",
+          "sourcePages": [
+            72
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state and explain the properties and uses of chlorine",
+          "sourcePages": [
+            72
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe and explain the preparation of hydrogen chloride gas",
+          "sourcePages": [
+            72
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state and explain the properties and uses of hydrogen chloride gas",
+          "sourcePages": [
+            72
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain the effect of a solvent on the properties of hydrogen chloride",
+          "sourcePages": [
+            72
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "describe the industrial manufacture of hydrochloric acid",
+          "sourcePages": [
+            72
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "explain environmental pollution caused by chlorine and chlorine containing compounds.",
+          "sourcePages": [
+            72
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "17.2.1",
+          "order": 1,
+          "name": "Chlorine",
+          "sourcePages": [
+            72
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "17.2.2",
+          "order": 2,
+          "name": "Hydrogen Chloride",
+          "sourcePages": [
+            72
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "17.2.3",
+          "order": 3,
+          "name": "Effect of solvent on the properties of hydrogen chloride",
+          "sourcePages": [
+            72
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "17.2.4",
+          "order": 4,
+          "name": "Uses of hydrogen chloride gas",
+          "sourcePages": [
+            72
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "17.2.5",
+          "order": 5,
+          "name": "Pollution of environment by chlorine and its compounds e.g. CFC, DDT etc",
+          "sourcePages": [
+            72
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

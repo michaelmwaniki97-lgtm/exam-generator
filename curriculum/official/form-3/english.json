@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 3",
+  "subject": "English",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume One - English extract",
+    "year": "2002",
+    "edition": "Archived syllabus extract; exact reprint not stated in the mirror",
+    "archiveDocument": "https://drive.google.com/open?id=1ckKAELak19L3x9FvgCyV9H485KsqtUu4",
+    "crossCheckDocument": "https://drive.google.com/open?id=1j4AsRQqDIFGZMGfJEp1kp7kEalmeirjV",
+    "bibliographicRecord": "https://maktaba.pu.ac.ke/cgi-bin/koha/opac-detail.pl?biblionumber=12647",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus_extract",
+    "formReference": "Form 3 section in the archived English syllabus extract"
+  },
+  "topics": [
+    {
+      "code": "9.0",
+      "order": 1,
+      "name": "LISTENING AND SPEAKING",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "use stress and intonation to bring out rhythm and meaning",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "respond correctly to oral information on a variety of subjects",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "use non-verbal devices effectively in speech",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "demonstrate the ability to use correct register in different contexts",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "identify the features of dilemma and aetiological stories.",
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": null,
+          "order": 1,
+          "name": "Pronunciation",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 2,
+          "name": "Listening, Comprehension and Note-taking",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 3,
+          "name": "Mastery of Content",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 4,
+          "name": "Etiquette",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 5,
+          "name": "Non-verbal cues that enhance listening and speaking",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "10.0",
+      "order": 2,
+      "name": "GRAMMAR",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "use correct sentence structures creatively",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "appreciate The necessity and use of gender sensitive language",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "use knowledge of grammar to interpret information from various sources.",
+          "order": 3
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": null,
+          "order": 1,
+          "name": "Parts of speech",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 2,
+          "name": "Phrases",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 3,
+          "name": "Clauses",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ],
+      "sourceDiscrepancy": "The archived Form 3 extract repeats 6.3.1-6.3.3 content codes under topic 10.0; headings are preserved without invented sub-topic codes."
+    },
+    {
+      "code": "11.0",
+      "order": 3,
+      "name": "READING",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "read a range of texts selecting essential points and applying inference and deduction where appropriate.",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "demonstrate an understanding of common and distinctive features of literary genres.",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "analyse critically prescribed novels, plays and short stories drawn from Kenya, East Africa, Africa and the rest of the world.",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "enjoy reading literary and non-literary materials.",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "build a wide range of vocabulary and knowledge of language use through reading.",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "demonstrate awareness of contemporary issues.",
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": null,
+          "order": 1,
+          "name": "Reading Skills",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 2,
+          "name": "Intensive Reading",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 3,
+          "name": "Extensive Reading",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 4,
+          "name": "Comprehension Skills",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "12.0",
+      "order": 4,
+      "name": "WRITING",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "use cohesive devices in developing paragraphs",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "use punctuation marks competently and creatively",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "use appropriate register and format for a variety of writing tasks",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "demonstrate competence in writing different types of essays.",
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": null,
+          "order": 1,
+          "name": "Building Sentence Skills and Paragraphing",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 2,
+          "name": "Punctuation",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 3,
+          "name": "Personal Writing",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 4,
+          "name": "Social Writing",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 5,
+          "name": "Public Writing",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 6,
+          "name": "Study Writing",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 7,
+          "name": "Creative Writing",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": null,
+          "order": 8,
+          "name": "Institutional Writing",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

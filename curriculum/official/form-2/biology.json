@@ -1,0 +1,597 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 2",
+  "subject": "Biology",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "6.0.0",
+      "order": 1,
+      "name": "TRANSPORT IN PLANTS AND ANIMALS",
+      "sourcePages": [
+        86
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define transport and explain the necessity of transport in plants and animals",
+          "sourcePages": [
+            86
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "relate the structure of the root, root hair, xylem and phloem to their functions",
+          "sourcePages": [
+            86
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "relate the internal structure of the leaf to transpiration",
+          "sourcePages": [
+            86
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain possible forces involved in the movement of water and mineral salts through the plant",
+          "sourcePages": [
+            86
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain the significance of and factors affecting transpiration",
+          "sourcePages": [
+            86
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "demonstrate simple experiments on transpiration",
+          "sourcePages": [
+            86
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "distinguish between closed and open circulatory systems",
+          "sourcePages": [
+            86
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "relate the structure of the heart and the blood vessels to their functions",
+          "sourcePages": [
+            86
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "trace the path taken by blood from the heart to all parts of the body, and back to the heart",
+          "sourcePages": [
+            86
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "name the common diseases of the circulatory system in humans and suggest methods of control / prevention",
+          "sourcePages": [
+            86
+          ],
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "relate the structure of the components of blood to their functions",
+          "sourcePages": [
+            86
+          ],
+          "order": 11
+        },
+        {
+          "label": "l)",
+          "text": "explain how oxygen and carbon dioxide are transported in the blood",
+          "sourcePages": [
+            86
+          ],
+          "order": 12
+        },
+        {
+          "label": "m)",
+          "text": "describe the mechanism of blood clotting and its importance",
+          "sourcePages": [
+            86
+          ],
+          "order": 13
+        },
+        {
+          "label": "n)",
+          "text": "describe the human blood groups and their importance in blood transfusion",
+          "sourcePages": [
+            86
+          ],
+          "order": 14
+        },
+        {
+          "label": "o)",
+          "text": "explain immunity and describe immune responses.",
+          "sourcePages": [
+            86
+          ],
+          "order": 15
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "6.2.1",
+          "order": 1,
+          "name": "Meaning and importance of transport systems",
+          "sourcePages": [
+            86
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.2",
+          "order": 2,
+          "name": "Absorption of Water and Mineral Salts",
+          "sourcePages": [
+            86
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.3",
+          "order": 3,
+          "name": "Transpiration",
+          "sourcePages": [
+            86
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.4",
+          "order": 4,
+          "name": "Translocation",
+          "sourcePages": [
+            86
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.5",
+          "order": 5,
+          "name": "Comparison between open and closed circulatory system",
+          "sourcePages": [
+            86
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.6",
+          "order": 6,
+          "name": "Mammalian Circulatory System",
+          "sourcePages": [
+            86
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.7",
+          "order": 7,
+          "name": "The Structure and Functions of Blood",
+          "sourcePages": [
+            86
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.8",
+          "order": 8,
+          "name": "Blood groups (ABO system and the Rhesus factor)",
+          "sourcePages": [
+            86
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.9",
+          "order": 9,
+          "name": "Immune responses",
+          "sourcePages": [
+            86
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "7.0.0",
+      "order": 2,
+      "name": "GASEOUS EXCHANGE",
+      "sourcePages": [
+        87
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "explain the need for gaseous exchange in living organisms",
+          "sourcePages": [
+            87
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain the mechanism of gaseous exchange in plants",
+          "sourcePages": [
+            87
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "compare the internal structures of aquatic and terrestrial roots, stems and leaves",
+          "sourcePages": [
+            87
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "examine various types of respiratory structures in animals and relate them to their functions",
+          "sourcePages": [
+            87
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the characteristics of respiratory surfaces",
+          "sourcePages": [
+            87
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "describe the mechanisms of gaseous exchange in protozoa, insects, fish, frog and mammal",
+          "sourcePages": [
+            87
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "describe the factors which control the rate of breathing in humans",
+          "sourcePages": [
+            87
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "state the causes, symptoms and prevention of respiratory diseases.",
+          "sourcePages": [
+            87
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "7.2.1",
+          "order": 1,
+          "name": "Gaseous exchange in living organisms (necessity)",
+          "sourcePages": [
+            87
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.2",
+          "order": 2,
+          "name": "Gaseous Exchange in Plants",
+          "sourcePages": [
+            87
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.3",
+          "order": 3,
+          "name": "Gaseous Exchange in Animals",
+          "sourcePages": [
+            87
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.4",
+          "order": 4,
+          "name": "Factors affecting rate of breathing in humans",
+          "sourcePages": [
+            87
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.5",
+          "order": 5,
+          "name": "Respiratory diseases: Asthma, Bronchitis, Pulmonary tuberculosis, Pneumonia and Whooping cough",
+          "sourcePages": [
+            87
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "8.0.0",
+      "order": 3,
+      "name": "RESPIRATION",
+      "sourcePages": [
+        87
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "explain the significance of respiration in living organisms",
+          "sourcePages": [
+            87
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "distinguish between aerobic and anaerobic respiration",
+          "sourcePages": [
+            87
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe the economic importance of anaerobic respiration in industry and at home",
+          "sourcePages": [
+            87
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe experiments to show that respiration takes place in plants and animals.86",
+          "sourcePages": [
+            87,
+            88
+          ],
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "8.2.1",
+          "order": 1,
+          "name": "Meaning and significance of respiration",
+          "sourcePages": [
+            88
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.2",
+          "order": 2,
+          "name": "Tissue respiration",
+          "sourcePages": [
+            88
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "9.0.0",
+      "order": 4,
+      "name": "EXCRETION AND HOMEOSTASIS",
+      "sourcePages": [
+        88
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "distinguish between excretion and egestion",
+          "sourcePages": [
+            88
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain the necessity for excretion in plants and animals",
+          "sourcePages": [
+            88
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state the uses of excretory products of plants",
+          "sourcePages": [
+            88
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe the methods of excretion in a named unicellular organism",
+          "sourcePages": [
+            88
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "relate the structures of the human skin, lungs, liver and kidney to their functions",
+          "sourcePages": [
+            88
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "name common kidney diseases",
+          "sourcePages": [
+            88
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "explain the concept of internal environment and homeostasis",
+          "sourcePages": [
+            88
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "compare responses to changes in temperature by behavioural and physiological methods in animals",
+          "sourcePages": [
+            88
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "relate heat loss to body size in mammals",
+          "sourcePages": [
+            88
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "describe methods by which mammals gain and lose heat",
+          "sourcePages": [
+            88
+          ],
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "explain how the functions of the following relate to homeostasis - skin, hypothalamus, liver and kidney",
+          "sourcePages": [
+            88
+          ],
+          "order": 11
+        },
+        {
+          "label": "l)",
+          "text": "discuss the role of antidiuretic hormone, insulin and glucagons",
+          "sourcePages": [
+            88
+          ],
+          "order": 12
+        },
+        {
+          "label": "m)",
+          "text": "describe simple symptoms of Diabetes mellitus and Diabetes insipidus.",
+          "sourcePages": [
+            88
+          ],
+          "order": 13
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "9.2.1",
+          "order": 1,
+          "name": "Excretion in Plants",
+          "sourcePages": [
+            88
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.2",
+          "order": 2,
+          "name": "Excretion and Homeostasis in Animals",
+          "sourcePages": [
+            88
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.3",
+          "order": 3,
+          "name": "Common kidney diseases, their symptoms and possible methods of prevention and control.",
+          "sourcePages": [
+            88
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.4",
+          "order": 4,
+          "name": "The role of the skin in thermoregulation, salt and water balance",
+          "sourcePages": [
+            88
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.5",
+          "order": 5,
+          "name": "Major functions of the liver and their contributions to homeostasis",
+          "sourcePages": [
+            88
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.6",
+          "order": 6,
+          "name": "Common diseases of the liver, their symptoms and possible methods of prevention/control",
+          "sourcePages": [
+            88
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

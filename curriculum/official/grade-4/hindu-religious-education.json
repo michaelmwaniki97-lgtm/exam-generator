@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 4",
+  "subject": "Hindu Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "HRE GRADE 4 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-four-designs/",
+    "officialDocument": "https://drive.google.com/file/d/15TMyiOpDL71sr6ZLCn-M-w30XHksCdTy/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      17,
+      23,
+      29,
+      34,
+      36
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Creation",
+      "sourcePages": [
+        12
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Panch Mahabhoot",
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Manifestations of Paramatma",
+      "sourcePages": [
+        17
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Enlightened Beings",
+          "sourcePage": 17
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Scriptures",
+      "sourcePages": [
+        12
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Essence of Scriptures",
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Worship",
+      "sourcePages": [
+        12,
+        23
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Dainik Prarthana (Daily prayers)",
+          "sourcePage": 23
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Sadachaar",
+      "sourcePages": [
+        12
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Aspects of Integrity",
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Yoga",
+      "sourcePages": [
+        12,
+        29
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Pranayam (Breathing exercises)",
+          "alternativeNames": [
+            "Pranayam and asanas"
+          ],
+          "sourcePage": 29
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "code": "7.0",
+      "name": "Principles of Dharma",
+      "sourcePages": [
+        12
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "7.1",
+          "name": "Virtues of Righteousness",
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "code": "8.0",
+      "name": "Utsav (Festivals)",
+      "sourcePages": [
+        12,
+        34,
+        36
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "8.1",
+          "name": "Social and National Festivals",
+          "sourcePage": 34
+        },
+        {
+          "order": 2,
+          "code": "8.2",
+          "name": "Indian Traditional Calendar",
+          "sourcePage": 36
+        }
+      ]
+    }
+  ]
+}

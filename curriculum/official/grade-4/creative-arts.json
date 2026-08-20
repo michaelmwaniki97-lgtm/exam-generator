@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 4",
+  "subject": "Creative Arts",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 4 Creative Arts Curriculum Design - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-four-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1NhyGe8EsZLgubbxwEvva-sNUPxDHR8r1/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      14,
+      17,
+      19,
+      21,
+      24,
+      27,
+      29,
+      31,
+      34,
+      36,
+      38,
+      40,
+      43,
+      50,
+      51,
+      52,
+      53,
+      54
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Creating and Executing",
+      "sourcePages": [
+        14,
+        17,
+        19,
+        21,
+        24,
+        50,
+        51
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Percussion Musical Instruments (Drawing)",
+          "alternativeNames": [
+            "Percussion Instruments- Drawing Melodic and non-melodic Kenyan indigenous Percussion instruments, charcoal sticks, bottle tops, pebbles, tins, wires, threads, Y-sticks, gourds, wood, rubber, manila papers, hides/membranes, cutting tools. Portfolio"
+          ],
+          "sourcePage": 14
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Netball",
+          "alternativeNames": [
+            "Netball Digital devices, Netball balls, open places or marked fields, goal posts, markers, whistle, storage, Portfolio, project"
+          ],
+          "sourcePage": 17
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Painting and Montage",
+          "alternativeNames": [
+            "Painting and Montage Drawing papers/ book, water-based paints, brushes, palettes, rags, picture (such as newspapers and drawings, magazine), glue. Assessment rubric"
+          ],
+          "sourcePage": 19
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Rhythm Percussion instruments, Coloured pens, papers, pencils Portfolio, project",
+          "alternativeNames": [
+            "Rhythm"
+          ],
+          "sourcePage": 51
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Melody",
+          "alternativeNames": [
+            "Melody Melodic instrument, Clay, rolling pins, water-based paint, brushes, clay cutting tools. Aural/oral tests Portfolio, project"
+          ],
+          "sourcePage": 24
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Performing and Displaying",
+      "sourcePages": [
+        13,
+        27,
+        29,
+        31,
+        34,
+        36,
+        38,
+        40,
+        51,
+        52,
+        53
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Athletics",
+          "alternativeNames": [
+            "Athletics Athletics track, open places or marked fields with marked lines and lanes, digital devices, whistle, clapper, Portfolio"
+          ],
+          "sourcePage": 27
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Gymnastics",
+          "sourcePage": 29
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Songs",
+          "alternativeNames": [
+            "Songs Recordings of sacred, patriotic and topical songs, the Kenya National Anthem and Kenyan folk songs, resource person, pitching instrument"
+          ],
+          "sourcePage": 31
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Photography School tablets, or camera, phone and computer, Exhibition",
+          "alternativeNames": [
+            "Photography"
+          ],
+          "sourcePage": 52
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Descant Recorder Descant recorder, Baroque fingering chart, Recorder melodies based on B A and G.. Aural tests",
+          "alternativeNames": [
+            "Descant Recorder",
+            "Indigenous Kenyan Games",
+            "Swimming 15 Or"
+          ],
+          "sourcePage": 52
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Indigenous Kenyan Games (Optional)",
+          "alternativeNames": [
+            "Indigenous Kenyan Games ( Optional) Cut and stick pictures of animals, video clips on animal games, Percussion musical instruments",
+            "Swimming (Optional)",
+            "Swimming (Optional) Swimming facility such as standard pool, inflatable pools; clothing and gear- such as swimsuits, goggles; safety equipment- such as life jackets, rescue tubes, first aid kit, spine board; swimming aids- such as kick boards, pull buoys, fins, swim noodles, floatation devices; other materials such as markers and lanes, ropes, buoys, digital devices Portfolio"
+          ],
+          "sourcePage": 40
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Appreciation in Creative Arts",
+      "sourcePages": [
+        43,
+        54
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Analysis of Creative Arts works",
+          "alternativeNames": [
+            "Analysis of Creative Art works Audio visual equipment, display boards, display props, mounting papers, manila papers, masking tapes/glue Audio recordings of the Kenya National Anthem and Kenyan folk songs. Portfolio"
+          ],
+          "sourcePage": 43
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 5",
+  "subject": "Mathematics",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 5 Mathematics.pdf",
+    "version": "Published KICD design",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-five-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1ShOUex4qEQosDCvkKdaXIRvteOILPHTP/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      15,
+      17,
+      19,
+      21,
+      23,
+      25,
+      27,
+      32,
+      34,
+      36,
+      38,
+      40,
+      42,
+      44,
+      49,
+      51,
+      53,
+      56
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Numbers",
+      "sourcePages": [
+        12,
+        13,
+        15,
+        17,
+        19,
+        21,
+        23,
+        25,
+        27,
+        32,
+        44
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "How do you estimate difference to the nearest hundred?",
+          "alternativeNames": [
+            "How can you estimate the sum of given numbers?",
+            "How can you measure distance?",
+            "How do you spend your money?",
+            "Where can multiplication be used in real life?",
+            "Where can we use ordering of numbers in real life?",
+            "Where can you use decimals in real life?",
+            "Whole Numbers",
+            "Why can we order fractions in real life?"
+          ],
+          "sourcePage": 17
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Addition",
+          "sourcePage": 15
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Subtraction (",
+          "alternativeNames": [
+            "Subtraction"
+          ],
+          "sourcePage": 17
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Multiplication",
+          "sourcePage": 19
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Division",
+          "sourcePage": 21
+        },
+        {
+          "order": 6,
+          "code": "1.6",
+          "name": "Fractions",
+          "sourcePage": 23
+        },
+        {
+          "order": 7,
+          "code": "1.7",
+          "name": "Decimals",
+          "sourcePage": 25
+        },
+        {
+          "order": 8,
+          "code": "1.8",
+          "name": "Simple Equations 6",
+          "alternativeNames": [
+            "Simple Equations"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Measurement",
+      "sourcePages": [
+        12,
+        13,
+        15,
+        17,
+        19,
+        23,
+        25,
+        32,
+        34,
+        36,
+        38,
+        40,
+        42,
+        44
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Length",
+          "sourcePage": 32
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "How can you create number patterns involving subtraction?",
+          "alternativeNames": [
+            "Area",
+            "How can you create patterns in addition?",
+            "How can you form patterns involving multiplication?",
+            "What is the importance of ordering decimals?",
+            "What is the importance of paying taxes?",
+            "Where are fractions used in real life?",
+            "Why should we round off numbers?",
+            "Why should you measure distance?"
+          ],
+          "sourcePage": 17
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Volume",
+          "sourcePage": 36
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Capacity",
+          "sourcePage": 38
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Mass",
+          "sourcePage": 40
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Time",
+          "sourcePage": 42
+        },
+        {
+          "order": 7,
+          "code": "2.7",
+          "name": "Money 8",
+          "alternativeNames": [
+            "Money"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Geometry",
+      "sourcePages": [
+        12,
+        49,
+        51,
+        53
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Lines",
+          "sourcePage": 49
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Angles",
+          "sourcePage": 51
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Three- Dimension (3- D) Objects",
+          "alternativeNames": [
+            "Three Dimension (3-D) Objects 6"
+          ],
+          "sourcePage": 53
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Data Handling",
+      "sourcePages": [
+        56
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Data Representation",
+          "sourcePage": 56
+        }
+      ]
+    }
+  ]
+}

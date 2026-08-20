@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 7",
+  "subject": "Christian Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "CRE Grade 7 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-seven-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1Vx6Y8lWUiSpWO-MBO58nEOtPlFDM7JA3/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      14,
+      17,
+      19,
+      21,
+      24,
+      28,
+      30,
+      32,
+      34,
+      38,
+      40,
+      42,
+      47,
+      49,
+      53,
+      56,
+      58,
+      61,
+      63,
+      70,
+      72,
+      75,
+      76
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Overview of Christian Religious Education",
+      "sourcePages": [
+        12,
+        14,
+        70
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Importance of Studying Christian Religious Education",
+          "alternativeNames": [
+            "Importance of Learning Christian Religious Education",
+            "Importance of Learning CRE"
+          ],
+          "sourcePage": 14
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Creation",
+      "sourcePages": [
+        12,
+        17,
+        19,
+        21,
+        24
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Accounts of Creation",
+          "sourcePage": 17
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Responsibility over Animals, Fish and Birds",
+          "alternativeNames": [
+            "Stewardship over Creation"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Responsibility over Plants",
+          "sourcePage": 21
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Use and Misuse of God’s Creation",
+          "alternativeNames": [
+            "Use of Natural Resources"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "The Bible",
+      "sourcePages": [
+        12,
+        28,
+        30,
+        32,
+        34,
+        72
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Functions of the Bible",
+          "sourcePage": 28
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Divisions of the Bible",
+          "sourcePage": 30
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Bible Translations",
+          "alternativeNames": [
+            "Bible Translation"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Leadership in the Bible: Moses",
+          "alternativeNames": [
+            "Divisions of the Bible",
+            "Leadership in Israel"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "The Early life of Jesus Christ",
+      "sourcePages": [
+        12,
+        38,
+        40,
+        42
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Background to the Birth of Jesus Christ",
+          "alternativeNames": [
+            "Prophecies about the Messiah"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Annunciation of the Birth of John the Baptist",
+          "alternativeNames": [
+            "John the Baptist"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "The Birth and Childhood of Jesus Christ",
+          "sourcePage": 42
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "The Church",
+      "sourcePages": [
+        47,
+        49,
+        75
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Selected Forms of Worship",
+          "sourcePage": 47
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Role of the Church in Education and Health",
+          "sourcePage": 49
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Christian Living Today",
+      "sourcePages": [
+        13,
+        53,
+        56,
+        58,
+        61,
+        63,
+        76
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Human Sexuality",
+          "sourcePage": 53
+        },
+        {
+          "order": 2,
+          "code": "6.2",
+          "name": "Christian Marriage and Family",
+          "sourcePage": 56
+        },
+        {
+          "order": 3,
+          "code": "6.3",
+          "name": "Alcohol, Drugs and Substance use",
+          "alternativeNames": [
+            "Alcohol and substance use"
+          ],
+          "sourcePage": 58
+        },
+        {
+          "order": 4,
+          "code": "6.4",
+          "name": "Gambling",
+          "sourcePage": 61
+        },
+        {
+          "order": 5,
+          "code": "6.5",
+          "name": "Social Media (",
+          "alternativeNames": [
+            "Social Media"
+          ],
+          "sourcePage": 63
+        }
+      ]
+    }
+  ]
+}

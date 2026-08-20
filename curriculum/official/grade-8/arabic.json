@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 8",
+  "subject": "Arabic",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "FINAL ARABIC GRADE 8 CURRICULUM DESIGN.pdf",
+    "version": "Published KICD design",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-eight-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1NfGYxAz5-4jS_uwouuhwT40ieEgQRs98/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      15,
+      17,
+      19,
+      21,
+      23,
+      25,
+      27,
+      28,
+      32,
+      34,
+      36,
+      38,
+      39,
+      41,
+      43,
+      45,
+      47,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60,
+      62,
+      64,
+      66
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Listening and Speaking",
+      "sourcePages": [
+        13,
+        15,
+        17,
+        19,
+        21,
+        23,
+        25,
+        27,
+        28
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Listening for gist: Main idea",
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Phonological awareness",
+          "sourcePage": 15
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Imitative Speaking",
+          "sourcePage": 17
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Self- expression",
+          "sourcePage": 19
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Public Presentation",
+          "sourcePage": 21
+        },
+        {
+          "order": 6,
+          "code": "1.6",
+          "name": "Conversational skills",
+          "sourcePage": 23
+        },
+        {
+          "order": 7,
+          "code": "1.7",
+          "name": "Phonological awareness: Pronunciation",
+          "sourcePage": 25
+        },
+        {
+          "order": 8,
+          "code": "1.8",
+          "name": "Imitative Speaking",
+          "sourcePage": 27
+        },
+        {
+          "order": 9,
+          "code": "1.9",
+          "name": "Phonological Awareness: Pronunciation",
+          "sourcePage": 28
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Reading",
+      "sourcePages": [
+        32,
+        34,
+        36,
+        38,
+        39,
+        41,
+        43,
+        45,
+        47
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Guided Reading : Reading Fluency",
+          "sourcePage": 32
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Guided Reading: Reading Aloud",
+          "sourcePage": 34
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Guided Reading: Reading Comprehension",
+          "sourcePage": 36
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Guided Reading: Reading Fluency",
+          "sourcePage": 38
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Guided Reading: Reading Aloud",
+          "sourcePage": 39
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Guided Reading: Reading Comprehension",
+          "sourcePage": 41
+        },
+        {
+          "order": 7,
+          "code": "2.7",
+          "name": "Guided Reading: Extensive Reading",
+          "sourcePage": 43
+        },
+        {
+          "order": 8,
+          "code": "2.8",
+          "name": "Guided Reading : Reading Comprehension",
+          "sourcePage": 45
+        },
+        {
+          "order": 9,
+          "code": "2.9",
+          "name": "Guided reading : Reading comprehension",
+          "sourcePage": 47
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Writing",
+      "sourcePages": [
+        50,
+        52,
+        54,
+        56,
+        58,
+        60,
+        62,
+        64,
+        66
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Guided Writing",
+          "sourcePage": 50
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Guided Writing: Neatness and Legibility",
+          "sourcePage": 52
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Guided Writing: Paragraph Writing",
+          "sourcePage": 54
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Guided Writing: Descriptive Writing",
+          "sourcePage": 56
+        },
+        {
+          "order": 5,
+          "code": "3.5",
+          "name": "Guided Writing: Mechanics of Writing",
+          "sourcePage": 58
+        },
+        {
+          "order": 6,
+          "code": "3.6",
+          "name": "Guided writing: Poetry",
+          "sourcePage": 60
+        },
+        {
+          "order": 7,
+          "code": "3.7",
+          "name": "Guided Writing: Creative Writing",
+          "sourcePage": 62
+        },
+        {
+          "order": 8,
+          "code": "3.8",
+          "name": "Guided Writing: Essay Writing",
+          "sourcePage": 64
+        },
+        {
+          "order": 9,
+          "code": "3.9",
+          "name": "Guided Writing : Creative Writing",
+          "sourcePage": 66
+        }
+      ]
+    }
+  ]
+}

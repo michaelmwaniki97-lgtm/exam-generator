@@ -6,10 +6,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:structures": "node --test --experimental-strip-types lib/assessment/structure-rules.test.ts components/exam-wizard/state.test.ts",
+    "test:components": "node --test --experimental-strip-types lib/assessment/component-rules.test.ts",
+    "test:blueprint": "node --test --experimental-strip-types lib/blueprint/engine.test.ts",
+    "test:curriculum-selection": "node --test --experimental-strip-types lib/curriculum/exam-selection.test.ts",
+    "test:assessment": "node --test --experimental-strip-types lib/assessment/rules.test.ts lib/assessment/validation.test.ts lib/curriculum/exam-selection.test.ts components/exam-wizard/state.test.ts",
+    "test:curriculum": "node --test scripts/validate-curriculum-data.test.mjs scripts/curriculum-import-plan.test.mjs",
+    "curriculum:audit": "node --env-file=.env.local scripts/audit-live-curriculum.mjs",
+    "curriculum:import:dry-run": "node --env-file=.env.local scripts/import-verified-curriculum.mjs",
+    "curriculum:import": "node --env-file=.env.local scripts/import-verified-curriculum.mjs --apply",
+    "test:security": "node --test --experimental-strip-types lib/security/core.test.ts lib/auth/validation.test.ts lib/assessment/validation.test.ts",
+    "test:create-exam": "node --test --experimental-strip-types lib/assessment/validation.test.ts lib/curriculum/exam-selection.test.ts components/exam-wizard/state.test.ts",
+    "test": "node --test --experimental-strip-types lib/auth/access.test.ts lib/admin/validation.test.ts"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.4",
+    "@supabase/supabase-js": "^2.112.3",
+    "lucide-react": "^1.31.0",
     "next": "16.3.0",
+    "openai": "^7.4.0",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },

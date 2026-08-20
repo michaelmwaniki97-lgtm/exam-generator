@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 5",
+  "subject": "Hindu Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "HRE GRADE 5 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-five-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1O7MWGBaA5Iwl5HKmKrEw6XmI-qzFgU1c/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      11,
+      12,
+      14,
+      17,
+      20,
+      23,
+      26,
+      29,
+      32,
+      34,
+      37,
+      40
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Creation (Srishti)",
+      "sourcePages": [
+        11,
+        12,
+        14
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Care for Creation",
+          "sourcePage": 12
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Medicinal Plants and trees",
+          "alternativeNames": [
+            "Medicinal Trees"
+          ],
+          "sourcePage": 11
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "The Enlightened Beings",
+      "sourcePages": [
+        17
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Enlightened Beings and Social Welfare",
+          "sourcePage": 17
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Scriptures (Dharam Granths)",
+      "sourcePages": [
+        11,
+        20
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Scriptural Stories and Family Values",
+          "alternativeNames": [
+            "Scriptural stories on family values"
+          ],
+          "sourcePage": 20
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Worship (Ishwar Bhakti)",
+      "sourcePages": [
+        11,
+        23,
+        26
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Importance Of Features In Jain Derasar and Sikh Gurdwara",
+          "sourcePage": 23
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Places of Worship",
+          "sourcePage": 26
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Sadachaar (Social Ethics)",
+      "sourcePages": [
+        11,
+        29
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Friendship and Keeping Promises",
+          "sourcePage": 29
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Yoga (Holistic Wellness)",
+      "sourcePages": [
+        11,
+        32,
+        34
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Physical Aspect of Yoga",
+          "alternativeNames": [
+            "Physical Aspect"
+          ],
+          "sourcePage": 32
+        },
+        {
+          "order": 2,
+          "code": "6.2",
+          "name": "Communal Aspect of Yoga",
+          "alternativeNames": [
+            "Communal Aspect"
+          ],
+          "sourcePage": 34
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "code": "7.0",
+      "name": "Principles of Dharma (Dharam Siddhant)",
+      "sourcePages": [
+        11,
+        37
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "7.1",
+          "name": "Virtues for Righteousness According to Jain and Sikh faiths based on Moral Stories",
+          "alternativeNames": [
+            "Virtues of Righteousness-Jain &amp; Sikh Moral stories"
+          ],
+          "sourcePage": 37
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "code": "8.0",
+      "name": "Utsav (Social Festivals)",
+      "sourcePages": [
+        40
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "8.1",
+          "name": "Utsav",
+          "sourcePage": 40
+        }
+      ]
+    }
+  ]
+}

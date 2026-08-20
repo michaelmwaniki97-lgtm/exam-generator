@@ -1,0 +1,803 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 4",
+  "subject": "Christian Religious Education",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Three",
+    "year": "2002",
+    "edition": "First published 2002; reprinted 2005, 2011 and 2012",
+    "archiveDocument": "https://www.scribd.com/document/867743223/Kicd-Syllabus-2002-Vol-3-1",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus",
+    "formReference": "printed pages 88-91"
+  },
+  "topics": [
+    {
+      "code": "22.00",
+      "order": 1,
+      "name": "INTRODUCTION TO CHRISTIAN ETHICS",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "explain the meaning of Christian ethics",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain the basis of Christian ethics",
+          "order": 2
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "22.21",
+          "sourceCode": "22.21",
+          "order": 1,
+          "name": "Meaning of Christian ethics",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.22",
+          "sourceCode": "22.22",
+          "order": 2,
+          "name": "Basis of Christian ethics.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "23.00",
+      "order": 2,
+      "name": "CHRISTIAN APPROACHES TO HUMAN SEXUALITY, MARRIAGE AND FAMILY",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define human sexuality - marriage and family",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain and appreciate the traditional African understanding of human sexuality",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain and appreciate Christian teaching on human sexuality",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain and appreciate traditional African practices related to male/female relationships",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain and appreciate Christian teaching on male/female relationship at various levels",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain and appreciate Christian teaching on responsible sexual behaviour",
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "explain Christian teaching irresponsible sexual behaviour and their consequences",
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "explain and appreciate traditional African understanding of marriage",
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "explain and appreciate Christian teaching on marriage",
+          "order": 9
+        },
+        {
+          "label": "i)",
+          "text": "discuss the traditional Africa and Christian approaches to marriage preparation",
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "explain celibacy as an a alternative to marriage",
+          "order": 11
+        },
+        {
+          "label": "l)",
+          "text": "discuss and appreciate traditional and Christian understanding of the family",
+          "order": 12
+        },
+        {
+          "label": "m)",
+          "text": "discuss and appreciate the value of responsible parenthood",
+          "order": 13
+        },
+        {
+          "label": "n)",
+          "text": "discuss problems related to family life today",
+          "order": 14
+        },
+        {
+          "label": "o)",
+          "text": "explain and evaluate traditional African and Christian approaches to problems related to family life today.",
+          "order": 15
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "23.21",
+          "sourceCode": "3.2.1",
+          "order": 1,
+          "name": "Definitions of human sexuality,Marriage and family.",
+          "objectiveStatus": "official_topic_objectives_apply",
+          "sourceDiscrepancy": "The archived DOCX truncates source code 23.21 as 3.2.1; the official Volume Three scan shows 23.21."
+        },
+        {
+          "code": "23.22",
+          "sourceCode": "23.2.2",
+          "order": 2,
+          "name": "Traditional African understanding of human sexuality",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.23",
+          "sourceCode": "23.2.3",
+          "order": 3,
+          "name": "Christian teaching on human sexuality",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.24",
+          "sourceCode": "23.2.4",
+          "order": 4,
+          "name": "Traditional African practices related to male/female relationships at various levels.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.25",
+          "sourceCode": "23.2.5",
+          "order": 5,
+          "name": "Christian teaching on male/female relationships at various levels.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.26",
+          "sourceCode": "23.2.6",
+          "order": 6,
+          "name": "Christian teaching on responsible sexual behaviour",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.27",
+          "sourceCode": "23.2.7",
+          "order": 7,
+          "name": "Christian teaching on:",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.28",
+          "sourceCode": "23.2.8",
+          "order": 8,
+          "name": "Traditional African understanding of marriage",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.29",
+          "sourceCode": "23.2.9",
+          "order": 9,
+          "name": "Christian teaching on marriage",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.30",
+          "sourceCode": "23.3.0",
+          "order": 10,
+          "name": "Preparation for marriage iii both the traditional African society and Christian practice",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.31",
+          "sourceCode": "23.3.1",
+          "order": 11,
+          "name": "Celibacy as an alternative to marriage",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.32",
+          "sourceCode": "23.3.2",
+          "order": 12,
+          "name": "Traditional African and Christian understanding of’ the family",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.33",
+          "sourceCode": "23.3.3",
+          "order": 13,
+          "name": "Value of responsible parenthood",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.34",
+          "sourceCode": "23.3.4",
+          "order": 14,
+          "name": "Problems related to family life today",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.35",
+          "sourceCode": "23.3.5",
+          "order": 15,
+          "name": "Traditional African and Christian approaches to problems related to family life today.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "24.00",
+      "order": 3,
+      "name": "CHRISTIAN APPROACHES TO WORK",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define the terms ‘work’ and ‘vocation’",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain and appreciate the traditional African attitude towards work",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain professional ethos, ethics and code in society",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain virtues related to work",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "discuss the moral duties and responsibilities of employers and employees",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "discuss Christian approaches to issues related to employment",
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "develop a positive attitude towards work. 24.2.1 Definition of the terms ‘work’ and ‘vocation’ 24.2.2 Traditional African attitude to Work. 24.2.3 Christian teaching on work. 24.2.4 The roles of professional ethos, ethics and codes in society 24.2.5 Sonic virtues related to various types of work (i) diligence (ii) honesty/integrity (iii) faithfulness (iv) responsibility (v) loyalty, (vi) tolerance 24.2.6 Moral duties and responsibilities of employers and employees 24.2.7 Christian approaches to issues related to employment",
+          "order": 7
+        },
+        {
+          "label": "a)",
+          "text": "Wages and industrial action.",
+          "order": 8
+        },
+        {
+          "label": "b)",
+          "text": "Child labour",
+          "order": 9
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "24.00",
+          "sourceCode": "24.0.0",
+          "order": 1,
+          "name": "CHRISTIAN APPROACHES TO WORK",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.10",
+          "sourceCode": "24.1.0",
+          "order": 2,
+          "name": "Specific Objectives",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.21",
+          "sourceCode": "24.2.1",
+          "order": 3,
+          "name": "Definition of the terms ‘work’ and ‘vocation’",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.22",
+          "sourceCode": "24.2.2",
+          "order": 4,
+          "name": "Traditional African attitude to Work.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.23",
+          "sourceCode": "24.2.3",
+          "order": 5,
+          "name": "Christian teaching on work.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.24",
+          "sourceCode": "24.2.4",
+          "order": 6,
+          "name": "The roles of professional ethos, ethics and codes in society",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.25",
+          "sourceCode": "24.2.5",
+          "order": 7,
+          "name": "Sonic virtues related to various types of work",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.26",
+          "sourceCode": "24.2.6",
+          "order": 8,
+          "name": "Moral duties and responsibilities of employers and employees",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.27",
+          "sourceCode": "24.2.7",
+          "order": 9,
+          "name": "Christian approaches to issues related to employment",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "25.00",
+      "order": 4,
+      "name": "CHRISTIAN APPROACHES TO LEISURE",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "explain the meaning of leisure",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "discuss and appreciate the traditional African understanding of leisure",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "discuss and appreciate Christian teaching on leisure",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "discuss the importance of leisure",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "outline various forms and uses of leisure",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain how leisure is misused in the society today",
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "discuss the abuse of alcohol and other drugs and their effects",
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "explain Christian criteria for evaluating the use of leisure",
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "desire to use leisure according to Christian principles. 25.2.1 Meaning of leisure 25.2.2 Traditional African understanding of leisure 25.2.3 Christian teaching on leisure 25.2.4 Importance of leisure 25.2.5 Various forms and uses of leisure 25.2.6 Misuse of leisure today 25.2.7 Misuse abuse of drugs",
+          "order": 9
+        },
+        {
+          "label": "a)",
+          "text": "Alcohol",
+          "order": 10
+        },
+        {
+          "label": "b)",
+          "text": "Other drugs",
+          "order": 11
+        },
+        {
+          "label": "c)",
+          "text": "Effects of drug abuse",
+          "order": 12
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "25.00",
+          "sourceCode": "25.0.0",
+          "order": 1,
+          "name": "CHRISTIAN APPROACHES TO LEISURE",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.10",
+          "sourceCode": "25.1.0",
+          "order": 2,
+          "name": "Specific Objectives",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.21",
+          "sourceCode": "25.2.1",
+          "order": 3,
+          "name": "Meaning of leisure",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.22",
+          "sourceCode": "25.2.2",
+          "order": 4,
+          "name": "Traditional African understanding of leisure",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.23",
+          "sourceCode": "25.2.3",
+          "order": 5,
+          "name": "Christian teaching on leisure",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.24",
+          "sourceCode": "25.2.4",
+          "order": 6,
+          "name": "Importance of leisure",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.25",
+          "sourceCode": "25.2.5",
+          "order": 7,
+          "name": "Various forms and uses of leisure",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.26",
+          "sourceCode": "25.2.6",
+          "order": 8,
+          "name": "Misuse of leisure today",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.27",
+          "sourceCode": "25.2.7",
+          "order": 9,
+          "name": "Misuse abuse of drugs",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "26.00",
+      "order": 5,
+      "name": "CHRISTIAN APPROACHES TO WEALTH, MONEY AND POVERTY",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define the concepts of wealth, money and poverty",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain and appreciate the traditional African understanding of wealth and poverty",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe and evaluate the impact of the introduction of the money economy in the traditional African society",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain Christian teaching on money, wealth and poverty",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "discuss Christian approaches to some issues related to wealth, money and poverty",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "uphold tile Christian principles in acquiring and using wealth. 26.2.1 Definition of the concepts wealth money and poverty 26.2.2 Traditional African understanding of wealth and poverty 26.2.3 Impact of the introduction of money economy in traditional African society 26.2.4 Christian teaching on money, wealth and poverty 26.2.5 Christian approaches to some issues related to wealth",
+          "order": 6
+        },
+        {
+          "label": "a)",
+          "text": "Fair distribution of wealth (affluence and poverty)",
+          "order": 7
+        },
+        {
+          "label": "b)",
+          "text": "Bribery and corruption",
+          "order": 8
+        },
+        {
+          "label": "c)",
+          "text": "Life skills (i) critical thinking (ii) creative thinking (iii) decision making (iv) self-esteem (v) assertiveness",
+          "order": 9
+        },
+        {
+          "label": "d)",
+          "text": "Christian values (i) love (ii) honesty (iii) reliability (iv) fairness (v) justice (vi) respect (for other people’s rights and property) (vii) humility (viii) faithfulness (ix) persistence",
+          "order": 10
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "26.00",
+          "sourceCode": "26.0.0",
+          "order": 1,
+          "name": "CHRISTIAN APPROACHES TO WEALTH, MONEY AND POVERTY",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "26.10",
+          "sourceCode": "26.1.0",
+          "order": 2,
+          "name": "Specific Objectives",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "26.21",
+          "sourceCode": "26.2.1",
+          "order": 3,
+          "name": "Definition of the concepts wealth money and poverty",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "26.22",
+          "sourceCode": "26.2.2",
+          "order": 4,
+          "name": "Traditional African understanding of wealth and poverty",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "26.23",
+          "sourceCode": "26.2.3",
+          "order": 5,
+          "name": "Impact of the introduction of money economy in traditional African society",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "26.24",
+          "sourceCode": "26.2.4",
+          "order": 6,
+          "name": "Christian teaching on money, wealth and poverty",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "26.25",
+          "sourceCode": "26.2.5",
+          "order": 7,
+          "name": "Christian approaches to some issues related to wealth",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "27.00",
+      "order": 6,
+      "name": "CHRISTIAN APPROACHES TO LAW, ORDER AND JUSTICE",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define the terms ‘law’, ‘order’ and ‘justice’",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe and evaluate traditional African practices that promote law, order and justice",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain the Biblical teaching on law, order and justice",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "identify and evaluate the need for law, order and justice in the society",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain the rights and duties of citizens",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the causes and remedies of social disorder",
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "evaluate the role of Christians in the transformation of the society",
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "discuss Church-State relationship",
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "strive to promote law, order and justice in the society. 27.2.1 Definition of the term ‘law’, ‘order’ and ‘justice’. 27.2.2 Traditional African practices that promote law, order and justice. 23.2.3 Biblical teaching on law, order and justice. 27.2.4 Need for law, order and justice in the society. 27.2.5 Rights and duties of citizens 27.2.6 Causes of social disorder and remedies",
+          "order": 9
+        },
+        {
+          "label": "a)",
+          "text": "Causes",
+          "order": 10
+        },
+        {
+          "label": "i)",
+          "text": "discrimination (ii) inequitable distribution of wealth and resources (iii) racism (iv) tribalism (v) crime (vi) sexism",
+          "order": 11
+        },
+        {
+          "label": "b)",
+          "text": "Remedies (i) rehabilitation (ii) punishment 27.2.7 The role of Christians in transforming the social, economic and political life of the society",
+          "order": 12
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "27.00",
+          "sourceCode": "27.0.0",
+          "order": 1,
+          "name": "CHRISTIAN APPROACHES TO LAW, ORDER AND JUSTICE",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.10",
+          "sourceCode": "27.1.0",
+          "order": 2,
+          "name": "Specific Objectives",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.21",
+          "sourceCode": "27.2.1",
+          "order": 3,
+          "name": "Definition of the term ‘law’, ‘order’ and ‘justice’.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.22",
+          "sourceCode": "27.2.2",
+          "order": 4,
+          "name": "Traditional African practices that promote law, order and justice.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.24",
+          "sourceCode": "27.2.4",
+          "order": 5,
+          "name": "Need for law, order and justice in the society.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.25",
+          "sourceCode": "27.2.5",
+          "order": 6,
+          "name": "Rights and duties of citizens",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.26",
+          "sourceCode": "27.2.6",
+          "order": 7,
+          "name": "Causes of social disorder and remedies",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.27",
+          "sourceCode": "27.2.7",
+          "order": 8,
+          "name": "The role of Christians in transforming the social, economic and political life of the society",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.28",
+          "sourceCode": "27.2.8",
+          "order": 9,
+          "name": "Church-State relationship.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "28.00",
+      "order": 7,
+      "name": "CHRISTIAN APPROACHES TO SELECTED ISSUES RELATED TO MODERN SCIENCE, TECHNOLOGY AND ENVIRONMENT",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "Euthanasia",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "Blood transfusion",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "Organ transplant",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "Genetic engineering",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "Plastic surgery",
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "28.00",
+          "sourceCode": "28.00",
+          "order": 1,
+          "name": "CHRISTIAN APPROACHES TO SELECTED ISSUES RELATED TO MODERN SCIENCE, TECHNOLOGY AND ENVIRONMENT",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "28.10",
+          "sourceCode": "28.1.0",
+          "order": 2,
+          "name": "Specific Objectives",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "28.22",
+          "sourceCode": "28.2.2",
+          "order": 3,
+          "name": "The Christian view on the effects of modern science and technology on the environment (pollution, desertification).",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

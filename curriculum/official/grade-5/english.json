@@ -1,0 +1,528 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 5",
+  "subject": "English",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "ENGLISH GRADE 5 UPDATED -  Revised Sept.pdf",
+    "version": "Revised Sept",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-five-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1ctDo-PB4W6AKbKV0Lb-1OobOC2-L3_e_/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      15,
+      17,
+      19,
+      21,
+      23,
+      25,
+      27,
+      29,
+      31,
+      33,
+      35,
+      37,
+      39,
+      41,
+      43,
+      45,
+      47,
+      49,
+      51,
+      53,
+      56,
+      58,
+      60,
+      62,
+      64,
+      66,
+      68,
+      70,
+      72,
+      74,
+      76,
+      78,
+      81,
+      83,
+      85,
+      88,
+      90,
+      92,
+      94,
+      96,
+      98,
+      100,
+      102,
+      106,
+      108,
+      110,
+      112,
+      115,
+      117,
+      119
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.2",
+      "name": "Reading",
+      "occurrenceCodes": [
+        "1.2",
+        "2.2",
+        "3.2",
+        "4.2",
+        "5.2",
+        "6.2",
+        "7.2",
+        "8.2",
+        "9.2",
+        "10.2",
+        "11.2",
+        "12.2",
+        "13.2"
+      ],
+      "sourcePages": [
+        15,
+        23,
+        31,
+        39,
+        47,
+        56,
+        64,
+        72,
+        81,
+        90,
+        98,
+        106,
+        115
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.2.1",
+          "name": "Extensive Reading",
+          "sourcePage": 15
+        },
+        {
+          "order": 2,
+          "code": "2.2.1",
+          "name": "Intensive Reading",
+          "sourcePage": 23
+        },
+        {
+          "order": 3,
+          "code": "3.2.1",
+          "name": "Intensive Reading: (Narrative of about 400 words)",
+          "sourcePage": 31
+        },
+        {
+          "order": 4,
+          "code": "4.2.1",
+          "name": "Intensive Reading: Comprehension",
+          "sourcePage": 39
+        },
+        {
+          "order": 5,
+          "code": "5.2.1",
+          "name": "Extensive Reading: Fiction and Non Fiction Materials",
+          "sourcePage": 47
+        },
+        {
+          "order": 6,
+          "code": "6.2.1",
+          "name": "Intensive Reading Comprehension Dialogues",
+          "sourcePage": 56
+        },
+        {
+          "order": 7,
+          "code": "7.2.1",
+          "name": "Extensive Reading: Fiction and Non-Fiction Texts (1000- 1250 words) Poems (not more than 5 stanzas)",
+          "sourcePage": 64
+        },
+        {
+          "order": 8,
+          "code": "8.2.1",
+          "name": "Fluency in Reading",
+          "sourcePage": 72
+        },
+        {
+          "order": 9,
+          "code": "9.2.1",
+          "name": "Intensive Reading: Descriptive Fictional or Non-Fictional Texts (about 400 words)",
+          "sourcePage": 81
+        },
+        {
+          "order": 10,
+          "code": "10.2.1",
+          "name": "Intensive Reading",
+          "sourcePage": 90
+        },
+        {
+          "order": 11,
+          "code": "11.2.1",
+          "name": "Intensive Reading",
+          "sourcePage": 98
+        },
+        {
+          "order": 12,
+          "code": "12.2.1",
+          "name": "Intensive Reading",
+          "sourcePage": 106
+        },
+        {
+          "order": 13,
+          "code": "13.2.1",
+          "name": "Extensive Reading",
+          "sourcePage": 115
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "1.3",
+      "name": "Grammar in Use",
+      "occurrenceCodes": [
+        "1.3",
+        "2.3",
+        "3.3",
+        "4.3",
+        "5.3",
+        "6.3",
+        "7.3",
+        "8.3",
+        "9.3",
+        "10.3",
+        "11.3",
+        "12.3",
+        "13.3"
+      ],
+      "sourcePages": [
+        17,
+        25,
+        33,
+        41,
+        49,
+        58,
+        66,
+        74,
+        83,
+        92,
+        100,
+        108,
+        117
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.3.1",
+          "name": "Word Class: Demonstrative Determiners",
+          "sourcePage": 17
+        },
+        {
+          "order": 2,
+          "code": "2.3.1",
+          "name": "Word Class: Collective Nouns/ Reflexive Pronouns",
+          "sourcePage": 25
+        },
+        {
+          "order": 3,
+          "code": "3.3.1",
+          "name": "Language Pattern",
+          "sourcePage": 33
+        },
+        {
+          "order": 4,
+          "code": "4.3.1",
+          "name": "Word Class: Possessive Pronouns",
+          "sourcePage": 41
+        },
+        {
+          "order": 5,
+          "code": "5.3.1",
+          "name": "Word Class: Adjectives",
+          "sourcePage": 49
+        },
+        {
+          "order": 6,
+          "code": "6.3.1",
+          "name": "Word Class: Determiners: Quantifiers",
+          "sourcePage": 58
+        },
+        {
+          "order": 7,
+          "code": "7.3.1",
+          "name": "Tense: Future Time using will/shall",
+          "sourcePage": 66
+        },
+        {
+          "order": 8,
+          "code": "8.3.1",
+          "name": "Sentences",
+          "sourcePage": 74
+        },
+        {
+          "order": 9,
+          "code": "9.3.1",
+          "name": "Word Class: Adverbs",
+          "sourcePage": 83
+        },
+        {
+          "order": 10,
+          "code": "10.3.1",
+          "name": "Word Class: Conjunctions",
+          "sourcePage": 92
+        },
+        {
+          "order": 11,
+          "code": "11.3.1",
+          "name": "Use of Interrogatives",
+          "sourcePage": 100
+        },
+        {
+          "order": 12,
+          "code": "12.3.1",
+          "name": "Word Class: Nouns",
+          "sourcePage": 108
+        },
+        {
+          "order": 13,
+          "code": "13.3.1",
+          "name": "Word Class: Prepositions",
+          "sourcePage": 117
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "1.4",
+      "name": "Writing",
+      "occurrenceCodes": [
+        "1.4",
+        "2.4",
+        "3.4",
+        "4.4",
+        "5.4",
+        "6.4",
+        "7.4",
+        "8.4",
+        "9.4",
+        "10.4",
+        "11.4",
+        "12.4",
+        "13.4"
+      ],
+      "sourcePages": [
+        19,
+        27,
+        35,
+        43,
+        51,
+        60,
+        68,
+        76,
+        85,
+        94,
+        102,
+        110,
+        119
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.4.1",
+          "name": "Functional Writing: Filling Forms",
+          "sourcePage": 19
+        },
+        {
+          "order": 2,
+          "code": "2.4.1",
+          "name": "Creative Writing: Open ended Compositions",
+          "sourcePage": 27
+        },
+        {
+          "order": 3,
+          "code": "3.4.1",
+          "name": "Mechanics of Writing: Handwriting",
+          "sourcePage": 35
+        },
+        {
+          "order": 4,
+          "code": "4.4.1",
+          "name": "Functional Writing: Friendly Letter",
+          "sourcePage": 43
+        },
+        {
+          "order": 5,
+          "code": "5.4.1",
+          "name": "Creative Writing: Narrative Compositions",
+          "sourcePage": 51
+        },
+        {
+          "order": 6,
+          "code": "6.4.1",
+          "name": "Creative Writing: Pictorial Composition",
+          "sourcePage": 60
+        },
+        {
+          "order": 7,
+          "code": "7.4.1",
+          "name": "Mechanics of Writing: Punctuation",
+          "sourcePage": 68
+        },
+        {
+          "order": 8,
+          "code": "8.4.1",
+          "name": "Creative Writing",
+          "sourcePage": 76
+        },
+        {
+          "order": 9,
+          "code": "9.4.1",
+          "name": "Mechanics of Writing: Punctuation Marks",
+          "sourcePage": 85
+        },
+        {
+          "order": 10,
+          "code": "10.4.1",
+          "name": "Creative Writing: Descriptive Composition (120 -160 words)",
+          "sourcePage": 94
+        },
+        {
+          "order": 11,
+          "code": "11.4.1",
+          "name": "Spelling",
+          "sourcePage": 102
+        },
+        {
+          "order": 12,
+          "code": "12.4.1",
+          "name": "Functional Writing: Diary",
+          "sourcePage": 110
+        },
+        {
+          "order": 13,
+          "code": "13.4.1",
+          "name": "Spelling",
+          "sourcePage": 119
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "2.0",
+      "name": "Listening and Speaking",
+      "sourcePages": [
+        21
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 21
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "3.1",
+      "name": "Listening and Speaking",
+      "occurrenceCodes": [
+        "3.1",
+        "4.1",
+        "5.1",
+        "6.1",
+        "7.1",
+        "8.1",
+        "9.1",
+        "10.1",
+        "11.1",
+        "13.1"
+      ],
+      "sourcePages": [
+        29,
+        37,
+        45,
+        53,
+        62,
+        70,
+        78,
+        88,
+        96,
+        112
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1.1",
+          "name": "Speaking Fluency: pronunciation",
+          "sourcePage": 78
+        },
+        {
+          "order": 2,
+          "code": "3.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 29
+        },
+        {
+          "order": 3,
+          "code": "4.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 37
+        },
+        {
+          "order": 4,
+          "code": "5.1.1",
+          "name": "Listening Comprehension",
+          "sourcePage": 45
+        },
+        {
+          "order": 5,
+          "code": "6.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 53
+        },
+        {
+          "order": 6,
+          "code": "7.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 62
+        },
+        {
+          "order": 7,
+          "code": "8.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 70
+        },
+        {
+          "order": 8,
+          "code": "10.1.1",
+          "name": "Pronunciation and Vocabulary: Interactive Listening",
+          "sourcePage": 88
+        },
+        {
+          "order": 9,
+          "code": "11.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 96
+        },
+        {
+          "order": 10,
+          "code": "13.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 112
+        }
+      ]
+    }
+  ]
+}

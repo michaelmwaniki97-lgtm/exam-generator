@@ -1,0 +1,1317 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 4",
+  "subject": "Physics",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "31.0.0",
+      "order": 1,
+      "name": "THIN LENSES",
+      "sourcePages": [
+        51
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe converging lenses and diverging lenses",
+          "sourcePages": [
+            51
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe using ray diagrams the principal focus, the optical centre and the focal length of a thin lens",
+          "sourcePages": [
+            51
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "determine experimentally the focal length of a converging lens",
+          "sourcePages": [
+            51
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "locate images formed by thin lenses using ray construction method",
+          "sourcePages": [
+            51
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "describe the characteristics of images formed by thin lenses",
+          "sourcePages": [
+            51
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain image formation in the human eye",
+          "sourcePages": [
+            51
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "describe the defects of vision in the human eye and how they can be corrected",
+          "sourcePages": [
+            51
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "describe the use of lenses in various optical devices",
+          "sourcePages": [
+            51
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "solve numerical problems involving the lens formula and the magnification formula.",
+          "sourcePages": [
+            51
+          ],
+          "order": 9
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "31.2.1",
+          "order": 1,
+          "name": "Types of lenses",
+          "sourcePages": [
+            51
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "31.2.2",
+          "order": 2,
+          "name": "Ray diagrams and terms used",
+          "sourcePages": [
+            51
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "31.2.3",
+          "order": 3,
+          "name": "Images formed",
+          "sourcePages": [
+            51
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "31.2.4",
+          "order": 4,
+          "name": "Determination of Focal length: (Experimental treatment required)",
+          "sourcePages": [
+            51
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "31.2.5",
+          "order": 5,
+          "name": "Human eye, defects (short sightedness and long sightedness only)",
+          "sourcePages": [
+            51
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "31.2.6",
+          "order": 6,
+          "name": "Optical devices:",
+          "sourcePages": [
+            51
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "31.2.7",
+          "order": 7,
+          "name": "Problems involving the lens formula and the magnification formula",
+          "sourcePages": [
+            51
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "32.0.0",
+      "order": 2,
+      "name": "UNIFORM CIRCULAR MOTION",
+      "sourcePages": [
+        51
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define angular displacement and angular velocity",
+          "sourcePages": [
+            51
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe simple experiments to illustrate centripetal force",
+          "sourcePages": [
+            51
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain the applications of uniform circular motion",
+          "sourcePages": [
+            51
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "solve numerical problems involving uniform circular motion.",
+          "sourcePages": [
+            51
+          ],
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "32.2.1",
+          "order": 1,
+          "name": "The radian, angular displacement, angular velocity",
+          "sourcePages": [
+            51
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "32.2.2",
+          "order": 2,
+          "name": "Centripetal force; F = mv2, F = mrω",
+          "sourcePages": [
+            51
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "32.2.3",
+          "order": 3,
+          "name": "Applications of uniform circular motion",
+          "sourcePages": [
+            51
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "32.2.4",
+          "order": 4,
+          "name": "Centrifuge, vertical, horizontal circles banked tracks (calculations on banked tracks and conical pendulum not required)",
+          "sourcePages": [
+            51
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "32.2.5",
+          "order": 5,
+          "name": "Problem solving (Apply F = mv2, F = mrω",
+          "sourcePages": [
+            51
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "33.0.0",
+      "order": 3,
+      "name": "FLOATING AND SINKING",
+      "sourcePages": [
+        51
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state Archimedes‟ principle",
+          "sourcePages": [
+            51
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "verify Archmimedes‟ principle",
+          "sourcePages": [
+            51
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state the law of flotation",
+          "sourcePages": [
+            51
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "define relative density",
+          "sourcePages": [
+            51
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "describe the applications of Archimedes‟ principle and relative density50",
+          "sourcePages": [
+            51,
+            52
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "Solve numerical problems involving Archimedes‟ principle.",
+          "sourcePages": [
+            52
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "33.2.1",
+          "order": 1,
+          "name": "Archimedes‟ principle, Law of flotation (experimental treatment)",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "33.2.2",
+          "order": 2,
+          "name": "Relative density",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "33.2.3",
+          "order": 3,
+          "name": "Applications of Archimedes‟ principle and relative density",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "33.2.4",
+          "order": 4,
+          "name": "Problems on Archimedes‟ principle",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "34.0.0",
+      "order": 4,
+      "name": "ELECTROMAGNETIC SPECTRUM",
+      "sourcePages": [
+        52
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe the complete electromagnetic spectrum",
+          "sourcePages": [
+            52
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state the properties of electromagnetic waves",
+          "sourcePages": [
+            52
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe the methods of detecting electromagnetic radiations",
+          "sourcePages": [
+            52
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe the applications of electromagnetic radiations",
+          "sourcePages": [
+            52
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "solve numerical problems involving c = f.",
+          "sourcePages": [
+            52
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "34.2.1",
+          "order": 1,
+          "name": "Electromagnetic spectrum",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "34.2.2",
+          "order": 2,
+          "name": "Properties of electromagnetic waves",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "34.2.3",
+          "order": 3,
+          "name": "Detection of electromagnetic (e.m.) radiations",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "34.2.4",
+          "order": 4,
+          "name": "Applications of e.m radiations (include greenhouse effect)",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "34.2.5",
+          "order": 5,
+          "name": "Problems involving c =f",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "35.0.0",
+      "order": 5,
+      "name": "ELECTROMAGNETIC INDUCTION",
+      "sourcePages": [
+        52
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "perform and describe simple experiments to illustrate electromagnetic induction",
+          "sourcePages": [
+            52
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state the factors affecting the magnitude and the direction of the induced emf",
+          "sourcePages": [
+            52
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state the laws of electromagnetic induction",
+          "sourcePages": [
+            52
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe simple experiments to illustrate mutual induction",
+          "sourcePages": [
+            52
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain the working of an alternating current (a.c.) generator and a direct current (d.c.) generator",
+          "sourcePages": [
+            52
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the working of a transformer",
+          "sourcePages": [
+            52
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "explain the applications of electromagnetic induction",
+          "sourcePages": [
+            52
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "solve numerical problems involving transformers.",
+          "sourcePages": [
+            52
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "35.2.1",
+          "order": 1,
+          "name": "Simple experiments to illustrate electromagnetic induction",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "35.2.2",
+          "order": 2,
+          "name": "Induced emf:",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "35.2.3",
+          "order": 3,
+          "name": "Mutual induction",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "35.2.4",
+          "order": 4,
+          "name": "Alternating current generator, direct current generator",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "35.2.5",
+          "order": 5,
+          "name": "Fleming‟s right hand-rule",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "35.2.6",
+          "order": 6,
+          "name": "Transformers",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "35.2.7",
+          "order": 7,
+          "name": "Applications of electromagnetic induction:",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "35.2.8",
+          "order": 8,
+          "name": "Problems on transformers",
+          "sourcePages": [
+            52
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "36.0.0",
+      "order": 6,
+      "name": "MAINS ELECTRICITY",
+      "sourcePages": [
+        52
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state the sources of mains electricity",
+          "sourcePages": [
+            52
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe the transmission of electric power from the generating station",
+          "sourcePages": [
+            52
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain the domestic wiring system",
+          "sourcePages": [
+            52
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "define the Kilowatt hour",
+          "sourcePages": [
+            52
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "determine the electrical energy consumption and cost",
+          "sourcePages": [
+            52
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "solve numerical problems involving mains electricity.51",
+          "sourcePages": [
+            52,
+            53
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "36.2.1",
+          "order": 1,
+          "name": "Sources of mains electricity",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "36.2.2",
+          "order": 2,
+          "name": "Power transmission (include dangers of high voltage transmission)",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "36.2.3",
+          "order": 3,
+          "name": "Domestic wiring system",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "36.2.4",
+          "order": 4,
+          "name": "Kw-hr, consumption and cost of electrical energy",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "36.2.5",
+          "order": 5,
+          "name": "Problems on mains electricity",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "37.0.0",
+      "order": 7,
+      "name": "CATHODE RAYS AND CATHODE RAY TUBE",
+      "sourcePages": [
+        53
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe the production of cathode rays",
+          "sourcePages": [
+            53
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state the properties of cathode rays",
+          "sourcePages": [
+            53
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain the functioning of a Cathode Ray Oscilloscope (C.R.O.) and of a Television tube (T.V. tube)",
+          "sourcePages": [
+            53
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain the uses of a Cathode Ray Oscilloscope",
+          "sourcePages": [
+            53
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "solve problems involving Cathode Ray Oscilloscope.",
+          "sourcePages": [
+            53
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "37.2.1",
+          "order": 1,
+          "name": "Production of cathode rays, cathode ray tube",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "37.2.2",
+          "order": 2,
+          "name": "Properties of cathode rays",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "37.2.3",
+          "order": 3,
+          "name": "C.R.O. and T.V. tubes",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "37.2.4",
+          "order": 4,
+          "name": "Uses of C.R.O.",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "37.2.5",
+          "order": 5,
+          "name": "Problems on C.R.O.",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "38.0.0",
+      "order": 8,
+      "name": "X-RAYS",
+      "sourcePages": [
+        53
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "explain the production of X-rays",
+          "sourcePages": [
+            53
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state the properties of X-rays",
+          "sourcePages": [
+            53
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state the dangers of X-rays",
+          "sourcePages": [
+            53
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain the uses of X-rays",
+          "sourcePages": [
+            53
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "solve numerical problems involving X-rays.",
+          "sourcePages": [
+            53
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "38.2.1",
+          "order": 1,
+          "name": "Production of X-rays, X-ray tube",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "38.2.2",
+          "order": 2,
+          "name": "Energy changes in an X-ray tube",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "38.2.3",
+          "order": 3,
+          "name": "Properties of X-rays, soft X-rays and hard X-rays",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "38.2.4",
+          "order": 4,
+          "name": "Dangers of X-rays and precautions",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "38.2.5",
+          "order": 5,
+          "name": "Uses of X-rays(Bragg‟s law not required)",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "38.2.6",
+          "order": 6,
+          "name": "Problems on X-rays",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "39.0.0",
+      "order": 9,
+      "name": "PHOTOELECTRIC EFFECT",
+      "sourcePages": [
+        53
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "perform and describe simple experiments to illustrate the photoelectric effect",
+          "sourcePages": [
+            53
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain the factors affecting photoelectric emission",
+          "sourcePages": [
+            53
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "apply the equation E = h to calculate the energy of photons",
+          "sourcePages": [
+            53
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "define threshold frequency, work function and the electron volt",
+          "sourcePages": [
+            53
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain photoelectric emission using Einstein equation (h = h0 + ½ mv2)",
+          "sourcePages": [
+            53
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the applications of photoelectric effect",
+          "sourcePages": [
+            53
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "solve numerical problems involving photoelectric emissions.",
+          "sourcePages": [
+            53
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "39.2.1",
+          "order": 1,
+          "name": "Photoelectric effect, photons, threshold frequency; work function, Planck‟s constant, and electron-volt",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "39.2.2",
+          "order": 2,
+          "name": "Factors affecting photoelectric emission",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "39.2.3",
+          "order": 3,
+          "name": "Energy of Photons",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "39.2.4",
+          "order": 4,
+          "name": "Einsteins equation h = ho + ½mv2",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply",
+          "sourceDiscrepancy": "The cited syllabus repeats this code; source order is preserved."
+        },
+        {
+          "code": "39.2.4",
+          "order": 5,
+          "name": "Applications of photoelectric effect:",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply",
+          "sourceDiscrepancy": "The cited syllabus repeats this code; source order is preserved."
+        },
+        {
+          "code": "39.2.5",
+          "order": 6,
+          "name": "Problems on photoelectric emissions",
+          "sourcePages": [
+            53
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "40.0.0",
+      "order": 10,
+      "name": "RADIO ACTIVITY",
+      "sourcePages": [
+        54
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define radioactive decay and half-life",
+          "sourcePages": [
+            54
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe the three types of radiations emitted in natural radioactivity",
+          "sourcePages": [
+            54
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain the detection of radioactive emissions",
+          "sourcePages": [
+            54
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "define nuclear fission and fusion",
+          "sourcePages": [
+            54
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "write balanced nuclear equations",
+          "sourcePages": [
+            54
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the dangers of radioactive emissions",
+          "sourcePages": [
+            54
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "state the applications of radioactivity",
+          "sourcePages": [
+            54
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "solve numerical problems involving half-life.",
+          "sourcePages": [
+            54
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "40.2.1",
+          "order": 1,
+          "name": "Radioactive decay",
+          "sourcePages": [
+            54
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "40.2.2",
+          "order": 2,
+          "name": "Half-life",
+          "sourcePages": [
+            54
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "40.2.3",
+          "order": 3,
+          "name": "Types of radiations, properties of radiations",
+          "sourcePages": [
+            54
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "40.2.4",
+          "order": 4,
+          "name": "Detectors of radiation,",
+          "sourcePages": [
+            54
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "40.2.5",
+          "order": 5,
+          "name": "Nuclear fission, nuclear fusion",
+          "sourcePages": [
+            54
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "40.2.6",
+          "order": 6,
+          "name": "Nuclear equations",
+          "sourcePages": [
+            54
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "40.2.7",
+          "order": 7,
+          "name": "Hazards of radioactivity, precautions",
+          "sourcePages": [
+            54
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "40.2.8",
+          "order": 8,
+          "name": "Applications",
+          "sourcePages": [
+            54
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "40.2.9",
+          "order": 9,
+          "name": "Problems on half-life (integration not required)",
+          "sourcePages": [
+            54
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "41.0.0",
+      "order": 11,
+      "name": "ELECTRONICS",
+      "sourcePages": [
+        54
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state the differences between conductors and insulators",
+          "sourcePages": [
+            54
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "define intrinsic and extrinsic semi\u0002conductors",
+          "sourcePages": [
+            54
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain doping in semi-conductors",
+          "sourcePages": [
+            54
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain the working of a p-n junction diode",
+          "sourcePages": [
+            54
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "sketch current-voltage characteristics for a diode",
+          "sourcePages": [
+            54
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the application of diodes in rectification.",
+          "sourcePages": [
+            54
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "41.2.1",
+          "order": 1,
+          "name": "Conductors, semi-conductors, insulators",
+          "sourcePages": [
+            54
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "41.2.2",
+          "order": 2,
+          "name": "Intrinsic and extrinsic semi-conductors",
+          "sourcePages": [
+            54
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "41.2.3",
+          "order": 3,
+          "name": "Doping",
+          "sourcePages": [
+            54
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "41.2.4",
+          "order": 4,
+          "name": "p-n junction diode",
+          "sourcePages": [
+            54
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "41.2.5",
+          "order": 5,
+          "name": "Applications of diodes: half wave rectification and full-wave rectification",
+          "sourcePages": [
+            54
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

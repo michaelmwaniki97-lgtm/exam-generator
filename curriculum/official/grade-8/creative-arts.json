@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 8",
+  "subject": "Creative Arts",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Creative Arts &amp; Sports Grade 8 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-eight-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1ji89ZIdF9ZA5d6rkchqJJYa2G5ZQO5zP/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      19,
+      23,
+      27,
+      29,
+      31,
+      33,
+      35,
+      37,
+      40,
+      43,
+      46,
+      50,
+      58,
+      62
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Foundations of Creative Arts and Sports",
+      "sourcePages": [
+        12
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Roles of Creative Arts and Sports",
+          "sourcePage": 12
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Components of Creative Arts and Sports",
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Creating and Performing",
+      "sourcePages": [
+        12,
+        13,
+        19,
+        23,
+        27,
+        29,
+        31,
+        33,
+        35,
+        37,
+        40,
+        43,
+        46,
+        58,
+        62
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Drawing and Painting",
+          "sourcePage": 19
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Rhythm",
+          "alternativeNames": [
+            "Rhythm ● Instructional Videos ● Interactive Worksheets ● Notation Software Tutorials ● Interactive Notation Apps ● Printable Rhythm Worksheets ● Improvisation Guides ● Improvisation Exercises ● Music Games learners can learn and practise the basics, engage in skill-building drills, developing sportsmanship, teamwork, and fair play. ● Creative Arts Exhibition: Plan a creative arts exhibition where learners showcase their artistic talents. This can include displaying paintings, drawings, sculptures, and other visual arts creations"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Middle Distance Races and Montage",
+          "alternativeNames": [
+            "Athletics and Montage"
+          ],
+          "sourcePage": 23
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Melody",
+          "sourcePage": 12
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Netball",
+          "sourcePage": 27
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Fabric Decoration",
+          "sourcePage": 29
+        },
+        {
+          "order": 7,
+          "code": "2.7",
+          "name": "Descant Recorder",
+          "sourcePage": 31
+        },
+        {
+          "order": 8,
+          "code": "2.8",
+          "name": "Verse",
+          "sourcePage": 33
+        },
+        {
+          "order": 9,
+          "code": "2.9",
+          "name": "Volleyball",
+          "sourcePage": 35
+        },
+        {
+          "order": 10,
+          "code": "2.10",
+          "name": "Kenyan Folk Dance",
+          "sourcePage": 37
+        },
+        {
+          "order": 11,
+          "code": "2.11",
+          "name": "Indigenous Kenyan craft - Basketry 10 OPTIONAL (Do One) Either Swimming Or Kenyan Indigenous Games",
+          "alternativeNames": [
+            "Indigenous Kenyan craft - Basketry",
+            "Indigenous Kenyan Craft (Basketry)"
+          ],
+          "sourcePage": 13
+        },
+        {
+          "order": 12,
+          "code": "2.12.1",
+          "name": "Swimming (Optional)",
+          "sourcePage": 43
+        },
+        {
+          "order": 13,
+          "code": "2.12.2",
+          "name": "Kenyan Indigenous Games (Optional)",
+          "alternativeNames": [
+            "Kenyan Indigenous Game (Optional)"
+          ],
+          "sourcePage": 46
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Appreciation in Creative Arts and Sports",
+      "sourcePages": [
+        50
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Analysis of Creative Arts and Sports",
+          "sourcePage": 50
+        }
+      ]
+    }
+  ]
+}

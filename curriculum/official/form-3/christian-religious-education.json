@@ -1,0 +1,407 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 3",
+  "subject": "Christian Religious Education",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "mixed_source_required",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Three",
+    "year": "2002",
+    "edition": "First published 2002; reprinted 2005, 2011 and 2012",
+    "archiveDocument": "https://www.scribd.com/document/867743223/Kicd-Syllabus-2002-Vol-3-1",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus",
+    "formReference": "printed pages 84-87"
+  },
+  "topics": [
+    {
+      "code": "16.00",
+      "order": 1,
+      "name": "THE GIFTS OF THE HOLY SPIRIT",
+      "sourcePrintedPages": [
+        84,
+        85,
+        86,
+        87
+      ],
+      "objectiveStatus": "source_required",
+      "objectiveSourceNote": "The official two-column scan contains topic objectives, but the archive text interleaves columns. Exact objective-to-topic transcription requires manual source review.",
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "16.21",
+          "order": 1,
+          "name": "Peter's message on the Day of Pentecost (Acts 2:1-40)",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "16.22",
+          "order": 2,
+          "name": "The teaching of Jesus on the role of the Holy Spirit (John 14:15-26; 16:5-15, Acts 1:7-8)",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "16.23",
+          "order": 3,
+          "name": "The gifts of the Holy Spirit (1 Corinthians 12, 13, 14)",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "16.24",
+          "order": 4,
+          "name": "The criteria for discerning the gifts of the Holy Spirit (1 Corinthians 12:1-3; Matthew 7:15-20; Galatians 5:16-26)",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "16.25",
+          "order": 5,
+          "name": "Manifestations of the gifts of the Holy Spirit in the church today (Galatians 5:16-26)",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "16.26",
+          "order": 6,
+          "name": "The fruit of the Holy Spirit (Galatians 5:6-26)",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        }
+      ]
+    },
+    {
+      "code": "17.00",
+      "order": 2,
+      "name": "UNITY OF BELIEVERS",
+      "sourcePrintedPages": [
+        84,
+        85,
+        86,
+        87
+      ],
+      "objectiveStatus": "source_required",
+      "objectiveSourceNote": "The official two-column scan contains topic objectives, but the archive text interleaves columns. Exact objective-to-topic transcription requires manual source review.",
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "17.21",
+          "order": 1,
+          "name": "Teaching on the unity of believers in selected New Testament texts",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        }
+      ]
+    },
+    {
+      "code": "18.00",
+      "order": 3,
+      "name": "SELECTED OLD TESTAMENT PROPHETS AND THEIR TEACHINGS",
+      "sourcePrintedPages": [
+        84,
+        85,
+        86,
+        87
+      ],
+      "objectiveStatus": "source_required",
+      "objectiveSourceNote": "The official two-column scan contains topic objectives, but the archive text interleaves columns. Exact objective-to-topic transcription requires manual source review.",
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "18.21",
+          "order": 1,
+          "name": "Definition of the terms 'prophets' and 'prophecy'",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "18.22",
+          "order": 2,
+          "name": "Categories of prophets",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "18.23",
+          "order": 3,
+          "name": "Importance of prophets",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "18.24",
+          "order": 4,
+          "name": "The characteristics of prophets",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "18.25",
+          "order": 5,
+          "name": "The writing of prophetic Messages",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "18.26",
+          "order": 6,
+          "name": "Relationship between the Old Testament prophecies and the New Testament",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "18.27",
+          "order": 7,
+          "name": "Similarities and differences between the traditional and the Old Testament prophets and their relevance to Christians today",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        }
+      ]
+    },
+    {
+      "code": "19.00",
+      "order": 4,
+      "name": "AMOS",
+      "sourcePrintedPages": [
+        84,
+        85,
+        86,
+        87
+      ],
+      "objectiveStatus": "source_required",
+      "objectiveSourceNote": "The official two-column scan contains topic objectives, but the archive text interleaves columns. Exact objective-to-topic transcription requires manual source review.",
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "19.21",
+          "order": 1,
+          "name": "Background to Amos",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "19.22",
+          "order": 2,
+          "name": "The call of Amos (Amos 1:1; 3:8; 7:10-15)",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "19.23",
+          "order": 3,
+          "name": "The visions of Amos (Amos 7:1-9; 8:1-3; 9:1-4)",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "19.24",
+          "order": 4,
+          "name": "The Teachings of Prophet Amos",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        }
+      ]
+    },
+    {
+      "code": "20.00",
+      "order": 5,
+      "name": "JEREMIAH",
+      "sourcePrintedPages": [
+        84,
+        85,
+        86,
+        87
+      ],
+      "objectiveStatus": "source_required",
+      "objectiveSourceNote": "The official two-column scan contains topic objectives, but the archive text interleaves columns. Exact objective-to-topic transcription requires manual source review.",
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "20.21",
+          "order": 1,
+          "name": "Political social and religious background of Prophet Jeremiah",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "20.22",
+          "order": 2,
+          "name": "Personal life and the call of Jeremiah (Jeremiah 1)",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "20.23",
+          "order": 3,
+          "name": "Evils addressed by prophet Jeremiah",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "20.24",
+          "order": 4,
+          "name": "The temple sermon (Jeremiah 7:1-8:1-3)",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "20.25",
+          "order": 5,
+          "name": "Relevance of Jeremiah's teaching on evils and false prophets to Christians today",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "20.26",
+          "order": 6,
+          "name": "Teachings on judgment and punishment",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "20.27",
+          "order": 7,
+          "name": "Symbolic acts related to judgment and punishment",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "20.28",
+          "order": 8,
+          "name": "Suffering and Lamentations of Jeremiah",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "20.29",
+          "order": 9,
+          "name": "The New Covenant",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "20.30",
+          "order": 10,
+          "name": "Symbolic acts related to hope and restoration",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "20.31",
+          "order": 11,
+          "name": "The fall of Jerusalem and the exile of the Israelites (Jeremiah 39)",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "20.32",
+          "order": 12,
+          "name": "Relating the teachings of Jeremiah to the New Testament and Christian life today",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        }
+      ]
+    },
+    {
+      "code": "21.00",
+      "order": 6,
+      "name": "NEHEMIAH",
+      "sourcePrintedPages": [
+        84,
+        85,
+        86,
+        87
+      ],
+      "objectiveStatus": "source_required",
+      "objectiveSourceNote": "The official two-column scan contains topic objectives, but the archive text interleaves columns. Exact objective-to-topic transcription requires manual source review.",
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "21.21",
+          "order": 1,
+          "name": "Political, religious and social background to Nehemiah",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "21.22",
+          "order": 2,
+          "name": "Occasions when Nehemiah prayed",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "21.23",
+          "order": 3,
+          "name": "Importance of prayer in Christian life",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required",
+          "sourceDiscrepancy": "The official scan repeats 21.23 and omits 21.24; source order is preserved."
+        },
+        {
+          "code": "21.23",
+          "order": 4,
+          "name": "Good leadership qualities",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required",
+          "sourceDiscrepancy": "The official scan repeats 21.23 and omits 21.24; source order is preserved."
+        },
+        {
+          "code": "21.25",
+          "order": 5,
+          "name": "Relevance of Nehemiah's leadership to Christians today",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "21.26",
+          "order": 6,
+          "name": "Problems faced by Nehemiah",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "21.27",
+          "order": 7,
+          "name": "Relevance of Nehemiah's experiences to Christians today",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "21.28",
+          "order": 8,
+          "name": "Renewal of the covenant",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "21.29",
+          "order": 9,
+          "name": "Dedication of the wall of Jerusalem (Nehemiah 12:27-47)",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "21.30",
+          "order": 10,
+          "name": "Final reforms (Nehemiah 13)",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        },
+        {
+          "code": "21.31",
+          "order": 11,
+          "name": "Teachings from Nehemiah's exemplary life to St. Luke's gospel and a Christian life today",
+          "sourceLines": "KIE Volume Three scan lines 3414-3598",
+          "objectiveStatus": "source_required"
+        }
+      ]
+    }
+  ]
+}

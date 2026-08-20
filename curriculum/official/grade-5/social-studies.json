@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 5",
+  "subject": "Social Studies",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 5 Social Studies - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-five-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1uOCVkljUKcfMkRs1gwAbDZMj_p9cjbut/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      14,
+      16,
+      18,
+      20,
+      22,
+      26,
+      28,
+      30,
+      32,
+      36,
+      38,
+      40,
+      42,
+      45,
+      48,
+      55,
+      57,
+      59,
+      63,
+      66,
+      68,
+      75,
+      76,
+      77,
+      79,
+      80
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Natural and Historic Built Environments",
+      "sourcePages": [
+        14,
+        16,
+        18,
+        20,
+        22,
+        75,
+        76
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Elements of a Map - Title - Frame - Scale - Compass - Key",
+          "sourcePage": 14
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Location, Position and Size of Kenya",
+          "sourcePage": 16
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Main physical features in Kenya ● Relief ● Drainage",
+          "alternativeNames": [
+            "Main Physical Features in Kenya"
+          ],
+          "sourcePage": 18
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Weather and Climate",
+          "sourcePage": 20
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "The Built Environments ● Museums ● Monuments ● Cultural centres ● Historical buildings",
+          "alternativeNames": [
+            "The Built Environments"
+          ],
+          "sourcePage": 22
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "People and Social Organisations",
+      "sourcePages": [
+        26,
+        28,
+        30,
+        32,
+        76,
+        77
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Language Groups in Kenya ● Nilotes ● Bantu ● Cushites",
+          "alternativeNames": [
+            "Language Groups in Kenya"
+          ],
+          "sourcePage": 26
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Population distribution in Kenya",
+          "sourcePage": 28
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Culture and Social Organisation of the African Traditional Education",
+          "alternativeNames": [
+            "African Traditional Education"
+          ],
+          "sourcePage": 77
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "School administration",
+          "sourcePage": 32
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Resources and Economic Activities",
+      "sourcePages": [
+        36,
+        38,
+        40,
+        42,
+        45,
+        48,
+        77
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Resources in Kenya - land, - minerals, - water, - wildlife - forests",
+          "alternativeNames": [
+            "Resources in Kenya"
+          ],
+          "sourcePage": 36
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Mining in Kenya",
+          "sourcePage": 38
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Fishing in Kenya",
+          "sourcePage": 40
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Wildlife and Tourism in Kenya",
+          "sourcePage": 42
+        },
+        {
+          "order": 5,
+          "code": "3.5",
+          "name": "Development of Transport",
+          "sourcePage": 45
+        },
+        {
+          "order": 6,
+          "code": "3.6",
+          "name": "Development of Communication",
+          "sourcePage": 48
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Political Systems",
+      "sourcePages": [
+        55,
+        57,
+        59,
+        79
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Traditional Leaders in Kenya",
+          "sourcePage": 79
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Early forms of Governm ent in Kenya",
+          "alternativeNames": [
+            "Early forms of Government in Kenya"
+          ],
+          "sourcePage": 55
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "Citizenship in Kenya",
+          "sourcePage": 57
+        },
+        {
+          "order": 4,
+          "code": "4.4",
+          "name": "National Government",
+          "sourcePage": 59
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Governance",
+      "sourcePages": [
+        63,
+        66,
+        68,
+        80
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "National Unity in Kenya ● National Symbols ● National Days ● National languages",
+          "alternativeNames": [
+            "National Unity in Kenya"
+          ],
+          "sourcePage": 63
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Human Rights",
+          "sourcePage": 66
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Democracy in Society",
+          "sourcePage": 68
+        }
+      ]
+    }
+  ]
+}

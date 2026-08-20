@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 6",
+  "subject": "Christian Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "CRE GRADE 6 DESIGN - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-six-designs/",
+    "officialDocument": "https://drive.google.com/file/d/11IpqIrMdTmPcoFRKhELKaUliB3IQw6oP/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      14,
+      16,
+      18,
+      21,
+      23,
+      25,
+      26,
+      27,
+      30,
+      32,
+      34,
+      36,
+      38,
+      40,
+      42,
+      45,
+      47,
+      49,
+      52,
+      54,
+      56,
+      58,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Creation Talents and Abilities",
+      "sourcePages": [
+        12,
+        14,
+        16,
+        18,
+        64
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "My purpose Nurturing Talents/Abilities",
+          "alternativeNames": [
+            "My purpose",
+            "My Purpose"
+          ],
+          "sourcePage": 64
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Marriage and Family",
+          "sourcePage": 16
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Leisure",
+          "sourcePage": 18
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "The Bible",
+      "sourcePages": [
+        12,
+        21,
+        23,
+        25,
+        26,
+        27,
+        65
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "The Bible as the Inspired word of God",
+          "alternativeNames": [
+            "Inspired Word of God",
+            "The Inspired Word of God"
+          ],
+          "sourcePage": 65
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "The Ten Commandments",
+          "sourcePage": 23
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Bible Stories: Samson defeats the Philistines",
+          "alternativeNames": [
+            "Bible Stories Samson defeats the Philistines",
+            "Samson defeats the Philistines"
+          ],
+          "sourcePage": 65
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Faith in God (Elisha)",
+          "alternativeNames": [
+            "Elisha",
+            "Faith in God Elisha"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Jacob Wrestles an Angel",
+          "alternativeNames": [
+            "Jacob met an Angel"
+          ],
+          "sourcePage": 27
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "The Life of Jesus Christ",
+      "sourcePages": [
+        12,
+        30,
+        32,
+        34,
+        36,
+        38,
+        40,
+        42,
+        66,
+        67
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "The Call of the first four Disciples",
+          "alternativeNames": [
+            "The Call of Disciples",
+            "The call of the Disciples"
+          ],
+          "sourcePage": 66
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "The Temptations of Jesus Christ",
+          "sourcePage": 32
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Miracles of Jesus Christ (The Roman Officer’s servant)",
+          "alternativeNames": [
+            "Miracles of Jesus Healing the Roman Officer’s Servant"
+          ],
+          "sourcePage": 34
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Miracle of Healing",
+          "alternativeNames": [
+            "Faith in God"
+          ],
+          "sourcePage": 36
+        },
+        {
+          "order": 5,
+          "code": "3.5",
+          "name": "Raising Lazarus from the Dead",
+          "alternativeNames": [
+            "Lazarus is raised from Dead",
+            "Raising of Lazarus"
+          ],
+          "sourcePage": 38
+        },
+        {
+          "order": 6,
+          "code": "3.6",
+          "name": "The Hidden Treasure",
+          "sourcePage": 40
+        },
+        {
+          "order": 7,
+          "code": "3.7",
+          "name": "The Rich man and Lazarus",
+          "sourcePage": 42
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "The Church",
+      "sourcePages": [
+        12,
+        45,
+        47,
+        49,
+        68
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "The Apostles’ Creed",
+          "alternativeNames": [
+            "Apostles’ Creed"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Standing firm in Faith (Apostle Paul)",
+          "alternativeNames": [
+            "Apostle Paul (",
+            "Standing Firm in Faith"
+          ],
+          "sourcePage": 47
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "Church Unity",
+          "sourcePage": 49
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Christian Living",
+      "sourcePages": [
+        52,
+        54,
+        56,
+        58,
+        69
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Friendship Formation",
+          "sourcePage": 52
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Human Sexuality",
+          "sourcePage": 54
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Alcohol, drugs and Substance Abuse",
+          "alternativeNames": [
+            "Sanctity of Life"
+          ],
+          "sourcePage": 69
+        },
+        {
+          "order": 4,
+          "code": "5.4",
+          "name": "Alcohol, Drugs and Substance Abuse",
+          "alternativeNames": [
+            "Sanctity of life"
+          ],
+          "sourcePage": 58
+        }
+      ]
+    }
+  ]
+}

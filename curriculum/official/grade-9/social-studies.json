@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 9",
+  "subject": "Social Studies",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Social Studies Grade 9 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-nine-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1gMXIzQnV-F1a7n_dJ82QU2-BTtw3B-NW/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      15,
+      17,
+      21,
+      25,
+      28,
+      30,
+      32,
+      34,
+      36,
+      40,
+      42,
+      44,
+      46,
+      48,
+      53,
+      55,
+      57,
+      59,
+      65,
+      66,
+      68,
+      69
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Social Studies and Career Development",
+      "sourcePages": [
+        13,
+        15,
+        17,
+        65
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Pathway Choices",
+          "sourcePage": 15
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Pre-career Support systems (Psychosocial, social, mentorship/coach ing, spiritual, career support system)",
+          "alternativeNames": [
+            "Pre-career Support Systems"
+          ],
+          "sourcePage": 17
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Community Service Learning",
+      "sourcePages": [
+        13,
+        21
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Community Service Learning Project",
+          "alternativeNames": [
+            "Community Service-Learning Project"
+          ],
+          "sourcePage": 21
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "People and Relationships",
+      "sourcePages": [
+        13,
+        25,
+        28,
+        30,
+        32,
+        34,
+        36,
+        65,
+        66,
+        68
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Socio- Economic Practices of Early Humans",
+          "alternativeNames": [
+            "Socio-economic practices of early humans",
+            "Socio-Economic Practises of Early Humans"
+          ],
+          "sourcePage": 25
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Indigenous Knowledge Systems in African Societies",
+          "alternativeNames": [
+            "Indigenous Knowledge Systems in African Society"
+          ],
+          "sourcePage": 28
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Poverty Reduction",
+          "sourcePage": 30
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Population Structure",
+          "sourcePage": 32
+        },
+        {
+          "order": 5,
+          "code": "3.5",
+          "name": "Peaceful Conflict Resolution",
+          "sourcePage": 34
+        },
+        {
+          "order": 6,
+          "code": "3.6",
+          "name": "Healthy relationships - effective communication - negotiation skills - empathy - assertiveness",
+          "alternativeNames": [
+            "Healthy relationships",
+            "Healthy Relationships"
+          ],
+          "sourcePage": 36
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Natural and Historic Built Environments",
+      "sourcePages": [
+        13,
+        40,
+        42,
+        44,
+        46,
+        48,
+        68,
+        69
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Topographical maps",
+          "sourcePage": 40
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Internal Land Forming Processes",
+          "sourcePage": 42
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "Multi-purpose River Projects in Africa",
+          "alternativeNames": [
+            "Multipurpose River Projects in Africa"
+          ],
+          "sourcePage": 44
+        },
+        {
+          "order": 4,
+          "code": "4.4",
+          "name": "Management and Conservation of the Environment",
+          "sourcePage": 46
+        },
+        {
+          "order": 5,
+          "code": "4.5",
+          "name": "World Heritage Sites in Africa",
+          "sourcePage": 48
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Political Developments and Governance",
+      "sourcePages": [
+        53,
+        55,
+        57,
+        59
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "The Constitution of Kenya",
+          "sourcePage": 53
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Civic Engagement in Governance",
+          "sourcePage": 55
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Kenya’s Bill of Rights",
+          "sourcePage": 57
+        },
+        {
+          "order": 4,
+          "code": "5.4",
+          "name": "Cultural Globalisation",
+          "sourcePage": 59
+        }
+      ]
+    }
+  ]
+}

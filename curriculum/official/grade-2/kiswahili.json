@@ -1,0 +1,430 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 2",
+  "subject": "Kiswahili",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 1-3 Kiswahili - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/lower-primary/",
+    "officialDocument": "https://drive.google.com/file/d/1xVa-cvQ3jSlfR4yNEL3DIXGmU-U7tHXk/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      101,
+      103,
+      105,
+      107,
+      109,
+      112,
+      114,
+      116,
+      118,
+      121,
+      123,
+      125,
+      128,
+      130,
+      132,
+      134,
+      136,
+      138,
+      140,
+      142,
+      144,
+      147,
+      150,
+      152,
+      154,
+      156,
+      158,
+      160,
+      162,
+      165,
+      167,
+      169,
+      171,
+      173,
+      175,
+      177,
+      179,
+      181,
+      184,
+      186
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.1",
+      "name": "Kusikiliza na Kuzungumza",
+      "occurrenceCodes": [
+        "1.1",
+        "2.1",
+        "3.1",
+        "4.1",
+        "5.1",
+        "6.1",
+        "7.1",
+        "8.1",
+        "9.1",
+        "10.1"
+      ],
+      "sourcePages": [
+        101,
+        109,
+        118,
+        128,
+        136,
+        144,
+        154,
+        162,
+        171,
+        179
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1.1",
+          "name": "Maamkuzi na Maagano",
+          "sourcePage": 101
+        },
+        {
+          "order": 2,
+          "code": "2.1.1",
+          "name": "Matamshi Bora. Sauti: /p/, /f/, /v/",
+          "sourcePage": 109
+        },
+        {
+          "order": 3,
+          "code": "3.1.1",
+          "name": "Maneno ya Heshima na Adabu Hodi, karibu, tafadhali, ninaomba, nisamehe na nashukuru",
+          "sourcePage": 118
+        },
+        {
+          "order": 4,
+          "code": "4.1.1",
+          "name": "Matamshi Bora Sauti; /ch/ na /dh/",
+          "sourcePage": 128
+        },
+        {
+          "order": 5,
+          "code": "5.1.1",
+          "name": "Ufahamu wa Kusikiliza Hadithi",
+          "sourcePage": 136
+        },
+        {
+          "order": 6,
+          "code": "6.1.1",
+          "name": "Matamshi Bora: Sauti:/ny/ na /ng/",
+          "sourcePage": 144
+        },
+        {
+          "order": 7,
+          "code": "7.1.1",
+          "name": "Maagizo Maagizo ya hatua mbili",
+          "sourcePage": 154
+        },
+        {
+          "order": 8,
+          "code": "8.1.1",
+          "name": "Matamshi Bora Sauti: /sh/, /th/",
+          "sourcePage": 162
+        },
+        {
+          "order": 9,
+          "code": "9.1.1",
+          "name": "Mazungumzo ya papo kwa hapo",
+          "sourcePage": 171
+        },
+        {
+          "order": 10,
+          "code": "10.1.1",
+          "name": "Matamshi Bora Alfabeti ya Kiswahili",
+          "sourcePage": 179
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "1.2",
+      "name": "Kusoma",
+      "occurrenceCodes": [
+        "1.2",
+        "2.2",
+        "3.2",
+        "4.2",
+        "5.2",
+        "6.2",
+        "7.2",
+        "8.2",
+        "9.2",
+        "10.2"
+      ],
+      "sourcePages": [
+        103,
+        112,
+        121,
+        130,
+        138,
+        147,
+        156,
+        165,
+        173,
+        181
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.2.1",
+          "name": "Kusoma Ufahamu Kusoma kifungu",
+          "sourcePage": 103
+        },
+        {
+          "order": 2,
+          "code": "2.2.1",
+          "name": "Kusoma kwa ufasaha. Sauti: /p/, /f/, /v/",
+          "sourcePage": 112
+        },
+        {
+          "order": 3,
+          "code": "3.2.1",
+          "name": "Kusoma kwa ufahamu Kusoma kifungu",
+          "sourcePage": 121
+        },
+        {
+          "order": 4,
+          "code": "4.2.1",
+          "name": "Kusoma kwa ufasaha Sauti; /ch/, /dh/",
+          "sourcePage": 130
+        },
+        {
+          "order": 5,
+          "code": "5.2.1",
+          "name": "Kusoma Kwa Ufahamu",
+          "sourcePage": 138
+        },
+        {
+          "order": 6,
+          "code": "6.2.1",
+          "name": "Kusoma kwa Ufasaha Sauti: /ny/ na /ng/",
+          "sourcePage": 147
+        },
+        {
+          "order": 7,
+          "code": "7.2.1",
+          "name": "Kusoma Kwa Ufahamu: Kifungu",
+          "sourcePage": 156
+        },
+        {
+          "order": 8,
+          "code": "8.2.1",
+          "name": "Kusoma kwa ufasaha Sauti: /sh/ na /th/",
+          "sourcePage": 165
+        },
+        {
+          "order": 9,
+          "code": "9.2.1",
+          "name": "Kusoma kwa ufahamu Kusoma kifungu",
+          "sourcePage": 173
+        },
+        {
+          "order": 10,
+          "code": "10.2.1",
+          "name": "Kusoma kwa ufasaha Kusoma kifungu",
+          "sourcePage": 181
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "1.3",
+      "name": "Kuandika",
+      "occurrenceCodes": [
+        "1.3",
+        "2.3",
+        "3.3",
+        "4.3",
+        "5.3",
+        "6.3",
+        "7.3",
+        "8.3",
+        "9.3",
+        "10.3"
+      ],
+      "sourcePages": [
+        105,
+        114,
+        123,
+        132,
+        140,
+        150,
+        158,
+        167,
+        175,
+        184
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.3.1",
+          "name": "Hati nadhifu: Sentensi: Maumbo yanayofaa, kutoacha nafasi baina ya herufi katika neno, kuacha nafasi kati ya neno lingine)",
+          "sourcePage": 105
+        },
+        {
+          "order": 2,
+          "code": "2.3.1",
+          "name": "Hati Nadhifu Herufi Kubwa",
+          "sourcePage": 114
+        },
+        {
+          "order": 3,
+          "code": "3.3.1",
+          "name": "Mpangilio wa Herufi Ndogo",
+          "sourcePage": 123
+        },
+        {
+          "order": 4,
+          "code": "4.3.1",
+          "name": "Nafasi katika maandishi",
+          "sourcePage": 132
+        },
+        {
+          "order": 5,
+          "code": "5.3.1",
+          "name": "Uakifishi: Matumizi ya Kiulizi",
+          "sourcePage": 140
+        },
+        {
+          "order": 6,
+          "code": "6.3.1",
+          "name": "Tahajia Imla Sauti: /ny/ na /ng/",
+          "sourcePage": 150
+        },
+        {
+          "order": 7,
+          "code": "7.3.1",
+          "name": "Uhariri: Vipengele katika Uhariri",
+          "sourcePage": 158
+        },
+        {
+          "order": 8,
+          "code": "8.3.1",
+          "name": "Tahajia",
+          "sourcePage": 167
+        },
+        {
+          "order": 9,
+          "code": "9.3.1",
+          "name": "Kuandika Kifungu",
+          "sourcePage": 175
+        },
+        {
+          "order": 10,
+          "code": "10.3.1",
+          "name": "Maneno Na Sentensi",
+          "sourcePage": 184
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "1.4",
+      "name": "Sarufi",
+      "occurrenceCodes": [
+        "1.4",
+        "2.4",
+        "3.4",
+        "4.4",
+        "5.4",
+        "6.4",
+        "7.4",
+        "8.4",
+        "9.4",
+        "10.4"
+      ],
+      "sourcePages": [
+        107,
+        116,
+        125,
+        134,
+        142,
+        152,
+        160,
+        169,
+        177,
+        186
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.4.1",
+          "name": "Matumizi ya Wewe na Nyinyi",
+          "sourcePage": 107
+        },
+        {
+          "order": 2,
+          "code": "2.4.1",
+          "name": "Umoja na Wingi wa Vifungu",
+          "sourcePage": 116
+        },
+        {
+          "order": 3,
+          "code": "3.4.1",
+          "name": "Matumizi ya Huyo na Hao",
+          "sourcePage": 125
+        },
+        {
+          "order": 4,
+          "code": "4.4.1",
+          "name": "Umoja na Wingi: Vifungu vya maneno",
+          "sourcePage": 134
+        },
+        {
+          "order": 5,
+          "code": "5.4.1",
+          "name": "Matumizi ya -ako na –enu",
+          "sourcePage": 142
+        },
+        {
+          "order": 6,
+          "code": "6.4.1",
+          "name": "Matumizi ya -refu, - kubwa, - tamu",
+          "sourcePage": 152
+        },
+        {
+          "order": 7,
+          "code": "7.4.1",
+          "name": "Ukanusho wa nafsi ya pili, umoja na wingi",
+          "sourcePage": 160
+        },
+        {
+          "order": 8,
+          "code": "8.4.1",
+          "name": "Matumizi ya huu na hii",
+          "sourcePage": 169
+        },
+        {
+          "order": 9,
+          "code": "9.4.1",
+          "name": "Matumizi ya Vizuri na Vibaya, Polepole na Haraka",
+          "sourcePage": 177
+        },
+        {
+          "order": 10,
+          "code": "10.4.1",
+          "name": "Vinyume vya Vitendo",
+          "sourcePage": 186
+        }
+      ]
+    }
+  ]
+}

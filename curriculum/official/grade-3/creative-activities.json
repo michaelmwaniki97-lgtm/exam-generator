@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 3",
+  "subject": "Creative Activities",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Creative Activities, IL G1-3 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/lower-primary/",
+    "officialDocument": "https://drive.google.com/file/d/1vrC5cJO2MpDm9v4u3-qwCze9yPa9HcEZ/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      94,
+      95,
+      96,
+      98,
+      100,
+      101,
+      103,
+      105,
+      108,
+      110,
+      112,
+      114,
+      116,
+      118,
+      121,
+      123
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Creating and Executing",
+      "sourcePages": [
+        94,
+        95,
+        96,
+        98,
+        100,
+        101,
+        103,
+        105
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Pushing and Pulling",
+          "sourcePage": 95
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Drawing and Painting",
+          "sourcePage": 96
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Rhythm and pattern making",
+          "sourcePage": 98
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Skipping",
+          "sourcePage": 100
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Collage",
+          "sourcePage": 101
+        },
+        {
+          "order": 6,
+          "code": "1.6",
+          "name": "Melody",
+          "sourcePage": 103
+        },
+        {
+          "order": 7,
+          "code": "1.7",
+          "name": "Weaving",
+          "sourcePage": 105
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Performing and Displaying",
+      "sourcePages": [
+        94,
+        108,
+        110,
+        112,
+        114,
+        116,
+        118
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Rounds",
+          "sourcePage": 108
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Galloping",
+          "sourcePage": 110
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Sculpture (Toy Assemblage)",
+          "alternativeNames": [
+            "Sculpture"
+          ],
+          "sourcePage": 112
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Forward Roll and V- balance",
+          "alternativeNames": [
+            "Forward Roll and V-balance"
+          ],
+          "sourcePage": 114
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "String Musical Instruments",
+          "alternativeNames": [
+            "String Musical Instrument"
+          ],
+          "sourcePage": 116
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Modelling and Ornament Making",
+          "sourcePage": 118
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Appreciation",
+      "sourcePages": [
+        94,
+        121,
+        123
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "The Kenya National Anthem 14 3.2Water Safety Awareness 14 Total Number of Lessons",
+          "alternativeNames": [
+            "The Kenya National Anthem"
+          ],
+          "sourcePage": 94
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Water Safety Awareness",
+          "sourcePage": 123
+        }
+      ]
+    }
+  ]
+}

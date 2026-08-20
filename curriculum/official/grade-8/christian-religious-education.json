@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 8",
+  "subject": "Christian Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "CRE Grade 8 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-eight-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1ZVqaVImBDLeGVUbLwA54C8zqWZMsr3V8/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      14,
+      19,
+      21,
+      23,
+      27,
+      29,
+      31,
+      36,
+      39,
+      41,
+      45,
+      47,
+      50,
+      52,
+      54,
+      57,
+      64,
+      67,
+      68,
+      71,
+      72
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Creation",
+      "sourcePages": [
+        12,
+        14,
+        64
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Origin and Consequences of Sin",
+          "sourcePage": 14
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "God’s Plan for Redemption",
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "The Bible",
+      "sourcePages": [
+        12,
+        19,
+        21,
+        23
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Faith and God’s Promises",
+          "sourcePage": 19
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Abrahamic Covenant",
+          "sourcePage": 21
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Leadership in Israel (Saul)",
+          "alternativeNames": [
+            "Leadership in Israel: Saul"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Miracles of Jesus Christ",
+      "sourcePages": [
+        27,
+        29,
+        31,
+        67
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Healing of Blind Bartimaeus",
+          "sourcePage": 27
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Calming the Storm",
+          "sourcePage": 29
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Healing of the Paralytic",
+          "alternativeNames": [
+            "Healing of the Paralytic ● Oral/Aural Question(s) ● Questionnaires ● Self-assessment ● Peer Assessments ● Portfolio ● Rubrics ● Rating Scales"
+          ],
+          "sourcePage": 31
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Teachings of Jesus Christ",
+      "sourcePages": [
+        12,
+        36,
+        68
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Teachings on Prayer",
+          "alternativeNames": [
+            "Teaching on Prayer"
+          ],
+          "sourcePage": 68
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "The Lost Sheep",
+          "sourcePage": 36
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "The Church",
+      "sourcePages": [
+        39,
+        41
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "The Holy Spirit",
+          "sourcePage": 39
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Acts of Compassion",
+          "sourcePage": 41
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Christian Living Today",
+      "sourcePages": [
+        13,
+        45,
+        47,
+        50,
+        52,
+        54,
+        57,
+        71,
+        72
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Family Relationships",
+          "sourcePage": 45
+        },
+        {
+          "order": 2,
+          "code": "6.2",
+          "name": "Human Sexuality: Responsible Sexual Behaviour",
+          "alternativeNames": [
+            "Human Sexuality Responsible sexual behaviour"
+          ],
+          "sourcePage": 47
+        },
+        {
+          "order": 3,
+          "code": "6.3",
+          "name": "Sacredness of life",
+          "sourcePage": 50
+        },
+        {
+          "order": 4,
+          "code": "6.4",
+          "name": "Bullying",
+          "sourcePage": 52
+        },
+        {
+          "order": 5,
+          "code": "6.5",
+          "name": "Work Talents, Gifts and Abilities",
+          "alternativeNames": [
+            "Work: Talents and Abilities"
+          ],
+          "sourcePage": 54
+        },
+        {
+          "order": 6,
+          "code": "6.6",
+          "name": "Leisure",
+          "sourcePage": 57
+        },
+        {
+          "order": 7,
+          "code": "6.7",
+          "name": "Work Talents and Abilities",
+          "sourcePage": 71
+        },
+        {
+          "order": 8,
+          "code": "6.8",
+          "name": "Leisure",
+          "sourcePage": 72
+        }
+      ]
+    }
+  ]
+}

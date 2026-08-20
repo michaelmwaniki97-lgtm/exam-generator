@@ -1,0 +1,1210 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 1",
+  "subject": "Physics",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "1.0.0",
+      "order": 1,
+      "name": "INTRODUCTION TO PHYSICS",
+      "sourcePages": [
+        40
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "unlabelled",
+          "text": "(a) explain what the study of physics involves (b) relate physics to other subjects and to technology (c) identify career opportunities related to physics (d) state and explain basic laboratory safety rules.",
+          "sourcePages": [
+            40
+          ],
+          "order": 1
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "1.2.1",
+          "order": 1,
+          "name": "Physics as a Science(reference to Primary Science Syllabus)",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.2",
+          "order": 2,
+          "name": "Meaning of Physics",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.3",
+          "order": 3,
+          "name": "Branches of Physics",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.4",
+          "order": 4,
+          "name": "Relation between Physics, other subjects and technology",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.5",
+          "order": 5,
+          "name": "Career opportunities in Physics",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.6",
+          "order": 6,
+          "name": "Basic laboratory safety rules",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "2.0.0",
+      "order": 2,
+      "name": "MEASUREMENTS 1",
+      "sourcePages": [
+        40
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define length, area, volume, mass, density, time and state the corresponding symbols and SI units",
+          "sourcePages": [
+            40
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "convert other metric units to SI units",
+          "sourcePages": [
+            40
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "estimate length, mass and time",
+          "sourcePages": [
+            40
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "use accurately the following measuring instruments; metre rule, tape measure, beam balance, stop clock/watch, measuring cylinder, pipette and burette",
+          "sourcePages": [
+            40
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "determine experimentally the densities of substances",
+          "sourcePages": [
+            40
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "solve numerical problems on density.",
+          "sourcePages": [
+            40
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "2.2.1",
+          "order": 1,
+          "name": "Definition of length, area, volume, mass, density and time",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.2",
+          "order": 2,
+          "name": "SI units and symbols",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.3",
+          "order": 3,
+          "name": "Estimation of quantities",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.4",
+          "order": 4,
+          "name": "Conversion of units",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.5",
+          "order": 5,
+          "name": "Measuring instruments",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.6",
+          "order": 6,
+          "name": "Experiments on density",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.7",
+          "order": 7,
+          "name": "Problems on density",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "3.0.0",
+      "order": 3,
+      "name": "FORCE",
+      "sourcePages": [
+        40
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define force and state its SI unit",
+          "sourcePages": [
+            40
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe types of forces",
+          "sourcePages": [
+            40
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe experiments to illustrate cohesion, adhesion and surface tension",
+          "sourcePages": [
+            40
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state the effects of force",
+          "sourcePages": [
+            40
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the difference between mass and weight",
+          "sourcePages": [
+            40
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "state the relation between mass and weight, W = mg",
+          "sourcePages": [
+            40
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "define scalar and vector quantities",
+          "sourcePages": [
+            40
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "solve numerical problems involving W = mg.",
+          "sourcePages": [
+            40
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "3.2.1",
+          "order": 1,
+          "name": "Definition of force and state its unit",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.2.2",
+          "order": 2,
+          "name": "Types of forces (including cohesive, adhesive and surface tension)",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.2.3",
+          "order": 3,
+          "name": "Experiments to demonstrate cohesion, adhesion and surface tension.",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.2.4",
+          "order": 4,
+          "name": "Effects of force",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.2.5",
+          "order": 5,
+          "name": "Mass, weight and their relationship",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.2.6",
+          "order": 6,
+          "name": "Scalar and vector quantities",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.2.7",
+          "order": 7,
+          "name": "Problem involving W = mg (take g = 10 N/kg)",
+          "sourcePages": [
+            40
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "4.0.0",
+      "order": 4,
+      "name": "PRESSURE",
+      "sourcePages": [
+        40
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define pressure and state its units",
+          "sourcePages": [
+            40
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "determine pressure exerted by solids",
+          "sourcePages": [
+            40
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe experiments to investigate factors affecting pressure in fluids;",
+          "sourcePages": [
+            40
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "derive the formula P =gh39",
+          "sourcePages": [
+            40,
+            41
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the principle of transmission of pressure in fluids (Pascals principle)",
+          "sourcePages": [
+            41
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain atmospheric pressure and its effect",
+          "sourcePages": [
+            41
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "state and explain the applications of pressure",
+          "sourcePages": [
+            41
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "solve numerical problems involving pressure.",
+          "sourcePages": [
+            41
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "4.2.1",
+          "order": 1,
+          "name": "Definition of pressure",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.2",
+          "order": 2,
+          "name": "Pressure in solids",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.3",
+          "order": 3,
+          "name": "Factors affecting pressure in fluid (Experimental treatment required)",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.4",
+          "order": 4,
+          "name": "Derivation of P = ρgh",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.5",
+          "order": 5,
+          "name": "Atmospheric pressure",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.6",
+          "order": 6,
+          "name": "Simple mercury barometer, manometers",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.7",
+          "order": 7,
+          "name": "Applications of pressure: drinking straw, syringe, siphon, hydraulic press, hydraulic brakes, bicycle pump, force pump, lift pump",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.8",
+          "order": 8,
+          "name": "Problems on pressure",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "5.0.0",
+      "order": 5,
+      "name": "PARTICULATE NATURE OF MATTER",
+      "sourcePages": [
+        41
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "show that matter is made up of tiny particles",
+          "sourcePages": [
+            41
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe experiments to show that particles of matter are at constant random motion",
+          "sourcePages": [
+            41
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain the states of matter in terms of particles",
+          "sourcePages": [
+            41
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain diffusion",
+          "sourcePages": [
+            41
+          ],
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "5.2.1",
+          "order": 1,
+          "name": "Experiments to show that matter is made up of tiny particles (e.g. cutting papers into small pieces), dilution experiments",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.2.2",
+          "order": 2,
+          "name": "Brownian motion",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.2.3",
+          "order": 3,
+          "name": "States of matter",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.2.4",
+          "order": 4,
+          "name": "Diffusion (Graham‟s law not required)",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "6.0.0",
+      "order": 6,
+      "name": "THERMAL EXPANSION",
+      "sourcePages": [
+        41
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define temperature",
+          "sourcePages": [
+            41
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe the functioning of various thermometers",
+          "sourcePages": [
+            41
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "convert Celsius scale to Kelvin scale of temperature",
+          "sourcePages": [
+            41
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe thermal expansion in solids, liquids and gases",
+          "sourcePages": [
+            41
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain expansion in terms of particle behaviour",
+          "sourcePages": [
+            41
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "describe the unusual expansion of water and its effects",
+          "sourcePages": [
+            41
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "explain the effects and applications of thermal expansion.",
+          "sourcePages": [
+            41
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "6.2.1",
+          "order": 1,
+          "name": "Temperature",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.2",
+          "order": 2,
+          "name": "Thermometers:",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.3",
+          "order": 3,
+          "name": "Celsius and Kelvin scales",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.4",
+          "order": 4,
+          "name": "Expansion of solids, liquids and gases",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.5",
+          "order": 5,
+          "name": "Effects of expansion and contraction",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.6",
+          "order": 6,
+          "name": "Unusual expansion of water (Anomolous expansion)",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.7",
+          "order": 7,
+          "name": "Applications of thermal expansion, include Bimetallic strip",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "7.0.0",
+      "order": 7,
+      "name": "HEAT TRANSFER",
+      "sourcePages": [
+        41
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define heat",
+          "sourcePages": [
+            41
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state the difference between temperature and heat",
+          "sourcePages": [
+            41
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state and explain the modes of heat transfer",
+          "sourcePages": [
+            41
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe experiments to illustrate factors affecting heat transfer",
+          "sourcePages": [
+            41
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain applications of heat transfer.",
+          "sourcePages": [
+            41
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "7.2.1",
+          "order": 1,
+          "name": "Heat and temperature",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.2",
+          "order": 2,
+          "name": "Modes of heat transfer",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.3",
+          "order": 3,
+          "name": "Factors affecting heat transfer (Experimental treatment required)",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.4",
+          "order": 4,
+          "name": "Applications of heat transfer on:",
+          "sourcePages": [
+            41
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "8.0.0",
+      "order": 8,
+      "name": "RECTILINEAR PROPAGATION OF LIGHT AND REFLECTION AT PLANE SURFACE",
+      "sourcePages": [
+        42
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "perform and describe experiments to show that light travels in a straight line",
+          "sourcePages": [
+            42
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe the formation of shadows and eclipses",
+          "sourcePages": [
+            42
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain the functioning of a pin\u0002hole camera",
+          "sourcePages": [
+            42
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state the laws of reflection",
+          "sourcePages": [
+            42
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "verify experimentally the laws of reflection",
+          "sourcePages": [
+            42
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "state the characteristics of images formed by plane mirrors",
+          "sourcePages": [
+            42
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "explain the applications of reflection at plane surfaces",
+          "sourcePages": [
+            42
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "solve numerical problems involving pin-hole camera and mirrors inclined at an angle.",
+          "sourcePages": [
+            42
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "8.2.1",
+          "order": 1,
+          "name": "Rectilinear propagation of light (experimental treatment required)",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.2",
+          "order": 2,
+          "name": "Formation of shadows and eclipses (umbra and penumbra)",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.3",
+          "order": 3,
+          "name": "Pin-hole camera image formation and magnification",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.4",
+          "order": 4,
+          "name": "Laws of reflection",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.5",
+          "order": 5,
+          "name": "Images formed by plane mirrors, ray diagrams, parallel and inclined mirrors",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.6",
+          "order": 6,
+          "name": "Devices based on reflection: periscope, kaleidoscope",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.7",
+          "order": 7,
+          "name": "Problems on pin-hole camera and mirrors inclined at an angle",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "9.0.0",
+      "order": 9,
+      "name": "ELECTROSTATICS I",
+      "sourcePages": [
+        42
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe electrostatic charging of objects by rubbing",
+          "sourcePages": [
+            42
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain the source of electrostatic charges",
+          "sourcePages": [
+            42
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state the two types of charges",
+          "sourcePages": [
+            42
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state the basic law of charges",
+          "sourcePages": [
+            42
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the unit of charge",
+          "sourcePages": [
+            42
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "construct a simple leaf electroscope",
+          "sourcePages": [
+            42
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "explain the charging of a leaf electroscope",
+          "sourcePages": [
+            42
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "use a charged leaf electroscope to identify conductors, insulators and types of charges.",
+          "sourcePages": [
+            42
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "9.2.1",
+          "order": 1,
+          "name": "Electrostatic charging of objects by rubbing (experimental treatment required)",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.2",
+          "order": 2,
+          "name": "Types of charges and law of charges",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.3",
+          "order": 3,
+          "name": "The source of charge",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.4",
+          "order": 4,
+          "name": "The coulomb",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.5",
+          "order": 5,
+          "name": "Leaf electroscope: features, charging and discharging",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.6",
+          "order": 6,
+          "name": "Charging by contact and by induction",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.7",
+          "order": 7,
+          "name": "Identification of charge",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.8",
+          "order": 8,
+          "name": "Conductors and insulators",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "10.0.0",
+      "order": 10,
+      "name": "CELLS AND SIMPLE CIRCUITS",
+      "sourcePages": [
+        42
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "draw and set-up simple electric circuits",
+          "sourcePages": [
+            42
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "identify circuit symbols",
+          "sourcePages": [
+            42
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "define electric current",
+          "sourcePages": [
+            42
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain the working of primary and secondary cells",
+          "sourcePages": [
+            42
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain the care and maintenance of secondary cells.",
+          "sourcePages": [
+            42
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "10.2.1",
+          "order": 1,
+          "name": "Simple electric circuits: cell, ammeter, voltmeter, variable resistor, connecting wires, bulb and switches",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.2",
+          "order": 2,
+          "name": "Circuit symbols",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.3",
+          "order": 3,
+          "name": "Electric current and its units",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.4",
+          "order": 4,
+          "name": "Primary and secondary cells (simple cell, dry Leclanche‟ cell, Lead acid cell)",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.5",
+          "order": 5,
+          "name": "Care and maintenance of secondary cells",
+          "sourcePages": [
+            42
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

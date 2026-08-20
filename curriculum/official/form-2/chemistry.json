@@ -1,0 +1,741 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 2",
+  "subject": "Chemistry",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "6.0.0",
+      "order": 1,
+      "name": "STRUCTURE OF THE ATOM AND THE PERIODIC TABLE",
+      "sourcePages": [
+        63
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "name and write the chemical symbols of the first twenty elements of the periodic table",
+          "sourcePages": [
+            63
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe the structure of the atom and write the electron arrangement of the first twenty elements of the periodic table",
+          "sourcePages": [
+            63
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain the electron arrangement of the atom in terms of energy levels",
+          "sourcePages": [
+            63
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "define atomic number, mass number, isotopes and relative atomic mass",
+          "sourcePages": [
+            63
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "calculate the relative atomic masses from isotopic composition",
+          "sourcePages": [
+            63
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the position of an element in the periodic table in terms of the electron arrangement",
+          "sourcePages": [
+            63
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "define valency and oxidation number of an element",
+          "sourcePages": [
+            63
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "predict the type of ion formed from a given electron arrangement of an atom",
+          "sourcePages": [
+            63
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "predict the valencies and oxidation numbers from position of elements in the periodic table",
+          "sourcePages": [
+            63
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "derive the formulae of some simple compounds from valencies of elements and radicals",
+          "sourcePages": [
+            63
+          ],
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "write simple balanced chemical equations.",
+          "sourcePages": [
+            63
+          ],
+          "order": 11
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "6.2.1",
+          "order": 1,
+          "name": "The Structure of the Atom",
+          "sourcePages": [
+            63
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.2",
+          "order": 2,
+          "name": "Atomic characteristics",
+          "sourcePages": [
+            63
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.3",
+          "order": 3,
+          "name": "The periodic table",
+          "sourcePages": [
+            63
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.4",
+          "order": 4,
+          "name": "Ion formation",
+          "sourcePages": [
+            63
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "7.0.0",
+      "order": 2,
+      "name": "CHEMICAL FAMILIES; PATTERNS IN PROPERTIES",
+      "sourcePages": [
+        63
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "identify alkali metals, alkaline-earth metals, halogens and noble gases in the periodic table and write their electron arrangement",
+          "sourcePages": [
+            63
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state and explain trends in physical properties of alkali metals, alkaline\u0002earth metals, halogens and noble gases 62",
+          "sourcePages": [
+            63,
+            64
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state and explain the trends in reactivity of the alkali metals, alkaline-earth metals and halogens",
+          "sourcePages": [
+            64
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain the similarities in formulae of compounds formed by alkali metals, alkaline-earth metals and halogens",
+          "sourcePages": [
+            64
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the uses of alkali metals, alkaline\u0002earth metals, halogens and noble gases",
+          "sourcePages": [
+            64
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the unreactive nature of the noble gases in terms of their electron arrangement",
+          "sourcePages": [
+            64
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "identify the elements in a given period and write their electron arrangement",
+          "sourcePages": [
+            64
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "state and explain the trends in physical properties of elements in a period",
+          "sourcePages": [
+            64
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "state and explain the trends in chemical behaviour of elements in a given period.",
+          "sourcePages": [
+            64
+          ],
+          "order": 9
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "7.2.1",
+          "order": 1,
+          "name": "Alkali metals (Group 1); (lithium, sodium, and potassium).",
+          "sourcePages": [
+            64
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.2",
+          "order": 2,
+          "name": "Alkaline - earth metals (Group 2) (Beryllium, magnesium, and calcium)",
+          "sourcePages": [
+            64
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.3",
+          "order": 3,
+          "name": "Halogens (Group 7); (Fluorine, chlorine, bromine and iodine);",
+          "sourcePages": [
+            64
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.4",
+          "order": 4,
+          "name": "Noble gases (group 8); (Helium, neon, argon)",
+          "sourcePages": [
+            64
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.5",
+          "order": 5,
+          "name": "Properties and trends across a period",
+          "sourcePages": [
+            64
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "8.0.0",
+      "order": 3,
+      "name": "STRUCTURE AND BONDING",
+      "sourcePages": [
+        65
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe the role of the outer electrons in determining chemical bonding",
+          "sourcePages": [
+            65
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain qualitatively the formation of covalent and ionic bonds",
+          "sourcePages": [
+            65
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "illustrate the covalent and ionic bonds using diagrams",
+          "sourcePages": [
+            65
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain the unique nature of the metallic bonding",
+          "sourcePages": [
+            65
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the effect of intermolecular forces of attraction on physical properties of substances",
+          "sourcePages": [
+            65
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "distinguish between bond types on the basis of physical properties of substances",
+          "sourcePages": [
+            65
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "compare and explain the changes in bond type across a period",
+          "sourcePages": [
+            65
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "select appropriate materials for use based on bond type.",
+          "sourcePages": [
+            65
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "8.2.1",
+          "order": 1,
+          "name": "The role of outer electrons in chemical bonding",
+          "sourcePages": [
+            65
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.2",
+          "order": 2,
+          "name": "Types of bonds across a period (period 3)",
+          "sourcePages": [
+            65
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.3",
+          "order": 3,
+          "name": "Applications Selection of materials for various uses; e.g. diamond, graphite and aluminium",
+          "sourcePages": [
+            65
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.6",
+          "order": 4,
+          "name": "Project Investigation of materials in terms of their structure and bonding.",
+          "sourcePages": [
+            65
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "9.0.0",
+      "order": 4,
+      "name": "SALTS",
+      "sourcePages": [
+        65
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "select and use appropriate methods of preparing particular salts",
+          "sourcePages": [
+            65
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain the terms saturated solution, crystallisation, neutralisation and precipitation",
+          "sourcePages": [
+            65
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "write ionic equations for the preparation of salts",
+          "sourcePages": [
+            65
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state types of salts",
+          "sourcePages": [
+            65
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "identify soluble and insoluble salts",
+          "sourcePages": [
+            65
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "describe and explain from experimental observations the action of heat on various salts",
+          "sourcePages": [
+            65
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "state uses of some salts.",
+          "sourcePages": [
+            65
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "9.2.1",
+          "order": 1,
+          "name": "Methods of preparing salts",
+          "sourcePages": [
+            65
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.2",
+          "order": 2,
+          "name": "Solubility of salts",
+          "sourcePages": [
+            66
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.3",
+          "order": 3,
+          "name": "Action of heat on salts",
+          "sourcePages": [
+            66
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.4",
+          "order": 4,
+          "name": "Project Analysing anti-acid drugs.",
+          "sourcePages": [
+            66
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "10.0.0",
+      "order": 5,
+      "name": "EFFECT OF AN ELECTRIC CURRENT ON SUBSTANCES",
+      "sourcePages": [
+        66
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define the terms conductor and non\u0002conductor; electrolyte and non - electrolyte",
+          "sourcePages": [
+            66
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "classify solutions and molten substances as electrolytes and non\u0002electrolytes",
+          "sourcePages": [
+            66
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "distinguish between electrolytes and non-electrolytes in terms of the particles they contain",
+          "sourcePages": [
+            66
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain the process of electrolysis and define the terms anode and cathode",
+          "sourcePages": [
+            66
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the products of electrolysis of a binary electrolyte",
+          "sourcePages": [
+            66
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "state some applications of electrolysis.",
+          "sourcePages": [
+            66
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "10.2.1",
+          "order": 1,
+          "name": "Conduction of electricity",
+          "sourcePages": [
+            66
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.2",
+          "order": 2,
+          "name": "Electrolysis",
+          "sourcePages": [
+            66
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "11.0.0",
+      "order": 6,
+      "name": "CARBON AND SOME OF ITS COMPOUNDS",
+      "sourcePages": [
+        66
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define allotropy and allotropes",
+          "sourcePages": [
+            66
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain the physical properties of the carbon allotropes in terms of bonding and how the properties are related to the uses of the allotropes",
+          "sourcePages": [
+            66
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe some chemical properties of carbon",
+          "sourcePages": [
+            66
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe laboratory preparation and properties of carbon (IV) Oxide (Carbon(II) oxide)65",
+          "sourcePages": [
+            66,
+            67
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state and explain the physical and chemical properties of carbon(IV) Oxide (Carbon(II) oxide)",
+          "sourcePages": [
+            67
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "describe laboratory preparation and some properties of Carbon (II) oxide (Carbon monoxide)",
+          "sourcePages": [
+            67
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "describe the chemical reactions of carbonates and hydrogencarbonates",
+          "sourcePages": [
+            67
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "describe the manufacture of sodium carbonate",
+          "sourcePages": [
+            67
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "explain the advantages and disadvantages of Carbon(IV) Oxide and carbon(II) oxide gases in the atmosphere",
+          "sourcePages": [
+            67
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "explain the importance of carbon compounds in the natural environment and industry.",
+          "sourcePages": [
+            67
+          ],
+          "order": 10
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "11.2.1",
+          "order": 1,
+          "name": "Forms of carbon",
+          "sourcePages": [
+            67
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.2",
+          "order": 2,
+          "name": "Chemical properties of carbon",
+          "sourcePages": [
+            67
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.3",
+          "order": 3,
+          "name": "Preparation and properties of Carbon (IV) oxide (carbon dioxide) (Relate methods of collection to the properties of the gas)",
+          "sourcePages": [
+            67
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.4",
+          "order": 4,
+          "name": "Preparation and properties of carbon(II) oxide (carbon monoxide)",
+          "sourcePages": [
+            67
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.5",
+          "order": 5,
+          "name": "Carbonates and hydrogen carbonates",
+          "sourcePages": [
+            67
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.6",
+          "order": 6,
+          "name": "Importance of carbon and its oxides",
+          "sourcePages": [
+            67
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

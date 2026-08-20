@@ -1,0 +1,391 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 5",
+  "subject": "Christian Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "CRE GRADE 5 DESIGN - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-five-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1unhtcU1tzdsPceoadKCovjFIkPTF1wP4/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      6,
+      11,
+      12,
+      13,
+      15,
+      17,
+      18,
+      21,
+      23,
+      25,
+      27,
+      29,
+      31,
+      33,
+      35,
+      39,
+      41,
+      43,
+      45,
+      47,
+      49,
+      50,
+      52,
+      54,
+      58,
+      59,
+      63,
+      66,
+      68,
+      71,
+      73,
+      75,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Creation",
+      "sourcePages": [
+        11,
+        13,
+        15,
+        17,
+        18,
+        81
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "My Purpose (Talents and Abilities)",
+          "alternativeNames": [
+            "My purpose Talents and abilities"
+          ],
+          "sourcePage": 11
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Human Beings as co-workers with God",
+          "alternativeNames": [
+            "Work"
+          ],
+          "sourcePage": 81
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Family The Fall of Adam and Eve)",
+          "alternativeNames": [
+            "The Fall of Man"
+          ],
+          "sourcePage": 81
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "The Family Unity",
+          "alternativeNames": [
+            "Family Unity"
+          ],
+          "sourcePage": 81
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "The Bible",
+      "sourcePages": [
+        11,
+        21,
+        23,
+        25,
+        27,
+        29,
+        31,
+        33,
+        35,
+        82,
+        83
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "The Holy Bible as a guide",
+          "alternativeNames": [
+            "The Bible as a Guide"
+          ],
+          "sourcePage": 82
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Bible Stories: Peter and John in the Temple",
+          "alternativeNames": [
+            "Bible Stories Peter and John in the Temple",
+            "Bible stories: Peter and John in Temple"
+          ],
+          "sourcePage": 23
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "King Solomon the wise ruler",
+          "sourcePage": 25
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Noah and his sons",
+          "sourcePage": 27
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "A hand writes on the wall",
+          "sourcePage": 29
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Mount Carmel Contest",
+          "alternativeNames": [
+            "Mt. Carmel Contest"
+          ],
+          "sourcePage": 31
+        },
+        {
+          "order": 7,
+          "code": "2.7",
+          "name": "The Birth of Moses",
+          "alternativeNames": [
+            "God’s protection",
+            "God’s Protection"
+          ],
+          "sourcePage": 33
+        },
+        {
+          "order": 8,
+          "code": "2.8",
+          "name": "The call of Moses",
+          "sourcePage": 35
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "The Life of Jesus Christ",
+      "sourcePages": [
+        11,
+        39,
+        41,
+        43,
+        45,
+        47,
+        49,
+        50,
+        52,
+        54,
+        83,
+        84,
+        85
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "John the Baptist",
+          "sourcePage": 39
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "The Baptism of Jesus Christ",
+          "sourcePage": 41
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Calming of the Storm",
+          "alternativeNames": [
+            "Calming the Storm"
+          ],
+          "sourcePage": 84
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Feeding the Four Thousand Men",
+          "alternativeNames": [
+            "Feeding the four thousand"
+          ],
+          "sourcePage": 84
+        },
+        {
+          "order": 5,
+          "code": "3.5",
+          "name": "Healing the Paralysed Man",
+          "sourcePage": 47
+        },
+        {
+          "order": 6,
+          "code": "3.6",
+          "name": "Parable of the Lost Sheep",
+          "alternativeNames": [
+            "The lost sheep"
+          ],
+          "sourcePage": 49
+        },
+        {
+          "order": 7,
+          "code": "3.7",
+          "name": "Sermon on the Mount",
+          "sourcePage": 50
+        },
+        {
+          "order": 8,
+          "code": "3.8",
+          "name": "The Rich Young Ruler",
+          "alternativeNames": [
+            "The Rich Young Man"
+          ],
+          "sourcePage": 11
+        },
+        {
+          "order": 9,
+          "code": "3.9",
+          "name": "A friend at Midnight",
+          "sourcePage": 54
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "The Church",
+      "sourcePages": [
+        12,
+        58,
+        59,
+        63,
+        86
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "The Early Church",
+          "sourcePage": 58
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "The Lord’s Supper",
+          "alternativeNames": [
+            "The Lords Supper"
+          ],
+          "sourcePage": 59
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "The Role of the Holy Spirit",
+          "alternativeNames": [
+            "The Holy Spirit"
+          ],
+          "sourcePage": 86
+        },
+        {
+          "order": 4,
+          "code": "4.4",
+          "name": "Peter’s Miraculous Rescue from Prison",
+          "alternativeNames": [
+            "Peter Miraculous Rescue",
+            "Peter’s miraculous rescue"
+          ],
+          "sourcePage": 86
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Christian Living",
+      "sourcePages": [
+        6,
+        12,
+        66,
+        68,
+        71,
+        73,
+        75,
+        86,
+        87
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Friendship formation",
+          "alternativeNames": [
+            "FRIENDSHIP FORMATION ...................................................................................................................................................................... 54 COMMUNITY SERVICE LEARNING AT UPPER PRIMARY (GRADE 4-6)............................................................................................. 66 APPENDIX 1: SUGGESTED ASSESSMENT METHODS, LEARNING RESOURCES AND NON-FORMAL ACTIVITIES"
+          ],
+          "sourcePage": 66
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Human Sexuality",
+          "sourcePage": 68
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Sacredness of life",
+          "alternativeNames": [
+            "Sanctity of Life"
+          ],
+          "sourcePage": 87
+        },
+        {
+          "order": 4,
+          "code": "5.4",
+          "name": "Alcohol, Drugs and Substance Abuse",
+          "alternativeNames": [
+            "Alchohol, drug and substance abuse"
+          ],
+          "sourcePage": 73
+        },
+        {
+          "order": 5,
+          "code": "5.5",
+          "name": "Social Media",
+          "sourcePage": 75
+        }
+      ]
+    }
+  ]
+}

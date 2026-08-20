@@ -1,0 +1,2088 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 3",
+  "subject": "Mathematics",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "44.0.0",
+      "order": 1,
+      "name": "QUADRATIC EXPRESSIONS AND EQUATIONS (2)",
+      "sourcePages": [
+        25
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "factorise quadratic expressions",
+          "sourcePages": [
+            25
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "identify perfect squares",
+          "sourcePages": [
+            25
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "complete the square",
+          "sourcePages": [
+            25
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "solving quadratic equations by completing the square",
+          "sourcePages": [
+            25
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "derive the quadratic formula",
+          "sourcePages": [
+            25
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "solve quadratic equations using the formula",
+          "sourcePages": [
+            25
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "form and solve quadratic equations from roots and given situations",
+          "sourcePages": [
+            25
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "make tables of values from a quadratic relation",
+          "sourcePages": [
+            25
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "draw the graph of a quadratic relation",
+          "sourcePages": [
+            25
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "solve quadratic equations using graphs",
+          "sourcePages": [
+            25
+          ],
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "solve simultaneous equations (one linear and one quadratic) analytically and graphically",
+          "sourcePages": [
+            25
+          ],
+          "order": 11
+        },
+        {
+          "label": "l)",
+          "text": "apply the knowledge of quadratic equations to real life situations.",
+          "sourcePages": [
+            25
+          ],
+          "order": 12
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "44.2.1",
+          "order": 1,
+          "name": "Factorisation of quadratic expressions",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "44.2.3",
+          "order": 2,
+          "name": "Perfect squares",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "44.2.4",
+          "order": 3,
+          "name": "Completion of the square",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "44.2.5",
+          "order": 4,
+          "name": "Solution of quadratic equations by completing the square",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "44.2.6",
+          "order": 5,
+          "name": "Quadratic formula x = - b ± √(b2– 4ac) 2a",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "44.2.7",
+          "order": 6,
+          "name": "Solution of quadratic equations using the formula.",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "44.2.8",
+          "order": 7,
+          "name": "Formation of quadratic equations and solving them",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "44.2.9",
+          "order": 8,
+          "name": "Tables of values for a given quadratic relation",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "44.2.10",
+          "order": 9,
+          "name": "Graphs of quadratic equations",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "44.2.11",
+          "order": 10,
+          "name": "Simultaneous equations - one linear and one quadratic",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "44.2.12",
+          "order": 11,
+          "name": "Application to real life situation",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "45.0.0",
+      "order": 2,
+      "name": "APPROXIMATIONS AND ERRORS",
+      "sourcePages": [
+        25
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "use calculators in various computations",
+          "sourcePages": [
+            25
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "make reasonable approximations and estimations of quantities in computations and measurements",
+          "sourcePages": [
+            25
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "express values to a given number of significant figures",
+          "sourcePages": [
+            25
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "define absolute, relative, percentage, round-off and truncation errors",
+          "sourcePages": [
+            25
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "determine possible errors made from computations",
+          "sourcePages": [
+            25
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "find maximum and minimum errors from operations.",
+          "sourcePages": [
+            25
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "45.2.1",
+          "order": 1,
+          "name": "Computing using calculators",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "45.2.2",
+          "order": 2,
+          "name": "Estimations and approximations",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "45.2.3",
+          "order": 3,
+          "name": "Significant figures",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "45.2.4",
+          "order": 4,
+          "name": "Absolute, relative, percentage, round-off and truncation errors",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "45.2.5",
+          "order": 5,
+          "name": "Propagation of errors from simple calculations",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "45.2.6",
+          "order": 6,
+          "name": "Maximum and minimum errors",
+          "sourcePages": [
+            25
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "46.0.0",
+      "order": 3,
+      "name": "TRIGONOMETRY (2)",
+      "sourcePages": [
+        26
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define and draw the unit circle",
+          "sourcePages": [
+            26
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "use the unit circle to find trigonometric ratios in terms of co-ordinates of points for 0  θ 360°",
+          "sourcePages": [
+            26
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "find trigonometric ratios of negative angles",
+          "sourcePages": [
+            26
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "find trigonometric ratios of angles greater than 360° using the unit circle",
+          "sourcePages": [
+            26
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "use mathematical tables and calculators to find trigonometric ratios of angles in the range 0  θ  360°",
+          "sourcePages": [
+            26
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "define radian measure",
+          "sourcePages": [
+            26
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "draw graphs of trigonometric functions; y = sin x, y = cos x and y = tan x using degrees and radians",
+          "sourcePages": [
+            26
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "derive the sine rule",
+          "sourcePages": [
+            26
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "derive the cosine rule",
+          "sourcePages": [
+            26
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "apply the sine and cosine rule to solve triangles (sides, angles and area)",
+          "sourcePages": [
+            26
+          ],
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "apply the knowledge of sine and cosine rules in real life situations.",
+          "sourcePages": [
+            26
+          ],
+          "order": 11
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "46.2.1",
+          "order": 1,
+          "name": "The unit circle",
+          "sourcePages": [
+            26
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "46.2.2",
+          "order": 2,
+          "name": "Trigonometric ratios from the unit circle",
+          "sourcePages": [
+            26
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "46.2.3",
+          "order": 3,
+          "name": "Trigonometric ratios of angles greater than 360° and negative angles",
+          "sourcePages": [
+            26
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "46.2.4",
+          "order": 4,
+          "name": "Use of trigonometric tables",
+          "sourcePages": [
+            26
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "46.2.5",
+          "order": 5,
+          "name": "Radian measure",
+          "sourcePages": [
+            26
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "46.2.6",
+          "order": 6,
+          "name": "Simple trigonometric graphs",
+          "sourcePages": [
+            26
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "46.2.7",
+          "order": 7,
+          "name": "Derivation of sine and cosine rule",
+          "sourcePages": [
+            26
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "46.2.8",
+          "order": 8,
+          "name": "Solution of triangles",
+          "sourcePages": [
+            26
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "46.2.9",
+          "order": 9,
+          "name": "Application of sine and cosine rule to real situation.",
+          "sourcePages": [
+            26
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "47.0.0",
+      "order": 4,
+      "name": "SURDS",
+      "sourcePages": [
+        26
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define rational and irrational numbers",
+          "sourcePages": [
+            26
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "simplify expressions with surds",
+          "sourcePages": [
+            26
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "rationalise denominators with surds",
+          "sourcePages": [
+            26
+          ],
+          "order": 3
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "47.2.1",
+          "order": 1,
+          "name": "Rational and irrational numbers",
+          "sourcePages": [
+            26
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "47.2.2",
+          "order": 2,
+          "name": "Simplification of surds",
+          "sourcePages": [
+            26
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "47.2.3",
+          "order": 3,
+          "name": "Rationalisation of denominators",
+          "sourcePages": [
+            26
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "48.0.0",
+      "order": 5,
+      "name": "FURTHER LOGARITHMS",
+      "sourcePages": [
+        27
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "derive logarithmic relation from index form and vice-versa",
+          "sourcePages": [
+            27
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state the laws of logarithms",
+          "sourcePages": [
+            27
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "use logarithmic laws to simplify logarithmic expressions and solve logarithmic equations",
+          "sourcePages": [
+            27
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "apply laws of logarithms for further computations.",
+          "sourcePages": [
+            27
+          ],
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "48.2.1",
+          "order": 1,
+          "name": "Logarithmic notation",
+          "sourcePages": [
+            27
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "48.2.2",
+          "order": 2,
+          "name": "The laws of logarithms",
+          "sourcePages": [
+            27
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "48.2.3",
+          "order": 3,
+          "name": "Simplification of logarithmic expressions",
+          "sourcePages": [
+            27
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "48.2.4",
+          "order": 4,
+          "name": "Solution of logarithmic equations",
+          "sourcePages": [
+            27
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "48.2.5",
+          "order": 5,
+          "name": "Further computations using logarithmic laws.",
+          "sourcePages": [
+            27
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "49.0.0",
+      "order": 6,
+      "name": "COMMERCIAL ARITHMETIC (2)",
+      "sourcePages": [
+        27
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define principal, rate and time in relation to interest",
+          "sourcePages": [
+            27
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "calculate simple interest using simple interest formula",
+          "sourcePages": [
+            27
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "calculate compound interest using step by step method",
+          "sourcePages": [
+            27
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "derive the compound interest formula",
+          "sourcePages": [
+            27
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "apply the compound interest formula for calculating interest",
+          "sourcePages": [
+            27
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "define appreciation and depreciation",
+          "sourcePages": [
+            27
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "use compound interest formula to calculate appreciation and depreciation",
+          "sourcePages": [
+            27
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "calculate hire purchase",
+          "sourcePages": [
+            27
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "calculate income tax given the income tax bands.",
+          "sourcePages": [
+            27
+          ],
+          "order": 9
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "49.2.1",
+          "order": 1,
+          "name": "Principal rate and time",
+          "sourcePages": [
+            27
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "49.2.2",
+          "order": 2,
+          "name": "Simple interest",
+          "sourcePages": [
+            27
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "49.2.3",
+          "order": 3,
+          "name": "Compound interest using step by step method 49.2 4 Derivation of compound interest formula",
+          "sourcePages": [
+            27
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "49.2.5",
+          "order": 4,
+          "name": "Calculations using the compound interest formula",
+          "sourcePages": [
+            27
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "49.2.6",
+          "order": 5,
+          "name": "Appreciation and depreciation",
+          "sourcePages": [
+            27
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "49.2.7",
+          "order": 6,
+          "name": "Calculation of appreciation and depreciation using the compound interest formula",
+          "sourcePages": [
+            27
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "49.2.8",
+          "order": 7,
+          "name": "Hire purchase",
+          "sourcePages": [
+            27
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "49.2.9",
+          "order": 8,
+          "name": "Income tax",
+          "sourcePages": [
+            27
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "50.0.0",
+      "order": 7,
+      "name": "CIRCLES CHORDS AND TANGENTS",
+      "sourcePages": [
+        27
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "calculate length of an arc and a chord",
+          "sourcePages": [
+            27
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "calculate lengths of tangents and intersecting chords",
+          "sourcePages": [
+            27
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state and use properties of chords",
+          "sourcePages": [
+            27
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "construct tangent to a circle",
+          "sourcePages": [
+            27
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "construct direct and transverse common tangents to two circles",
+          "sourcePages": [
+            27
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "relate angles in alternate segment",
+          "sourcePages": [
+            27
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "construct circumscribed, inscribed and escribed circles",
+          "sourcePages": [
+            27
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "locate centroid and orthocentre of a triangle",
+          "sourcePages": [
+            27
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "apply knowledge of circles, tangents and chords to real life situations. 25",
+          "sourcePages": [
+            27,
+            28
+          ],
+          "order": 9
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "50.2.1",
+          "order": 1,
+          "name": "Arcs, chords and tangents",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "50.2.2",
+          "order": 2,
+          "name": "Lengths of tangents and intersecting chords",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "50.2.3",
+          "order": 3,
+          "name": "Properties of chords",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "50.2.4",
+          "order": 4,
+          "name": "Construction of tangents to a circle",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "50.2.5",
+          "order": 5,
+          "name": "Direct and transverse common tangents to two circles",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "50.2.6",
+          "order": 6,
+          "name": "Angles in alternate segment",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "50.2.7",
+          "order": 7,
+          "name": "Circumscribed, inscribed and escribed circles",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "50.2.8",
+          "order": 8,
+          "name": "Centroid and orthocentre",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "50.2.9",
+          "order": 9,
+          "name": "Apply knowledge of tangents and chords to real life situations",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "51.0.0",
+      "order": 8,
+      "name": "MATRICES",
+      "sourcePages": [
+        28
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define a matrix",
+          "sourcePages": [
+            28
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state the order of a matrix",
+          "sourcePages": [
+            28
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "define a square matrix",
+          "sourcePages": [
+            28
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "determine compatibility in addition and multiplication of matrices",
+          "sourcePages": [
+            28
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "add matrices",
+          "sourcePages": [
+            28
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "multiply matrices",
+          "sourcePages": [
+            28
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "identify identity matrix",
+          "sourcePages": [
+            28
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "find determinant of a 2 x 2 matrix",
+          "sourcePages": [
+            28
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "find the inverse of a 2 x 2 matrix",
+          "sourcePages": [
+            28
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "use matrices to solve simultaneous equations.",
+          "sourcePages": [
+            28
+          ],
+          "order": 10
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "51.2.1",
+          "order": 1,
+          "name": "Matrix",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "51.2.2",
+          "order": 2,
+          "name": "Order of a matrix",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "51.2.3",
+          "order": 3,
+          "name": "Square matrix",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "51.2.4",
+          "order": 4,
+          "name": "Compatibility in addition and multiplication of matrices",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "51.2.5",
+          "order": 5,
+          "name": "Multiplication of a matrix by a scalar",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "51.2.6",
+          "order": 6,
+          "name": "Matrix multiplication",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "51.2.7",
+          "order": 7,
+          "name": "Identity matrix",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "51.2.8",
+          "order": 8,
+          "name": "Determinant of a 2 x 2 matrix",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "51.2.9",
+          "order": 9,
+          "name": "Inverse of a 2 x 2 matrix and",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "51.2.10",
+          "order": 10,
+          "name": "Singular matrix",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "51.2.11",
+          "order": 11,
+          "name": "Solutions of simultaneous equations in two unknowns",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "52.0.0",
+      "order": 9,
+      "name": "FORMULAE AND VARIATIONS",
+      "sourcePages": [
+        28
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "rewrite a given formula by changing the subject",
+          "sourcePages": [
+            28
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "define direct, inverse, partial and joint variations",
+          "sourcePages": [
+            28
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "identify constants of proportionality",
+          "sourcePages": [
+            28
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "form and solve equations involving variations",
+          "sourcePages": [
+            28
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "draw graphs to illustrate direct and inverse proportions",
+          "sourcePages": [
+            28
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "use variations to solve everyday life problems",
+          "sourcePages": [
+            28
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "52.2.1",
+          "order": 1,
+          "name": "Change of the subject",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "52.2.2",
+          "order": 2,
+          "name": "Direct, inverse, partial and joint variations",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "52.2.3",
+          "order": 3,
+          "name": "Constant of proportionality",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "52.2.4",
+          "order": 4,
+          "name": "Graphs of direct and inverse proportion",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "52.2.5",
+          "order": 5,
+          "name": "Formation of equation on variation from real life situations",
+          "sourcePages": [
+            28
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "53.0.0",
+      "order": 10,
+      "name": "SEQUENCES AND SERIES",
+      "sourcePages": [
+        29
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "identify simple number patterns",
+          "sourcePages": [
+            29
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "define a sequence",
+          "sourcePages": [
+            29
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "identify the pattern for a given set of numbers and deduce the general rule",
+          "sourcePages": [
+            29
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "determine a term in a sequence",
+          "sourcePages": [
+            29
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "recognise arithmetic and geometric sequences",
+          "sourcePages": [
+            29
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "define a series",
+          "sourcePages": [
+            29
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "recognise arithmetic and geometric series (Progression)",
+          "sourcePages": [
+            29
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "derive the formula for partial sum of an arithmetic and geometric series (Progression)",
+          "sourcePages": [
+            29
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "apply A.P and G.P formula to solve problems in real life situations.",
+          "sourcePages": [
+            29
+          ],
+          "order": 9
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "53.2.1",
+          "order": 1,
+          "name": "Simple number patterns",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "53.2.2",
+          "order": 2,
+          "name": "Sequences",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "53.2.3",
+          "order": 3,
+          "name": "Arithmetic sequence",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "53.2.4",
+          "order": 4,
+          "name": "Geometric sequence",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "53.2.5",
+          "order": 5,
+          "name": "Determining a term in a sequence",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "53.2.6",
+          "order": 6,
+          "name": "Arithmetic progression (A.P)",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "53.2.7",
+          "order": 7,
+          "name": "Geometric progression (G.P)",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "53.2.8",
+          "order": 8,
+          "name": "Sum of an A.P",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "53.2.9",
+          "order": 9,
+          "name": "Sum of a G.P",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "53.2.10",
+          "order": 10,
+          "name": "Application of A.P and G.P to real life situations",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "54.0.0",
+      "order": 11,
+      "name": "VECTORS (2)",
+      "sourcePages": [
+        29
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "locate a point in two and three dimension co-ordinate systems",
+          "sourcePages": [
+            29
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "represent vectors as column and position vectors in three dimensions",
+          "sourcePages": [
+            29
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "distinguish between column and position vectors",
+          "sourcePages": [
+            29
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "represent vectors in terms of i, j, and k",
+          "sourcePages": [
+            29
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "calculate the magnitude of a vector in three dimensions",
+          "sourcePages": [
+            29
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "use the vector method in dividing a line proportionately",
+          "sourcePages": [
+            29
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "use vector method to show parallelism",
+          "sourcePages": [
+            29
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "use vector method to show collinearity",
+          "sourcePages": [
+            29
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "state and use the ratio theorem",
+          "sourcePages": [
+            29
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "apply vector methods in geometry.",
+          "sourcePages": [
+            29
+          ],
+          "order": 10
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "54.2.1",
+          "order": 1,
+          "name": "Coordinates in two and three dimensions",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "54.2.2",
+          "order": 2,
+          "name": "Column and position vectors in three dimensions",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "54.2.3",
+          "order": 3,
+          "name": "Column vectors in terms of unit vectors i, j and k.",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "54.2.4",
+          "order": 4,
+          "name": "Magnitude of a vector",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "54.2.5",
+          "order": 5,
+          "name": "Parallel vectors",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "54.2.6",
+          "order": 6,
+          "name": "Collinearity",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "54.2.7",
+          "order": 7,
+          "name": "Proportional division of a line",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "54.2.8",
+          "order": 8,
+          "name": "Ratio theorem",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "54.2.9",
+          "order": 9,
+          "name": "Vector methods in geometry",
+          "sourcePages": [
+            29
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "55.0.0",
+      "order": 12,
+      "name": "BINOMIAL EXPANSIONS",
+      "sourcePages": [
+        30
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "expand binomial expressions up to the power of four by multiplication",
+          "sourcePages": [
+            30
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "build up - Pascal‟s Triangle up to the eleventh row",
+          "sourcePages": [
+            30
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "use Pascal‟s triangle to determine the coefficient of terms in a binomial expansion up to the power of 10",
+          "sourcePages": [
+            30
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "apply binomial expansion in numerical cases.",
+          "sourcePages": [
+            30
+          ],
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "55.2.1",
+          "order": 1,
+          "name": "Binomial expansion up to power four",
+          "sourcePages": [
+            30
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "55.2.2",
+          "order": 2,
+          "name": "Pascal‟s triangle",
+          "sourcePages": [
+            30
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "55.2.3",
+          "order": 3,
+          "name": "Coefficent of terms in binomial expansion",
+          "sourcePages": [
+            30
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "55.2.4",
+          "order": 4,
+          "name": "Computation using binomial expansion",
+          "sourcePages": [
+            30
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "55.2.5",
+          "order": 5,
+          "name": "Evaluation of numerical cases using binomial expansion",
+          "sourcePages": [
+            30
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "56.0.0",
+      "order": 13,
+      "name": "PROBABILITY",
+      "sourcePages": [
+        30
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define probability",
+          "sourcePages": [
+            30
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "determine probability from experiments and real life situations",
+          "sourcePages": [
+            30
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "construct a probability space",
+          "sourcePages": [
+            30
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "determine theoretical probability",
+          "sourcePages": [
+            30
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "differentiate between discrete and continuous probability",
+          "sourcePages": [
+            30
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "differentiate mutually exclusive and independent events",
+          "sourcePages": [
+            30
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "state and apply laws of probability",
+          "sourcePages": [
+            30
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "use a tree diagram to determine probabilities.",
+          "sourcePages": [
+            30
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "56.2.1",
+          "order": 1,
+          "name": "Probability",
+          "sourcePages": [
+            30
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "56.2.2",
+          "order": 2,
+          "name": "Experimental probability",
+          "sourcePages": [
+            30
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "56.2.3",
+          "order": 3,
+          "name": "Range of probability measure OP(x) <1",
+          "sourcePages": [
+            30
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "56.2.4",
+          "order": 4,
+          "name": "Probability space",
+          "sourcePages": [
+            30
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "56.2.5",
+          "order": 5,
+          "name": "Theoretical probability",
+          "sourcePages": [
+            30
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "56.2.6",
+          "order": 6,
+          "name": "Discrete and continuous probability (simple cases only)",
+          "sourcePages": [
+            30
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "56.2.7",
+          "order": 7,
+          "name": "Combined events (mutually exclusive and independent events)",
+          "sourcePages": [
+            30
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "56.2.8",
+          "order": 8,
+          "name": "Laws of probability",
+          "sourcePages": [
+            30
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "56.2.9",
+          "order": 9,
+          "name": "The tree diagrams",
+          "sourcePages": [
+            30
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "58.0.0",
+      "order": 14,
+      "name": "GRAPHICAL METHODS",
+      "sourcePages": [
+        31
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "make a table of values from given relations",
+          "sourcePages": [
+            31
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "use the table of values to draw the graphs of the relations",
+          "sourcePages": [
+            31
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "determine and interpret instantaneous rates of change from a graph",
+          "sourcePages": [
+            31
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "interpret information from graphs",
+          "sourcePages": [
+            31
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "draw and interpret graphs from empirical data",
+          "sourcePages": [
+            31
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "solve cubic equations graphically",
+          "sourcePages": [
+            31
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "draw the line of best fit",
+          "sourcePages": [
+            31
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "identify the equation of a circle",
+          "sourcePages": [
+            31
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "find the equation of a circle given the centre and the radius",
+          "sourcePages": [
+            31
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "determine the centre and radius of a circle and draw the circle on a cartesian plane.",
+          "sourcePages": [
+            31
+          ],
+          "order": 10
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "58.2.1",
+          "order": 1,
+          "name": "Tables and graphs of given relations.",
+          "sourcePages": [
+            31
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "58.2.2",
+          "order": 2,
+          "name": "Graphs of cubic equations 58.2 3 Graphical solutions of cubic equations.",
+          "sourcePages": [
+            31
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "58.2.4",
+          "order": 3,
+          "name": "Average rate of change",
+          "sourcePages": [
+            31
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "58.2.5",
+          "order": 4,
+          "name": "Instantaneous rate of change",
+          "sourcePages": [
+            31
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "58.2.6",
+          "order": 5,
+          "name": "Empirical data and their graphs",
+          "sourcePages": [
+            31
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "58.2.7",
+          "order": 6,
+          "name": "The line of best fit",
+          "sourcePages": [
+            31
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "58.2.8",
+          "order": 7,
+          "name": "Equation of a circle",
+          "sourcePages": [
+            31
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "58.2.9",
+          "order": 8,
+          "name": "Finding of the equation of a circle",
+          "sourcePages": [
+            31
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "58.2.10",
+          "order": 9,
+          "name": "Determining of the centre and radius of a circle",
+          "sourcePages": [
+            31
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

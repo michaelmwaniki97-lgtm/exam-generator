@@ -1,0 +1,2101 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 2",
+  "subject": "Mathematics",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "24.0.0",
+      "order": 1,
+      "name": "CUBES AND CUBE ROOTS",
+      "sourcePages": [
+        18
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "find the cube of a number by multiplication",
+          "sourcePages": [
+            18
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "find the cube root of a number by factor method",
+          "sourcePages": [
+            18
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "find cubes of numbers from mathematical tables",
+          "sourcePages": [
+            18
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "evaluate expressions involving cubes and cube roots",
+          "sourcePages": [
+            18
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "apply the knowledge of cubes and cube roots in real life situations.",
+          "sourcePages": [
+            18
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "24.2.1",
+          "order": 1,
+          "name": "Cubes of numbers by multiplication",
+          "sourcePages": [
+            18
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.2.2",
+          "order": 2,
+          "name": "Cubes from tables",
+          "sourcePages": [
+            18
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.2.3",
+          "order": 3,
+          "name": "Cuberoots of numbers by factor method",
+          "sourcePages": [
+            18
+          ],
+          "objectiveStatus": "official_topic_objectives_apply",
+          "sourceDiscrepancy": "The cited syllabus repeats this code; source order is preserved."
+        },
+        {
+          "code": "24.2.4",
+          "order": 4,
+          "name": "Evaluation of cube and cuberoot expressions",
+          "sourcePages": [
+            18
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.2.3",
+          "order": 5,
+          "name": "Application of cubes and cuberoots to real life situations",
+          "sourcePages": [
+            18
+          ],
+          "objectiveStatus": "official_topic_objectives_apply",
+          "sourceDiscrepancy": "The cited syllabus repeats this code; source order is preserved."
+        }
+      ]
+    },
+    {
+      "code": "25.0.0",
+      "order": 2,
+      "name": "RECIPROCALS",
+      "sourcePages": [
+        18
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "find reciprocals of numbers by division",
+          "sourcePages": [
+            18
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "find reciprocals of numbers from tables",
+          "sourcePages": [
+            18
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "use reciprocals of numbers in computation.",
+          "sourcePages": [
+            18
+          ],
+          "order": 3
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "25.2.1",
+          "order": 1,
+          "name": "Reciprocals of numbers by division",
+          "sourcePages": [
+            18
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.2.2",
+          "order": 2,
+          "name": "Reciprocals of numbers from tables",
+          "sourcePages": [
+            18
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.2.3",
+          "order": 3,
+          "name": "Computation using reciprocals",
+          "sourcePages": [
+            18
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "26.0.0",
+      "order": 3,
+      "name": "INDICES AND LOGARITHMS",
+      "sourcePages": [
+        18
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define indices (powers);",
+          "sourcePages": [
+            18
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state the laws of indices;",
+          "sourcePages": [
+            18
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "apply the laws of indices in calculations;",
+          "sourcePages": [
+            18
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "relate the powers of 10 to common logarithms;",
+          "sourcePages": [
+            18
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "use the tables of common logarithms and anti-logarithms in computation.",
+          "sourcePages": [
+            18
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "26.2.1",
+          "order": 1,
+          "name": "Indices (powers) and base",
+          "sourcePages": [
+            18
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "26.2.2",
+          "order": 2,
+          "name": "Laws of indices (including positive integers, negative integers and fractional indices)",
+          "sourcePages": [
+            18
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "26.2.3",
+          "order": 3,
+          "name": "Powers of 10 and common logarithms",
+          "sourcePages": [
+            18
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "26.2.4",
+          "order": 4,
+          "name": "Common logarithms;",
+          "sourcePages": [
+            18
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "26.2.5",
+          "order": 5,
+          "name": "Logarithm tables",
+          "sourcePages": [
+            18
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "26.2.6",
+          "order": 6,
+          "name": "Application of common logarithms in multiplication, division and finding roots",
+          "sourcePages": [
+            18
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "27.0.0",
+      "order": 4,
+      "name": "EQUATIONS OF STRAIGHT LINES",
+      "sourcePages": [
+        19
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define gradient of a straight line",
+          "sourcePages": [
+            19
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "determine the gradient of a straight line through known points",
+          "sourcePages": [
+            19
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "determine the equation of a straight line using gradient and one known point",
+          "sourcePages": [
+            19
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "express a straight line equation in the form y = mx + c",
+          "sourcePages": [
+            19
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "interpret the equation y = mx + c",
+          "sourcePages": [
+            19
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "find the x- and y- intercepts from an equation of a line",
+          "sourcePages": [
+            19
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "draw the graph of a straight line using gradient and x and y intercept",
+          "sourcePages": [
+            19
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "state the relationship of gradients of perpendicular lines",
+          "sourcePages": [
+            19
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "state the relationship of gradients of parallel lines",
+          "sourcePages": [
+            19
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "apply the relationship of gradients of perpendicular and parallel lines to get equations of straight lines.",
+          "sourcePages": [
+            19
+          ],
+          "order": 10
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "27.2.1",
+          "order": 1,
+          "name": "Gradient of a straight line",
+          "sourcePages": [
+            19
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.2.2",
+          "order": 2,
+          "name": "Equation of a straight line",
+          "sourcePages": [
+            19
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.2.3",
+          "order": 3,
+          "name": "The equation of a straight line of the form y = mx + c",
+          "sourcePages": [
+            19
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.2.4",
+          "order": 4,
+          "name": "The x and y intercepts of a line",
+          "sourcePages": [
+            19
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.2.5",
+          "order": 5,
+          "name": "The graph of a straight line",
+          "sourcePages": [
+            19
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.2.6",
+          "order": 6,
+          "name": "Perpendicular lines and their gradients",
+          "sourcePages": [
+            19
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.2.7",
+          "order": 7,
+          "name": "Parallel lines and their gradients",
+          "sourcePages": [
+            19
+          ],
+          "objectiveStatus": "official_topic_objectives_apply",
+          "sourceDiscrepancy": "The cited syllabus repeats this code; source order is preserved."
+        },
+        {
+          "code": "27.2.7",
+          "order": 8,
+          "name": "Equations of parallel and perpendicular lines.",
+          "sourcePages": [
+            19
+          ],
+          "objectiveStatus": "official_topic_objectives_apply",
+          "sourceDiscrepancy": "The cited syllabus repeats this code; source order is preserved."
+        }
+      ]
+    },
+    {
+      "code": "28.0.0",
+      "order": 5,
+      "name": "REFLECTION AND CONGRUENCE",
+      "sourcePages": [
+        19
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state the properties of reflection as a transformation",
+          "sourcePages": [
+            19
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "use the properties of reflection in construction and identification of images and objects",
+          "sourcePages": [
+            19
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "make geometrical deductions using reflection",
+          "sourcePages": [
+            19
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "apply reflection in the cartesian plane",
+          "sourcePages": [
+            19
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "distinguish between direct and opposite congruence",
+          "sourcePages": [
+            19
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "identify congruent triangles.",
+          "sourcePages": [
+            19
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "28.2.1",
+          "order": 1,
+          "name": "lines and planes of symmetry",
+          "sourcePages": [
+            19
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "28.2.2",
+          "order": 2,
+          "name": "mirror lines and construction of objects and images.",
+          "sourcePages": [
+            19
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "28.2.3",
+          "order": 3,
+          "name": "reflection as a transformation.",
+          "sourcePages": [
+            19
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "28.2.4",
+          "order": 4,
+          "name": "reflection in the cartesian plane.",
+          "sourcePages": [
+            19
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "28.2.5",
+          "order": 5,
+          "name": "direct and opposite congruency.",
+          "sourcePages": [
+            19
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "28.2.6",
+          "order": 6,
+          "name": "Congruency tests (SSS, SAS, AAS, ASA and RHS)",
+          "sourcePages": [
+            19
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "29.0.0",
+      "order": 6,
+      "name": "ROTATION",
+      "sourcePages": [
+        19
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state properties of rotation as a transformation 17",
+          "sourcePages": [
+            19,
+            20
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "determine centre and angle of rotation",
+          "sourcePages": [
+            20
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "apply properties of rotation in the cartesian plane",
+          "sourcePages": [
+            20
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "identify point of rotational symmetry",
+          "sourcePages": [
+            20
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state order of rotational symmetry of plane figure",
+          "sourcePages": [
+            20
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "identify axis of rotational symmetry of solids",
+          "sourcePages": [
+            20
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "state order of rotational symmetry of solids",
+          "sourcePages": [
+            20
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "deduce congruence from rotation.",
+          "sourcePages": [
+            20
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "29.2.1",
+          "order": 1,
+          "name": "Properties of rotation",
+          "sourcePages": [
+            20
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "29.2.2",
+          "order": 2,
+          "name": "Centre and angle of rotation",
+          "sourcePages": [
+            20
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "29.2.3",
+          "order": 3,
+          "name": "Rotation in the cartesian plane",
+          "sourcePages": [
+            20
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "29.2.4",
+          "order": 4,
+          "name": "Rotational symmetry of plane figures and solids (point axis and order)",
+          "sourcePages": [
+            20
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "29.2.5",
+          "order": 5,
+          "name": "Congruence and rotation",
+          "sourcePages": [
+            20
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "30.0.0",
+      "order": 7,
+      "name": "SIMILARITY AND ENLARGEMENT",
+      "sourcePages": [
+        20
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "identify similar figures",
+          "sourcePages": [
+            20
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "construct similar figures",
+          "sourcePages": [
+            20
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state properties of enlargement as a transformation",
+          "sourcePages": [
+            20
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "apply the properties of enlargement to construct objects and images",
+          "sourcePages": [
+            20
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "apply enlargement in cartesian planes",
+          "sourcePages": [
+            20
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "state the relationship between linear, area and volume scale factors",
+          "sourcePages": [
+            20
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "apply the scale factors to real life situations.",
+          "sourcePages": [
+            20
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "30.2.1",
+          "order": 1,
+          "name": "Similar figures and their properties",
+          "sourcePages": [
+            20
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "30.2.2",
+          "order": 2,
+          "name": "Construction of similar figures",
+          "sourcePages": [
+            20
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "30.2.3",
+          "order": 3,
+          "name": "Properties of enlargement",
+          "sourcePages": [
+            20
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "30.2.4",
+          "order": 4,
+          "name": "Construction of objects and images under enlargement. 30.2,5 Enlargement in the Cartesian plane.",
+          "sourcePages": [
+            20
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "30.2.6",
+          "order": 5,
+          "name": "Linear, area and volume scale factors",
+          "sourcePages": [
+            20
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "30.2.7",
+          "order": 6,
+          "name": "Real life situations",
+          "sourcePages": [
+            20
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "32.0.0",
+      "order": 8,
+      "name": "TRIGONOMETRY",
+      "sourcePages": [
+        20
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define tangent, sine and cosine ratios from a right angled triangle 18",
+          "sourcePages": [
+            20,
+            21
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "read and use tables of trigonometric ratios",
+          "sourcePages": [
+            21
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "use sine, cosine and tangent in calculating lengths and angles",
+          "sourcePages": [
+            21
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "establish and use the relationship of sine and cosine of complimentary angles",
+          "sourcePages": [
+            21
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "relate the three trigonometric ratios",
+          "sourcePages": [
+            21
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "determine the trigonometric ratios of special angles 30°, 45°, 60° and 90° without using tables",
+          "sourcePages": [
+            21
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "read and use tables of logarithms of sine, cosine and tangent",
+          "sourcePages": [
+            21
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "apply the knowledge of trigonometry to real life situations.",
+          "sourcePages": [
+            21
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "32.2.1",
+          "order": 1,
+          "name": "Tangent, sine and cosine of angles",
+          "sourcePages": [
+            21
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "32.2.2",
+          "order": 2,
+          "name": "Trigonometric tables",
+          "sourcePages": [
+            21
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "32.2.3",
+          "order": 3,
+          "name": "Angles and sides of a right angled triangle",
+          "sourcePages": [
+            21
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "32.2.4",
+          "order": 4,
+          "name": "Sine and cosine of complimentary angles",
+          "sourcePages": [
+            21
+          ],
+          "objectiveStatus": "official_topic_objectives_apply",
+          "sourceDiscrepancy": "The cited syllabus repeats this code; source order is preserved."
+        },
+        {
+          "code": "32.2.4",
+          "order": 5,
+          "name": "Relationship between tangent, sine and cosine",
+          "sourcePages": [
+            21
+          ],
+          "objectiveStatus": "official_topic_objectives_apply",
+          "sourceDiscrepancy": "The cited syllabus repeats this code; source order is preserved."
+        },
+        {
+          "code": "32.2.5",
+          "order": 6,
+          "name": "Trigonometric ratios of special angles 30°, 45°, 60° and 90°",
+          "sourcePages": [
+            21
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "32.2.6",
+          "order": 7,
+          "name": "Logarithms of sines, cosines and tangents",
+          "sourcePages": [
+            21
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "32.2.7",
+          "order": 8,
+          "name": "Application of trigonometry to real life situations",
+          "sourcePages": [
+            21
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "33.0.0",
+      "order": 9,
+      "name": "AREA OF A TRIANGLE",
+      "sourcePages": [
+        21
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "Derive the formula; Area = ½ ab sin C",
+          "sourcePages": [
+            21
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "Solve problems involving area of triangles using the formula Area = ½ ab sin C",
+          "sourcePages": [
+            21
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "Solve problems on area of a triangle using the formula area =√ {s(s - a)(s - b)(s - c) }.",
+          "sourcePages": [
+            21
+          ],
+          "order": 3
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "33.2.1",
+          "order": 1,
+          "name": "Area of triangle A = ½ ab sin C.",
+          "sourcePages": [
+            21
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "33.2.2",
+          "order": 2,
+          "name": "Area of a triangle A = √{s(s - a)(s - b)(s – c )}",
+          "sourcePages": [
+            21
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "33.2.3",
+          "order": 3,
+          "name": "Application to Real life situations",
+          "sourcePages": [
+            21
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "34.0.0",
+      "order": 10,
+      "name": "AREA OF QUADRILATERALS AND OTHER POLYGONS",
+      "sourcePages": [
+        21
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "find the area of a quadrilateral",
+          "sourcePages": [
+            21
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "find the area of other polygons (regular and irregular).",
+          "sourcePages": [
+            21
+          ],
+          "order": 2
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "34.2.1",
+          "order": 1,
+          "name": "Area of quadrilaterals",
+          "sourcePages": [
+            21
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "34.2.2",
+          "order": 2,
+          "name": "Area of other polygons (regular and irregular)",
+          "sourcePages": [
+            21
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "35.0.0",
+      "order": 11,
+      "name": "AREA OF PART OF A CIRCLE",
+      "sourcePages": [
+        21
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "find area of a sector",
+          "sourcePages": [
+            21
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "find area of a segment",
+          "sourcePages": [
+            21
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "find area of common region between two circles 19",
+          "sourcePages": [
+            21,
+            22
+          ],
+          "order": 3
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "35.2.1",
+          "order": 1,
+          "name": "Area of a sector",
+          "sourcePages": [
+            22
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "36.0.0",
+      "order": 12,
+      "name": "SURFACE AREA OF SOLIDS",
+      "sourcePages": [
+        22
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "find the surface area of a prism",
+          "sourcePages": [
+            22
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "find the surface area of a pyramid",
+          "sourcePages": [
+            22
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "find the surface area of a cone",
+          "sourcePages": [
+            22
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "find the surface area of a frustum",
+          "sourcePages": [
+            22
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "find the surface area of a sphere.",
+          "sourcePages": [
+            22
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "36.2.1",
+          "order": 1,
+          "name": "Surface area of prisms, pyramids, cones, frustums and spheres",
+          "sourcePages": [
+            22
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "37.0.0",
+      "order": 13,
+      "name": "VOLUME OF SOLIDS",
+      "sourcePages": [
+        22
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "find the volume of a prism",
+          "sourcePages": [
+            22
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "find the volume of a pyramid",
+          "sourcePages": [
+            22
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "find the volume of a cone",
+          "sourcePages": [
+            22
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "find the volume of a frustum",
+          "sourcePages": [
+            22
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "find the volume of a sphere.",
+          "sourcePages": [
+            22
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "37.2.1",
+          "order": 1,
+          "name": "Volumes of prisms, pyramids, cones, frustums and spheres",
+          "sourcePages": [
+            22
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "38.0.0",
+      "order": 14,
+      "name": "QUADRATIC EXPRESSIONS AND EQUATIONS",
+      "sourcePages": [
+        22
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "expand algebraic expressions that form quadratic equations",
+          "sourcePages": [
+            22
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "derive the three quadratic identities",
+          "sourcePages": [
+            22
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "identify and use the three quadratic identities",
+          "sourcePages": [
+            22
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "factorise quadratic expressions including the identities",
+          "sourcePages": [
+            22
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "solve quadratic equations by factorization",
+          "sourcePages": [
+            22
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "form and solve quadratic equations.",
+          "sourcePages": [
+            22
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "38.2.1",
+          "order": 1,
+          "name": "Expansion of algebraic expressions",
+          "sourcePages": [
+            22
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "38.2.2",
+          "order": 2,
+          "name": "The three quadratic identities",
+          "sourcePages": [
+            22
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "38.2.3",
+          "order": 3,
+          "name": "Using the three quadratic identities",
+          "sourcePages": [
+            22
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "38.2.4",
+          "order": 4,
+          "name": "Factorisation of quadratic expressions",
+          "sourcePages": [
+            22
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "38.2.5",
+          "order": 5,
+          "name": "Solutions of quadratic equations by factor method",
+          "sourcePages": [
+            22
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "38.2.6",
+          "order": 6,
+          "name": "Formation and solution of quadratic equations",
+          "sourcePages": [
+            22
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "39.0.0",
+      "order": 15,
+      "name": "LINEAR INEQUALITIES",
+      "sourcePages": [
+        22
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "identify and use inequality symbols",
+          "sourcePages": [
+            22
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "illustrate inequalities on the number line",
+          "sourcePages": [
+            22
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "solve linear inequalities in one unknown",
+          "sourcePages": [
+            22
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "represent the linear inequalities graphically",
+          "sourcePages": [
+            22
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "solve the linear inequalities in two unknowns graphically 20",
+          "sourcePages": [
+            22,
+            23
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "form simple linear inequalities from inequality graphs.",
+          "sourcePages": [
+            23
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "39.2.1",
+          "order": 1,
+          "name": "Inequalities on a number line.",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "39.2.2",
+          "order": 2,
+          "name": "Simple and compound inequality statements.",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "39.2.3",
+          "order": 3,
+          "name": "Linear inequality in one unknown.",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "39.2.4",
+          "order": 4,
+          "name": "Graphical representation of linear inequalities.",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "39.2.5",
+          "order": 5,
+          "name": "Graphical solutions of simultaneous linear inequalities.",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "39.2.6",
+          "order": 6,
+          "name": "Simple linear inequalities from inequality graphs.",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "39.2.7",
+          "order": 7,
+          "name": "Inequalities from inequality graphs.",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "40.0.0",
+      "order": 16,
+      "name": "LINEAR MOTION",
+      "sourcePages": [
+        23
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define displacement, speed, velocity and acceleration",
+          "sourcePages": [
+            23
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "distinguish between",
+          "sourcePages": [
+            23
+          ],
+          "order": 2
+        },
+        {
+          "label": "i)",
+          "text": "distance and displacement ii) speed and velocity",
+          "sourcePages": [
+            23
+          ],
+          "order": 3
+        },
+        {
+          "label": "c)",
+          "text": "determine velocity and acceleration",
+          "sourcePages": [
+            23
+          ],
+          "order": 4
+        },
+        {
+          "label": "d)",
+          "text": "plot and draw graphs of linear motion(distance and velocity time graphs)",
+          "sourcePages": [
+            23
+          ],
+          "order": 5
+        },
+        {
+          "label": "e)",
+          "text": "interpret graphs of linear motion",
+          "sourcePages": [
+            23
+          ],
+          "order": 6
+        },
+        {
+          "label": "f)",
+          "text": "define relative speed",
+          "sourcePages": [
+            23
+          ],
+          "order": 7
+        },
+        {
+          "label": "g)",
+          "text": "solve problems involving relative speed.",
+          "sourcePages": [
+            23
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "40.2.1",
+          "order": 1,
+          "name": "Displacement, velocity, speed and acceleration",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "40.2.2",
+          "order": 2,
+          "name": "Determining velocity and acceleration",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "40.2.3",
+          "order": 3,
+          "name": "Solve problems involving relative speed",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "40.2.4",
+          "order": 4,
+          "name": "Distance - time graph",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "40.2.5",
+          "order": 5,
+          "name": "Velocity time graph",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "40.2.6",
+          "order": 6,
+          "name": "Interpretation of graphs of linear motion",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "40.2.7",
+          "order": 7,
+          "name": "Relative speed",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "41.0.0",
+      "order": 17,
+      "name": "STATISTICS",
+      "sourcePages": [
+        23
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define statistics",
+          "sourcePages": [
+            23
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "collect and organise data",
+          "sourcePages": [
+            23
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "draw a frequency distribution table",
+          "sourcePages": [
+            23
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "group data into reasonable classes",
+          "sourcePages": [
+            23
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "calculate measures of central tendency.",
+          "sourcePages": [
+            23
+          ],
+          "order": 5
+        },
+        {
+          "label": "i)",
+          "text": "mean ii) mode iii) median for ungrouped and grouped data.",
+          "sourcePages": [
+            23
+          ],
+          "order": 6
+        },
+        {
+          "label": "f)",
+          "text": "represent data in form of linegraph, bargraphs, pie-charts, pictogram, histogram and frequency polygons",
+          "sourcePages": [
+            23
+          ],
+          "order": 7
+        },
+        {
+          "label": "g)",
+          "text": "interpret data from real life situations",
+          "sourcePages": [
+            23
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "41.2.1",
+          "order": 1,
+          "name": "Definition of statistics",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "41.2.2",
+          "order": 2,
+          "name": "Collection and organization of data",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "41.2.3",
+          "order": 3,
+          "name": "Frequency distribution tables (for grouped and ungrouped data)",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "41.2.4",
+          "order": 4,
+          "name": "Grouping data",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "41.2.5",
+          "order": 5,
+          "name": "Mean, mode and median",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "41.2.6",
+          "order": 6,
+          "name": "Representation of data",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "41.2.7",
+          "order": 7,
+          "name": "Interpretation of data",
+          "sourcePages": [
+            23
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "42.0.0",
+      "order": 18,
+      "name": "ANGLE PROPERTIES OF A CIRCLE",
+      "sourcePages": [
+        24
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "identify an arc, chord and segment",
+          "sourcePages": [
+            24
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "relate and compute angle subtended by an arc at the circumference",
+          "sourcePages": [
+            24
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "relate and compute angle subtended by an arc at the centre and at the circumference",
+          "sourcePages": [
+            24
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state the angle in the semi- circle",
+          "sourcePages": [
+            24
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the angle properties of a cyclic quadrilateral",
+          "sourcePages": [
+            24
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "find and compute angles of a cyclic cyclic quadrilateral.",
+          "sourcePages": [
+            24
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "42.2.1",
+          "order": 1,
+          "name": "Arc, chord and segment",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "42.2.2",
+          "order": 2,
+          "name": "Angle subtended by the same arc at the circumference",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "42.2.3",
+          "order": 3,
+          "name": "Relationship between angle subtended at the centre and angle subtended on the circumference by the same arc",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "42.2.4",
+          "order": 4,
+          "name": "Angle in a semi-circle",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "42.2.5",
+          "order": 5,
+          "name": "Angle properties of a cyclic quadrilateral.",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "42.2.6",
+          "order": 6,
+          "name": "Finding angles of a cyclic quadrilateral",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "43.0.0",
+      "order": 19,
+      "name": "VECTORS(1)",
+      "sourcePages": [
+        24
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define vector and scalar",
+          "sourcePages": [
+            24
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "use vector notation",
+          "sourcePages": [
+            24
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "represent vectors both single and combined geometrically",
+          "sourcePages": [
+            24
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "identify equivalent vectors",
+          "sourcePages": [
+            24
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "add vectors",
+          "sourcePages": [
+            24
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "multiply vectors by scalars",
+          "sourcePages": [
+            24
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "define position vector and column vector",
+          "sourcePages": [
+            24
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "find magnitude of a vector",
+          "sourcePages": [
+            24
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "find mid-point of a vector",
+          "sourcePages": [
+            24
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "define translation as a transformation.",
+          "sourcePages": [
+            24
+          ],
+          "order": 10
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "43.2.1",
+          "order": 1,
+          "name": "Vector and scalar quantities",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "43.2.2",
+          "order": 2,
+          "name": "Vector notation",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "43.2.3",
+          "order": 3,
+          "name": "Representation of vectors",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "43.2.4",
+          "order": 4,
+          "name": "Equivalent vectors",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "43.2.5",
+          "order": 5,
+          "name": "Addition of vectors",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "43.2.6",
+          "order": 6,
+          "name": "Multiplication of a vector by a scalar",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "43.2.7",
+          "order": 7,
+          "name": "Column vectors",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "43.2.8",
+          "order": 8,
+          "name": "Position vectors",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "43.2.9",
+          "order": 9,
+          "name": "Magnitude of a vector",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "43.2.10",
+          "order": 10,
+          "name": "Midpoint of a vector",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "43.2.11",
+          "order": 11,
+          "name": "Translation vector",
+          "sourcePages": [
+            24
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

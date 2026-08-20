@@ -1,0 +1,684 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 1",
+  "subject": "Biology",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "1.0.0",
+      "order": 1,
+      "name": "INTRODUCTION TO BIOLOGY",
+      "sourcePages": [
+        83
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define biology",
+          "sourcePages": [
+            83
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "list branches of biology",
+          "sourcePages": [
+            83
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain the importance of biology",
+          "sourcePages": [
+            83
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state the characteristics of living organisms",
+          "sourcePages": [
+            83
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the main differences between plants and animals.",
+          "sourcePages": [
+            83
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "1.2.1",
+          "order": 1,
+          "name": "Definition of biology",
+          "sourcePages": [
+            83
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.2",
+          "order": 2,
+          "name": "Branches of biology",
+          "sourcePages": [
+            83
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.3",
+          "order": 3,
+          "name": "Importance of biology",
+          "sourcePages": [
+            83
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.4",
+          "order": 4,
+          "name": "Characteristics of living organisms",
+          "sourcePages": [
+            83
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.5",
+          "order": 5,
+          "name": "Comparison between plants and animals",
+          "sourcePages": [
+            83
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "2.0.0",
+      "order": 2,
+      "name": "CLASSIFICATION 1",
+      "sourcePages": [
+        83
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "use the magnifying lens to observe the external features of plants and animals",
+          "sourcePages": [
+            83
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "record observations of the main external characteristics of living organisms, preserved specimens and photographs",
+          "sourcePages": [
+            83
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state the necessity and significance of classification",
+          "sourcePages": [
+            83
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "name the major units of classification",
+          "sourcePages": [
+            83
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the application of Binomial nomenclature in naming organisms.",
+          "sourcePages": [
+            83
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "2.2.1",
+          "order": 1,
+          "name": "Review the use of magnifying lens",
+          "sourcePages": [
+            83
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.2",
+          "order": 2,
+          "name": "External features of plants and animals",
+          "sourcePages": [
+            83
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.3",
+          "order": 3,
+          "name": "Necessity and significance of classification",
+          "sourcePages": [
+            83
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.4",
+          "order": 4,
+          "name": "Major units of classification: (naming)",
+          "sourcePages": [
+            83
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.5",
+          "order": 5,
+          "name": "Discussion on Binomial nomenclature",
+          "sourcePages": [
+            83
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "3.0.0",
+      "order": 3,
+      "name": "THE CELL",
+      "sourcePages": [
+        83
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define the cell",
+          "sourcePages": [
+            83
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state the purpose of a light microscope",
+          "sourcePages": [
+            83
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "identify the parts of a light microscope and state their functions",
+          "sourcePages": [
+            83
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "use and care for the light microscope and state the magnification",
+          "sourcePages": [
+            83
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "identify the components of a cell as seen under the light and electron microscopes and relate their structure to functions",
+          "sourcePages": [
+            83
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "compare plant and animal cells",
+          "sourcePages": [
+            83
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "mount and stain temporary slides of plant cells",
+          "sourcePages": [
+            83
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "describe animal cells as observed from permanent slides",
+          "sourcePages": [
+            83
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "estimate cell size",
+          "sourcePages": [
+            83
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "state the differences between cells, tissues, organs and organ systems.82",
+          "sourcePages": [
+            83,
+            84
+          ],
+          "order": 10
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "3.2.1",
+          "order": 1,
+          "name": "Definition of the cell",
+          "sourcePages": [
+            84
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.2.2",
+          "order": 2,
+          "name": "Structure and functions of parts of a light microscope",
+          "sourcePages": [
+            84
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.2.3",
+          "order": 3,
+          "name": "Use and care of the light microscope",
+          "sourcePages": [
+            84
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.2.4",
+          "order": 4,
+          "name": "Cell structure and functions as seen under",
+          "sourcePages": [
+            84
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.2.5",
+          "order": 5,
+          "name": "Preparation of temporary slides of plant cells",
+          "sourcePages": [
+            84
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.2.6",
+          "order": 6,
+          "name": "Estimation of cell size",
+          "sourcePages": [
+            84
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.2.7",
+          "order": 7,
+          "name": "Cell specialization, tissues, organs and organ systems",
+          "sourcePages": [
+            84
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "4.0.0",
+      "order": 4,
+      "name": "CELL PHYSIOLOGY",
+      "sourcePages": [
+        84
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define cell physiology",
+          "sourcePages": [
+            84
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "correlate the membrane structure with cell physiology in relation to permeability",
+          "sourcePages": [
+            84
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "differentiate between diffusion, osmosis and active transport",
+          "sourcePages": [
+            84
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state and describe factors affecting diffusion, osmosis and active transport",
+          "sourcePages": [
+            84
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "carry out experiments on diffusion and osmosis",
+          "sourcePages": [
+            84
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the roles of diffusion, osmosis and active transport in living organisms",
+          "sourcePages": [
+            84
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "explain turgor and plasmolysis in terms of osmotic pressure.",
+          "sourcePages": [
+            84
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "4.2.1",
+          "order": 1,
+          "name": "Meaning of cell physiology",
+          "sourcePages": [
+            84
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.2",
+          "order": 2,
+          "name": "Structure and properties of cell membrane (Theories of membrane structure not required)",
+          "sourcePages": [
+            84
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.3",
+          "order": 3,
+          "name": "Physiological processes - diffusion, osmosis and active transport",
+          "sourcePages": [
+            84
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.4",
+          "order": 4,
+          "name": "Factors affecting diffusion, osmosis and active transport",
+          "sourcePages": [
+            84
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.5",
+          "order": 5,
+          "name": "Role of diffusion, osmosis and active transport in living organisms",
+          "sourcePages": [
+            84
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.6",
+          "order": 6,
+          "name": "Water relations in plant and animal cells: turgor, plasmolysis, wilting and haemolysis",
+          "sourcePages": [
+            84
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "5.0.0",
+      "order": 5,
+      "name": "NUTRITION IN PLANTS AND ANIMALS",
+      "sourcePages": [
+        84
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define nutrition and state its importance in living organisms",
+          "sourcePages": [
+            84
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "differentiate various modes of feeding",
+          "sourcePages": [
+            84
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe photosynthesis and show its importance in nature",
+          "sourcePages": [
+            84
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain how the leaf is adapted to photosynthesis",
+          "sourcePages": [
+            84
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain the factors affecting photosynthesis",
+          "sourcePages": [
+            84
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "distinguish between carbohydrates, proteins and lipids",
+          "sourcePages": [
+            84
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "state the importance of various chemical compounds in plants and animals",
+          "sourcePages": [
+            84
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "explain the properties and functions of enzymes",
+          "sourcePages": [
+            84
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "relate various types of teeth in mammals to their feeding habits 83",
+          "sourcePages": [
+            84,
+            85
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "differentiate between omnivorous, carnivorous and herbivorous modes of feeding",
+          "sourcePages": [
+            85
+          ],
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "relate the structures of the mammalian (human) alimentary canal to their functions",
+          "sourcePages": [
+            85
+          ],
+          "order": 11
+        },
+        {
+          "label": "l)",
+          "text": "explain the role of enzymes in digestion in a mammal (human)",
+          "sourcePages": [
+            85
+          ],
+          "order": 12
+        },
+        {
+          "label": "m)",
+          "text": "explain the factors that determine energy requirements in humans.",
+          "sourcePages": [
+            85
+          ],
+          "order": 13
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "5.2.1",
+          "order": 1,
+          "name": "Meaning, importance and types of nutrition",
+          "sourcePages": [
+            85
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.2.2",
+          "order": 2,
+          "name": "Nutrition in plants (autotrophism)",
+          "sourcePages": [
+            85
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.2.3",
+          "order": 3,
+          "name": "Chemical Compounds which Constitute Living Organisms",
+          "sourcePages": [
+            85
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.2.4",
+          "order": 4,
+          "name": "Nutrition in Animals (heterotrophism) Meaning and types of heterotrophism",
+          "sourcePages": [
+            85
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.2.5",
+          "order": 5,
+          "name": "Digestive system and digestion in a mammal (human)",
+          "sourcePages": [
+            85
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.2.6",
+          "order": 6,
+          "name": "Importance of vitamins, mineral salts, roughage and water in human nutrition",
+          "sourcePages": [
+            85
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.2.7",
+          "order": 7,
+          "name": "Factors determining energy requirements in humans",
+          "sourcePages": [
+            85
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

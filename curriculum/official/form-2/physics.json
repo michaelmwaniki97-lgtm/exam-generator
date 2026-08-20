@@ -1,0 +1,1065 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 2",
+  "subject": "Physics",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "11.0.0",
+      "order": 1,
+      "name": "MAGNETISM",
+      "sourcePages": [
+        43
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe the properties and uses of magnets",
+          "sourcePages": [
+            43
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "identify magnetic and non-magnetic materials",
+          "sourcePages": [
+            43
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state the basic law of magnetism",
+          "sourcePages": [
+            43
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe patterns of magnetic field",
+          "sourcePages": [
+            43
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "describe methods of magnetisation and demagnetization",
+          "sourcePages": [
+            43
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain magnetisation and demagnetisation using the domain theory",
+          "sourcePages": [
+            43
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "construct a simple compass.",
+          "sourcePages": [
+            43
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "11.2.1",
+          "order": 1,
+          "name": "Magnets: properties and uses",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.2",
+          "order": 2,
+          "name": "Magnetic and non-magnetic materials",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.3",
+          "order": 3,
+          "name": "Basic law of magnetism",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.4",
+          "order": 4,
+          "name": "Magnetic field patterns",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.5",
+          "order": 5,
+          "name": "Magnetisation and demagnetization",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.6",
+          "order": 6,
+          "name": "Domain theory of magnetism",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.7",
+          "order": 7,
+          "name": "Care of magnets",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.8",
+          "order": 8,
+          "name": "Construction of a simple compass",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "12.0.0",
+      "order": 2,
+      "name": "MEASUREMENT II",
+      "sourcePages": [
+        43
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "measure length using vernier callipers and micrometer screw gauge",
+          "sourcePages": [
+            43
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "express quantities in correct number of decimal places and correct number of significant figures",
+          "sourcePages": [
+            43
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "express measurements in standard form",
+          "sourcePages": [
+            43
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "estimate the diameter of a molecule of oil",
+          "sourcePages": [
+            43
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "solve numerical problems in measurement.",
+          "sourcePages": [
+            43
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "12.2.1",
+          "order": 1,
+          "name": "Measurement of length using Vernier callipers and micrometer screw gauge",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.2.2",
+          "order": 2,
+          "name": "Decimal places, significant figures and standard form",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.2.3",
+          "order": 3,
+          "name": "Estimation of the diameter of the molecule of oil (relate to the size of the HIV virus, mention effects of oil spills on health and environment)",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.2.4",
+          "order": 4,
+          "name": "Problems in measurements",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "13.0.0",
+      "order": 3,
+      "name": "TURNING EFFECT OF A FORCE",
+      "sourcePages": [
+        43
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define moment of a force about a point and state its SI unit",
+          "sourcePages": [
+            43
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state and verify the principle of moments",
+          "sourcePages": [
+            43
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "solve problems involving the principle of moments.",
+          "sourcePages": [
+            43
+          ],
+          "order": 3
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "13.2.1",
+          "order": 1,
+          "name": "Moment of a force, unit of moment of a force",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.2.2",
+          "order": 2,
+          "name": "Principle of moments",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.2.3",
+          "order": 3,
+          "name": "Problems on principle of moments (consider single pivot only)",
+          "sourcePages": [
+            43
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "14.0.0",
+      "order": 4,
+      "name": "EQUILIBRIUM AND CENTRE OF GRAVITY",
+      "sourcePages": [
+        43
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define centre of gravity",
+          "sourcePages": [
+            43
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "determine experimentally the centre of gravity of lamina objects",
+          "sourcePages": [
+            43
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "identify and explain the states of equilibrium",
+          "sourcePages": [
+            43
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state and explain factors affecting stability of an object",
+          "sourcePages": [
+            43
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain the applications of stability",
+          "sourcePages": [
+            43
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "solve numerical problems involving centre of gravity and moments of a force.42",
+          "sourcePages": [
+            43,
+            44
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "14.2.1",
+          "order": 1,
+          "name": "Centre of gravity (Experimental treatment required)",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.2",
+          "order": 2,
+          "name": "States of equilibrium",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.3",
+          "order": 3,
+          "name": "Factors affecting stability",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.4",
+          "order": 4,
+          "name": "Applications of stability",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.5",
+          "order": 5,
+          "name": "Problems on centre of gravity and moments of a force (consider single pivot only)",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "15.0.0",
+      "order": 5,
+      "name": "REFLECTION AT CURVED SURFACES",
+      "sourcePages": [
+        44
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe concave, convex and parabolic reflectors",
+          "sourcePages": [
+            44
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe using ray diagram the principal axis, principal focus centre of curvature and related terms",
+          "sourcePages": [
+            44
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "locate images formed by curved mirrors by construction",
+          "sourcePages": [
+            44
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "determine experimentally the characteristics of images formed by a concave mirror",
+          "sourcePages": [
+            44
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "define magnification",
+          "sourcePages": [
+            44
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the applications of curved reflecting surfaces.",
+          "sourcePages": [
+            44
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "15.2.1",
+          "order": 1,
+          "name": "Concave and convex parabolic reflectors",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.2",
+          "order": 2,
+          "name": "Principal axis, principal focus, centre of curvature and related terms",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.3",
+          "order": 3,
+          "name": "Location of Images formed by curved mirrors by construction method (Experiment on concave mirrors required)",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.4",
+          "order": 4,
+          "name": "Magnification formula",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.5",
+          "order": 5,
+          "name": "Applications of curved reflectors",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "16.0.0",
+      "order": 6,
+      "name": "MAGNETIC EFFECT OF ELECTRIC CURRENT",
+      "sourcePages": [
+        44
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "perform and describe experiments to determine the direction of the magnetic field round a current carrying conductor",
+          "sourcePages": [
+            44
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "construct a simple electromagnet",
+          "sourcePages": [
+            44
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state the factors affecting the strength of an electromagnet",
+          "sourcePages": [
+            44
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "determine experimentally the direction of a force on a conductor carrying current in a magnetic field (motor effect)",
+          "sourcePages": [
+            44
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the factors affecting force on a current carrying conductor or in a magnetic field",
+          "sourcePages": [
+            44
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the working of simple electric motor and electric bell.",
+          "sourcePages": [
+            44
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "16.2.1",
+          "order": 1,
+          "name": "Magnetic field due to a current",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.2",
+          "order": 2,
+          "name": "Oersted‟s experiment",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.3",
+          "order": 3,
+          "name": "Magnetic field patterns on straight conductors and solenoid (right hand grip rule)",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.4",
+          "order": 4,
+          "name": "Simple electromagnets",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.5",
+          "order": 5,
+          "name": "Factors affecting strength of an electromagnet",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.6",
+          "order": 6,
+          "name": "Motor effect (Fleming‟s left hand rule)",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.7",
+          "order": 7,
+          "name": "Factors affecting force on a current carrying conductor in a magnetic field (Qualitative treatment only)",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.8",
+          "order": 8,
+          "name": "Applications:",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "17.0.0",
+      "order": 7,
+      "name": "HOOKE’S LAW",
+      "sourcePages": [
+        44
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state and verify experimentally Hooke‟s law",
+          "sourcePages": [
+            44
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "determine the spring constant",
+          "sourcePages": [
+            44
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "construct and calibrate a spring balance",
+          "sourcePages": [
+            44
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "solve numerical problems involving Hooke‟s law.",
+          "sourcePages": [
+            44
+          ],
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "17.2.1",
+          "order": 1,
+          "name": "Hooke‟s law",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "17.2.2",
+          "order": 2,
+          "name": "Spring constant",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "17.2.3",
+          "order": 3,
+          "name": "Spring balance",
+          "sourcePages": [
+            44
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "17.2.4",
+          "order": 4,
+          "name": "Problems on Hooke‟s Law43",
+          "sourcePages": [
+            44,
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "18.0.0",
+      "order": 8,
+      "name": "WAVES I",
+      "sourcePages": [
+        45
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe the formation of pulses and waves",
+          "sourcePages": [
+            45
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe transverse and longitudinal waves",
+          "sourcePages": [
+            45
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "define amplitude(a), wavelength (λ), frequency (f) and periodic time(T) of a wave",
+          "sourcePages": [
+            45
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "derive the relation v = fλ",
+          "sourcePages": [
+            45
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "solve numerical problems involving v = fλ",
+          "sourcePages": [
+            45
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "18.2.1",
+          "order": 1,
+          "name": "Pulses and waves",
+          "sourcePages": [
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.2",
+          "order": 2,
+          "name": "Transverse and longitudinal waves",
+          "sourcePages": [
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.3",
+          "order": 3,
+          "name": "Amplitude (a), Wavelength (λ ), frequency (f), periodic time (T)",
+          "sourcePages": [
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.4",
+          "order": 4,
+          "name": "v = fλ",
+          "sourcePages": [
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.5",
+          "order": 5,
+          "name": "Problems involving v = fλ",
+          "sourcePages": [
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "19.0.0",
+      "order": 9,
+      "name": "SOUND",
+      "sourcePages": [
+        45
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "perform and describe simple experiments to show that sound is produced by vibrating bodies",
+          "sourcePages": [
+            45
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "perform and describe an experiment to show that sound requires a material medium for propagation",
+          "sourcePages": [
+            45
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain the nature of sound waves",
+          "sourcePages": [
+            45
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "determine the speed of sound in air by the echo method",
+          "sourcePages": [
+            45
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the factors affecting the speed of sound",
+          "sourcePages": [
+            45
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "solve numerical problems involving velocity of sound.",
+          "sourcePages": [
+            45
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "19.2.1",
+          "order": 1,
+          "name": "Sound: nature and sources (experimental treatment required)",
+          "sourcePages": [
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.2",
+          "order": 2,
+          "name": "Propagation of sound: compressions and rarefactions",
+          "sourcePages": [
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.3",
+          "order": 3,
+          "name": "Speed of sound by echo method",
+          "sourcePages": [
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.4",
+          "order": 4,
+          "name": "Factors affecting speed of sound",
+          "sourcePages": [
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.5",
+          "order": 5,
+          "name": "Problems on velocity of sound",
+          "sourcePages": [
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "20.0.0",
+      "order": 10,
+      "name": "FLUID FLOW",
+      "sourcePages": [
+        45
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe streamline flow and turbulent flow",
+          "sourcePages": [
+            45
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "derive the equation of continuity",
+          "sourcePages": [
+            45
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe experiments to illustrate Bernoulli‟s effects",
+          "sourcePages": [
+            45
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain the Bernoulli‟s effect",
+          "sourcePages": [
+            45
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "describe the applications of Bernoulli‟s effect",
+          "sourcePages": [
+            45
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "solve numerical problems involving the equation of continuity.",
+          "sourcePages": [
+            45
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "20.2.1",
+          "order": 1,
+          "name": "Streamline and turbulent flow",
+          "sourcePages": [
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "20.2.2",
+          "order": 2,
+          "name": "Equation of continuity",
+          "sourcePages": [
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "20.2.3",
+          "order": 3,
+          "name": "Bernoulli‟s effect (Experimental treatment required)",
+          "sourcePages": [
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "20.2.4",
+          "order": 4,
+          "name": "Applications of Bernoulli‟s effect: Bunsen burner, spray gun, carburator aerofoil, spinning ball",
+          "sourcePages": [
+            45
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "20.2.5",
+          "order": 5,
+          "name": "Problems on equation of continuity44 FORM THREE",
+          "sourcePages": [
+            45,
+            46
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

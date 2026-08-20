@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 4",
+  "subject": "German",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "German Grade 4 Edited - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-four-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1YtlkH6n9skVQqt1g15twi54mx8ZUGlDV/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      15,
+      17,
+      19,
+      21,
+      23,
+      25,
+      27,
+      29,
+      32,
+      34,
+      36,
+      38,
+      40,
+      42,
+      44,
+      46,
+      48,
+      51,
+      53,
+      55,
+      57,
+      59,
+      61,
+      63,
+      64,
+      66
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Listening and Speaking",
+      "sourcePages": [
+        12,
+        15,
+        17,
+        19,
+        21,
+        23,
+        25,
+        27,
+        29
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Listening for gist",
+          "sourcePage": 12
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Listening for gist",
+          "sourcePage": 15
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Imitative speaking",
+          "sourcePage": 17
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Phonological awareness",
+          "sourcePage": 19
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Phonological awareness",
+          "sourcePage": 21
+        },
+        {
+          "order": 6,
+          "code": "1.6",
+          "name": "Listening for gist, Imitative speaking",
+          "sourcePage": 23
+        },
+        {
+          "order": 7,
+          "code": "1.7",
+          "name": "Phonological awareness, Imitative speaking",
+          "sourcePage": 25
+        },
+        {
+          "order": 8,
+          "code": "1.8",
+          "name": "Phonological awareness, Listening for gist",
+          "sourcePage": 27
+        },
+        {
+          "order": 9,
+          "code": "1.9",
+          "name": "Listening for gist, Imitative speaking",
+          "sourcePage": 29
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Reading",
+      "sourcePages": [
+        32,
+        34,
+        36,
+        38,
+        40,
+        42,
+        44,
+        46,
+        48
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Reading Aloud",
+          "sourcePage": 32
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Guided reading",
+          "sourcePage": 34
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Reading for comprehension",
+          "sourcePage": 36
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Reading aloud",
+          "sourcePage": 38
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Guided reading",
+          "sourcePage": 40
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Reading for Comprehensi on",
+          "sourcePage": 42
+        },
+        {
+          "order": 7,
+          "code": "2.7",
+          "name": "Reading for comprehension",
+          "sourcePage": 44
+        },
+        {
+          "order": 8,
+          "code": "2.8",
+          "name": "Guided reading",
+          "sourcePage": 46
+        },
+        {
+          "order": 9,
+          "code": "2.9",
+          "name": "Reading aloud",
+          "sourcePage": 48
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Writing",
+      "sourcePages": [
+        51,
+        53,
+        55,
+        57,
+        59,
+        61,
+        63,
+        64,
+        66
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Guided writing",
+          "sourcePage": 51
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Guided writing",
+          "sourcePage": 53
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Guided writing",
+          "sourcePage": 55
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Guided writing",
+          "sourcePage": 57
+        },
+        {
+          "order": 5,
+          "code": "3.5",
+          "name": "Guided writing",
+          "sourcePage": 59
+        },
+        {
+          "order": 6,
+          "code": "3.6",
+          "name": "Guided writing",
+          "sourcePage": 61
+        },
+        {
+          "order": 7,
+          "code": "3.7",
+          "name": "Guided Writing",
+          "sourcePage": 63
+        },
+        {
+          "order": 8,
+          "code": "3.8",
+          "name": "Guided writing",
+          "sourcePage": 64
+        },
+        {
+          "order": 9,
+          "code": "3.9",
+          "name": "Guided writing",
+          "sourcePage": 66
+        }
+      ]
+    }
+  ]
+}

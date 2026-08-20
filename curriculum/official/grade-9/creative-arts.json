@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 9",
+  "subject": "Creative Arts",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Creative Arts &amp; Sports Grade 9 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-nine-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1XONxUP98Z6I85bPKx7CYIsAkEucl_dm-/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      16,
+      19,
+      21,
+      24,
+      27,
+      29,
+      31,
+      33,
+      35,
+      37,
+      39,
+      41,
+      43,
+      47,
+      52,
+      55,
+      57,
+      60,
+      61
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Foundations of Creative Arts and Sports",
+      "sourcePages": [
+        12,
+        16,
+        52
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Careers in Creative Arts and Sports",
+          "alternativeNames": [
+            "Careers In Creative Arts And Sports ● Manilla paper ● Colours ● ICT devices ● cutting tools ● found/recycled materials ● Textbooks on the history and significance of creative arts and sports ● Videos showcasing the evolution and cultural importance of creative arts and sports in Kenya ● Guest speakers, such as local artists and athletes, for interactive sessions ● Field trips to museums, art galleries, and sports facilities ● Portfolio Assessment: Compilation of individual and group work. ● Individual Reflections and Self-Assessment: Personal understanding and growth. ● Group Presentation and Panel Discussion: Comprehensive ● Field visits - visiting Cultural, Art, Music centres and performing theatres, to learn folk songs, folk dances, musical instruments, verses, skits and narrative, Art work. Attend live performances"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Components of Creative Arts and Sports",
+          "sourcePage": 16
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Creating and Performing",
+      "sourcePages": [
+        13,
+        19,
+        21,
+        24,
+        27,
+        29,
+        31,
+        33,
+        35,
+        37,
+        39,
+        41,
+        43,
+        55,
+        57,
+        60
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Drawing and Painting",
+          "sourcePage": 19
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Rhythm",
+          "alternativeNames": [
+            "Rhythm ● Instructional Videos ● Interactive Worksheets ● Notation Software Tutorials ● Interactive Notation Apps ● Printable Rhythm Worksheets ● Improvisation Guides ● Improvisation Exercises Music Games Hosting a mini tournament where learners form teams and compete in friendly matches. learners can learn and practise the basics, engage in skill- building drills, developing sportsmanship, teamwork, and fair play"
+          ],
+          "sourcePage": 21
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Athletics and Mosaic",
+          "sourcePage": 24
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Melody",
+          "sourcePage": 27
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Rugby",
+          "sourcePage": 29
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Descant Recorder",
+          "alternativeNames": [
+            "Photography"
+          ],
+          "sourcePage": 57
+        },
+        {
+          "order": 7,
+          "code": "2.7",
+          "name": "Descant Recorder",
+          "alternativeNames": [
+            "Play"
+          ],
+          "sourcePage": 33
+        },
+        {
+          "order": 8,
+          "code": "2.8",
+          "name": "Play",
+          "sourcePage": 35
+        },
+        {
+          "order": 9,
+          "code": "2.9",
+          "name": "Basketball and Logo Design",
+          "alternativeNames": [
+            "Indigenous Kenyan Craft"
+          ],
+          "sourcePage": 37
+        },
+        {
+          "order": 10,
+          "code": "2.10",
+          "name": "Indigenous Kenyan craft 10 OPTIONAL (Do One) Either Swimming Or Kenyan Indigenous Game",
+          "alternativeNames": [
+            "Indigenous Kenyan Crafts"
+          ],
+          "sourcePage": 13
+        },
+        {
+          "order": 11,
+          "code": "2.10.1",
+          "name": "Swimming (Optional)",
+          "sourcePage": 60
+        },
+        {
+          "order": 12,
+          "code": "2.10.2",
+          "name": "Kenyan Indigenous Games (Optional)",
+          "sourcePage": 60
+        },
+        {
+          "order": 13,
+          "code": "2.11.1",
+          "name": "Swimming (Optional)",
+          "alternativeNames": [
+            "Swimming"
+          ],
+          "sourcePage": 13
+        },
+        {
+          "order": 14,
+          "code": "2.11.2",
+          "name": "Kenyan Indigenous Games (Optional) Board games",
+          "sourcePage": 43
+        },
+        {
+          "order": 15,
+          "code": "2.12.2",
+          "name": "Kenyan Indigenous Games (Optional)",
+          "sourcePage": 13
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Appreciation in Creative Arts and Sports",
+      "sourcePages": [
+        47,
+        61
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Analysis of Creative Arts and Sports",
+          "sourcePage": 47
+        }
+      ]
+    }
+  ]
+}

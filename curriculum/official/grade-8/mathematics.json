@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 8",
+  "subject": "Mathematics",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Mathematics Grade 8 - July 2024.pdf",
+    "version": "July 2024",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-eight-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1ttNvzuQbHUnABVcP-TAoix8-TVmehYph/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      15,
+      16,
+      18,
+      20,
+      26,
+      28,
+      31,
+      33,
+      36,
+      41,
+      43,
+      45,
+      47,
+      52,
+      54
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Numbers",
+      "sourcePages": [
+        12,
+        13,
+        15,
+        16,
+        18,
+        20
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Integers",
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Fractions",
+          "sourcePage": 15
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Decimals",
+          "sourcePage": 16
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Squares and Square roots",
+          "sourcePage": 18
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Rates, Ratio, Proportions and Percentages",
+          "sourcePage": 20
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Algebra",
+      "sourcePages": [
+        26,
+        28
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Algebraic Expressions",
+          "sourcePage": 26
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Linear Equations",
+          "sourcePage": 28
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Measurements",
+      "sourcePages": [
+        12,
+        31,
+        33,
+        36
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Circles",
+          "sourcePage": 31
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "L Area",
+          "alternativeNames": [
+            "Area"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Money",
+          "sourcePage": 36
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Geometry",
+      "sourcePages": [
+        41,
+        43,
+        45,
+        47
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Geometrical Constructions",
+          "sourcePage": 41
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Coordinates and graphs",
+          "sourcePage": 43
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "Scale Drawing",
+          "sourcePage": 45
+        },
+        {
+          "order": 4,
+          "code": "4.4",
+          "name": "Common Solids",
+          "sourcePage": 47
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Data Handling and Probability",
+      "sourcePages": [
+        12,
+        52,
+        54
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Data Representation and Interpretation",
+          "alternativeNames": [
+            "Data Presentation and Interpretation"
+          ],
+          "sourcePage": 52
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Probability",
+          "sourcePage": 54
+        }
+      ]
+    }
+  ]
+}

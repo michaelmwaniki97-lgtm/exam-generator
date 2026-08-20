@@ -1,0 +1,610 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 9",
+  "subject": "Kiswahili",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Kiswahili Gredi 9 -2024 - Revised Oct.pdf",
+    "version": "Revised Oct",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-nine-designs/",
+    "officialDocument": "https://drive.google.com/file/d/14r0D5u2jy79nZdcixJ2Gu3qTattpY0_Y/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      17,
+      19,
+      21,
+      23,
+      25,
+      27,
+      29,
+      31,
+      33,
+      35,
+      37,
+      39,
+      41,
+      43,
+      45,
+      47,
+      49,
+      51,
+      53,
+      55,
+      57,
+      60,
+      62,
+      64,
+      66,
+      68,
+      70,
+      72,
+      74,
+      77,
+      79,
+      81,
+      84,
+      86,
+      88,
+      90,
+      92,
+      94,
+      96,
+      98,
+      100,
+      103,
+      105,
+      107,
+      110,
+      112,
+      114,
+      116,
+      118,
+      120,
+      122,
+      124,
+      126,
+      129,
+      131,
+      133,
+      135,
+      137,
+      139,
+      141
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.1",
+      "name": "Kusikiliza na Kuzungumza",
+      "occurrenceCodes": [
+        "1.1",
+        "2.1",
+        "3.1",
+        "4.1",
+        "5.1",
+        "6.1",
+        "7.1",
+        "8.1",
+        "9.1",
+        "10.1",
+        "11.1",
+        "12.1",
+        "13.1",
+        "14.1",
+        "15.1"
+      ],
+      "sourcePages": [
+        17,
+        25,
+        33,
+        41,
+        49,
+        57,
+        66,
+        74,
+        84,
+        92,
+        100,
+        110,
+        118,
+        126,
+        135
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1.1",
+          "name": "Kusikiliza na Kujibu Mjadala",
+          "sourcePage": 17
+        },
+        {
+          "order": 2,
+          "code": "2.1.1",
+          "name": "Kusikiliza kwa Kina Sauti /b/ na /mb/",
+          "sourcePage": 25
+        },
+        {
+          "order": 3,
+          "code": "3.1.1",
+          "name": "Semi",
+          "sourcePage": 33
+        },
+        {
+          "order": 4,
+          "code": "4.1.1",
+          "name": "Semi",
+          "sourcePage": 41
+        },
+        {
+          "order": 5,
+          "code": "5.1.1",
+          "name": "Ufahamu wa Kusikiliza",
+          "sourcePage": 49
+        },
+        {
+          "order": 6,
+          "code": "6.1.1",
+          "name": "Kusikiliza kwa Kufasiri",
+          "sourcePage": 57
+        },
+        {
+          "order": 7,
+          "code": "7.1.1",
+          "name": "Kusikiliza kwa Kutathmini",
+          "sourcePage": 66
+        },
+        {
+          "order": 8,
+          "code": "8.1.1",
+          "name": "Uzungumzaji wa Kushawishi",
+          "sourcePage": 74
+        },
+        {
+          "order": 9,
+          "code": "9.1.1",
+          "name": "Kusikiliza kwa Kina Sauti /j/ na /nj/",
+          "sourcePage": 84
+        },
+        {
+          "order": 10,
+          "code": "10.1.1",
+          "name": "Mazungumzo Malumbano ya utani",
+          "sourcePage": 92
+        },
+        {
+          "order": 11,
+          "code": "11.1.1",
+          "name": "Uzungumzaji Katika Sherehe",
+          "sourcePage": 100
+        },
+        {
+          "order": 12,
+          "code": "12.1.1",
+          "name": "Ufahamu wa Kusikiliza Matini ya kusikiliza",
+          "sourcePage": 110
+        },
+        {
+          "order": 13,
+          "code": "13.1.1",
+          "name": "Mazungumzo Mawaidha",
+          "sourcePage": 118
+        },
+        {
+          "order": 14,
+          "code": "14.1.1",
+          "name": "Mazungumzo Mawaidha",
+          "sourcePage": 126
+        },
+        {
+          "order": 15,
+          "code": "15.1.1",
+          "name": "Kusikiliza kwa Kutathmini",
+          "sourcePage": 135
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "1.2",
+      "name": "Kusoma",
+      "occurrenceCodes": [
+        "1.2",
+        "2.2",
+        "3.2",
+        "4.2",
+        "5.2",
+        "6.2",
+        "7.2",
+        "8.2",
+        "9.2",
+        "10.2",
+        "11.2",
+        "12.2",
+        "13.2",
+        "14.2",
+        "15.2"
+      ],
+      "sourcePages": [
+        19,
+        27,
+        35,
+        43,
+        51,
+        60,
+        68,
+        77,
+        86,
+        94,
+        103,
+        112,
+        120,
+        129,
+        137
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.2.1",
+          "name": "Kusoma kwa Ufahamu Kifungu cha Simulizi",
+          "sourcePage": 19
+        },
+        {
+          "order": 2,
+          "code": "2.2.1",
+          "name": "Kusoma kwa Mapana Matini ya kujichagulia",
+          "sourcePage": 27
+        },
+        {
+          "order": 3,
+          "code": "3.2.1",
+          "name": "Kusoma kwa Kina Ushairi",
+          "sourcePage": 35
+        },
+        {
+          "order": 4,
+          "code": "4.2.1",
+          "name": "Kusoma kwa Ufasaha",
+          "sourcePage": 43
+        },
+        {
+          "order": 5,
+          "code": "5.2.1",
+          "name": "Kusoma kwa Ufahamu",
+          "sourcePage": 51
+        },
+        {
+          "order": 6,
+          "code": "6.2.1",
+          "name": "Kusoma kwa Kina Ushairi",
+          "sourcePage": 60
+        },
+        {
+          "order": 7,
+          "code": "7.2.1",
+          "name": "Ufupisho",
+          "sourcePage": 68
+        },
+        {
+          "order": 8,
+          "code": "8.2.1",
+          "name": "Kusoma kwa Kina Ushairi",
+          "sourcePage": 77
+        },
+        {
+          "order": 9,
+          "code": "9.2.1",
+          "name": "Kusoma kwa Ufahamu Kifungu cha kushawishi",
+          "sourcePage": 86
+        },
+        {
+          "order": 10,
+          "code": "10.2.1",
+          "name": "Kusoma kwa Kina Ushairi",
+          "sourcePage": 94
+        },
+        {
+          "order": 11,
+          "code": "11.2.1",
+          "name": "Kusoma kwa Mapana Matini ya kujichagulia",
+          "sourcePage": 103
+        },
+        {
+          "order": 12,
+          "code": "12.2.1",
+          "name": "Kusoma kwa Ufasaha",
+          "sourcePage": 112
+        },
+        {
+          "order": 13,
+          "code": "13.2.1",
+          "name": "Kusoma kwa Kina Ushairi Mbinu za lugha",
+          "sourcePage": 120
+        },
+        {
+          "order": 14,
+          "code": "14.2.1",
+          "name": "Kusoma kwa Ufahamu Kifungu cha mjadala",
+          "sourcePage": 129
+        },
+        {
+          "order": 15,
+          "code": "15.2.1",
+          "name": "Ufupisho",
+          "sourcePage": 137
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "1.3",
+      "name": "Kuandika",
+      "occurrenceCodes": [
+        "1.3",
+        "2.3",
+        "3.3",
+        "4.3",
+        "5.3",
+        "6.3",
+        "7.3",
+        "8.3",
+        "9.3",
+        "10.3",
+        "11.3",
+        "12.3",
+        "13.3",
+        "14.3",
+        "15.3"
+      ],
+      "sourcePages": [
+        21,
+        29,
+        37,
+        45,
+        53,
+        62,
+        70,
+        79,
+        88,
+        96,
+        105,
+        114,
+        122,
+        131,
+        139
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.3.1",
+          "name": "Viakifishi",
+          "sourcePage": 21
+        },
+        {
+          "order": 2,
+          "code": "2.3.1",
+          "name": "Insha za Kiuamilifu Barua ya kirafiki",
+          "sourcePage": 29
+        },
+        {
+          "order": 3,
+          "code": "3.3.1",
+          "name": "Insha za Kubuni Masimulizi",
+          "sourcePage": 37
+        },
+        {
+          "order": 4,
+          "code": "4.3.1",
+          "name": "Insha za Kubuni Masimulizi",
+          "sourcePage": 45
+        },
+        {
+          "order": 5,
+          "code": "5.3.1",
+          "name": "Insha za Kiuamilifu Shajara",
+          "sourcePage": 53
+        },
+        {
+          "order": 6,
+          "code": "6.3.1",
+          "name": "Insha za Kubuni Methali",
+          "sourcePage": 62
+        },
+        {
+          "order": 7,
+          "code": "7.3.1",
+          "name": "Insha za Kubuni Maelezo",
+          "sourcePage": 70
+        },
+        {
+          "order": 8,
+          "code": "8.3.1",
+          "name": "Viakifishi",
+          "sourcePage": 79
+        },
+        {
+          "order": 9,
+          "code": "9.3.1",
+          "name": "Insha za Kubuni Masimulizi",
+          "sourcePage": 88
+        },
+        {
+          "order": 10,
+          "code": "10.3.1",
+          "name": "Barua Rasmi ya Kuomba Kazi",
+          "sourcePage": 96
+        },
+        {
+          "order": 11,
+          "code": "11.3.1",
+          "name": "Insha za Kubuni Maelezo",
+          "sourcePage": 105
+        },
+        {
+          "order": 12,
+          "code": "12.3.1",
+          "name": "Hotuba ya Kushawishi",
+          "sourcePage": 114
+        },
+        {
+          "order": 13,
+          "code": "13.3.1",
+          "name": "Insha za Kubuni Maelezo",
+          "sourcePage": 122
+        },
+        {
+          "order": 14,
+          "code": "14.3.1",
+          "name": "Insha za Kiuamilifu Shajara",
+          "sourcePage": 131
+        },
+        {
+          "order": 15,
+          "code": "15.3.1",
+          "name": "Kujibu Baruapepe",
+          "sourcePage": 139
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "1.4",
+      "name": "Sarufi",
+      "occurrenceCodes": [
+        "1.4",
+        "2.4",
+        "3.4",
+        "4.4",
+        "5.4",
+        "6.4",
+        "7.4",
+        "8.4",
+        "9.4",
+        "10.4",
+        "11.4",
+        "12.4",
+        "13.4",
+        "14.4",
+        "15.4"
+      ],
+      "sourcePages": [
+        23,
+        31,
+        39,
+        47,
+        55,
+        64,
+        72,
+        81,
+        90,
+        98,
+        107,
+        116,
+        124,
+        133,
+        141
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.4.1",
+          "name": "Vihusishi",
+          "sourcePage": 23
+        },
+        {
+          "order": 2,
+          "code": "2.4.1",
+          "name": "Vihusishi",
+          "sourcePage": 31
+        },
+        {
+          "order": 3,
+          "code": "3.4.1",
+          "name": "Vihusishi",
+          "sourcePage": 39
+        },
+        {
+          "order": 4,
+          "code": "4.4.1",
+          "name": "Nyakati na Hali",
+          "sourcePage": 47
+        },
+        {
+          "order": 5,
+          "code": "5.4.1",
+          "name": "Hali za Masharti -nge- -ngali",
+          "sourcePage": 55
+        },
+        {
+          "order": 6,
+          "code": "6.4.1",
+          "name": "Vielezi",
+          "sourcePage": 64
+        },
+        {
+          "order": 7,
+          "code": "7.4.1",
+          "name": "Vielezi",
+          "sourcePage": 72
+        },
+        {
+          "order": 8,
+          "code": "8.4.1",
+          "name": "Ngeli na Upatanisho wa Kisarufi Ngeli ya",
+          "sourcePage": 81
+        },
+        {
+          "order": 9,
+          "code": "9.4.1",
+          "name": "Ngeli na Upatanisho wa Kisarufi Ngeli ya",
+          "sourcePage": 90
+        },
+        {
+          "order": 10,
+          "code": "10.4.1",
+          "name": "Vinyume vya Vihusishi",
+          "sourcePage": 98
+        },
+        {
+          "order": 11,
+          "code": "11.4.1",
+          "name": "Mnyambuliko wa Vitenzi Kauli ya",
+          "sourcePage": 107
+        },
+        {
+          "order": 12,
+          "code": "12.4.1",
+          "name": "Aina za Sentensi Sentensi tata",
+          "sourcePage": 116
+        },
+        {
+          "order": 13,
+          "code": "13.4.1",
+          "name": "Ukanushaji Hali ya masharti",
+          "sourcePage": 124
+        },
+        {
+          "order": 14,
+          "code": "14.4.1",
+          "name": "Udogo na Ukubwa wa Nomino",
+          "sourcePage": 133
+        },
+        {
+          "order": 15,
+          "code": "15.4.1",
+          "name": "Usemi Halisi na Usemi wa Taarifa",
+          "sourcePage": 141
+        }
+      ]
+    }
+  ]
+}

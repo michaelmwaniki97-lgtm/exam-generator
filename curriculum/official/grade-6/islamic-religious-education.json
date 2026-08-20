@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 6",
+  "subject": "Islamic Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "IRE GRADE 6 CURRICULUM DESIGNS - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-six-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1EXqXIKZMzOu7GYtgNS6XB_Aoyv7Isncs/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      10,
+      11,
+      12,
+      15,
+      17,
+      19,
+      21,
+      24,
+      26,
+      28,
+      31,
+      33,
+      35,
+      37,
+      40,
+      44,
+      46,
+      48,
+      50,
+      52,
+      54,
+      57,
+      59,
+      61,
+      63,
+      68,
+      69,
+      70,
+      71,
+      72
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Qur’an",
+      "sourcePages": [
+        10,
+        12,
+        68
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Selected Chapters (Surah) 12 2 Hadith",
+          "alternativeNames": [
+            "Selected Surah",
+            "Selected Surah Portfolio, oral assessment, checklist. Mus’haf/Qur’an, digital devices, pocket board, charts, course books, and resource person. - Recite the surah and discuss the meaning of the selected surah during free time, PPI and clubs"
+          ],
+          "sourcePage": 10
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "HADITH",
+      "sourcePages": [
+        10,
+        15,
+        17,
+        19,
+        21,
+        68
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Hadith on Purity of Actions Portfolio, oral assessment, checklists, journals",
+          "alternativeNames": [
+            "Hadith on Purity of Actions"
+          ],
+          "sourcePage": 68
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Hadith on dressing",
+          "sourcePage": 17
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Hadith on planting",
+          "sourcePage": 19
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Hadith on Responsible capabilities and resources 03 3 Pillars of Iman",
+          "alternativeNames": [
+            "Hadith on responsible use of Himan Capabilities and Resources",
+            "Hadith on responsible use of human capabilities and resources"
+          ],
+          "sourcePage": 10
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Pillars of Iman",
+      "sourcePages": [
+        10,
+        24,
+        26,
+        28,
+        69
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Belief in Prophets (Qualities of Prophets) Portfolio, oral assessment",
+          "alternativeNames": [
+            "Stories of Prophets",
+            "Stories of prophets ( Ibrahim and Yusuf ( A.S.)"
+          ],
+          "sourcePage": 69
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Taqwa (God Consciousness)",
+          "alternativeNames": [
+            "Stories of Prophets"
+          ],
+          "sourcePage": 26
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Tawakul( Reliance on Allah) 02 4 Devotional Acts",
+          "alternativeNames": [
+            "Taqwa (God Consciousness)",
+            "Tawakkul (Reliance on Allah)"
+          ],
+          "sourcePage": 10
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Tawakkul (Reliance on Allah)",
+          "sourcePage": 69
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Devotional Acts",
+      "sourcePages": [
+        10,
+        31,
+        33,
+        35,
+        37,
+        70
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Twaharah (Purity)",
+          "alternativeNames": [
+            "Twahara (Purity)"
+          ],
+          "sourcePage": 10
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Zakat",
+          "alternativeNames": [
+            "Zakaat journal, anecdotal notes, portfolio Mus’haf/Qur’an, charts, photos of people and their occupation/events (farmer, athlete etc.) while in state of major Hadith -Learners discuss zakaat and tax during parents’ meeting/prize giving day. - Learners give a talk on people exempted from fasting during school assembly and clubs in the month of Ramadhan"
+          ],
+          "sourcePage": 33
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "Saum (Fasting)",
+          "alternativeNames": [
+            "Saum"
+          ],
+          "sourcePage": 35
+        },
+        {
+          "order": 4,
+          "code": "4.4",
+          "name": "Hajj 03 5 Akhlaq (Moral Teachings)",
+          "alternativeNames": [
+            "Hajj"
+          ],
+          "sourcePage": 10
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Akhlaq (Moral Teachings)",
+      "sourcePages": [
+        10,
+        40,
+        44,
+        46,
+        48,
+        70,
+        71
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Virtues, work as a form ibadah",
+          "alternativeNames": [
+            "Virtues",
+            "Virtues Journals, anecdotal notes, portfolio, oral assessment, observation. Digital devices, course books, charts, photos of people in different occupations, Mus’haf/Qur’an, age- appropriate videos on effects of intoxicants, resource person, (such as, a successfully rehabilitated drug addict), digital devices on dua when travelling -Learners perform light duties in the school environment like picking rubbish, cleaning classrooms and dormitories. -Learners demonstrate quality of adalah while solving disputes in school. -Learners attend guidance and counselling sessions on drug and substance abuse in school. -Learners who use school transport to recite the dua when boarding the bus and during field trips"
+          ],
+          "sourcePage": 10
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Prohibitions in Islam- Intexicants",
+          "alternativeNames": [
+            "Adalah, Justice",
+            "Prohibitions in Islam"
+          ],
+          "sourcePage": 70
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Dua (Supplication when travelling)",
+          "alternativeNames": [
+            "Dua (supplication when travelling) Portfolio, oral assessment, observation. Digital devices on dua when travelling, Mus’haf/Qur’an/Hadith books, pictures of vehicles, road signs Learners who use school transport to recite the dua when boarding the bus and during field trips. Learners discuss safe practices a passenger should observe while travelling (such as boarding through door, be seated when the vehicle is in motion and avoid distracting the driver), during PPI lesson. Design/draw pictures of safe practices to be observed by a passenger and display at strategic places within the school compound",
+            "Prohibitions in Islam, Intoxicants"
+          ],
+          "sourcePage": 48
+        },
+        {
+          "order": 4,
+          "code": "5.4",
+          "name": "Israf,extravagance",
+          "sourcePage": 10
+        },
+        {
+          "order": 5,
+          "code": "5.5",
+          "name": "Dua (supplication when traveling)",
+          "sourcePage": 10
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Muamalaat (Social Relations)",
+      "sourcePages": [
+        11,
+        50,
+        52,
+        54,
+        71,
+        72
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Fair Treatment of Workers Journals, oral questions",
+          "alternativeNames": [
+            "Fair Treatment of Workers"
+          ],
+          "sourcePage": 71
+        },
+        {
+          "order": 2,
+          "code": "6.2",
+          "name": "Relationship with people of other faiths",
+          "alternativeNames": [
+            "Relations with people of other faiths",
+            "Relations with people of other Faiths"
+          ],
+          "sourcePage": 11
+        },
+        {
+          "order": 3,
+          "code": "6.3",
+          "name": "Corruption 04 7 History of Islam",
+          "alternativeNames": [
+            "Corruption",
+            "Corruption . represented within the school at the assembly/before the start of examination. -During drama and music festivals, learners develop items thematising evils of corruption. -Learners develop posters and talking walls on corruption. -Learners discuss effects of corruption during Integrity Club meetings"
+          ],
+          "sourcePage": 11
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "code": "7.0",
+      "name": "History of Islam",
+      "sourcePages": [
+        11,
+        57,
+        59,
+        61,
+        63,
+        72
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "7.1",
+          "name": "The Battles of Badr and Uhud",
+          "alternativeNames": [
+            "Battle of Badr and Uhud"
+          ],
+          "sourcePage": 57
+        },
+        {
+          "order": 2,
+          "code": "7.2",
+          "name": "The Treaty of Hudaibiya",
+          "alternativeNames": [
+            "Treaty of Hudaibiyya",
+            "Treaty of Hudaybiya"
+          ],
+          "sourcePage": 59
+        },
+        {
+          "order": 3,
+          "code": "7.3",
+          "name": "Conquest of Makkah (Fath-ul Makkah) 7.4Farewell Pilgrimage (Hijatul Wid’a)",
+          "alternativeNames": [
+            "Conquest of Makkah",
+            "The Conquest of Makkah (Fat-hul Makkah)"
+          ],
+          "sourcePage": 72
+        },
+        {
+          "order": 4,
+          "code": "7.4",
+          "name": "Farewell Pilgrimage 03 Total Number of Lessons",
+          "alternativeNames": [
+            "Farewell Pilgrimage (Hijjatul Wid’a)"
+          ],
+          "sourcePage": 11
+        }
+      ]
+    }
+  ]
+}

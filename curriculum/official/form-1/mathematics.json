@@ -1,0 +1,2491 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 1",
+  "subject": "Mathematics",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "1.0.0",
+      "order": 1,
+      "name": "NATURAL NUMBERS",
+      "sourcePages": [
+        9
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "identify, read and write natural numbers in symbols and words",
+          "sourcePages": [
+            9
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "round off numbers to the nearest tens, hundreds, thousands, millions and billions",
+          "sourcePages": [
+            9
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "classify natural numbers as even, odd or prime",
+          "sourcePages": [
+            9
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "solve word problems involving natural numbers.",
+          "sourcePages": [
+            9
+          ],
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "1.2.1",
+          "order": 1,
+          "name": "Place values of numbers",
+          "sourcePages": [
+            9
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.2",
+          "order": 2,
+          "name": "Round off numbers to the nearest tens, hundreds, thousands, millions and billions",
+          "sourcePages": [
+            9
+          ],
+          "objectiveStatus": "official_topic_objectives_apply",
+          "sourceCode": "1..2.2",
+          "sourceDiscrepancy": "OCR code normalized from the cited scan."
+        },
+        {
+          "code": "1.2.3",
+          "order": 3,
+          "name": "Odd numbers",
+          "sourcePages": [
+            9
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.4",
+          "order": 4,
+          "name": "Even numbers",
+          "sourcePages": [
+            9
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.5",
+          "order": 5,
+          "name": "Prime numbers",
+          "sourcePages": [
+            9
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.6",
+          "order": 6,
+          "name": "Word problems involving natural numbers",
+          "sourcePages": [
+            9
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "2.0.0",
+      "order": 2,
+      "name": "FACTORS",
+      "sourcePages": [
+        9
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "express composite numbers in factor form",
+          "sourcePages": [
+            9
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "express numbers as product of prime factors",
+          "sourcePages": [
+            9
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "express factors in power form.",
+          "sourcePages": [
+            9
+          ],
+          "order": 3
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "2.2.1",
+          "order": 1,
+          "name": "Factors of composite numbers",
+          "sourcePages": [
+            9
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.2",
+          "order": 2,
+          "name": "Prime factors",
+          "sourcePages": [
+            9
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.3",
+          "order": 3,
+          "name": "Factors in power form",
+          "sourcePages": [
+            9
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "3.0.0",
+      "order": 3,
+      "name": "DIVISIBILITY TESTS",
+      "sourcePages": [
+        9
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "unlabelled",
+          "text": "of numbers by 2, 3, 4, 5, 6, 8, 9, 10 and 11",
+          "sourcePages": [
+            9
+          ],
+          "order": 1
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "3.2.1",
+          "order": 1,
+          "name": "Divisibility test of numbers by 2, 3,4,5,6,8,9,10, and 11",
+          "sourcePages": [
+            9
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "4.0.0",
+      "order": 4,
+      "name": "GREATEST COMMON DIVISOR(GCD) / HIGHEST COMMON FACTOR (HCF)",
+      "sourcePages": [
+        9
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "find the GCD/HCF of a set of numbers",
+          "sourcePages": [
+            9
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "apply GCD to real life situations.",
+          "sourcePages": [
+            9
+          ],
+          "order": 2
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "4.2.1",
+          "order": 1,
+          "name": "Greatest common divisor of a set of numbers",
+          "sourcePages": [
+            9
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.2",
+          "order": 2,
+          "name": "Application of GCD/HCF to real life situations",
+          "sourcePages": [
+            9
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "5.0.0",
+      "order": 5,
+      "name": "LEAST COMMON MULTIPLE (L.C.M.)",
+      "sourcePages": [
+        10
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "list multiples of numbers",
+          "sourcePages": [
+            10
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "find the least common multiple of a set of numbers",
+          "sourcePages": [
+            10
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "apply knowledge of LCM in real life situations.",
+          "sourcePages": [
+            10
+          ],
+          "order": 3
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "5.2.1",
+          "order": 1,
+          "name": "Multiples of a number",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.2.2",
+          "order": 2,
+          "name": "LCM of a set of numbers",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.2.3",
+          "order": 3,
+          "name": "Application of LCM in real life situations",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "6.0.0",
+      "order": 6,
+      "name": "INTEGERS",
+      "sourcePages": [
+        10
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define integers",
+          "sourcePages": [
+            10
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "identify integers on a number line",
+          "sourcePages": [
+            10
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "perform the four basic operations on integers using the number line",
+          "sourcePages": [
+            10
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "work out combined operations on integers in the correct order",
+          "sourcePages": [
+            10
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "apply knowledge of integers to real life situations.",
+          "sourcePages": [
+            10
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "6.2.1",
+          "order": 1,
+          "name": "Integers",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.2",
+          "order": 2,
+          "name": "The number line",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.3",
+          "order": 3,
+          "name": "Operation on integers",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.4",
+          "order": 4,
+          "name": "Order of operations",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.2.5",
+          "order": 5,
+          "name": "Application to real life situations",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "7.0.0",
+      "order": 7,
+      "name": "FRACTIONS",
+      "sourcePages": [
+        10
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "identify proper and improper fractions and mixed numbers",
+          "sourcePages": [
+            10
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "convert mixed numbers to improper fractions and vise versa",
+          "sourcePages": [
+            10
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "compare fractions",
+          "sourcePages": [
+            10
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "perform the four basic operations on fractions",
+          "sourcePages": [
+            10
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "carry out combined operations on fractions in the correct order",
+          "sourcePages": [
+            10
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "apply the knowledge of fractions to real life situations.",
+          "sourcePages": [
+            10
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "7.2.1",
+          "order": 1,
+          "name": "Fractions",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.2",
+          "order": 2,
+          "name": "Proper, improper fractions and mixed numbers",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.3",
+          "order": 3,
+          "name": "Conversion of improper fractions to mixed numbers and vice versa",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.4",
+          "order": 4,
+          "name": "Comparing fractions",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.5",
+          "order": 5,
+          "name": "Operations on fractions",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.6",
+          "order": 6,
+          "name": "Order of operations on fractions",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.2.7",
+          "order": 7,
+          "name": "Word problems involving fractions in real life situations",
+          "sourcePages": [
+            10
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "8.0.0",
+      "order": 8,
+      "name": "DECIMALS",
+      "sourcePages": [
+        11
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "convert fractions into decimals and vice versa",
+          "sourcePages": [
+            11
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "identify recurring decimals",
+          "sourcePages": [
+            11
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "convert recurring decimals into fractions",
+          "sourcePages": [
+            11
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "round off a decimal number to the required number of decimal places",
+          "sourcePages": [
+            11
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "write numbers in standard form",
+          "sourcePages": [
+            11
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "perform the four basic operations on decimals",
+          "sourcePages": [
+            11
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "carry out operations in the correct order",
+          "sourcePages": [
+            11
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "apply the knowledge of decimals to real life situations.",
+          "sourcePages": [
+            11
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "8.2.1",
+          "order": 1,
+          "name": "Fractions and decimals",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.2",
+          "order": 2,
+          "name": "Recurring decimals",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.3",
+          "order": 3,
+          "name": "Recurring decimals and fractions",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.4",
+          "order": 4,
+          "name": "Decimal places",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.5",
+          "order": 5,
+          "name": "Standard form",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.6",
+          "order": 6,
+          "name": "Operations on decimals",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.7",
+          "order": 7,
+          "name": "Order of operations",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.2.8",
+          "order": 8,
+          "name": "Real life problems involving decimals",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "9.0.0",
+      "order": 9,
+      "name": "SQUARES AND SQUARE ROOTS",
+      "sourcePages": [
+        11
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "find squares of numbers by multiplication",
+          "sourcePages": [
+            11
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "find squares from tables",
+          "sourcePages": [
+            11
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "find square root by factor method",
+          "sourcePages": [
+            11
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "find square root from tables.",
+          "sourcePages": [
+            11
+          ],
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "9.2.1",
+          "order": 1,
+          "name": "Squares by multiplication",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.2",
+          "order": 2,
+          "name": "Squares from tables",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.3",
+          "order": 3,
+          "name": "Square roots by factorization",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.2.4",
+          "order": 4,
+          "name": "Square roots from tables",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "10.0.0",
+      "order": 10,
+      "name": "ALGEBRAIC EXPRESSIONS",
+      "sourcePages": [
+        11
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "use letters to represent numbers",
+          "sourcePages": [
+            11
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "write statements in algebraic form",
+          "sourcePages": [
+            11
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "simplify algebraic expressions",
+          "sourcePages": [
+            11
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "factorise an algebraic expression by grouping",
+          "sourcePages": [
+            11
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "remove brackets from algebraic expressions",
+          "sourcePages": [
+            11
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "evaluate algebraic expressions by substituting numerical values",
+          "sourcePages": [
+            11
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "apply algebra in real life situations.",
+          "sourcePages": [
+            11
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "10.2.1",
+          "order": 1,
+          "name": "Letters for numbers",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.2",
+          "order": 2,
+          "name": "Algebraic expressions including algebraic fractions",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.3",
+          "order": 3,
+          "name": "Simplification of algebraic expressions",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.4",
+          "order": 4,
+          "name": "Factorisation by grouping",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.5",
+          "order": 5,
+          "name": "Removal of brackets",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.6",
+          "order": 6,
+          "name": "Substitution and evaluation",
+          "sourcePages": [
+            11
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.7",
+          "order": 7,
+          "name": "Problem solving in real life situation 9",
+          "sourcePages": [
+            11,
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "11.0.0",
+      "order": 11,
+      "name": "RATES, RATIO, PERCENTAGES AND PROPORTION",
+      "sourcePages": [
+        12
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define rates",
+          "sourcePages": [
+            12
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "solve problems involving rates",
+          "sourcePages": [
+            12
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "define ratio",
+          "sourcePages": [
+            12
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "compare two or more quantities using ratios",
+          "sourcePages": [
+            12
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "change quantities in a given ratio",
+          "sourcePages": [
+            12
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "compare two or more ratios",
+          "sourcePages": [
+            12
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "represent and interpret proportional parts",
+          "sourcePages": [
+            12
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "recognise direct and inverse proportions",
+          "sourcePages": [
+            12
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "solve problems involving direct and inverse proportions",
+          "sourcePages": [
+            12
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "convert fractions and decimals to percentages and vice-versa",
+          "sourcePages": [
+            12
+          ],
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "calculate percentage change in a given quantity",
+          "sourcePages": [
+            12
+          ],
+          "order": 11
+        },
+        {
+          "label": "l)",
+          "text": "apply rates, ratio, percentage to real life situations.",
+          "sourcePages": [
+            12
+          ],
+          "order": 12
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "11.2.1",
+          "order": 1,
+          "name": "Rates",
+          "sourcePages": [
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.2",
+          "order": 2,
+          "name": "Solving problems involving rates",
+          "sourcePages": [
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.3",
+          "order": 3,
+          "name": "Ratio",
+          "sourcePages": [
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.4",
+          "order": 4,
+          "name": "Comparing quantities using ratio",
+          "sourcePages": [
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.5",
+          "order": 5,
+          "name": "Increase and decrease in a given ratio",
+          "sourcePages": [
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.6",
+          "order": 6,
+          "name": "Comparing ratios",
+          "sourcePages": [
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.7",
+          "order": 7,
+          "name": "Proportion: direct and inverse.",
+          "sourcePages": [
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.8",
+          "order": 8,
+          "name": "Solve problems direct and inverse proportions.",
+          "sourcePages": [
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.9",
+          "order": 9,
+          "name": "Fractions and decimals as percentages",
+          "sourcePages": [
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "12.0.0",
+      "order": 12,
+      "name": "LENGTH",
+      "sourcePages": [
+        12
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state the units of measuring length",
+          "sourcePages": [
+            12
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "convert units of length from one form to another",
+          "sourcePages": [
+            12
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "express numbers to required number of significant figures",
+          "sourcePages": [
+            12
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "find the perimeter of a plane figure and circumference of a circle(include length of arcs).",
+          "sourcePages": [
+            12
+          ],
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "12.2.1",
+          "order": 1,
+          "name": "Units of length",
+          "sourcePages": [
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.2.2",
+          "order": 2,
+          "name": "Conversion of units of length from one form to another",
+          "sourcePages": [
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.2.3",
+          "order": 3,
+          "name": "Significant figures",
+          "sourcePages": [
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.2.4",
+          "order": 4,
+          "name": "Perimeter",
+          "sourcePages": [
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.2.5",
+          "order": 5,
+          "name": "Circumference(include length of arcs)",
+          "sourcePages": [
+            12
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "13.0.0",
+      "order": 13,
+      "name": "AREA",
+      "sourcePages": [
+        13
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state units of area",
+          "sourcePages": [
+            13
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "convert units of area from one form to another",
+          "sourcePages": [
+            13
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "calculate the area of a regular plane figure including circles",
+          "sourcePages": [
+            13
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "estimate the area of irregular plane figures by counting squares",
+          "sourcePages": [
+            13
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "calculate the surface area of cubes, cuboids and cylinders.",
+          "sourcePages": [
+            13
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "13.2.1",
+          "order": 1,
+          "name": "Units of area",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.2.2",
+          "order": 2,
+          "name": "Conversion of units of area",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.2.3",
+          "order": 3,
+          "name": "Area of regular plane figures",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.2.4",
+          "order": 4,
+          "name": "Area of irregular plane shapes",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.2.5",
+          "order": 5,
+          "name": "Surface area of cube, cuboid and cylinder",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "14.0.0",
+      "order": 14,
+      "name": "VOLUME AND CAPACITY",
+      "sourcePages": [
+        13
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state units of volume",
+          "sourcePages": [
+            13
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "convert units of volume from one form to another",
+          "sourcePages": [
+            13
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "calculate volume of cubes, cuboids and cylinders",
+          "sourcePages": [
+            13
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state units of capacity",
+          "sourcePages": [
+            13
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "convert units of capacity from one form to another",
+          "sourcePages": [
+            13
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "relate volume to capacity",
+          "sourcePages": [
+            13
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "solve problems involving volume and capacity.",
+          "sourcePages": [
+            13
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "14.2.1",
+          "order": 1,
+          "name": "Units of volume",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.2",
+          "order": 2,
+          "name": "Conversion of units of volume",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.3",
+          "order": 3,
+          "name": "Volume of cube, cuboid and cylinders",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.4",
+          "order": 4,
+          "name": "Units of capacity",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.5",
+          "order": 5,
+          "name": "Conversion of units of capacity",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.6",
+          "order": 6,
+          "name": "Relationship between volume and capacity",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "14.2.7",
+          "order": 7,
+          "name": "Solving problems involving volume and capacity",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "15.0.0",
+      "order": 15,
+      "name": "MASS, DENSITY AND WEIGHT",
+      "sourcePages": [
+        13
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define mass",
+          "sourcePages": [
+            13
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state units of mass",
+          "sourcePages": [
+            13
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "convert units of mass from one form to another",
+          "sourcePages": [
+            13
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "define weight",
+          "sourcePages": [
+            13
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state units of weight",
+          "sourcePages": [
+            13
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "distinguish mass and weight",
+          "sourcePages": [
+            13
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "relate volume, mass and density.",
+          "sourcePages": [
+            13
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "15.2.1",
+          "order": 1,
+          "name": "Mass and units of mass",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.2",
+          "order": 2,
+          "name": "Density",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.3",
+          "order": 3,
+          "name": "Problem solving involving real life experiences on mass, volume and density and weight",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.4",
+          "order": 4,
+          "name": "Weight and units of weight",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "15.2.5",
+          "order": 5,
+          "name": "Mass and weight",
+          "sourcePages": [
+            13
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "16.0.0",
+      "order": 16,
+      "name": "TIME",
+      "sourcePages": [
+        14
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "convert units of time from one form to another",
+          "sourcePages": [
+            14
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "relate the 12 hour and 24 hour clock systems",
+          "sourcePages": [
+            14
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "read and interpret travel time-tables",
+          "sourcePages": [
+            14
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "solve problems involving travel time tables",
+          "sourcePages": [
+            14
+          ],
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "16.2.1",
+          "order": 1,
+          "name": "Units of time",
+          "sourcePages": [
+            14
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.2",
+          "order": 2,
+          "name": "12 hour and 24 hour systems",
+          "sourcePages": [
+            14
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.3",
+          "order": 3,
+          "name": "travel time-tables",
+          "sourcePages": [
+            14
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "16.2.4",
+          "order": 4,
+          "name": "problem solving involving travel time tables",
+          "sourcePages": [
+            14
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "17.0.0",
+      "order": 17,
+      "name": "LINEAR EQUATIONS",
+      "sourcePages": [
+        14
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "solve linear equations in one unknown",
+          "sourcePages": [
+            14
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "solve simultaneous linear equations by substitution and elimination",
+          "sourcePages": [
+            14
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "form and solve linear equations in one and two unknown.",
+          "sourcePages": [
+            14
+          ],
+          "order": 3
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "17.2.1",
+          "order": 1,
+          "name": "Linear equations in one unknown",
+          "sourcePages": [
+            14
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "17.2.2",
+          "order": 2,
+          "name": "Simultaneous linear equations",
+          "sourcePages": [
+            14
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "17.2.3",
+          "order": 3,
+          "name": "Formation and solution of linear equations in one and two unknowns from given real life situations",
+          "sourcePages": [
+            14
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "18.0.0",
+      "order": 18,
+      "name": "COMMERCIAL ARITHMETIC 1",
+      "sourcePages": [
+        14
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state the currencies of different countries",
+          "sourcePages": [
+            14
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "convert currency from one form into another given the exchange rates",
+          "sourcePages": [
+            14
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "calculate profit and loss",
+          "sourcePages": [
+            14
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "express profit and loss as percentages",
+          "sourcePages": [
+            14
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "calculate discount and commission",
+          "sourcePages": [
+            14
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "express discount and commission as percentage.",
+          "sourcePages": [
+            14
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "18.2.1",
+          "order": 1,
+          "name": "Currency",
+          "sourcePages": [
+            14
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.2",
+          "order": 2,
+          "name": "Current currency exchange rates",
+          "sourcePages": [
+            14
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.3",
+          "order": 3,
+          "name": "Currency conversion",
+          "sourcePages": [
+            14
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.4",
+          "order": 4,
+          "name": "Profit and loss",
+          "sourcePages": [
+            14
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.5",
+          "order": 5,
+          "name": "Percentage profit and loss",
+          "sourcePages": [
+            14
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.6",
+          "order": 6,
+          "name": "Discounts and commissions",
+          "sourcePages": [
+            14
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.7",
+          "order": 7,
+          "name": "Percentage discounts and commissions",
+          "sourcePages": [
+            14
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "19.0.0",
+      "order": 19,
+      "name": "CO-ORDINATES AND GRAPHS",
+      "sourcePages": [
+        14
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "draw and label the complete cartesian plane 12",
+          "sourcePages": [
+            14,
+            15
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "locate and plot points on the cartesian plane",
+          "sourcePages": [
+            15
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "choose and use appropriate scale for a given data",
+          "sourcePages": [
+            15
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "make a table of values for a given linear relation",
+          "sourcePages": [
+            15
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "use values to draw a linear graph",
+          "sourcePages": [
+            15
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "solve simultaneous linear equations graphically",
+          "sourcePages": [
+            15
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "draw, read and interprete graphs.",
+          "sourcePages": [
+            15
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "19.2.1",
+          "order": 1,
+          "name": "Cartesian plane",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.2",
+          "order": 2,
+          "name": "Cartesian co-ordinates",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.3",
+          "order": 3,
+          "name": "Points on the cartesian plane",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.4",
+          "order": 4,
+          "name": "Choice of appropriate scale",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.5",
+          "order": 5,
+          "name": "Table of values for a given linear relation",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.6",
+          "order": 6,
+          "name": "Linear graphs",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.7",
+          "order": 7,
+          "name": "Graphical solutions of simultaneous linear equations",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.8",
+          "order": 8,
+          "name": "Interpretation of graphs",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "20.0.0",
+      "order": 20,
+      "name": "ANGLES AND PLANE FIGURES",
+      "sourcePages": [
+        15
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "name and identify types of angles",
+          "sourcePages": [
+            15
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "solve problems involving angles on a straight line",
+          "sourcePages": [
+            15
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "solve problems involving angles at a point",
+          "sourcePages": [
+            15
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "solve problems involving angles on a transversal",
+          "sourcePages": [
+            15
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "solve problems involving corresponding angles",
+          "sourcePages": [
+            15
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "state angle properties of polygons",
+          "sourcePages": [
+            15
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "solve problems involving angle properties of polygons",
+          "sourcePages": [
+            15
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "apply the knowledge of angle properties to real life situations.",
+          "sourcePages": [
+            15
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "20.2.1",
+          "order": 1,
+          "name": "types of angles",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "20.2.2",
+          "order": 2,
+          "name": "angles on a straight line",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "20.2.3",
+          "order": 3,
+          "name": "angles at a point",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "20.2.4",
+          "order": 4,
+          "name": "angles on a transversal",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "20.2.5",
+          "order": 5,
+          "name": "corresponding angles",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "20.2.6",
+          "order": 6,
+          "name": "angle properties of polygons",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "20.2.7",
+          "order": 7,
+          "name": "application to real life situations",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "21.0.0",
+      "order": 21,
+      "name": "GEOMETRICAL CONSTRUCTIONS",
+      "sourcePages": [
+        15
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "use a ruler and compasses only to construct",
+          "sourcePages": [
+            15
+          ],
+          "order": 1
+        },
+        {
+          "label": "i)",
+          "text": "a perpendicular bisector of a line ii) an angle bisector iii) a perpendicular to a line from a given point iv) a perpendicular to a line through a given point on the line",
+          "sourcePages": [
+            15
+          ],
+          "order": 2
+        },
+        {
+          "label": "v)",
+          "text": "angles whose values are multiples of 7½° vi) parallel lines",
+          "sourcePages": [
+            15
+          ],
+          "order": 3
+        },
+        {
+          "label": "b)",
+          "text": "use a ruler and a set square to;",
+          "sourcePages": [
+            15
+          ],
+          "order": 4
+        },
+        {
+          "label": "i)",
+          "text": "construct parallel lines ii) divide a line proportionally iii) construct perpendicular lines",
+          "sourcePages": [
+            15
+          ],
+          "order": 5
+        },
+        {
+          "label": "c)",
+          "text": "construct a regular polygon using",
+          "sourcePages": [
+            15
+          ],
+          "order": 6
+        },
+        {
+          "label": "i)",
+          "text": "ruler and compasses only ii) ruler, compasses and protractor",
+          "sourcePages": [
+            15
+          ],
+          "order": 7
+        },
+        {
+          "label": "d)",
+          "text": "construct irregular polygons using a ruler, compasses and protractor",
+          "sourcePages": [
+            15
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "21.2.1",
+          "order": 1,
+          "name": "Construction of lines and angles using a ruler and compasses only",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "21.2.2",
+          "order": 2,
+          "name": "Construction of perpendicular and parallel lines using a ruler and a set square only",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "21.2.3",
+          "order": 3,
+          "name": "Proportional division of a line",
+          "sourcePages": [
+            15
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "21.2.4",
+          "order": 4,
+          "name": "Construction of regular polygons (upto a hexagon) 13",
+          "sourcePages": [
+            15,
+            16
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "21.2.5",
+          "order": 5,
+          "name": "Construction of irregular polygons (upto a hexagon)",
+          "sourcePages": [
+            16
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "22.0.0",
+      "order": 22,
+      "name": "SCALE DRAWING",
+      "sourcePages": [
+        16
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "interpret a given scale;",
+          "sourcePages": [
+            16
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "choose and use an appropriate scale",
+          "sourcePages": [
+            16
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "draw suitable sketches from given information",
+          "sourcePages": [
+            16
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state the bearing of one point from another",
+          "sourcePages": [
+            16
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "locate a point using bearing and distance",
+          "sourcePages": [
+            16
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "determine angles of elevation and depression",
+          "sourcePages": [
+            16
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "solve problems involving bearings, elevations and scale drawing",
+          "sourcePages": [
+            16
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "apply scale drawing in simple surveying.",
+          "sourcePages": [
+            16
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "22.2.1",
+          "order": 1,
+          "name": "Types of scales",
+          "sourcePages": [
+            16
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.2",
+          "order": 2,
+          "name": "Choice of scales",
+          "sourcePages": [
+            16
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.3",
+          "order": 3,
+          "name": "Sketches from given information and scale drawing.",
+          "sourcePages": [
+            16
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.4",
+          "order": 4,
+          "name": "Bearings",
+          "sourcePages": [
+            16
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.5",
+          "order": 5,
+          "name": "Bearings, distance and locating points",
+          "sourcePages": [
+            16
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.6",
+          "order": 6,
+          "name": "Angles of elevation and depression",
+          "sourcePages": [
+            16
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.7",
+          "order": 7,
+          "name": "Solving problems involving bearings, scale drawing, angles of elevation and depression",
+          "sourcePages": [
+            16
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.8",
+          "order": 8,
+          "name": "Simple surveying techniques",
+          "sourcePages": [
+            16
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "23.0.0",
+      "order": 23,
+      "name": "COMMON SOLIDS",
+      "sourcePages": [
+        16
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "identify and sketch common solids",
+          "sourcePages": [
+            16
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "sketch and accurately draw nets of solids",
+          "sourcePages": [
+            16
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "make models of solids from nets",
+          "sourcePages": [
+            16
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "calculate surface area of solids from nets",
+          "sourcePages": [
+            16
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "find distance between two points on a solid. 14",
+          "sourcePages": [
+            16,
+            17
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "23.2.1",
+          "order": 1,
+          "name": "Common solids, eg cubes, cuboids pyramdis, prisms, cones, spheres, cylinders etc.",
+          "sourcePages": [
+            17
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.2.2",
+          "order": 2,
+          "name": "Sketches of solids",
+          "sourcePages": [
+            17
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.2.3",
+          "order": 3,
+          "name": "Nets of solids",
+          "sourcePages": [
+            17
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.2.4",
+          "order": 4,
+          "name": "Models of solids from nets",
+          "sourcePages": [
+            17
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.2.5",
+          "order": 5,
+          "name": "Surface area of solids from nets (include cubes, cuboids, cones, pyramids, prisms)",
+          "sourcePages": [
+            17
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.2.6",
+          "order": 6,
+          "name": "Distance between two points on the surface of a solid",
+          "sourcePages": [
+            17
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

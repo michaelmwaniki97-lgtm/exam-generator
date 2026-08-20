@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 7",
+  "subject": "Social Studies",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Social Studies Grade 7 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-seven-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1nr9z0Z11ue76h2odpYQJNeUU4jFJWbbB/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      14,
+      16,
+      19,
+      21,
+      23,
+      25,
+      26,
+      28,
+      35,
+      37,
+      39,
+      41,
+      43,
+      45,
+      49,
+      51,
+      53,
+      55,
+      57,
+      64,
+      65,
+      66,
+      68
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Personal development",
+      "sourcePages": [
+        12,
+        14,
+        16,
+        64
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Self- Exploration",
+          "alternativeNames": [
+            "Career Choices",
+            "Self-Exploration"
+          ],
+          "sourcePage": 14
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Entrepreneurial Opportunities in Social Studies",
+          "alternativeNames": [
+            "Social Entrepreneurial Opportunities"
+          ],
+          "sourcePage": 16
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "People and Relationships",
+      "sourcePages": [
+        12,
+        19,
+        21,
+        23,
+        25,
+        26,
+        28,
+        64,
+        65
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Human Origin",
+          "sourcePage": 19
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Early Civilisation",
+          "sourcePage": 21
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Slavery and Servitude",
+          "sourcePage": 23
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Socio-economic organisation of selected communities in Africa up to",
+          "alternativeNames": [
+            "Developments in Medium of trade"
+          ],
+          "sourcePage": 65
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Diversity and interpersonal relationships",
+          "alternativeNames": [
+            "Origin of money"
+          ],
+          "sourcePage": 26
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Human Diversity and Inclusion",
+          "alternativeNames": [
+            "Peaceful Coexistence"
+          ],
+          "sourcePage": 65
+        },
+        {
+          "order": 7,
+          "code": "2.7",
+          "name": "Peace and Non– Violent Conflict Resolution",
+          "sourcePage": 65
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Community Service-Learning",
+      "sourcePages": [
+        12
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Community Service-Learning Project",
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Natural and Historic Built Environments",
+      "sourcePages": [
+        12,
+        35,
+        37,
+        39,
+        41,
+        43,
+        45,
+        66
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Historical information",
+          "sourcePage": 35
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Historical Development of Agriculture",
+          "sourcePage": 37
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "Maps and map work",
+          "sourcePage": 39
+        },
+        {
+          "order": 4,
+          "code": "4.4",
+          "name": "Earth and the Solar System",
+          "sourcePage": 41
+        },
+        {
+          "order": 5,
+          "code": "4.5",
+          "name": "Weather",
+          "sourcePage": 43
+        },
+        {
+          "order": 6,
+          "code": "4.6",
+          "name": "Fieldwork",
+          "sourcePage": 45
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Political Development and Governance",
+      "sourcePages": [
+        49,
+        51,
+        53,
+        55,
+        57,
+        68
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Political Development in Africa up to 1900 (The Ogiek, the Zulu and the Asante)",
+          "alternativeNames": [
+            "Political Development in Africa"
+          ],
+          "sourcePage": 68
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "The Constitution of Kenya",
+          "sourcePage": 51
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Human Rights",
+          "sourcePage": 53
+        },
+        {
+          "order": 4,
+          "code": "5.4",
+          "name": "African Diasporas",
+          "sourcePage": 55
+        },
+        {
+          "order": 5,
+          "code": "5.5",
+          "name": "Citizenship",
+          "sourcePage": 57
+        }
+      ]
+    }
+  ]
+}

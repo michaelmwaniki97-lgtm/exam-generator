@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 2",
+  "subject": "Islamic Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 1-3 IRE - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/lower-primary/",
+    "officialDocument": "https://drive.google.com/file/d/1toUw1LJYL23CAdEl-tUJwjqn7wu89JIb/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      43,
+      44,
+      46,
+      47,
+      49,
+      51,
+      53,
+      55,
+      58,
+      59,
+      61,
+      62,
+      63,
+      64,
+      66,
+      68
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Quran",
+      "sourcePages": [
+        43,
+        44,
+        46,
+        47
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Arabic Alphabet",
+          "sourcePage": 44
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Selected Chapters (Surah) 10",
+          "alternativeNames": [
+            "Selected Surah"
+          ],
+          "sourcePage": 43
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Selected Surah",
+          "sourcePage": 47
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Hadith",
+      "sourcePages": [
+        43,
+        49,
+        51,
+        53
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Hadith on swalah",
+          "sourcePage": 49
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Hadith on Iman",
+          "sourcePage": 51
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Hadith on love",
+          "sourcePage": 53
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Pillars of Iman",
+      "sourcePages": [
+        43,
+        55
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Belief in Allah’s Books",
+          "alternativeNames": [
+            "Belief in His Books"
+          ],
+          "sourcePage": 55
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Belief in His Prophets",
+          "sourcePage": 43
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Devotional Acts",
+      "sourcePages": [
+        43,
+        58,
+        59
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Swalah ( five daily prayers)",
+          "alternativeNames": [
+            "Swalah"
+          ],
+          "sourcePage": 43
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Swalah ( Rakaat)",
+          "alternativeNames": [
+            "Swalah"
+          ],
+          "sourcePage": 43
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Akhlaq (Moral Teachings)",
+      "sourcePages": [
+        43,
+        61,
+        62,
+        63,
+        64
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Islamic phrases( dua before sleeping and after waking up)",
+          "alternativeNames": [
+            "Islamic phrases"
+          ],
+          "sourcePage": 43
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Relationship",
+          "sourcePage": 62
+        },
+        {
+          "order": 3,
+          "code": "5.2.1",
+          "name": "Love and care for people with special needs",
+          "alternativeNames": [
+            "Love and care for neighbours"
+          ],
+          "sourcePage": 43
+        },
+        {
+          "order": 4,
+          "code": "5.2.2",
+          "name": "Love and Care for People with Special Needs",
+          "sourcePage": 63
+        },
+        {
+          "order": 5,
+          "code": "5.3",
+          "name": "Environment Caring for the School Environment",
+          "alternativeNames": [
+            "Environment"
+          ],
+          "sourcePage": 64
+        },
+        {
+          "order": 6,
+          "code": "5.3.1",
+          "name": "Caring for the school environment",
+          "sourcePage": 43
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "SIIRAH (The life of the prophet (S.A.W.))",
+      "sourcePages": [
+        43,
+        66
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Siirah( Guardians of the Prophet (S.A.W.)",
+          "alternativeNames": [
+            "Guardians of the Prophet (S.A.W.)"
+          ],
+          "sourcePage": 43
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "code": "7.0",
+      "name": "Islamic Festivals",
+      "sourcePages": [
+        43,
+        68
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "7.1",
+          "name": "Islamic Festivals (Jum’ah) 06 Total Number of Lessons",
+          "alternativeNames": [
+            "Jum’ah"
+          ],
+          "sourcePage": 43
+        }
+      ]
+    }
+  ]
+}

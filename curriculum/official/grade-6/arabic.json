@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 6",
+  "subject": "Arabic",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "FINAL ARABIC GRADE 6 CURRICULUM DESIGN - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-six-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1o9VR546EOuq70ULiLGmN1FJzYX6ylbOP/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      15,
+      17,
+      19,
+      21,
+      23,
+      25,
+      27,
+      29,
+      33,
+      35,
+      37,
+      39,
+      41,
+      43,
+      45,
+      47,
+      49,
+      53,
+      55,
+      57,
+      59,
+      61,
+      63,
+      65,
+      67,
+      69
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Listening and Speaking",
+      "sourcePages": [
+        13,
+        15,
+        17,
+        19,
+        21,
+        23,
+        25,
+        27,
+        29
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Phonological Awareness: Pronunciation",
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Listening for Gist: Attentive Listening",
+          "sourcePage": 15
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Attentive Listening: Simple Instructions",
+          "sourcePage": 17
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Phonological Awareness: Fluency",
+          "sourcePage": 19
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Listening for Gist: Attentive Listening",
+          "sourcePage": 21
+        },
+        {
+          "order": 6,
+          "code": "1.6",
+          "name": "Phonological Awareness: Pronunciation",
+          "sourcePage": 23
+        },
+        {
+          "order": 7,
+          "code": "1.7",
+          "name": "Conversational Skills",
+          "sourcePage": 25
+        },
+        {
+          "order": 8,
+          "code": "1.8",
+          "name": "Imitative Speaking: Pronunciation",
+          "sourcePage": 27
+        },
+        {
+          "order": 9,
+          "code": "1.9",
+          "name": "Language Use",
+          "sourcePage": 29
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Reading",
+      "sourcePages": [
+        33,
+        35,
+        37,
+        39,
+        41,
+        43,
+        45,
+        47,
+        49
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Guided Reading: Fluency",
+          "sourcePage": 33
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Reading for Comprehension",
+          "sourcePage": 35
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Reading Aloud: Fluency",
+          "sourcePage": 37
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Reading for Information",
+          "sourcePage": 39
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Guided Reading: Fluency",
+          "sourcePage": 41
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Reading Aloud: Fluency",
+          "sourcePage": 43
+        },
+        {
+          "order": 7,
+          "code": "2.7",
+          "name": "Extensive Reading",
+          "sourcePage": 45
+        },
+        {
+          "order": 8,
+          "code": "2.8",
+          "name": "Reading for Comprehension",
+          "sourcePage": 47
+        },
+        {
+          "order": 9,
+          "code": "2.9",
+          "name": "Extensive Reading",
+          "sourcePage": 49
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Writing",
+      "sourcePages": [
+        17,
+        53,
+        55,
+        57,
+        59,
+        61,
+        63,
+        65,
+        67,
+        69
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Guided Writing: Handwriting",
+          "alternativeNames": [
+            "Listening and Speaking"
+          ],
+          "sourcePage": 53
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Guided Writing: Writing Styles",
+          "sourcePage": 55
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Guided Writing: Spelling",
+          "sourcePage": 57
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Guided Writing: Sentences",
+          "sourcePage": 59
+        },
+        {
+          "order": 5,
+          "code": "3.5",
+          "name": "Guided Writing: Sequencing Ideas",
+          "sourcePage": 61
+        },
+        {
+          "order": 6,
+          "code": "3.6",
+          "name": "Guided Writing: Sentences",
+          "sourcePage": 63
+        },
+        {
+          "order": 7,
+          "code": "3.7",
+          "name": "Guided Writing: Sentences",
+          "sourcePage": 65
+        },
+        {
+          "order": 8,
+          "code": "3.8",
+          "name": "Guided Writing: Visuals",
+          "sourcePage": 67
+        },
+        {
+          "order": 9,
+          "code": "3.9",
+          "name": "Guided Writing: Paragraph Writing",
+          "sourcePage": 69
+        }
+      ]
+    }
+  ]
+}

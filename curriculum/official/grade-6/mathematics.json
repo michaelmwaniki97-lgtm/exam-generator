@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 6",
+  "subject": "Mathematics",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 6 Mathematics - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-six-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1ki1N1YnslIpZomG-0IoYogkzek7CKx0j/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      15,
+      17,
+      19,
+      21,
+      23,
+      27,
+      29,
+      31,
+      33,
+      35,
+      37,
+      42,
+      43,
+      45,
+      49
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Numbers",
+      "sourcePages": [
+        13,
+        15,
+        17,
+        19,
+        21,
+        23,
+        27
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Why do we measure distances in day-to-day life?",
+          "alternativeNames": [
+            "How do we add or subtract fractions?",
+            "Whole Numbers"
+          ],
+          "sourcePage": 27
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Multiplication",
+          "sourcePage": 15
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Division",
+          "sourcePage": 17
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Fractions",
+          "sourcePage": 19
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Decimals",
+          "sourcePage": 21
+        },
+        {
+          "order": 6,
+          "code": "1.6",
+          "name": "Inequalities",
+          "sourcePage": 23
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Measurement",
+      "sourcePages": [
+        19,
+        27,
+        29,
+        31,
+        33,
+        35,
+        37
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Length",
+          "sourcePage": 27
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "What do we use to measure length in real life?",
+          "alternativeNames": [
+            "Area",
+            "Where is percentage used in day-to- day life?"
+          ],
+          "sourcePage": 27
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Capacity",
+          "sourcePage": 31
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Mass",
+          "sourcePage": 33
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Time",
+          "sourcePage": 35
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Money",
+          "sourcePage": 37
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Geometry",
+      "sourcePages": [
+        42,
+        43,
+        45
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Lines",
+          "sourcePage": 42
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Angles",
+          "sourcePage": 43
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "3-D Objects",
+          "sourcePage": 45
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Data Handling",
+      "sourcePages": [
+        49
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Bar Graphs",
+          "sourcePage": 49
+        }
+      ]
+    }
+  ]
+}

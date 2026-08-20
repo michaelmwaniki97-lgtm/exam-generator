@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local development artifacts
+.claude/
+tmp/
+_wait2.cjs
+
+# Generated/local files
+__pycache__/
+*.py[cod]
+supabase/.temp/

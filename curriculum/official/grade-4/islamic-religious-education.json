@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 4",
+  "subject": "Islamic Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "IRE GRADE 4 CURRICULUM DESIGN - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-four-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1ifDV-yVjmntZvnU-7WPLxLLDuborohUh/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      10,
+      11,
+      12,
+      14,
+      16,
+      17,
+      19,
+      23,
+      25,
+      28,
+      30,
+      32,
+      34,
+      36,
+      38,
+      40,
+      42,
+      43,
+      45,
+      47,
+      49,
+      51,
+      53,
+      55
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Qur’an",
+      "sourcePages": [
+        10,
+        12
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Selected Surahs 2 Al-Fatiha 3 An-Naas 4 Al-Falaq 5 Al-Ikhlas 6 Al-Masad 7 An-Nasr 8 Al-Kafirun",
+          "alternativeNames": [
+            "Selected Surahs"
+          ],
+          "sourcePage": 10
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Hadith",
+      "sourcePages": [
+        10,
+        14,
+        16,
+        17,
+        19
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Hadith of Prophet Muhammad (S.A.W.) as a model of good character",
+          "alternativeNames": [
+            "Hadith on Prophet Muhammad as model of character"
+          ],
+          "sourcePage": 14
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Hadith on Etiquette of Eating",
+          "sourcePage": 16
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Hadith on brushing teeth",
+          "sourcePage": 17
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Hadith on physical fitness",
+          "alternativeNames": [
+            "Hadith on Fitness"
+          ],
+          "sourcePage": 10
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Pillars of Iman",
+      "sourcePages": [
+        10,
+        23,
+        25
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Attributes of Allah",
+          "sourcePage": 10
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Belief in Angels",
+          "sourcePage": 23
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Prophets mentioned in the Qur’an Virtues of the Prophets (patience, honesty, truthfulness, generosity and obedience)",
+          "alternativeNames": [
+            "Prophets in the Quran"
+          ],
+          "sourcePage": 25
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Devotional Acts",
+      "sourcePages": [
+        10,
+        28,
+        30,
+        32,
+        34
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Twahara (Ritual Purity) Types of Najasaat",
+          "alternativeNames": [
+            "2Wudhu (Ablution)",
+            "Twahara(ritual purity)"
+          ],
+          "sourcePage": 28
+        },
+        {
+          "order": 2,
+          "code": "4.1.3",
+          "name": "Conditions for Swalah",
+          "sourcePage": 32
+        },
+        {
+          "order": 3,
+          "code": "4.2",
+          "name": "Wudhu (Ablution)",
+          "sourcePage": 10
+        },
+        {
+          "order": 4,
+          "code": "4.3",
+          "name": "Condition for swalah",
+          "alternativeNames": [
+            "Pillars of Swalah"
+          ],
+          "sourcePage": 10
+        },
+        {
+          "order": 5,
+          "code": "4.4",
+          "name": "Pillars for swalah",
+          "sourcePage": 10
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Akhlaq (Moral Teachings)",
+      "sourcePages": [
+        10,
+        11,
+        36,
+        38,
+        40,
+        42,
+        43
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "1Virtues: Kindness to Allah’s Creatures",
+          "sourcePage": 36
+        },
+        {
+          "order": 2,
+          "code": "5.1.1",
+          "name": "Virtues in Islam ( kindness to Allah)s creatures",
+          "sourcePage": 10
+        },
+        {
+          "order": 3,
+          "code": "5.1.2",
+          "name": "Islamic Manners of Dressing",
+          "sourcePage": 38
+        },
+        {
+          "order": 4,
+          "code": "5.1.3",
+          "name": "Positive Usage of Media",
+          "alternativeNames": [
+            "Positive use of media"
+          ],
+          "sourcePage": 40
+        },
+        {
+          "order": 5,
+          "code": "5.2.1",
+          "name": "Prohibitions in Islam: Evils of Begging",
+          "alternativeNames": [
+            "Prohibition in Islam (evils of begging)"
+          ],
+          "sourcePage": 42
+        },
+        {
+          "order": 6,
+          "code": "5.3",
+          "name": "1Dua (Supplication) Dua for Leaving and Entering the House",
+          "sourcePage": 43
+        },
+        {
+          "order": 7,
+          "code": "5.3.1",
+          "name": "Dua (supplication)",
+          "sourcePage": 11
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Muamalaat (Social Relations)",
+      "sourcePages": [
+        11,
+        45,
+        47,
+        49
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Obligations of Parents to Children",
+          "alternativeNames": [
+            "Obligation of parents to children"
+          ],
+          "sourcePage": 45
+        },
+        {
+          "order": 2,
+          "code": "6.2",
+          "name": "Obligations of Children to Parents",
+          "alternativeNames": [
+            "Obligation of children to parents"
+          ],
+          "sourcePage": 47
+        },
+        {
+          "order": 3,
+          "code": "6.3",
+          "name": "Children’s obligation to other family members 03 7 Islamic Heritage and Civilisation",
+          "alternativeNames": [
+            "Children’s Obligations to Other Family Members"
+          ],
+          "sourcePage": 11
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "code": "7.0",
+      "name": "History of Islam",
+      "sourcePages": [
+        11,
+        51,
+        53,
+        55
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "7.1",
+          "name": "Call to prophet hood",
+          "alternativeNames": [
+            "Call to Prophethood"
+          ],
+          "sourcePage": 11
+        },
+        {
+          "order": 2,
+          "code": "7.2",
+          "name": "Earliest Converts in Islam",
+          "alternativeNames": [
+            "Earliest coverts to Islam"
+          ],
+          "sourcePage": 53
+        },
+        {
+          "order": 3,
+          "code": "7.3",
+          "name": "Prophets (S.A.W) journey Taif 03 TOTAL",
+          "alternativeNames": [
+            "Prophet (S.A.W.)’s Journey to Taif"
+          ],
+          "sourcePage": 11
+        }
+      ]
+    }
+  ]
+}

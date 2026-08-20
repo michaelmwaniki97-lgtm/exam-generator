@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 7",
+  "subject": "Islamic Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Islamic Religious Education Grade 7 - July 2024.pdf",
+    "version": "July 2024",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-seven-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1Po_NF_oEsMMYXukVcM82nVEqXS7yY2Zu/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      15,
+      18,
+      20,
+      23,
+      25,
+      28,
+      30,
+      32,
+      34,
+      36,
+      38,
+      41,
+      43,
+      45,
+      50
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Qur’an",
+      "sourcePages": [
+        12,
+        13,
+        15
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Ulumul Qur’an",
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Selected Chapters (Surah) 12 2 Hadith",
+          "alternativeNames": [
+            "Selected Chapters (Surah)"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Hadith",
+      "sourcePages": [
+        12,
+        18,
+        20
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Ulum al-Hadith",
+          "alternativeNames": [
+            "Ulumul Hadith"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Selected Hadith 08 3 Pillars of Iman",
+          "alternativeNames": [
+            "Selected Hadith"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Pillars of Iman",
+      "sourcePages": [
+        12,
+        23,
+        25
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Significance of Tawheed",
+          "alternativeNames": [
+            "Significance of Tawhid"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Shirk 08 4 Devotional Acts",
+          "alternativeNames": [
+            "Shirk"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Devotional Acts",
+      "sourcePages": [
+        12,
+        28,
+        30,
+        32
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Swalah",
+          "sourcePage": 28
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Zakat",
+          "sourcePage": 30
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "Saum 05 5 Akhlaq (Moral Teachings)",
+          "alternativeNames": [
+            "Saum"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Akhlaq (Moral Teachings)",
+      "sourcePages": [
+        12,
+        34,
+        36,
+        38
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Dimensions of Morality in Islam",
+          "sourcePage": 34
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Virtues in Islam",
+          "sourcePage": 36
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Prohibitions in Islam 08 6 Muamalat (Social Relations)",
+          "alternativeNames": [
+            "Prohibitions in Islam"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Muamalat (Social Relationship)",
+      "sourcePages": [
+        12,
+        41,
+        43,
+        45
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Marriage",
+          "sourcePage": 41
+        },
+        {
+          "order": 2,
+          "code": "6.2",
+          "name": "Trade and Finance in Islam",
+          "sourcePage": 43
+        },
+        {
+          "order": 3,
+          "code": "6.3",
+          "name": "Contemporary issues 08 7 Islamic Heritage and Civilisation",
+          "alternativeNames": [
+            "Contemporary issues"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "code": "7.0",
+      "name": "Islamic Heritage and Civilisation",
+      "sourcePages": [
+        50
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "7.1",
+          "name": "Reforms introduced by Prophet Muhammad (S.A.W.)",
+          "sourcePage": 50
+        }
+      ]
+    }
+  ]
+}

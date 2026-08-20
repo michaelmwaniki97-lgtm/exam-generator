@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 8",
+  "subject": "Hindu Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "HRE Grade 8 - July 2024 - Fin.pdf",
+    "version": "July 2024",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-eight-designs/",
+    "officialDocument": "https://drive.google.com/file/d/17tep-A_DwMx7ZHQ_JTtCm6wH6HLISdIW/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      23
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Manifestation of Paramatma (Supreme Being)",
+      "sourcePages": [
+        12,
+        13
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Enlightened beings",
+          "sourcePage": 13
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Scriptures",
+      "sourcePages": [
+        12
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Scriptural Texts",
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Principles of Dharma",
+      "sourcePages": [
+        12,
+        23
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Fundamental Principles",
+          "sourcePage": 12
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Buddhist Principles of Dharma Noble Eightfold Path",
+          "alternativeNames": [
+            "Buddhist Principles"
+          ],
+          "sourcePage": 23
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Religious Practices",
+      "sourcePages": [
+        12
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Protocols in Sanatan Dharma",
+          "sourcePage": 12
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Protocols in Jain Dharma",
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Yoga",
+      "sourcePages": [
+        12
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Path of Action (Karma Yoga)",
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Sanskaars",
+      "sourcePages": [
+        12
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Religious Ceremonies",
+          "sourcePage": 12
+        },
+        {
+          "order": 2,
+          "code": "6.2",
+          "name": "Buddhist Sanskaars",
+          "sourcePage": 12
+        }
+      ]
+    }
+  ]
+}

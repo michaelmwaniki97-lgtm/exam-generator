@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 4",
+  "subject": "Mathematics",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "59.0.0",
+      "order": 1,
+      "name": "MATRICES AND TRANSFORMATIONS",
+      "sourcePages": [
+        32
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "relate image and object under a given transformation on the cartesian plane",
+          "sourcePages": [
+            32
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "determine the matrix of a transformation",
+          "sourcePages": [
+            32
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "perform successive transformations",
+          "sourcePages": [
+            32
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "determine and identify a single matrix for successive transformation",
+          "sourcePages": [
+            32
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "relate identity matrix and transformation",
+          "sourcePages": [
+            32
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "determine the inverse of a transformation",
+          "sourcePages": [
+            32
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "establish and use the relationship between area scale factor and determinant of a matrix",
+          "sourcePages": [
+            32
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "determine shear and stretch transformations",
+          "sourcePages": [
+            32
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "define and distinguish isometric and non-isometric transformation",
+          "sourcePages": [
+            32
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "apply transformation to real life situations.",
+          "sourcePages": [
+            32
+          ],
+          "order": 10
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "59.2.1",
+          "order": 1,
+          "name": "transformation on the Cartesian plane",
+          "sourcePages": [
+            32
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "59.2.2",
+          "order": 2,
+          "name": "identification of transformation matrix",
+          "sourcePages": [
+            32
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "59.2.3",
+          "order": 3,
+          "name": "successive transformations 59.2 4 single matrix of transformation for successive transformations.",
+          "sourcePages": [
+            32
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "59.2.5",
+          "order": 4,
+          "name": "identity matrix and transformation",
+          "sourcePages": [
+            32
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "59.2.6",
+          "order": 5,
+          "name": "inverse of a transformation",
+          "sourcePages": [
+            32
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "59.2.7",
+          "order": 6,
+          "name": "area scale factor and determinant of a matrix",
+          "sourcePages": [
+            32
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "59.2.8",
+          "order": 7,
+          "name": "shear and stretch (include their matrices)",
+          "sourcePages": [
+            32
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "59.2.9",
+          "order": 8,
+          "name": "isometric and non-isometric transformation",
+          "sourcePages": [
+            32
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "59.2.10",
+          "order": 9,
+          "name": "application of transformation to real life situations",
+          "sourcePages": [
+            32
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "61.0.0",
+      "order": 2,
+      "name": "LOCI",
+      "sourcePages": [
+        33
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define Locus",
+          "sourcePages": [
+            33
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe common types of Loci",
+          "sourcePages": [
+            33
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "construct (i) loci involving inequalities (ii) loci involving chords (iii) loci involving points under given conditions (iv) intersecting loci",
+          "sourcePages": [
+            33
+          ],
+          "order": 3
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "61.2.1",
+          "order": 1,
+          "name": "common types of Loci",
+          "sourcePages": [
+            33
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "61.2.2",
+          "order": 2,
+          "name": "Perpendicular bisector loci",
+          "sourcePages": [
+            33
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "61.2.3",
+          "order": 3,
+          "name": "Loci of a point at a given distance from a fixed point and a fixed line",
+          "sourcePages": [
+            33
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "61.2.4",
+          "order": 4,
+          "name": "Angle bisector loci",
+          "sourcePages": [
+            33
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "61.2.5",
+          "order": 5,
+          "name": "Constant angle loci",
+          "sourcePages": [
+            33
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "61.2.6",
+          "order": 6,
+          "name": "other loci under given condition including intersecting loci",
+          "sourcePages": [
+            33
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "61.2.7",
+          "order": 7,
+          "name": "loci of inequalities",
+          "sourcePages": [
+            33
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "61.2.8",
+          "order": 8,
+          "name": "loci involving chords",
+          "sourcePages": [
+            33
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "62.0.0",
+      "order": 3,
+      "name": "TRIGONOMETRY (3)",
+      "sourcePages": [
+        33
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "recall and define trigonometric ratios",
+          "sourcePages": [
+            33
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "derive trigonometric identity sin2x + cos2x = 1",
+          "sourcePages": [
+            33
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "draw graphs of trigonometric ratios of the form y= sin x, y = cos x, y= tan x y = a sin x, y= a cos x, y = a tan x y= a sin bx, y= a cos b x, y=a tan bx y=a sin(bx ± θ ), y= a cos(bx ± θ ) y=a tan(bx ± θ )",
+          "sourcePages": [
+            33
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "solve simple trigonometric equations analytically and graphically",
+          "sourcePages": [
+            33
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "deduce from the graph amplitude, period, wavelength and phase angles.",
+          "sourcePages": [
+            33
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "62.2.1",
+          "order": 1,
+          "name": "Trigonometric ratios",
+          "sourcePages": [
+            33
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "62.2.2",
+          "order": 2,
+          "name": "deriving the relation sin2x + cos2x =1",
+          "sourcePages": [
+            33
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "62.2.3",
+          "order": 3,
+          "name": "graphs of trigonometric functions y =sinx, y=Cosx, y=tanx y=a sinx, y=a cosx, y= a tanx y= a sin bx, y= a cos bx, y=a tan bx y= a sin (bx ± θ ), y = a cos (bx ± θ ) y = a tan ( bx ± θ )",
+          "sourcePages": [
+            33
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "62.2.4",
+          "order": 4,
+          "name": "simple trigonometric equations amplitude, period, wavelength and phase angle of trigonometric functions.",
+          "sourcePages": [
+            33
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "63.0.0",
+      "order": 4,
+      "name": "THREE DIMENSIONAL GEOMETRY",
+      "sourcePages": [
+        33
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state the geometric properties of common solids",
+          "sourcePages": [
+            33
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "identify projection of a line onto a plane",
+          "sourcePages": [
+            33
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "identify skew lines 31",
+          "sourcePages": [
+            33,
+            34
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "calculate the length between two points in three dimensional geometry",
+          "sourcePages": [
+            34
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "identify and calculate the angle between (i) two lines (ii) a line and a plane (iii) two planes",
+          "sourcePages": [
+            34
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "63.2.1",
+          "order": 1,
+          "name": "Geometrical properties of common solids",
+          "sourcePages": [
+            34
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "63.2.2",
+          "order": 2,
+          "name": "Skew lines and projection of a line onto a plane",
+          "sourcePages": [
+            34
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "63.2.3",
+          "order": 3,
+          "name": "length of a line in 3- dimensional geometry",
+          "sourcePages": [
+            34
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "63.2.4",
+          "order": 4,
+          "name": "the angle between (i) a line and a line (ii) a line and a plane (iii) a plane and a plane",
+          "sourcePages": [
+            34
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "63.2.5",
+          "order": 5,
+          "name": "angles between skewlines",
+          "sourcePages": [
+            34
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "64.0.0",
+      "order": 5,
+      "name": "LONGITUDES AND LATITUDES",
+      "sourcePages": [
+        34
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define the great and small circles in relation to a sphere (including the earth)",
+          "sourcePages": [
+            34
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "establish the relationship between the radii of small and great circles",
+          "sourcePages": [
+            34
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "locate a place on the earths surface in terms of latitude and longitude",
+          "sourcePages": [
+            34
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "calculate the distance between two points along the great circles and small circles (longitude and latitude) in nautical miles (nm) and kilometers (km)",
+          "sourcePages": [
+            34
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "calculate time in relation to longitudes",
+          "sourcePages": [
+            34
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "calculate speed in knots and kilometres per hour.",
+          "sourcePages": [
+            34
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "64.2.1",
+          "order": 1,
+          "name": "Latitude and longitude(great and small circles)",
+          "sourcePages": [
+            34
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "64.2.2",
+          "order": 2,
+          "name": "The Equator and Greenwich Meridian",
+          "sourcePages": [
+            34
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "64.2.3",
+          "order": 3,
+          "name": "Radii of small and great circles",
+          "sourcePages": [
+            34
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "64.2.4",
+          "order": 4,
+          "name": "Position of a place on the surface of the earth",
+          "sourcePages": [
+            34
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "64.2.5",
+          "order": 5,
+          "name": "Distance between two points along the small and great circles in nautical miles and kilometres.",
+          "sourcePages": [
+            34
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "64.2.6",
+          "order": 6,
+          "name": "Distance in nautical miles and kilometers along a circle of latitude",
+          "sourcePages": [
+            34
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "64.2.7",
+          "order": 7,
+          "name": "Time and longitude",
+          "sourcePages": [
+            34
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "64.2.8",
+          "order": 8,
+          "name": "Speed in knots and Kilometres per hour",
+          "sourcePages": [
+            34
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "65.0.0",
+      "order": 6,
+      "name": "LINEAR PROGRAMMING",
+      "sourcePages": [
+        34
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "form linear inequalities based on real life situations",
+          "sourcePages": [
+            34
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "represent the linear inequalities on a graph",
+          "sourcePages": [
+            34
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "solve and interpret the optimum solution of the linear inequalities",
+          "sourcePages": [
+            34
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "apply linear programming to real life situations. 32",
+          "sourcePages": [
+            34,
+            35
+          ],
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "65.2.1",
+          "order": 1,
+          "name": "Formation of linear inequalities",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "65.2.2",
+          "order": 2,
+          "name": "Analytical solutions of linear inequalities",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "65.2.3",
+          "order": 3,
+          "name": "solutions of linear inequalities by graphs",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "65.2.4",
+          "order": 4,
+          "name": "optimisation (include objective function)",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "65.2.5",
+          "order": 5,
+          "name": "application to real life situations",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "66.0.0",
+      "order": 7,
+      "name": "DIFFERENTIATION",
+      "sourcePages": [
+        35
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "find average rates of change and instantaneous rates of change",
+          "sourcePages": [
+            35
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "find the gradient of a curve at a point using tangent",
+          "sourcePages": [
+            35
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "relate the delta notation to rates of change;",
+          "sourcePages": [
+            35
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "find the gradient function of a function of the form y = xn (n is a positive integer)",
+          "sourcePages": [
+            35
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "define (i) derivative of a function (ii) derived function of a polynomial (iii) differentiation",
+          "sourcePages": [
+            35
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "determine the derivative of a polynomial",
+          "sourcePages": [
+            35
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "find equations of tangents and normals to the curves",
+          "sourcePages": [
+            35
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "sketch a curve",
+          "sourcePages": [
+            35
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "apply differentiation in calculating distance, velocity and acceleration",
+          "sourcePages": [
+            35
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "apply differentiation in finding maxima and minima of a junction.",
+          "sourcePages": [
+            35
+          ],
+          "order": 10
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "66.2.1",
+          "order": 1,
+          "name": "Average and instantaneous rates of change",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "66.2.2",
+          "order": 2,
+          "name": "Gradient of a curve at a point",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "66.2.3",
+          "order": 3,
+          "name": "Gradient of y=xn (where n is a positive integer)",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "66.2.4",
+          "order": 4,
+          "name": "Delta notation (Δ)",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "66.2.5",
+          "order": 5,
+          "name": "Derivative of a polynomial",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "66.2.6",
+          "order": 6,
+          "name": "Equations of tangents and normals to the curve",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "66.2.7",
+          "order": 7,
+          "name": "Stationery points",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "66.2.8",
+          "order": 8,
+          "name": "Curve sketching",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "66.2.9",
+          "order": 9,
+          "name": "Application of differentiation in calculation of distance, velocity and acceleration.",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "66.2.10",
+          "order": 10,
+          "name": "Maxima and minima",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "67.0.0",
+      "order": 8,
+      "name": "AREA APPROXIMATION",
+      "sourcePages": [
+        35
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "approximate the area of irregular shapes by counting techniques",
+          "sourcePages": [
+            35
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "derive the trapezium rule",
+          "sourcePages": [
+            35
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "apply trapezium rule to approximate areas of irregular shapes",
+          "sourcePages": [
+            35
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "apply trapezium rule to estimate areas under curves",
+          "sourcePages": [
+            35
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "derive the mid-ordinate rule",
+          "sourcePages": [
+            35
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "apply mid-ordinate rule to approximate area under a curve.",
+          "sourcePages": [
+            35
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "67.2.1",
+          "order": 1,
+          "name": "Area by counting techniques",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "67.2.2",
+          "order": 2,
+          "name": "Trapezium rule",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "67.2.3",
+          "order": 3,
+          "name": "Area using trapezium rule",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "67.2.4",
+          "order": 4,
+          "name": "Mid–ordinate",
+          "sourcePages": [
+            35
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "67.2.5",
+          "order": 5,
+          "name": "Area by the mid-ordinate rule 33",
+          "sourcePages": [
+            35,
+            36
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "68.0.0",
+      "order": 9,
+      "name": "INTEGRATION",
+      "sourcePages": [
+        36
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "carry out the process of differentiation",
+          "sourcePages": [
+            36
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "interpret integration as a reverse process of differentiation",
+          "sourcePages": [
+            36
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "relate integration notation to sum of areas of trapezia under a curve",
+          "sourcePages": [
+            36
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "integrate a polynomial",
+          "sourcePages": [
+            36
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "apply integration in finding the area under a curve",
+          "sourcePages": [
+            36
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "apply integration in kinematics.",
+          "sourcePages": [
+            36
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "68.2.1",
+          "order": 1,
+          "name": "Differentiation",
+          "sourcePages": [
+            36
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "68.2.2",
+          "order": 2,
+          "name": "Reverse differentiation",
+          "sourcePages": [
+            36
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "68.2.3",
+          "order": 3,
+          "name": "Integration notation and sum of areas of trapezia",
+          "sourcePages": [
+            36
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "68.2.4",
+          "order": 4,
+          "name": "Indefinite and definite integrals",
+          "sourcePages": [
+            36
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "68.2.5",
+          "order": 5,
+          "name": "Area under a curve by integration",
+          "sourcePages": [
+            36
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "68.2.6",
+          "order": 6,
+          "name": "Application in kinematics",
+          "sourcePages": [
+            36
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

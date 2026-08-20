@@ -1,0 +1,566 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 1",
+  "subject": "Chemistry",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "1.0.0",
+      "order": 1,
+      "name": "INTRODUCTION TO CHEMISTRY",
+      "sourcePages": [
+        59
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "recall the topics related to chemistry taught at primary school level",
+          "sourcePages": [
+            59
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain what the study of chemistry is about",
+          "sourcePages": [
+            59
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "name and state the uses of common apparatus in the laboratory",
+          "sourcePages": [
+            59
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe a Bunsen burner and its flame",
+          "sourcePages": [
+            59
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state laboratory safety rules.",
+          "sourcePages": [
+            59
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "1.2.1",
+          "order": 1,
+          "name": "Review the following topics",
+          "sourcePages": [
+            59
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.2",
+          "order": 2,
+          "name": "Chemistry and the Society",
+          "sourcePages": [
+            59
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.2.3",
+          "order": 3,
+          "name": "Chemistry laboratory",
+          "sourcePages": [
+            59
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "2.0.0",
+      "order": 2,
+      "name": "SIMPLE CLASSIFICATION OF SUBSTANCES",
+      "sourcePages": [
+        59
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "carry out simple experiments to obtain pure substances from mixtures",
+          "sourcePages": [
+            59
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state the criteria for identifying a pure substance",
+          "sourcePages": [
+            59
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "define and determine the melting point and boiling point of a substance",
+          "sourcePages": [
+            59
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain the three states of matter (solid, liquid, gas) in terms of a simplified form of the kinetic theory",
+          "sourcePages": [
+            59
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the effect of heat on a variety of substances",
+          "sourcePages": [
+            59
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "distinguish between permanent and non-permanent changes",
+          "sourcePages": [
+            59
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "define an element, a compound, an atom and a molecule",
+          "sourcePages": [
+            59
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "name and write the chemical symbols of common elements",
+          "sourcePages": [
+            59
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "recognize the constituents of matter from given examples",
+          "sourcePages": [
+            59
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "distinguish between mixtures and compounds",
+          "sourcePages": [
+            59
+          ],
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "apply separation techniques to extract various substances from natural sources.",
+          "sourcePages": [
+            59
+          ],
+          "order": 11
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "2.2.1",
+          "order": 1,
+          "name": "Separation of Mixtures",
+          "sourcePages": [
+            59
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.2",
+          "order": 2,
+          "name": "Effect of heat on substances",
+          "sourcePages": [
+            60
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.3",
+          "order": 3,
+          "name": "Constituents of matter",
+          "sourcePages": [
+            60
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.2.4",
+          "order": 4,
+          "name": "Applications",
+          "sourcePages": [
+            60
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "3.0.0",
+      "order": 3,
+      "name": "ACIDS, BASES AND INDICATORS",
+      "sourcePages": [
+        60
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "prepare and use plant extracts as acid\u0002base indicators",
+          "sourcePages": [
+            60
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "use indicators to identify acids and bases",
+          "sourcePages": [
+            60
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state simple properties of acids and bases",
+          "sourcePages": [
+            60
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "name uses of acids and bases",
+          "sourcePages": [
+            60
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state effects of acids on substances.",
+          "sourcePages": [
+            60
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "3.2.1",
+          "order": 1,
+          "name": "Acid/Base indicators",
+          "sourcePages": [
+            60
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.2.2",
+          "order": 2,
+          "name": "Simple properties of acids and bases:",
+          "sourcePages": [
+            60
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.2.3",
+          "order": 3,
+          "name": "Applications",
+          "sourcePages": [
+            60
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "4.0.0",
+      "order": 4,
+      "name": "AIR AND COMBUSTION",
+      "sourcePages": [
+        60
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state the percentage composition of air by volume",
+          "sourcePages": [
+            60
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "carry out simple experiments to show that oxygen is the active part of air",
+          "sourcePages": [
+            60
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "determine the percentage of oxygen in air using suitable methods",
+          "sourcePages": [
+            60
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe the combustion of specified elements in air and oxygen and name the products59",
+          "sourcePages": [
+            60,
+            61
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain how liquefied air can be separated into its components by fractional distillation",
+          "sourcePages": [
+            61
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "carry out experiments to investigate the conditions for rusting, and state the composition of rust",
+          "sourcePages": [
+            61
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "state methods of preventing rusting",
+          "sourcePages": [
+            61
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "prepare oxygen, investigate its properties and state its uses",
+          "sourcePages": [
+            61
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "arrange some elements in order of their reactivity with oxygen using experimental data",
+          "sourcePages": [
+            61
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "classify the products of burning elements in oxygen either as acidic or basic",
+          "sourcePages": [
+            61
+          ],
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "state pollution effects due to burning of substances in air",
+          "sourcePages": [
+            61
+          ],
+          "order": 11
+        },
+        {
+          "label": "l)",
+          "text": "state the uses of reactivity series.",
+          "sourcePages": [
+            61
+          ],
+          "order": 12
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "4.2.1",
+          "order": 1,
+          "name": "Composition of air",
+          "sourcePages": [
+            61
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.2",
+          "order": 2,
+          "name": "Oxygen",
+          "sourcePages": [
+            61
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.3",
+          "order": 3,
+          "name": "Reactivity Series",
+          "sourcePages": [
+            61
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.2.4",
+          "order": 4,
+          "name": "Application Extraction of metals (use the concept of reactivity series only)",
+          "sourcePages": [
+            61
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "5.0.0",
+      "order": 5,
+      "name": "WATER AND HYDROGEN",
+      "sourcePages": [
+        61
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state sources of water",
+          "sourcePages": [
+            61
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe an experiment to show water is a product of burning organic matter",
+          "sourcePages": [
+            61
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe an experiment to show that water contains hydrogen",
+          "sourcePages": [
+            61
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state the products of reactions of cold water and steam with different metals",
+          "sourcePages": [
+            61
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "list the order of reactivity of metals as obtained from metal-water reactions",
+          "sourcePages": [
+            61
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "prepare hydrogen, investigate its properties and state its uses.",
+          "sourcePages": [
+            61
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "define oxidation as oxygen gain and reduction as removal of oxygen",
+          "sourcePages": [
+            61
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "explain metal oxide reactions with hydrogen in terms of reduction and oxidation.60",
+          "sourcePages": [
+            61,
+            62
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "5.2.1",
+          "order": 1,
+          "name": "Water",
+          "sourcePages": [
+            62
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.2.2",
+          "order": 2,
+          "name": "Hydrogen",
+          "sourcePages": [
+            62
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

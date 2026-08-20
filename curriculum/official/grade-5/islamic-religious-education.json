@@ -1,0 +1,369 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 5",
+  "subject": "Islamic Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "IRE GRADE 5 CURRICULUM DESIGN - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-five-designs/",
+    "officialDocument": "https://drive.google.com/file/d/10RolK-hE8ylrhuNbq3fN6ZnPlgNM_VuB/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      11,
+      12,
+      13,
+      15,
+      17,
+      19,
+      21,
+      23,
+      25,
+      27,
+      29,
+      31,
+      32,
+      33,
+      34,
+      36,
+      37,
+      39,
+      40,
+      41,
+      42,
+      44,
+      46,
+      47,
+      49,
+      51,
+      52,
+      54
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Qur’an",
+      "sourcePages": [
+        11,
+        13
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Selected Chapters (Surah) 16 2 Hadith",
+          "alternativeNames": [
+            "Selected Surah"
+          ],
+          "sourcePage": 11
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Hadith",
+      "sourcePages": [
+        11,
+        15,
+        17,
+        19,
+        21
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Hadith on good Behaviour",
+          "sourcePage": 15
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Hadith on Greetings",
+          "sourcePage": 17
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Hadith on Knowledge",
+          "sourcePage": 19
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Hadith on Gratitude 03 3 Pillars of Iman",
+          "alternativeNames": [
+            "Hadith on Gratitude"
+          ],
+          "sourcePage": 11
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Pillars of Iman",
+      "sourcePages": [
+        11,
+        23,
+        25,
+        27,
+        29
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Belief in Allah",
+          "sourcePage": 23
+        },
+        {
+          "order": 2,
+          "code": "3.1.1",
+          "name": "Attributes of Allah",
+          "sourcePage": 23
+        },
+        {
+          "order": 3,
+          "code": "3.2",
+          "name": "Belief in Angels",
+          "sourcePage": 25
+        },
+        {
+          "order": 4,
+          "code": "3.2.1",
+          "name": "Characteristics of angels",
+          "sourcePage": 25
+        },
+        {
+          "order": 5,
+          "code": "3.3",
+          "name": "Belief in Prophets",
+          "sourcePage": 27
+        },
+        {
+          "order": 6,
+          "code": "3.3.1",
+          "name": "Qualities of Prophets",
+          "alternativeNames": [
+            "Belief in Prophets"
+          ],
+          "sourcePage": 27
+        },
+        {
+          "order": 7,
+          "code": "3.3.2",
+          "name": "Miracles of Prophets 03 06 4 Devotional Acts",
+          "alternativeNames": [
+            "Miracles of Prophets"
+          ],
+          "sourcePage": 11
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Devotional Acts",
+      "sourcePages": [
+        11,
+        31,
+        32,
+        33,
+        34,
+        36,
+        37
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Nullifiers of Swalah (",
+          "alternativeNames": [
+            "Nullifiers of Swalah"
+          ],
+          "sourcePage": 31
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Sunnah (Optional) Prayers Qabliyah and Ba'diyah",
+          "alternativeNames": [
+            "Sunnah (Optional) Prayers"
+          ],
+          "sourcePage": 32
+        },
+        {
+          "order": 3,
+          "code": "4.2.1",
+          "name": "Taraweh and Witr 02",
+          "sourcePage": 11
+        },
+        {
+          "order": 4,
+          "code": "4.2.2",
+          "name": "Taraweeh and Witr",
+          "sourcePage": 33
+        },
+        {
+          "order": 5,
+          "code": "4.3",
+          "name": "Swadaqah (Charity)",
+          "sourcePage": 34
+        },
+        {
+          "order": 6,
+          "code": "4.4",
+          "name": "Saum",
+          "sourcePage": 36
+        },
+        {
+          "order": 7,
+          "code": "4.4.1",
+          "name": "Nullifiers of Saum (fasting) 04 02 5 Akhlaq (Moral Teachings)",
+          "alternativeNames": [
+            "Nullifiers of Saum (fasting)"
+          ],
+          "sourcePage": 11
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Akhlaq (Moral Teachings)",
+      "sourcePages": [
+        11,
+        39,
+        40,
+        41,
+        42
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Virtues, Generosity",
+          "alternativeNames": [
+            "Virtues Generosity"
+          ],
+          "sourcePage": 11
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Effects of Social Media",
+          "sourcePage": 40
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Prohibitions in Islam Evils of Gambling",
+          "sourcePage": 41
+        },
+        {
+          "order": 4,
+          "code": "5.4",
+          "name": "Dua (Supplication) Dua on Increase in Knowledge",
+          "sourcePage": 11
+        },
+        {
+          "order": 5,
+          "code": "5.5",
+          "name": "Dua (Supplication s) Dua On Increase In Knowledge",
+          "sourcePage": 42
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Muamalat (Social Relations)",
+      "sourcePages": [
+        12,
+        44,
+        46,
+        47
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Etiquette of Islamic Wedding Celebrations",
+          "sourcePage": 44
+        },
+        {
+          "order": 2,
+          "code": "6.2",
+          "name": "Rights of Neighbours",
+          "sourcePage": 46
+        },
+        {
+          "order": 3,
+          "code": "6.3",
+          "name": "Islamic Rules on Buying and Selling 03 7 History of Islam",
+          "alternativeNames": [
+            "Islamic Rules on Buying and Selling"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "code": "7.0",
+      "name": "History of Islam",
+      "sourcePages": [
+        12,
+        49,
+        51,
+        52,
+        54
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "7.1",
+          "name": "Al-Isra wal Miraj",
+          "sourcePage": 49
+        },
+        {
+          "order": 2,
+          "code": "7.2",
+          "name": "Pledges of Aqabah",
+          "sourcePage": 51
+        },
+        {
+          "order": 3,
+          "code": "7.3",
+          "name": "Hijra to Madina",
+          "sourcePage": 52
+        },
+        {
+          "order": 4,
+          "code": "7.4",
+          "name": "Constitution of Madina 03 Total Number of Lessons",
+          "sourcePage": 12
+        },
+        {
+          "order": 5,
+          "code": "7.5",
+          "name": "Constitution of Madina",
+          "sourcePage": 54
+        }
+      ]
+    }
+  ]
+}

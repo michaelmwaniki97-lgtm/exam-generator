@@ -1,0 +1,622 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 3",
+  "subject": "Biology",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "10.0.0",
+      "order": 1,
+      "name": "CLASSIFICATION II",
+      "sourcePages": [
+        89
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state briefly the general principles of classification of living organisms",
+          "sourcePages": [
+            89
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state general characteristics of each of the five kingdoms",
+          "sourcePages": [
+            89
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state the main characteristics of arthropoda, chordata and major divisions of plantae",
+          "sourcePages": [
+            89
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "name classes of spermatophyta",
+          "sourcePages": [
+            89
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "describe the main characteristics of classes of phyla arthropoda and chordata",
+          "sourcePages": [
+            89
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "use observable external features to construct simple dichotomous keys of plants and animals",
+          "sourcePages": [
+            89
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "use already constructed dichotomous keys to identify organisms.",
+          "sourcePages": [
+            89
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "10.2.1",
+          "order": 1,
+          "name": "Review of binomial nomenclature",
+          "sourcePages": [
+            89
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.2",
+          "order": 2,
+          "name": "General principles of classification",
+          "sourcePages": [
+            89
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.3",
+          "order": 3,
+          "name": "General characteristics of kingdoms",
+          "sourcePages": [
+            89
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.4",
+          "order": 4,
+          "name": "Main characterisitics of major divisions of plantae",
+          "sourcePages": [
+            89
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.5",
+          "order": 5,
+          "name": "Main Characteristics of the Phyla Arthropoda and Chordata (cover up to classes as shown)",
+          "sourcePages": [
+            89
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "10.2.6",
+          "order": 6,
+          "name": "Construction and use of simple dichotomous keys based on observable features of plants and animals",
+          "sourcePages": [
+            89
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "11.0.0",
+      "order": 2,
+      "name": "ECOLOGY",
+      "sourcePages": [
+        89
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define the terms ecology, habitat, biomass, ecosystem and carrying capacity",
+          "sourcePages": [
+            89
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "identify the physical (abiotic) and biological (biotic) factors in a given ecosystem",
+          "sourcePages": [
+            89
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe the inter-relationships of organisms in the ecosystem",
+          "sourcePages": [
+            89
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "differentiate between saprophytism, parasitism and symbiosis",
+          "sourcePages": [
+            89
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain the importance of fungi and bacteria as decomposers",
+          "sourcePages": [
+            89
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "relate the mode of transmission to prevention/control of named parasites",
+          "sourcePages": [
+            89
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "describe the adaptive characteristics of named parasites to hosts",
+          "sourcePages": [
+            89
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "explain the importance of symbiotic bacteria in leguminous plants",
+          "sourcePages": [
+            89
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "describe the nitrogen cycle88",
+          "sourcePages": [
+            89,
+            90
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "explain the flow of energy in the ecosystem",
+          "sourcePages": [
+            90
+          ],
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "identify and construct food chains and food webs, pyramid of numbers and pyramid of biomass",
+          "sourcePages": [
+            90
+          ],
+          "order": 11
+        },
+        {
+          "label": "l)",
+          "text": "explain the use of various methods of estimating population",
+          "sourcePages": [
+            90
+          ],
+          "order": 12
+        },
+        {
+          "label": "m)",
+          "text": "relate adaptations of plants to various habitats",
+          "sourcePages": [
+            90
+          ],
+          "order": 13
+        },
+        {
+          "label": "n)",
+          "text": "describe the effects of pollutants in air, water and soil on humans and other living organisms",
+          "sourcePages": [
+            90
+          ],
+          "order": 14
+        },
+        {
+          "label": "o)",
+          "text": "identify symptoms of different types of human diseases, methods of transmission and control.",
+          "sourcePages": [
+            90
+          ],
+          "order": 15
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "11.2.1",
+          "order": 1,
+          "name": "Concepts of Ecology",
+          "sourcePages": [
+            90
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.2",
+          "order": 2,
+          "name": "Factors in an ecosystem",
+          "sourcePages": [
+            90
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.3",
+          "order": 3,
+          "name": "Energy flow in an ecosystem Food chains, food webs, decomposers, pyramid of numbers and pyramid of biomass",
+          "sourcePages": [
+            90
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.4",
+          "order": 4,
+          "name": "Population estimation methods",
+          "sourcePages": [
+            90
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.5",
+          "order": 5,
+          "name": "Adaptations of plants to various habitats",
+          "sourcePages": [
+            90
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.6",
+          "order": 6,
+          "name": "Effect of pollution on human beings and other organisms Causes, effects and control of pollutants in air, water and soil",
+          "sourcePages": [
+            90
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "11.2.7",
+          "order": 7,
+          "name": "Human diseases",
+          "sourcePages": [
+            90
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "12.0.0",
+      "order": 3,
+      "name": "REPRODUCTION IN PLANTS AND ANIMALS",
+      "sourcePages": [
+        91
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe location and appearance of chromosomes and chromosome movement during mitosis and meiosis",
+          "sourcePages": [
+            91
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "differentiate between mitosis and meiosis stating their significance in reproduction",
+          "sourcePages": [
+            91
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe and state the importance of asexual reproduction, binary fission, spore formation and budding",
+          "sourcePages": [
+            91
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "compare adaptations of wind and insect pollinated flowers",
+          "sourcePages": [
+            91
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "describe the process of fertilization in flowering plants",
+          "sourcePages": [
+            91
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "describe and explain how different fruits and seeds are formed and dispersed",
+          "sourcePages": [
+            91
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "differentiate between internal and external fertilization as exhibited by amphibians and mammals (humans)",
+          "sourcePages": [
+            91
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "relate structure of the human reproductive system to functions",
+          "sourcePages": [
+            91
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "describe the role of hormones in human reproduction",
+          "sourcePages": [
+            91
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "identify the symptoms and explain the method of transmission and prevention of sexually transmitted infections (S.T.Is)",
+          "sourcePages": [
+            91
+          ],
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "explain the advantages and disadvantages of sexual and a sexual reproduction.",
+          "sourcePages": [
+            91
+          ],
+          "order": 11
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "12.2.1",
+          "order": 1,
+          "name": "Concept of reproduction",
+          "sourcePages": [
+            91
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.2.2",
+          "order": 2,
+          "name": "Chromosomes, mitosis and meiosis (mention gamete formation)",
+          "sourcePages": [
+            91
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.2.3",
+          "order": 3,
+          "name": "A sexual reproduction",
+          "sourcePages": [
+            91
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.2.4",
+          "order": 4,
+          "name": "Sexual reproduction in plants",
+          "sourcePages": [
+            91
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.2.5",
+          "order": 5,
+          "name": "Sexual reproduction in animals",
+          "sourcePages": [
+            91
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.2.6",
+          "order": 6,
+          "name": "Sexually transmitted infections (S.T.Is)",
+          "sourcePages": [
+            91
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "12.2.7",
+          "order": 7,
+          "name": "Advantages and disadvantages of asexual and sexual reproduction",
+          "sourcePages": [
+            91
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "13.0.0",
+      "order": 4,
+      "name": "GROWTH AND DEVELOPMENT",
+      "sourcePages": [
+        92
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "differentiate growth from development",
+          "sourcePages": [
+            92
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "analyse experimental data on growth rates",
+          "sourcePages": [
+            92
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "identify parts of a named seed and factors affecting viability and dormancy in seeds",
+          "sourcePages": [
+            92
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "investigate conditions necessary for germination and distinguish the types of germination",
+          "sourcePages": [
+            92
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "measure one aspect of growth in a given seedling",
+          "sourcePages": [
+            92
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "determine the region of growth in seedlings",
+          "sourcePages": [
+            92
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "explain apical dominance",
+          "sourcePages": [
+            92
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "distinguish between complete and incomplete metamorphosis in insects",
+          "sourcePages": [
+            92
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "explain the role of hormones in regulating growth and development.",
+          "sourcePages": [
+            92
+          ],
+          "order": 9
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "13.2.1",
+          "order": 1,
+          "name": "Concepts of growth and development",
+          "sourcePages": [
+            92
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.2.2",
+          "order": 2,
+          "name": "Growth and development in plants",
+          "sourcePages": [
+            92
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "13.2.3",
+          "order": 3,
+          "name": "Growth and development in animals",
+          "sourcePages": [
+            92
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

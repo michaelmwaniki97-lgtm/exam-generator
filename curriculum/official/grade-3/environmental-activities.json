@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 3",
+  "subject": "Environmental Activities",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 1-3 Environmental Activities-Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/lower-primary/",
+    "officialDocument": "https://drive.google.com/file/d/1aw6VOZadfc1cFTa0x4o4ztzdorLY8xUS/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      72,
+      73,
+      75,
+      77,
+      79,
+      81,
+      84,
+      86,
+      87,
+      90,
+      92,
+      94,
+      95
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Social Environment",
+      "sourcePages": [
+        72,
+        73,
+        75,
+        77,
+        79,
+        81
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Our Living Environment",
+          "sourcePage": 73
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Family needs Emotional needs",
+          "alternativeNames": [
+            "Family Needs"
+          ],
+          "sourcePage": 75
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Food in Our Environment",
+          "sourcePage": 77
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Our Community",
+          "sourcePage": 79
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Cultural Events",
+          "sourcePage": 81
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Natural Environment",
+      "sourcePages": [
+        84,
+        86,
+        87
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Weather",
+          "sourcePage": 84
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Soil",
+          "sourcePage": 86
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Heat",
+          "sourcePage": 87
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Resources in Our Environment",
+      "sourcePages": [
+        72,
+        90,
+        92,
+        94,
+        95
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Water",
+          "sourcePage": 90
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Plants",
+          "sourcePage": 92
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Animals",
+          "sourcePage": 94
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Waste Materials 12 TOTAL NUMBER OF LESSONS",
+          "alternativeNames": [
+            "Waste Materials"
+          ],
+          "sourcePage": 72
+        }
+      ]
+    }
+  ]
+}

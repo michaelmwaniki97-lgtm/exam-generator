@@ -1,0 +1,1197 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 3",
+  "subject": "Physics",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "21.0.0",
+      "order": 1,
+      "name": "LINEAR MOTION",
+      "sourcePages": [
+        46
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define distance, displacement, speed, velocity and acceleration",
+          "sourcePages": [
+            46
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe experiments to determine velocity and acceleration",
+          "sourcePages": [
+            46
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "determine acceleration due to gravity",
+          "sourcePages": [
+            46
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "plot and explain motion - time graphs",
+          "sourcePages": [
+            46
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "applying the equations of uniformly accelerated motion",
+          "sourcePages": [
+            46
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "solve numerical problems.",
+          "sourcePages": [
+            46
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "21.2.2",
+          "order": 1,
+          "name": "Acceleration due to gravity:",
+          "sourcePages": [
+            46
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "21.2.3",
+          "order": 2,
+          "name": "Motion-time graphs:",
+          "sourcePages": [
+            46
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "21.2.4",
+          "order": 3,
+          "name": "Equations of uniformly accelerated motion",
+          "sourcePages": [
+            46
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "21.2.5",
+          "order": 4,
+          "name": "Problems on uniformly accelerated motion",
+          "sourcePages": [
+            46
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "22.0.0",
+      "order": 2,
+      "name": "REFRACTION OF LIGHT",
+      "sourcePages": [
+        46
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe simple experiments to illustrate refraction of light",
+          "sourcePages": [
+            46
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state the laws of refraction of light",
+          "sourcePages": [
+            46
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "verify Snell‟s law",
+          "sourcePages": [
+            46
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "define refractive index",
+          "sourcePages": [
+            46
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "determine experimentally the refractive index",
+          "sourcePages": [
+            46
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "describe experiments to illustrate dispersion of white light",
+          "sourcePages": [
+            46
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "explain total internal reflection and its effects",
+          "sourcePages": [
+            46
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "state the applications of total internal reflection",
+          "sourcePages": [
+            46
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "solve numerical problems involving refractive index and critical angle.",
+          "sourcePages": [
+            46
+          ],
+          "order": 9
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "22.2.1",
+          "order": 1,
+          "name": "Refraction of light - laws of refraction (Experimental treatment required)",
+          "sourcePages": [
+            46
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.2",
+          "order": 2,
+          "name": "Determination of refractive index:",
+          "sourcePages": [
+            46
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.3",
+          "order": 3,
+          "name": "Dispersion of white light Experimental treatment required",
+          "sourcePages": [
+            46
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.4",
+          "order": 4,
+          "name": "Total internal reflection and its effects: critical angle",
+          "sourcePages": [
+            46
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.5",
+          "order": 5,
+          "name": "Applications of total internal reflection:",
+          "sourcePages": [
+            46
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.6",
+          "order": 6,
+          "name": "Problems on refractive index and critical angle",
+          "sourcePages": [
+            46
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "23.0.0",
+      "order": 3,
+      "name": "NEWTON’S LAWS OF MOTION",
+      "sourcePages": [
+        46
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state Newton‟s laws of motion",
+          "sourcePages": [
+            46
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe simple experiments to illustrate inertia",
+          "sourcePages": [
+            46
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state the law of conservation of linear momentum",
+          "sourcePages": [
+            46
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "define elastic collision, inelastic collision and impulse",
+          "sourcePages": [
+            46
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "derive the equation F = ma",
+          "sourcePages": [
+            46
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "describe the application of frictional force (static and dynamic friction)",
+          "sourcePages": [
+            46
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "define viscosity",
+          "sourcePages": [
+            46
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "explain terminal velocity",
+          "sourcePages": [
+            46
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "solve numerical problems involving Newton‟s laws and the law of conservation of linear momentum.45",
+          "sourcePages": [
+            46,
+            47
+          ],
+          "order": 9
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "23.2.1",
+          "order": 1,
+          "name": "Newton‟s laws of motion (Experimental treatment on inertia required)",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.2.2",
+          "order": 2,
+          "name": "Conservation of linear momentum: elastic collisions, inelastic collisions, recoil velocity, impulse (oblique collisions not required).",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.2.3",
+          "order": 3,
+          "name": "F = ma.",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.2.4",
+          "order": 4,
+          "name": "Frictional forces: Static and dynamic friction",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.2.5",
+          "order": 5,
+          "name": "Static and dynamic friction",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.2.6",
+          "order": 6,
+          "name": "Problems on Newton‟s Laws and law of conservation of linear momentum (exclude problems on elastic collisions)",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "24.0.0",
+      "order": 4,
+      "name": "WORK, ENERGY, POWER AND MACHINES",
+      "sourcePages": [
+        47
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe energy transformations",
+          "sourcePages": [
+            47
+          ],
+          "order": 1
+        },
+        {
+          "label": "c)",
+          "text": "state the law of conservation of energy",
+          "sourcePages": [
+            47
+          ],
+          "order": 2
+        },
+        {
+          "label": "d)",
+          "text": "define work, energy, power and state their SI units",
+          "sourcePages": [
+            47
+          ],
+          "order": 3
+        },
+        {
+          "label": "e)",
+          "text": "define mechanical advantage, velocity ratio and efficiency of machines",
+          "sourcePages": [
+            47
+          ],
+          "order": 4
+        },
+        {
+          "label": "f)",
+          "text": "solve numerical problems involving work, energy, power and machines.",
+          "sourcePages": [
+            47
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "24.2.1",
+          "order": 1,
+          "name": "Forms of energy and energy transformations",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.2.2",
+          "order": 2,
+          "name": "Sources of energy:",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.2.3",
+          "order": 3,
+          "name": "Law of conservation of energy",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.2.4",
+          "order": 4,
+          "name": "Work, energy and power (work done by resolved force not required)",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.2.5",
+          "order": 5,
+          "name": "Kinetic and potential energy",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.2.6",
+          "order": 6,
+          "name": "Simple machines",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.2.7",
+          "order": 7,
+          "name": "Problems on work, energy, power and machines",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "25.0.0",
+      "order": 5,
+      "name": "CURRENT ELECTRICITY",
+      "sourcePages": [
+        47
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define potential difference and state its units",
+          "sourcePages": [
+            47
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "measure potential difference and current in a circuit",
+          "sourcePages": [
+            47
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "verify Ohm‟s law",
+          "sourcePages": [
+            47
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "define resistance and state its unit",
+          "sourcePages": [
+            47
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "determine resistance",
+          "sourcePages": [
+            47
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "determine experimentally the voltage - current relationships for various conductors",
+          "sourcePages": [
+            47
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "define emf and explain internal resistance of a cell",
+          "sourcePages": [
+            47
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "derive the formulae for effective resistance of resistors in series and in parallel",
+          "sourcePages": [
+            47
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "galvanometer to ammeters and voltmeters",
+          "sourcePages": [
+            47
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "solve numerical problems involving ohm‟s law, resistors in series and in parallel.",
+          "sourcePages": [
+            47
+          ],
+          "order": 10
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "25.2.1",
+          "order": 1,
+          "name": "Scale reading: Ammeter, Voltmeter",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.2.2",
+          "order": 2,
+          "name": "Electric circuits: current, potential difference",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.2.3",
+          "order": 3,
+          "name": "Ohm‟s law (experimental treatment required)",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.2.4",
+          "order": 4,
+          "name": "Resistance: types of resistors, measurements of resistance and units.",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.2.5",
+          "order": 5,
+          "name": "Resistivity and potentiometer",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.2.6",
+          "order": 6,
+          "name": "Electromotive force (emf) and internal resistance of a cell (E = V + ίr)",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.2.7",
+          "order": 7,
+          "name": "Resistors in series and in parallel",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.2.8",
+          "order": 8,
+          "name": "Galvanometers: Conversion to ammeters and voltmeters",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "25.2.9",
+          "order": 9,
+          "name": "Problems on Ohm‟s law, resistors in series and in parallel",
+          "sourcePages": [
+            47
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "26.0.0",
+      "order": 6,
+      "name": "WAVES II",
+      "sourcePages": [
+        47
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe experiments to illustrate the properties of waves",
+          "sourcePages": [
+            47
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "sketch wave fronts to illustrate the properties of waves",
+          "sourcePages": [
+            47
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain constructive interference and destructive interference46",
+          "sourcePages": [
+            47,
+            48
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe experiments to illustrate stationary waves.",
+          "sourcePages": [
+            48
+          ],
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "26.2.1",
+          "order": 1,
+          "name": "Properties of waves including sound waves: reflection, refraction, diffraction, interference (Experimental treatment required)",
+          "sourcePages": [
+            48
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "26.2.2",
+          "order": 2,
+          "name": "Constructive interference and destructive interference (qualitative treatment only)",
+          "sourcePages": [
+            48
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "26.2.3",
+          "order": 3,
+          "name": "Stationary waves (qualitative and experimental treatment required)",
+          "sourcePages": [
+            48
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "27.0.0",
+      "order": 7,
+      "name": "ELECTROSTATICS II",
+      "sourcePages": [
+        48
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "sketch electric field patterns around charged bodies",
+          "sourcePages": [
+            48
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe charge distribution on conductors of various shapes",
+          "sourcePages": [
+            48
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "define capacitance and state its SI unit",
+          "sourcePages": [
+            48
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe charging and discharging of a capacitor (calculation involving curves not required)",
+          "sourcePages": [
+            48
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the factors affecting the capacitance of a parallel plate capacitor",
+          "sourcePages": [
+            48
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "state the applications of capacitors",
+          "sourcePages": [
+            48
+          ],
+          "order": 6
+        },
+        {
+          "label": "h)",
+          "text": "solve numerical problems involving capacitors.",
+          "sourcePages": [
+            48
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "27.2.1",
+          "order": 1,
+          "name": "Electric field patterns",
+          "sourcePages": [
+            48
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.2.2",
+          "order": 2,
+          "name": "Charge distribution on conductors: spherical and pear shaped conductors",
+          "sourcePages": [
+            48
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.2.3",
+          "order": 3,
+          "name": "Action at points: lightning arrestors",
+          "sourcePages": [
+            48
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.2.4",
+          "order": 4,
+          "name": "Capacitance, unit of capacitance (farad, microfarad), factors affecting capacitance",
+          "sourcePages": [
+            48
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.2.5",
+          "order": 5,
+          "name": "Applications of capacitors",
+          "sourcePages": [
+            48
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "27.2.6",
+          "order": 6,
+          "name": "Problems on capacitors {using Q=CV, CT =C1 +C2, 1 = 1 + 1 CT C1 C2",
+          "sourcePages": [
+            48
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "28.0.0",
+      "order": 8,
+      "name": "HEATING EFFECT OF AN ELECTRIC CURRENT",
+      "sourcePages": [
+        48
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "Perform and describe experiments to illustrate heating effect of an electric current",
+          "sourcePages": [
+            48
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state the factors affecting heating by electric current",
+          "sourcePages": [
+            48
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "derive the equations for electrical energy and electrical power",
+          "sourcePages": [
+            48
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "identify devices in which heating effect of an electric current is applied",
+          "sourcePages": [
+            48
+          ],
+          "order": 4
+        },
+        {
+          "label": "f)",
+          "text": "solve numerical problems involving electrical energy and electrical power.",
+          "sourcePages": [
+            48
+          ],
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "28.2.1",
+          "order": 1,
+          "name": "Simple experiments on heating effect",
+          "sourcePages": [
+            48
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "28.2.2",
+          "order": 2,
+          "name": "Factors affecting electrical energy, W = VIt, P =VI",
+          "sourcePages": [
+            48
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "28.2.3",
+          "order": 3,
+          "name": "Heating devices:- electric kettle, electric iron, bulb filament, electric heater",
+          "sourcePages": [
+            48
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "28.2.4",
+          "order": 4,
+          "name": "Problems on electrical energy and electrical power",
+          "sourcePages": [
+            48
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "29.0.0",
+      "order": 9,
+      "name": "QUANTITY OF HEAT",
+      "sourcePages": [
+        48
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define heat capacity and specific heat capacity",
+          "sourcePages": [
+            48
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "determine experimentally specific heat capacity of solids and liquids",
+          "sourcePages": [
+            48
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "define specific latent heat of fusion and specific latent heat of vaporization",
+          "sourcePages": [
+            48
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "determine experimentally the specific latent heat of fusion of ice and the specific latent heat of vaporization of steam",
+          "sourcePages": [
+            48
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state the factors affecting melting point and boiling point",
+          "sourcePages": [
+            48
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the functioning of a pressure cooker and a refrigerator",
+          "sourcePages": [
+            48
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "solve problems involving quantity of heat.47",
+          "sourcePages": [
+            48,
+            49
+          ],
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "29.2.1",
+          "order": 1,
+          "name": "Heat capacity, specific heat capacity, units (Experimental treatment required)",
+          "sourcePages": [
+            49
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "29.2.2",
+          "order": 2,
+          "name": "Latent heat of fusion, latent heat of vaporization, units (Experimental treatment necessary)",
+          "sourcePages": [
+            49
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "29.2.3",
+          "order": 3,
+          "name": "Boiling and melting",
+          "sourcePages": [
+            49
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "29.2.4",
+          "order": 4,
+          "name": "Pressure cooker, refrigerator",
+          "sourcePages": [
+            49
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "29.2.5",
+          "order": 5,
+          "name": "Problem on quantity of heat (Q = MCΔθ, Q = Mℓ)",
+          "sourcePages": [
+            49
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "30.0.0",
+      "order": 10,
+      "name": "GAS LAWS",
+      "sourcePages": [
+        49
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "state the gas laws for an ideal gas",
+          "sourcePages": [
+            49
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "verify experimentally the gas laws",
+          "sourcePages": [
+            49
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain how the absolute zero temperature may be obtained from the pressure - temperature and volume - temperature graphs",
+          "sourcePages": [
+            49
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state the basic assumptions of the kinetic theory of gases",
+          "sourcePages": [
+            49
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain the gas laws using the kinetic theory of gases",
+          "sourcePages": [
+            49
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "solve numerical problems involving gas laws.",
+          "sourcePages": [
+            49
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "30.2.1",
+          "order": 1,
+          "name": "Boyle‟s law, Charles‟ law, pressure law, absolute zero",
+          "sourcePages": [
+            49
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "30.2.2",
+          "order": 2,
+          "name": "Kelvin scale of temperature",
+          "sourcePages": [
+            49
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "30.2.3",
+          "order": 3,
+          "name": "Gas laws and kinetic theory of gases (P= 1 ρ not required)",
+          "sourcePages": [
+            49
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "30.2.4",
+          "order": 4,
+          "name": "Problems on gas laws [including PV = constant] T4849 FORM FOUR",
+          "sourcePages": [
+            49,
+            50,
+            51
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

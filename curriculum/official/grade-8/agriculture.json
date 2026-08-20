@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 8",
+  "subject": "Agriculture",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Agriculture Grade8 1.8.2024 - Proofread.pdf",
+    "version": "Published KICD design",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-eight-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1MzOFhLc8kbRwvjg03q7oeDrbbvux75Wy/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      14,
+      16,
+      17,
+      18,
+      20,
+      21,
+      22,
+      24,
+      26,
+      27,
+      29
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Conservation of Resources",
+      "sourcePages": [
+        13,
+        14
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Soil Conservation Measures",
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Water Harvesting and Storage",
+          "sourcePage": 14
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Food Production Processes",
+      "sourcePages": [
+        12,
+        16,
+        17,
+        18,
+        20,
+        21,
+        22
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Kitchen and Backyard Gardening",
+          "sourcePage": 16
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Poultry Rearing in a Fold",
+          "sourcePage": 17
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Crop Pest and Disease Control",
+          "sourcePage": 18
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Preparation of Animal Products",
+          "sourcePage": 20
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Preserving animal products",
+          "sourcePage": 21
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Cooking: Preparing a Balanced Meal",
+          "sourcePage": 22
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Hygiene Practices",
+      "sourcePages": [
+        24
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Cleaning the Kitchen",
+          "sourcePage": 24
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Production Techniques",
+      "sourcePages": [
+        26,
+        27,
+        29
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Sewing Skills: Constructing Household Items",
+          "sourcePage": 26
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Constructing Innovative Animal Waterer",
+          "sourcePage": 27
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "ICT Support Services",
+          "sourcePage": 29
+        }
+      ]
+    }
+  ]
+}

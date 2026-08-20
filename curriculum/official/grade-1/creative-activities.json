@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 1",
+  "subject": "Creative Activities",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Creative Activities, IL G1-3 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/lower-primary/",
+    "officialDocument": "https://drive.google.com/file/d/1vrC5cJO2MpDm9v4u3-qwCze9yPa9HcEZ/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24,
+      25,
+      27,
+      29,
+      30,
+      32,
+      34,
+      35,
+      37,
+      40,
+      42,
+      45,
+      50
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Creating and Executing",
+      "sourcePages": [
+        13,
+        14,
+        16,
+        18,
+        20,
+        22,
+        24,
+        25,
+        45
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Jumping",
+          "alternativeNames": [
+            "Jumping ● Oral tests ● Practical tests ● Fieldwork reports ● Peer Assessment ● Open space ● Field makers ● Landing mats ● Group makers ● Resource persons ● Audio /visual recordings of music and jumping skills ● Flashcards ● Digital devices ● Musical instruments ● Pictures ● Relevant attire ● Reference books ● Relevant virtual sites ● Creative Arts Competitions -Music festivals, Internal competitions, Arts Fair and Sports competitions held in and out of school ● Field visits - visiting Cultural, Music centres and exhibition centres to learn songs, dances, musical instruments, props and costumes ● Live Performances and Exhibitions- Attend live performances and exhibitions for appreciation ● Apprenticeship - connections with artists in the community in order to learn performing some of the artworks, making costumes, props and ornaments among others in all disciplines of Creative Arts ● Concerts – Participating in and attending music concerts within the school and its environs. ● Project work"
+          ],
+          "sourcePage": 14
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Musical Sounds ● Oral tests ● Aural test ●",
+          "alternativeNames": [
+            "Rhythm",
+            "Rhythm 14 1.3Drawing"
+          ],
+          "sourcePage": 45
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Drawing",
+          "sourcePage": 18
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Stretching",
+          "sourcePage": 20
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Painting and Colouring",
+          "sourcePage": 22
+        },
+        {
+          "order": 6,
+          "code": "1.6",
+          "name": "Melody",
+          "sourcePage": 24
+        },
+        {
+          "order": 7,
+          "code": "1.7",
+          "name": "Pattern Making 10 Performing and Displaying",
+          "alternativeNames": [
+            "Pattern Making"
+          ],
+          "sourcePage": 13
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Performing and Displaying",
+      "sourcePages": [
+        13,
+        27,
+        29,
+        30,
+        32,
+        34,
+        35,
+        37
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Singing Games- Kenyan style",
+          "alternativeNames": [
+            "Singing Games-Kenyan Style"
+          ],
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Throwing and Catching",
+          "sourcePage": 29
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Paper Craft",
+          "sourcePage": 30
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Log Roll and T- Balance",
+          "alternativeNames": [
+            "Log Roll and T Balances"
+          ],
+          "sourcePage": 32
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Songs-Action songs",
+          "alternativeNames": [
+            "Modelling",
+            "Songs"
+          ],
+          "sourcePage": 13
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Percussion Musical Instruments",
+          "alternativeNames": [
+            "Modelling"
+          ],
+          "sourcePage": 13
+        },
+        {
+          "order": 7,
+          "code": "2.7",
+          "name": "Percussion Musical Instruments",
+          "sourcePage": 37
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Appreciation",
+      "sourcePages": [
+        13,
+        40,
+        42,
+        50
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Musical Sounds ● Oral tests ● Aural tests ●",
+          "alternativeNames": [
+            "Musical Sounds"
+          ],
+          "sourcePage": 50
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Water Safety Awareness 14 Total Number of Lessons",
+          "alternativeNames": [
+            "Water safety awareness",
+            "Water Safety Awareness ● Oral presentations ● Peer assessment ● Practical tests ● Field work reports ● Participatory assessment ● Resource persons ● Digital devices ● Pictures of water points ● Reference books ● Audio /visual recordings of music ● Relevant virtual sites"
+          ],
+          "sourcePage": 13
+        }
+      ]
+    }
+  ]
+}

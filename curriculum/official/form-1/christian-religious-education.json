@@ -1,0 +1,860 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 1",
+  "subject": "Christian Religious Education",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Three",
+    "year": "2002",
+    "edition": "First published 2002; reprinted 2005, 2011 and 2012",
+    "archiveDocument": "https://www.scribd.com/document/867743223/Kicd-Syllabus-2002-Vol-3-1",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus",
+    "formReference": "printed pages 75-79"
+  },
+  "topics": [
+    {
+      "code": "1.00",
+      "order": 1,
+      "name": "MEANING OF CHRISTIAN RELIGIOUS EDUCATION",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define Christian Religious Education",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain the importance of learning Christian Religious Education",
+          "order": 2
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "1.21",
+          "sourceCode": "1.2.1",
+          "order": 1,
+          "name": "Definition of Christian Religious Education",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "1.22",
+          "sourceCode": "1.2.2",
+          "order": 2,
+          "name": "Reasons for studying Christian Religious Education.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "2.00",
+      "order": 2,
+      "name": "THE BIBLE",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "explain the Bible as the word of God; its major divisions and its human authors",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "outline and appreciate the translation of the Bible from the original languages (Hebrews, Greek) to local languages",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "discuss the effects of the translation of the Bible into African languages",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "respect the Bible as the word of God and apply the acquired insights in daily life.",
+          "order": 4
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "2.21",
+          "sourceCode": "2.2.1",
+          "order": 1,
+          "name": "The Bible as the word of God (Hebrews 1:1-2; 2 Timothy 3:16; Revelations 22:18)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.22",
+          "sourceCode": "2.2.2",
+          "order": 2,
+          "name": "Human authors (2 Peter 1:20-21)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.23",
+          "sourceCode": "2.2.3",
+          "order": 3,
+          "name": "Major divisions of the Bible",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.24",
+          "sourceCode": "2.2.4",
+          "order": 4,
+          "name": "The Bible as a library",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.25",
+          "sourceCode": "2.2.5",
+          "order": 5,
+          "name": "The translations of the Bible from the original languages (Hebrew, Greek) to the present local languages",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.26",
+          "sourceCode": "2.2.6",
+          "order": 6,
+          "name": "Versions of the Bible used in Kenya today",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "2.27",
+          "sourceCode": "2.2.7",
+          "order": 7,
+          "name": "The effects of the translation of the Bible into African languages.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "3.00",
+      "order": 3,
+      "name": "CREATION AND THE FALL OF MAN",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe the biblical accounts of creation and appreciate creation as the work of God",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "identify and appreciate the attributes of God from the biblical creation accounts",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe the traditional African understanding of creation",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain and appreciate the teachings from the biblical creation accounts",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain the origin of sin according to the biblical accounts of the fall of man and its consequences",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the traditional African concept of evil and discuss the similarities and differences with the biblical concept of sin",
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "explain and appreciate God’s plan of salvation.",
+          "order": 7
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "3.21",
+          "sourceCode": "3.2.1",
+          "order": 1,
+          "name": "The biblical accounts of creation and their meaning (Genesis 1 and 2)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.22",
+          "sourceCode": "3.2.2",
+          "order": 2,
+          "name": "Attributes of God from the biblical creation accounts (Genesis 1 and 2)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.23",
+          "sourceCode": "3.2.3",
+          "order": 3,
+          "name": "Traditional African view of creation",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.24",
+          "sourceCode": "3.2.4",
+          "order": 4,
+          "name": "Teaching from the biblical accounts of creation (Genesis I and 2)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.25",
+          "sourceCode": "3.2.5",
+          "order": 5,
+          "name": "The biblical teaching on the origin of sin and its consequences (Gen. 3; 4; 6-9; 11)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.26",
+          "sourceCode": "3.2.6",
+          "order": 6,
+          "name": "Traditional African concept of evil",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.27",
+          "sourceCode": "3.2.7",
+          "order": 7,
+          "name": "God’s plan of salvation (Genesis 3:15)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "3.28",
+          "sourceCode": "3.2.8",
+          "order": 8,
+          "name": "Similarities and differences between the traditional African concept of evil and the biblical concept of sin.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "4.00",
+      "order": 4,
+      "name": "FAITH AND GOD’S PROMISES: ABRAHAM",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "outline the background to the call of Abraham",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "define the term ‘faith in God’",
+          "order": 2
+        },
+        {
+          "label": "e)",
+          "text": "explain how Abraham demonstrated his faith in God and its relevance to Christians today",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state the promises made by God to Abraham and explain their importance/relevance to Christians today",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "define the term ‘covenant’",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain and appreciate the importance of Gods covenant with Abraham",
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "identify covenants in modern life and appreciate their significance",
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "state the importance of circumcision to Abraham and his descendants, (the Jews) and relate it to the African circumcision practice.",
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "4.21",
+          "sourceCode": "4.2.1",
+          "order": 1,
+          "name": "Background to the call of Abraham (Genesis 11:24-32; 12:1-9)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.22",
+          "sourceCode": "4.2.2",
+          "order": 2,
+          "name": "Definition of the term faith in God (Hebrews 11:1-6)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.23",
+          "sourceCode": "4.2.3",
+          "order": 3,
+          "name": "a) Abraham’s acts of faith in God (Genesis 12:1-9; 15:1-6. 17:23-24; 21:l-7; 22:1-19)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.24",
+          "sourceCode": "4.2.4",
+          "order": 4,
+          "name": "God’s promises to Abraham and their relevance to Christians today (Genesis 12:2-3; 15:1—21; 21:17:1. 8; 17:15-18)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.25",
+          "sourceCode": "4.2.5",
+          "order": 5,
+          "name": "Meaning of the term covenant",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.26",
+          "sourceCode": "4.2.6",
+          "order": 6,
+          "name": "God’s covenant with Abraham and its importance (Genesis I 5: 1-19)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.27",
+          "sourceCode": "4.2.7",
+          "order": 7,
+          "name": "Covenants in modern life and their importance",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "4.28",
+          "sourceCode": "4.2.8",
+          "order": 8,
+          "name": "Circumcision:",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "5.00",
+      "order": 5,
+      "name": "SINAI COVENANT: MOSES",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "describe the call of Moses.",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain how God saved His people from Egypt.",
+          "order": 2
+        },
+        {
+          "label": "e)",
+          "text": "discuss and appreciate the attributes of God learnt from the ten plagues",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "give an outline on how God cared for the Israelites during the Exodus",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "describe how the Sinai covenant was made, broken and renewed",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the Ten Commandments and show how they should be applied in a Christian’s daily life",
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "describe how the Israelites worshipped God in their life in the wilderness",
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "explain the new understanding that Moses gave his people about the nature of God",
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "Be motivated to live by the laws of God.",
+          "order": 9
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "5.21",
+          "sourceCode": "5.2.1",
+          "order": 1,
+          "name": "The call of Moses (Exodus 3:1-22)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.22",
+          "sourceCode": "5.2.2",
+          "order": 2,
+          "name": "The ten plagues (Exodus 7:14 -11: 1-10)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.23",
+          "sourceCode": "5.2.3",
+          "order": 3,
+          "name": "The Passover (Exodus 12:1-31)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.24",
+          "sourceCode": "5.2.4",
+          "order": 4,
+          "name": "The Exodus",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.25",
+          "sourceCode": "5.2.5",
+          "order": 5,
+          "name": "a) The making of the Sinai Covenant (Exodus 19; 24:1-80",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.26",
+          "sourceCode": "5.2.6",
+          "order": 6,
+          "name": "The worship of God by the Israelites in the wilderness",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.27",
+          "sourceCode": "5.2.7",
+          "order": 7,
+          "name": "The Ten Commandments (Exodus 20:1-17)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "5.28",
+          "sourceCode": "5.2.8",
+          "order": 8,
+          "name": "Israelites new understanding of the nature of God.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "6.00",
+      "order": 6,
+      "name": "LEADERSHIP IN ISRAEL: DAVID AND SOLOMON",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "explain the reasons for kingship in Israel",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain reasons against kingship in Israel",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain King Saul’s failures",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain the lessons that can be learnt from King Saul’s failures",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain and appreciate the importance of David as King of Israel and as an ancestor of Jesus Christ 1) explain the qualities of a good leader drawn from King David’s leadership",
+          "order": 5
+        },
+        {
+          "label": "g)",
+          "text": "explain King Solomon’s achievements and failures",
+          "order": 6
+        },
+        {
+          "label": "h)",
+          "text": "explain the importance of the temple in Israel",
+          "order": 7
+        },
+        {
+          "label": "i)",
+          "text": "assess the achievements and failures of King Solomon.",
+          "order": 8
+        },
+        {
+          "label": "j)",
+          "text": "desire to seek God’s guidance.",
+          "order": 9
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "6.21",
+          "sourceCode": "6.2.1",
+          "order": 1,
+          "name": "Reasons for kingship in Israel (l Samuel 8:1-9)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.22",
+          "sourceCode": "6.2.2",
+          "order": 2,
+          "name": "Reasons against kingship in Israel (1 Samuel 8:10-20)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.23",
+          "sourceCode": "6.2.3",
+          "order": 3,
+          "name": "King Saul’s failures (I Samuel 13:8-14; 15:7-25)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.24",
+          "sourceCode": "6.2.4",
+          "order": 4,
+          "name": "Lessons learnt from king Saul’s failures",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.25",
+          "sourceCode": "6.2.5",
+          "order": 5,
+          "name": "King David’s importance:",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.26",
+          "sourceCode": "6.2.6",
+          "order": 6,
+          "name": "Qualities of a good leader drawn from King David’s leadership",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.27",
+          "sourceCode": "6.2.7",
+          "order": 7,
+          "name": "King Solomon’s achievements and failures (I Kings 3-12)",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "6.28",
+          "sourceCode": "6.2.8",
+          "order": 8,
+          "name": "Importance of the temple in Israel.",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "7.00",
+      "order": 7,
+      "name": "LOYALTY TO GOD: ELIJAH",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "explain how and why idolatry became widespread among the Israelites in leadership",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain the effects of idolatry in Israel",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe how Elijah fought against false religion and corruption among the people of Israel",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain why Elijah faced danger and hostility as a prophet of God",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "emulate Elijah’s determination in fighting corruption in the society today",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain and appreciate the relevance of Elijah’s prophetic mission to Christians today. 7.2.1 The spread of idolatry",
+          "order": 6
+        },
+        {
+          "label": "a)",
+          "text": "The local Canaanite religion",
+          "order": 7
+        },
+        {
+          "label": "b)",
+          "text": "The schism between Judah and Israel (I Kings 12:25-33) 7.2.2 The effects of idolatry in Israel 7.2.3 Elijah’s fight against:",
+          "order": 8
+        },
+        {
+          "label": "a)",
+          "text": "False religion (I Kings 18:17-46)",
+          "order": 9
+        },
+        {
+          "label": "b)",
+          "text": "Corruption (I Kings 21) 7.2.4 Life skills that help fight corruption: • critical thinking • creative thinking • decision making 7.2.5 Reasons why Elijah faced danger and hostility as a prophet of God. (I Kings 1H 19: 21)",
+          "order": 10
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "7.00",
+          "sourceCode": "7.0.0",
+          "order": 1,
+          "name": "LOYALTY TO GOD: ELIJAH",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.10",
+          "sourceCode": "7.1.0",
+          "order": 2,
+          "name": "Specific Objectives",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.21",
+          "sourceCode": "7.2.1",
+          "order": 3,
+          "name": "The spread of idolatry",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.22",
+          "sourceCode": "7.2.2",
+          "order": 4,
+          "name": "The effects of idolatry in Israel",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.23",
+          "sourceCode": "7.2.3",
+          "order": 5,
+          "name": "Elijah’s fight against:",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.24",
+          "sourceCode": "7.2.4",
+          "order": 6,
+          "name": "Life skills that help fight corruption:",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "7.25",
+          "sourceCode": "7.2.5",
+          "order": 7,
+          "name": "Reasons why Elijah faced danger and hostility as a prophet of God. (I Kings 1H 19: 21)",
+          "objectiveStatus": "official_topic_objectives_apply",
+          "sourceDiscrepancy": "The official source repeats sub-topic code 7.25."
+        },
+        {
+          "code": "7.25",
+          "sourceCode": "7.2.5",
+          "order": 8,
+          "name": "The relevance of Elijah’s prophetic mission to Christians today.",
+          "objectiveStatus": "official_topic_objectives_apply",
+          "sourceDiscrepancy": "The official source repeats sub-topic code 7.25."
+        }
+      ]
+    },
+    {
+      "code": "8.00",
+      "order": 8,
+      "name": "SELECTED ASPECTS IN AFRICAN RELIGIOUS HERITAGE: AFRICAN CONCEPT OF GOD, SPIRITS AND ANCESTORS",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "Explain and appreciate the African concept of God, spirits and ancestors",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "Explain the African understanding of the hierarchy of beings",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "Describe the role of God, spirits, and ancestors",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "Explain and appreciate the responsibilities of the living towards God, spirits and ancestors",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "Describe and appreciate the traditional African way of worshipping God, venerating and communicating with the ancestors and spirits.",
+          "order": 5
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "8.21",
+          "sourceCode": "8.2.1",
+          "order": 1,
+          "name": "African concept of God, spirits and ancestors",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.22",
+          "sourceCode": "8.2.2",
+          "order": 2,
+          "name": "African understanding of the hierarchy of beings",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.23",
+          "sourceCode": "8.2.3",
+          "order": 3,
+          "name": "The role of God, spirits and ancestors",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.24",
+          "sourceCode": "8.2.4",
+          "order": 4,
+          "name": "Responsibility of the living towards God, spirits and ancestors",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "8.25",
+          "sourceCode": "8.2.5",
+          "order": 5,
+          "name": "Traditional African ways of:",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "9.00",
+      "order": 9,
+      "name": "AFRICAN MORAL AND CULTURAL VALUES",
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "explain and appreciate the meaning of life and its wholeness in the traditional African society",
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain the African concept of community and kinship system.",
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "outline and explain factors contributing to harmony and mutual responsibility in the African Communities",
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe the rites of passage and their role in inculcating moral values in the traditional African community",
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "explain and appreciate the role of religious specialists in the African communities and evaluate their relevance in modern society",
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain and appreciate the African moral values",
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "discuss and evaluate continuity and change in the African understanding of leisure, dress, old age, the aged, widows, orphans, dowry, community, land., medicine, worship and property",
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "strive to practise the African moral values.",
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "9.21",
+          "sourceCode": "9.2.1",
+          "order": 1,
+          "name": "Meaning of life and its wholeness in the traditional African society",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.22",
+          "sourceCode": "9.2.2",
+          "order": 2,
+          "name": "The African concept of community and kinship system",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.23",
+          "sourceCode": "9.2.3",
+          "order": 3,
+          "name": "Factors contributing to harmony and mutual responsibility in the African communities:",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.24",
+          "sourceCode": "9.2.4",
+          "order": 4,
+          "name": "a) Rites of passage:",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.25",
+          "sourceCode": "9.2.5",
+          "order": 5,
+          "name": "The role of religious specialists in the African communities and their relevance today",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.26",
+          "sourceCode": "9.2.6",
+          "order": 6,
+          "name": "African moral values: hospitality, honesty courtesy, integrity, tolerance/perseverance, loyalty, chastity, respect, responsibility, love, cooperation. unity",
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "9.27",
+          "sourceCode": "9.2.7",
+          "order": 7,
+          "name": "Continuity and change in the African understanding of:",
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

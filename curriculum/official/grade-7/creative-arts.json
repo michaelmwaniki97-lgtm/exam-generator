@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 7",
+  "subject": "Creative Arts",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Creative Arts &amp; Sports Grade 7 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-seven-designs/",
+    "officialDocument": "https://drive.google.com/file/d/13vhFpDNHHufpz__VRZ5lZUkARfIUra7L/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      21,
+      23,
+      32,
+      35,
+      38,
+      41,
+      43,
+      46,
+      50,
+      59,
+      63
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Foundations of Creative Arts and Sports",
+      "sourcePages": [
+        12
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Introduction to Creative Arts and Sports",
+          "sourcePage": 12
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Components of Creative Arts and Sports",
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Creating and Performing",
+      "sourcePages": [
+        12,
+        13,
+        21,
+        23,
+        32,
+        35,
+        38,
+        41,
+        43,
+        46,
+        59,
+        63
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Drawing and Painting",
+          "sourcePage": 12
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Rhythm",
+          "sourcePage": 21
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Athletics and Sculpture",
+          "alternativeNames": [
+            "Javelin and Sculpture"
+          ],
+          "sourcePage": 59
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Melody",
+          "sourcePage": 12
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Handball",
+          "sourcePage": 12
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Descant Recorder",
+          "sourcePage": 12
+        },
+        {
+          "order": 7,
+          "code": "2.7",
+          "name": "Storytelling and Animation",
+          "sourcePage": 32
+        },
+        {
+          "order": 8,
+          "code": "2.8",
+          "name": "Football",
+          "sourcePage": 35
+        },
+        {
+          "order": 9,
+          "code": "2.9",
+          "name": "Kenyan Folk Songs",
+          "alternativeNames": [
+            "Kenyan Folk song"
+          ],
+          "sourcePage": 38
+        },
+        {
+          "order": 10,
+          "code": "2.10",
+          "name": "Indigenous Kenyan Craft - Bead work 10 OPTIONAL (Do One) Either Swimming Or Kenyan Indigenous Games",
+          "alternativeNames": [
+            "Indigenous Kenyan Craft - Beadwork"
+          ],
+          "sourcePage": 13
+        },
+        {
+          "order": 11,
+          "code": "2.11.1",
+          "name": "Kenyan Indigenous Games (Optional)",
+          "alternativeNames": [
+            "Swimming",
+            "Swimming (Optional)"
+          ],
+          "sourcePage": 46
+        },
+        {
+          "order": 12,
+          "code": "2.11.2",
+          "name": "Kenyan Indigenous Games (Optional)",
+          "alternativeNames": [
+            "Kenyan Indigenous Game (Optional)"
+          ],
+          "sourcePage": 13
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Appreciation in Creative Arts and Sports",
+      "sourcePages": [
+        50
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Analysis of Creative Arts and Sports",
+          "sourcePage": 50
+        }
+      ]
+    }
+  ]
+}

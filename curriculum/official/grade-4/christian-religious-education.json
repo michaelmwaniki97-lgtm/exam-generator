@@ -1,0 +1,398 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 4",
+  "subject": "Christian Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "CRE Grade 4 Curriculum Design - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-four-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1vW3aipLZDPSkl2z29W7RbBEEUrCdEbt7/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      15,
+      16,
+      17,
+      19,
+      21,
+      23,
+      25,
+      26,
+      27,
+      30,
+      32,
+      33,
+      35,
+      37,
+      39,
+      41,
+      43,
+      46,
+      48,
+      49,
+      51,
+      52,
+      53,
+      55,
+      56,
+      58,
+      60,
+      61,
+      62,
+      65,
+      70,
+      72,
+      75,
+      76
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Creation",
+      "sourcePages": [
+        12,
+        13,
+        15,
+        16,
+        17,
+        70
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Self-awareness",
+          "sourcePage": 12
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Thoughts and feelings",
+          "alternativeNames": [
+            "My Family"
+          ],
+          "sourcePage": 12
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Attributes of God",
+          "alternativeNames": [
+            "Making choices"
+          ],
+          "sourcePage": 70
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "My Family Family members",
+          "sourcePage": 15
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Relationships within the Family",
+          "sourcePage": 16
+        },
+        {
+          "order": 6,
+          "code": "1.6",
+          "name": "Attributes of God",
+          "sourcePage": 17
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "The Holy Bible",
+      "sourcePages": [
+        19,
+        21,
+        23,
+        25,
+        26,
+        27,
+        70
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Respect for the Holy Bible",
+          "alternativeNames": [
+            "The Inspired Word of God"
+          ],
+          "sourcePage": 70
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Zacchaeus the Tax Collector",
+          "alternativeNames": [
+            "Zacchaeus the"
+          ],
+          "sourcePage": 21
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Balaam’s Donkey",
+          "sourcePage": 23
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Samson kills a Lion",
+          "sourcePage": 25
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Joseph interprets a Dream",
+          "sourcePage": 26
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Bible Patriarchs Abraham",
+          "sourcePage": 27
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "The Life of Jesus Christ",
+      "sourcePages": [
+        30,
+        32,
+        33,
+        35,
+        37,
+        39,
+        41,
+        43,
+        72
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Annunciation of the birth of Jesus",
+          "alternativeNames": [
+            "The Annunciation"
+          ],
+          "sourcePage": 72
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Birth of John the Baptist",
+          "sourcePage": 30
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Healing of Blind Bartimaeus",
+          "sourcePage": 32
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Healing of the 10 Lepers",
+          "alternativeNames": [
+            "Healing"
+          ],
+          "sourcePage": 72
+        },
+        {
+          "order": 5,
+          "code": "3.5",
+          "name": "Raising the widow’s son at Nain",
+          "alternativeNames": [
+            "Jesus raises a Widow’s Son"
+          ],
+          "sourcePage": 72
+        },
+        {
+          "order": 6,
+          "code": "3.6",
+          "name": "Forgiveness",
+          "sourcePage": 37
+        },
+        {
+          "order": 7,
+          "code": "3.7",
+          "name": "Helping the Needy",
+          "sourcePage": 37
+        },
+        {
+          "order": 8,
+          "code": "3.8.1",
+          "name": "Parable of the lost coin",
+          "sourcePage": 39
+        },
+        {
+          "order": 9,
+          "code": "3.8.2",
+          "name": "Parable of the mustard seed",
+          "sourcePage": 41
+        },
+        {
+          "order": 10,
+          "code": "3.9",
+          "name": "Nicodemus’ encounter with Jesus Christ",
+          "sourcePage": 43
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Christian Values",
+      "sourcePages": [
+        46,
+        48,
+        49,
+        51,
+        52,
+        53,
+        75
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Trust",
+          "sourcePage": 46
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Truthfulness",
+          "sourcePage": 48
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "Obedience",
+          "sourcePage": 49
+        },
+        {
+          "order": 4,
+          "code": "4.4",
+          "name": "Love",
+          "sourcePage": 51
+        },
+        {
+          "order": 5,
+          "code": "4.5",
+          "name": "Responsibility Personal and school items",
+          "alternativeNames": [
+            "Responsibility"
+          ],
+          "sourcePage": 52
+        },
+        {
+          "order": 6,
+          "code": "4.6",
+          "name": "Holiness",
+          "sourcePage": 53
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "The Church",
+      "sourcePages": [
+        55,
+        56,
+        58,
+        60,
+        61,
+        62,
+        75,
+        76
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Church as a house of worship",
+          "alternativeNames": [
+            "House of God"
+          ],
+          "sourcePage": 75
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "The Early Church",
+          "sourcePage": 56
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Standing Firm in Faith",
+          "sourcePage": 58
+        },
+        {
+          "order": 4,
+          "code": "5.4",
+          "name": "The Lord’s Prayer",
+          "sourcePage": 60
+        },
+        {
+          "order": 5,
+          "code": "5.5",
+          "name": "The fruit of the Holy Spirit",
+          "alternativeNames": [
+            "Fruit of the Holy Spirit"
+          ],
+          "sourcePage": 76
+        },
+        {
+          "order": 6,
+          "code": "5.6",
+          "name": "Self-control",
+          "sourcePage": 62
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Morality and Social Media",
+      "sourcePages": [
+        65,
+        76
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Appropriate use of social media",
+          "alternativeNames": [
+            "Use of Social Media"
+          ],
+          "sourcePage": 76
+        }
+      ]
+    }
+  ]
+}

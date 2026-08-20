@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 5",
+  "subject": "Creative Arts",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Creative Arts July 2024 final - Revised.pdf",
+    "version": "July 2024",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-five-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1euaxMgHyMqSm4qVSzOeJ_-9LXYgj6jyS/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      14,
+      15,
+      17,
+      19,
+      22,
+      24,
+      27,
+      31,
+      33,
+      35,
+      37,
+      39,
+      41,
+      43,
+      46,
+      52,
+      53,
+      54,
+      55,
+      56
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Creating and Executing",
+      "sourcePages": [
+        13,
+        15,
+        17,
+        19,
+        22,
+        24,
+        27,
+        52,
+        53,
+        54
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Wind Musical Instruments (Drawing)",
+          "alternativeNames": [
+            "Wind instrument- Drawing Wind instruments, resource person, pictures/videos of wind instruments, appropriate reusable resources for making a wind instrument, brushes, erasers, drawing papers (sugar paper, manila), etching tools, Indian ink/ black colour, paint brush cutting tools, and adhesive. Portfolio"
+          ],
+          "sourcePage": 15
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Football",
+          "alternativeNames": [
+            "Football Digital devices, footballs, open places or marked fields, goal posts, papier mâché, moulds, water- based paints, cones and markers, whistle, storage Portfolio, rating scale, project"
+          ],
+          "sourcePage": 17
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Rhythm",
+          "alternativeNames": [
+            "Rhythm Percussion instruments (melodic and non-melodic), bamboo sticks/fountain pen ink/ stick, cutting tools, ink, colours. Portfolio"
+          ],
+          "sourcePage": 19
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Painting and Mosaic",
+          "alternativeNames": [
+            "Painting and Mosaic Coloured paper/banana fibres, suitable adhesives, supports, brushes, drawing paper/ book, water-based colours, water. Portfolio"
+          ],
+          "sourcePage": 22
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Melody",
+          "alternativeNames": [
+            "Melody Pitching instrument/melodic instrument, improvised calligraphy pens, hard papers, glue, coloured papers, ink, watercolours/poster colours. Project"
+          ],
+          "sourcePage": 24
+        },
+        {
+          "order": 6,
+          "code": "1.6",
+          "name": "Rounders Wood, carving tools, sandpaper, polish, marked field, carved bats, posts, balls, whistle",
+          "alternativeNames": [
+            "Rounders"
+          ],
+          "sourcePage": 54
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Performing and Displaying",
+      "sourcePages": [
+        13,
+        14,
+        31,
+        33,
+        35,
+        37,
+        39,
+        41,
+        43,
+        54,
+        55,
+        56
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Athletics",
+          "alternativeNames": [
+            "Athletics Visual baton exchange Wood, carving/cutting tools, sandpapers, paints, polish, sisal, leather, recyclable fabric. Portfolio"
+          ],
+          "sourcePage": 31
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Fabric Decoration",
+          "alternativeNames": [
+            "Fabric Decoration Dyes (natural/ artificial), tying-in objects, recyclable fabric, tying materials, water, fixatives/salt, iron box. Portfolio"
+          ],
+          "sourcePage": 33
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Kenyan Bamboo sticks, clay, wires, plastic, Project",
+          "alternativeNames": [
+            "Kenyan Folk Dance"
+          ],
+          "sourcePage": 54
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Indigenous Kenya Games- Counting games Counter, ropes, bean bags, counting video games",
+          "alternativeNames": [
+            "Puppetry",
+            "Puppetry Found objects, dyes/paints, threads, needles, glue, and topical songs. Self-assessment worksheet, performance analysis"
+          ],
+          "sourcePage": 56
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Descant recorder Descant recorder, recorder books, Baroque fingering chart, audio/visual recordings",
+          "alternativeNames": [
+            "Descant Recorder"
+          ],
+          "sourcePage": 55
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Indigenous Kenyan Games (Optional)",
+          "alternativeNames": [
+            "Indigenous Kenyan Games",
+            "Swimming - Front crawl Swimming facility such as standard pool, inflatable pools; Clothing and gear- such as swimsuits, goggles; safety equipment- such as life jackets, rescue tubes, first aid kit, spine board; Swimming aids- such as kickboards, pull buoys, fins, swim noodles, floatation devices. Project",
+            "Swimming (Optional)",
+            "Swimming 15 Or"
+          ],
+          "sourcePage": 43
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Appreciation in Creative Arts",
+      "sourcePages": [
+        46,
+        56
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Analysis of Creative Arts works",
+          "alternativeNames": [
+            "Analysis of Creative Arts works Audio-visual excerpts of East African Community Anthem, Kenyan Folk dances, Audio- Oral/aural questions, written tests"
+          ],
+          "sourcePage": 46
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 5",
+  "subject": "Science and Technology",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 5  Science and Technology.pdf",
+    "version": "Published KICD design",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-five-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1CituzlfluxqVvjExx7xHiV_j_ZDXwpja/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      14,
+      18,
+      21,
+      23,
+      26,
+      28,
+      30
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Living Things and their Environment",
+      "sourcePages": [
+        13,
+        14,
+        18,
+        26,
+        28
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Why do some materials float and others sink?",
+          "alternativeNames": [
+            "Classification of Plants",
+            "How is sound produced?"
+          ],
+          "sourcePage": 26
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "The Human Breathing System",
+          "alternativeNames": [
+            "Invertebrates"
+          ],
+          "sourcePage": 18
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "The Human Breathing system",
+          "sourcePage": 13
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Matter",
+      "sourcePages": [
+        21,
+        23,
+        26,
+        28
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Mixtures",
+          "sourcePage": 21
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "How are floaters useful in day-to-day life?",
+          "alternativeNames": [
+            "Water Pollution",
+            "What are the effects of loud sound?"
+          ],
+          "sourcePage": 26
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Force and Energy",
+      "sourcePages": [
+        26,
+        28,
+        30
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Floating and Sinking",
+          "sourcePage": 26
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Sound Energy",
+          "sourcePage": 28
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Heat transfer",
+          "sourcePage": 30
+        }
+      ]
+    }
+  ]
+}

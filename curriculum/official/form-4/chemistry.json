@@ -1,0 +1,879 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "8-4-4",
+  "form": "Form 4",
+  "subject": "Chemistry",
+  "verificationStatus": "OFFICIAL_VERIFIED_NOT_IMPORTED",
+  "applicationStatus": "provisional_seed_preserved",
+  "objectiveStatus": "sourced",
+  "objectiveMappingPolicy": "Official objectives are retained at topic level because the cited KIE syllabuses do not map each objective one-to-one to a numbered sub-topic.",
+  "source": {
+    "authority": "Kenya Institute of Education (KIE), Ministry of Education, Science and Technology",
+    "title": "Secondary Education Syllabus Volume Two",
+    "year": "2002",
+    "edition": "First published April 2002",
+    "archiveDocument": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+    "bibliographicRecord": "https://library.spu.ac.ke/bib/46784",
+    "accessedOn": "2026-08-16",
+    "sourceType": "archived_official_syllabus"
+  },
+  "topics": [
+    {
+      "code": "18.0.0",
+      "order": 1,
+      "name": "ACIDS, BASES AND SALTS",
+      "sourcePages": [
+        73
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define acids, bases and salts",
+          "sourcePages": [
+            73
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain the differences between aqueous solutions of weak and strong acids; weak and strong bases; based on the degree to which they dissociate into ions",
+          "sourcePages": [
+            73
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "write formulae and ionic equations for specified acid-base and precipitation reactions",
+          "sourcePages": [
+            73
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain the effect of solvent in acid-base character",
+          "sourcePages": [
+            73
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "test for the presence of specified cations and anions",
+          "sourcePages": [
+            73
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "identify the precipitates and complex ions produced by specified cation-anion reactions",
+          "sourcePages": [
+            73
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "explain the use of solubility curves in salt extraction",
+          "sourcePages": [
+            73
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "state the types and causes of hardness of water",
+          "sourcePages": [
+            73
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "state the effects and explain the methods of removal of water hardness.",
+          "sourcePages": [
+            73
+          ],
+          "order": 9
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "18.2.1",
+          "order": 1,
+          "name": "Acids and Bases",
+          "sourcePages": [
+            73
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.2",
+          "order": 2,
+          "name": "Characteristics of Amphoteric oxides and hydroxides",
+          "sourcePages": [
+            73
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.3",
+          "order": 3,
+          "name": "Effect of solvent.",
+          "sourcePages": [
+            73
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.4",
+          "order": 4,
+          "name": "Salts",
+          "sourcePages": [
+            73
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.5",
+          "order": 5,
+          "name": "Complex ions Dissolving of specific metal hydroxides in excess aqueous ammonia and sodium hydroxide solution Formulae of the following required, [Cu (NH3)4] 2+ [Zn (NH3)4],2+ [Al (OH)4]",
+          "sourcePages": [
+            73
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "18.2.6",
+          "order": 6,
+          "name": "Water hardness",
+          "sourcePages": [
+            73
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "19.0.0",
+      "order": 2,
+      "name": "ENERGY CHANGES IN CHEMICAL AND PHYSICAL PROCESSES",
+      "sourcePages": [
+        74
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define exothermic and endothermic reactions using H notation",
+          "sourcePages": [
+            74
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "draw energy level diagrams",
+          "sourcePages": [
+            74
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "explain fusion and vaporisation as evidence of inter-particle forces",
+          "sourcePages": [
+            74
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain that energy changes in chemical reactions are due to bond formation and bond breaking",
+          "sourcePages": [
+            74
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "define and explain various types of heat changes",
+          "sourcePages": [
+            74
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "carry out experiments to determine enthalpy changes for some reactions",
+          "sourcePages": [
+            74
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "write correct simple thermochemical equations",
+          "sourcePages": [
+            74
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "state Hess‟ Law and carry out related calculations",
+          "sourcePages": [
+            74
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "state and explain the factors that influence the choice of fuel",
+          "sourcePages": [
+            74
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "explain the environmental effects of fuels.",
+          "sourcePages": [
+            74
+          ],
+          "order": 10
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "19.2.1",
+          "order": 1,
+          "name": "Endothermic and Exothermic reactions",
+          "sourcePages": [
+            74
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.2",
+          "order": 2,
+          "name": "Latent heat",
+          "sourcePages": [
+            74
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.3",
+          "order": 3,
+          "name": "Quantitative determination of enthalpies",
+          "sourcePages": [
+            74
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.4",
+          "order": 4,
+          "name": "Simple energy level diagrams",
+          "sourcePages": [
+            74
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.5",
+          "order": 5,
+          "name": "Common fuels; Energy contents of:",
+          "sourcePages": [
+            74
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "19.2.6",
+          "order": 6,
+          "name": "Pollution by common fuels e.g. internal combustion engine",
+          "sourcePages": [
+            74
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "20.0.0",
+      "order": 3,
+      "name": "REACTION RATES AND REVERSIBLE REACTIONS",
+      "sourcePages": [
+        74
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define rate of reaction",
+          "sourcePages": [
+            74
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "explain the term activation energy",
+          "sourcePages": [
+            74
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "describe some methods used to measure rates of reaction",
+          "sourcePages": [
+            74
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain the effects of different factors on reaction rates",
+          "sourcePages": [
+            74
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "illustrate reaction rates graphically and interpret experimental data 73",
+          "sourcePages": [
+            74,
+            75
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "state examples of simple reversible reactions",
+          "sourcePages": [
+            75
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "explain chemical equilibrium as a state of „balance‟",
+          "sourcePages": [
+            75
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "explain the effect of different factors on the position of equilibrium.",
+          "sourcePages": [
+            75
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "20.2.1",
+          "order": 1,
+          "name": "Reaction rates",
+          "sourcePages": [
+            75
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "20.2.2",
+          "order": 2,
+          "name": "Reversible reactions",
+          "sourcePages": [
+            75
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "21.0.0",
+      "order": 4,
+      "name": "ELECTROCHEMISTRY",
+      "sourcePages": [
+        75
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "explain redox reactions in terms of gain and loss of electrons",
+          "sourcePages": [
+            75
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "identify changes in oxidation numbers during redox reactions",
+          "sourcePages": [
+            75
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "write balanced redox equations",
+          "sourcePages": [
+            75
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "explain an electrochemical cell in terms of electron transfer process",
+          "sourcePages": [
+            75
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "draw cell diagrams and write the cell notations",
+          "sourcePages": [
+            75
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the construction and working of an electrochemical cell such as zinc - copper cell",
+          "sourcePages": [
+            75
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "compare oxidizing and reducing power of ions from displacement reactions",
+          "sourcePages": [
+            75
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "Calculate Electromotive Force of a cell given the standard electrode potentials",
+          "sourcePages": [
+            75
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "state and explain the factors that affect preferential discharge of ions during electrolysis",
+          "sourcePages": [
+            75
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "relate the quantity of electricity passed to amount of substances liberated at the electrodes",
+          "sourcePages": [
+            75
+          ],
+          "order": 10
+        },
+        {
+          "label": "k)",
+          "text": "describe some applications of electrolysis.",
+          "sourcePages": [
+            75
+          ],
+          "order": 11
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "21.2.1",
+          "order": 1,
+          "name": "Redox reactions",
+          "sourcePages": [
+            75
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "21.2.2",
+          "order": 2,
+          "name": "Displacement reactions; (as redox reactions)",
+          "sourcePages": [
+            76
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "21.2.3",
+          "order": 3,
+          "name": "Electrochemical cell",
+          "sourcePages": [
+            76
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "21.2.4",
+          "order": 4,
+          "name": "Electrolysis",
+          "sourcePages": [
+            76
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "21.2.5",
+          "order": 5,
+          "name": "Applications",
+          "sourcePages": [
+            76
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "22.0.0",
+      "order": 5,
+      "name": "METALS",
+      "sourcePages": [
+        76
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "name the chief ores of some metals",
+          "sourcePages": [
+            76
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe and explain general methods used in the extraction of metals from their ores",
+          "sourcePages": [
+            76
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "select and describe suitable methods for the extraction of some metals from their ores",
+          "sourcePages": [
+            76
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "describe and explain physical and chemical properties of some metals",
+          "sourcePages": [
+            76
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "state and explain various uses of these metals and their alloys",
+          "sourcePages": [
+            76
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "describe the effects of the industrial production processes of metals on the environment.",
+          "sourcePages": [
+            76
+          ],
+          "order": 6
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "22.2.1",
+          "order": 1,
+          "name": "Metals; methods of extraction:",
+          "sourcePages": [
+            76
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.2",
+          "order": 2,
+          "name": "Properties of Metals (sodium, aluminium, iron, copper and zinc):",
+          "sourcePages": [
+            76
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.3",
+          "order": 3,
+          "name": "Uses of metals and their alloys (alloys: brass, bronze, steel, duralumin)",
+          "sourcePages": [
+            77
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "22.2.4",
+          "order": 4,
+          "name": "Pollution effect of the industrial production of metals on the environment",
+          "sourcePages": [
+            77
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "23.0.0",
+      "order": 6,
+      "name": "ORGANIC CHEMISTRY II (ALKANOLS AND ALKANOIC ACIDS)",
+      "sourcePages": [
+        77
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "name and draw the structures of simple alkanols and alkanoic acids",
+          "sourcePages": [
+            77
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "describe the preparation and explain the physical and chemical properties of alkanols and alkanoic acids",
+          "sourcePages": [
+            77
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "state the main features of the homologous series",
+          "sourcePages": [
+            77
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "state and explain the uses of some alkanols and alkanoic acids",
+          "sourcePages": [
+            77
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "describe the preparation, properties and uses of detergents",
+          "sourcePages": [
+            77
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "explain the effect of hard water on detergents",
+          "sourcePages": [
+            77
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "list some natural, synthetic polymers, fibres and state their uses",
+          "sourcePages": [
+            77
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "describe the preparation, properties and uses of some synthetic polymers",
+          "sourcePages": [
+            77
+          ],
+          "order": 8
+        },
+        {
+          "label": "i)",
+          "text": "identify the structure of a polymer given the monomer",
+          "sourcePages": [
+            77
+          ],
+          "order": 9
+        },
+        {
+          "label": "j)",
+          "text": "state the advantages and disadvantages of synthetic materials compared to those of natural origin in terms of both structure and properties.",
+          "sourcePages": [
+            77
+          ],
+          "order": 10
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "23.2.1",
+          "order": 1,
+          "name": "Alkanols",
+          "sourcePages": [
+            77
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.2.2",
+          "order": 2,
+          "name": "Alkanoic acids",
+          "sourcePages": [
+            77
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "23.2.3",
+          "order": 3,
+          "name": "Detergents",
+          "sourcePages": [
+            77
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    },
+    {
+      "code": "24.0.0",
+      "order": 7,
+      "name": "RADIOACTIVITY",
+      "sourcePages": [
+        78
+      ],
+      "objectiveStatus": "sourced",
+      "objectives": [
+        {
+          "label": "a)",
+          "text": "define radioactivity, half-life, radioisotope and nuclides",
+          "sourcePages": [
+            78
+          ],
+          "order": 1
+        },
+        {
+          "label": "b)",
+          "text": "state types of radioactivity",
+          "sourcePages": [
+            78
+          ],
+          "order": 2
+        },
+        {
+          "label": "c)",
+          "text": "name the particles emitted during radioactive decay and state their properties",
+          "sourcePages": [
+            78
+          ],
+          "order": 3
+        },
+        {
+          "label": "d)",
+          "text": "carry out simple calculations involving half-life (t1 /2)",
+          "sourcePages": [
+            78
+          ],
+          "order": 4
+        },
+        {
+          "label": "e)",
+          "text": "write balanced nuclear equations",
+          "sourcePages": [
+            78
+          ],
+          "order": 5
+        },
+        {
+          "label": "f)",
+          "text": "distinguish between nuclear fission and fusion",
+          "sourcePages": [
+            78
+          ],
+          "order": 6
+        },
+        {
+          "label": "g)",
+          "text": "state uses of some radioisotopes",
+          "sourcePages": [
+            78
+          ],
+          "order": 7
+        },
+        {
+          "label": "h)",
+          "text": "state dangers associated with radioactivity.",
+          "sourcePages": [
+            78
+          ],
+          "order": 8
+        }
+      ],
+      "objectiveScope": "official_topic_level",
+      "subTopics": [
+        {
+          "code": "24.2.1",
+          "order": 1,
+          "name": "Stability of isotopes of elements",
+          "sourcePages": [
+            78
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.2.2",
+          "order": 2,
+          "name": "Applications Uses and importance of radioisotopes in chemistry, medicine, carbon dating and agriculture.",
+          "sourcePages": [
+            78
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        },
+        {
+          "code": "24.2.3",
+          "order": 3,
+          "name": "Pollution effects of radioactivity Dangers of radio isotopes Environmental pollution e.g. the chernobyl disaster, titanium mining in Kwale 77",
+          "sourcePages": [
+            78,
+            79
+          ],
+          "objectiveStatus": "official_topic_objectives_apply"
+        }
+      ]
+    }
+  ]
+}

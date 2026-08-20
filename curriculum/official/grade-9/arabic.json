@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 9",
+  "subject": "Arabic",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "FINAL ARABIC GRADE 9 CURRICULUM DESIGN.pdf",
+    "version": "Published KICD design",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-nine-designs/",
+    "officialDocument": "https://drive.google.com/file/d/14N6beLZiLrDRAxvHQE-w7e7rf-2xaCkq/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      15,
+      17,
+      19,
+      21,
+      23,
+      25,
+      27,
+      29,
+      33,
+      35,
+      37,
+      38,
+      40,
+      42,
+      44,
+      46,
+      48,
+      52,
+      54,
+      56,
+      58,
+      59,
+      61,
+      63,
+      65,
+      67
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Listening and Speaking",
+      "sourcePages": [
+        13,
+        15,
+        17,
+        19,
+        21,
+        23,
+        25,
+        27,
+        29
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Interactive Speaking",
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Listening for Information",
+          "sourcePage": 15
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Active Listening",
+          "sourcePage": 17
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Oral Expression",
+          "sourcePage": 19
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Interactive Speaking",
+          "sourcePage": 21
+        },
+        {
+          "order": 6,
+          "code": "1.6",
+          "name": "Oral Expression",
+          "sourcePage": 23
+        },
+        {
+          "order": 7,
+          "code": "1.7",
+          "name": "Listening for Information",
+          "sourcePage": 25
+        },
+        {
+          "order": 8,
+          "code": "1.8",
+          "name": "Active Listening",
+          "sourcePage": 27
+        },
+        {
+          "order": 9,
+          "code": "1.9",
+          "name": "Interactive Speaking",
+          "sourcePage": 29
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Reading",
+      "sourcePages": [
+        33,
+        35,
+        37,
+        38,
+        40,
+        42,
+        44,
+        46,
+        48
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Reading Fluency",
+          "sourcePage": 33
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Reading Fluency",
+          "sourcePage": 35
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Reading for Comprehension",
+          "sourcePage": 37
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Reading Fluency: Pronunciation",
+          "sourcePage": 38
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Reading for Information",
+          "sourcePage": 40
+        },
+        {
+          "order": 6,
+          "code": "2.6",
+          "name": "Reading for Information",
+          "sourcePage": 42
+        },
+        {
+          "order": 7,
+          "code": "2.7",
+          "name": "Reading Aloud: Dialogue",
+          "sourcePage": 44
+        },
+        {
+          "order": 8,
+          "code": "2.8",
+          "name": "Reading for Information: Visuals",
+          "sourcePage": 46
+        },
+        {
+          "order": 9,
+          "code": "2.9",
+          "name": "Extensive Reading: Library Skills",
+          "sourcePage": 48
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Writing",
+      "sourcePages": [
+        52,
+        54,
+        56,
+        58,
+        59,
+        61,
+        63,
+        65,
+        67
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Guided Writing: Paragraph Writing",
+          "sourcePage": 52
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Guided Writing: Handwriting",
+          "sourcePage": 54
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Guided writing",
+          "sourcePage": 56
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Guided Writing",
+          "sourcePage": 58
+        },
+        {
+          "order": 5,
+          "code": "3.5",
+          "name": "Guided Writing: Imaginative Composition",
+          "sourcePage": 59
+        },
+        {
+          "order": 6,
+          "code": "3.6",
+          "name": "Guided Writing: Summary Writing",
+          "sourcePage": 61
+        },
+        {
+          "order": 7,
+          "code": "3.7",
+          "name": "Guided Writing: Poems",
+          "sourcePage": 63
+        },
+        {
+          "order": 8,
+          "code": "3.8",
+          "name": "Guided writing",
+          "sourcePage": 65
+        },
+        {
+          "order": 9,
+          "code": "3.9",
+          "name": "Guided Writing: Neatness and Legibility",
+          "sourcePage": 67
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 2",
+  "subject": "Hindu Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 1-3 HRE.pdf",
+    "version": "Published KICD design",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/lower-primary/",
+    "officialDocument": "https://drive.google.com/file/d/1iLmA5Hxzgscln94VzP0n5EhrH4I12iDQ/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      55,
+      56,
+      58,
+      61,
+      63,
+      65,
+      67,
+      70,
+      72,
+      75,
+      77,
+      79,
+      82,
+      84,
+      86
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Creation",
+      "sourcePages": [
+        55,
+        56,
+        58
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Myself and the School Environment",
+          "sourcePage": 56
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Panchmahabhoot Prithvi (earth)",
+          "alternativeNames": [
+            "Panchmahabhoot"
+          ],
+          "sourcePage": 58
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Manifestations of Paramatma",
+      "sourcePages": [
+        55,
+        61,
+        63
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Enlightened Beings",
+          "sourcePage": 61
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Other names of Paramatma",
+          "alternativeNames": [
+            "Role of Trimurti"
+          ],
+          "sourcePage": 55
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Scriptures",
+      "sourcePages": [
+        55,
+        65,
+        67
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Basic Concepts",
+          "sourcePage": 65
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Handling of Scriptures",
+          "alternativeNames": [
+            "Moral stories"
+          ],
+          "sourcePage": 55
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Moral Stories",
+          "sourcePage": 55
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Worship",
+      "sourcePages": [
+        55,
+        70,
+        72
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Protocols of Worship",
+          "alternativeNames": [
+            "Religious Symbols"
+          ],
+          "sourcePage": 55
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Religious Festivals",
+          "alternativeNames": [
+            "Places of Worship"
+          ],
+          "sourcePage": 72
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "Religious Festivals",
+          "sourcePage": 55
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Sadachaar",
+      "sourcePages": [
+        55,
+        75,
+        77,
+        79
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "General Étiquettes",
+          "alternativeNames": [
+            "General Etiquette"
+          ],
+          "sourcePage": 75
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Moral stories on etiquettes",
+          "alternativeNames": [
+            "Stories on Etiquettes"
+          ],
+          "sourcePage": 77
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Sewa (Community Service)",
+          "alternativeNames": [
+            "Sharing"
+          ],
+          "sourcePage": 79
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Yoga",
+      "sourcePages": [
+        55,
+        82,
+        84,
+        86
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Basic Concepts of Yoga",
+          "sourcePage": 82
+        },
+        {
+          "order": 2,
+          "code": "6.2",
+          "name": "Prerequisites of Yoga",
+          "alternativeNames": [
+            "Pranayam"
+          ],
+          "sourcePage": 55
+        },
+        {
+          "order": 3,
+          "code": "6.3",
+          "name": "Pranayamas and Asanas 6 Total number of lessons",
+          "alternativeNames": [
+            "Asanas"
+          ],
+          "sourcePage": 55
+        }
+      ]
+    }
+  ]
+}

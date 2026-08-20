@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "generatedOn": "2026-08-16",
+  "policy": "SOURCE UNAVAILABLE means the exact hierarchy could not be verified from a sufficiently complete authoritative source. No hierarchy was invented.",
+  "records": [
+    {
+      "educationSystem": "8-4-4",
+      "form": "Form 1",
+      "subject": "Kiswahili",
+      "status": "SOURCE UNAVAILABLE",
+      "searchedOn": "2026-08-16",
+      "officialSourceStatus": "Official course-level material was found, but no reliable complete official Form-by-Form hierarchy was available.",
+      "textbookStatus": "NOT USED FOR VERIFICATION",
+      "reason": "The archived Form extract is incomplete and contains transcription/OCR defects, especially for Forms 3-4. Partial or inferred wording was not promoted.",
+      "sources": [
+        {
+          "title": "Volume One bibliographic record",
+          "url": "https://maktaba.pu.ac.ke/cgi-bin/koha/opac-detail.pl?biblionumber=12647"
+        },
+        {
+          "title": "Kiswahili course syllabus",
+          "url": "https://drive.google.com/open?id=187f5kVph_nTAjU3yGt4Y_yMNI_WG1kcZ"
+        },
+        {
+          "title": "Orange Book Secondary 2017",
+          "url": "https://kicd.ac.ke/wp-content/uploads/2025/07/Orange-book-secondary-2017.pdf"
+        }
+      ]
+    },
+    {
+      "educationSystem": "8-4-4",
+      "form": "Form 2",
+      "subject": "Kiswahili",
+      "status": "SOURCE UNAVAILABLE",
+      "searchedOn": "2026-08-16",
+      "officialSourceStatus": "Official course-level material was found, but no reliable complete official Form-by-Form hierarchy was available.",
+      "textbookStatus": "NOT USED FOR VERIFICATION",
+      "reason": "The archived Form extract is incomplete and contains transcription/OCR defects, especially for Forms 3-4. Partial or inferred wording was not promoted.",
+      "sources": [
+        {
+          "title": "Volume One bibliographic record",
+          "url": "https://maktaba.pu.ac.ke/cgi-bin/koha/opac-detail.pl?biblionumber=12647"
+        },
+        {
+          "title": "Kiswahili course syllabus",
+          "url": "https://drive.google.com/open?id=187f5kVph_nTAjU3yGt4Y_yMNI_WG1kcZ"
+        },
+        {
+          "title": "Orange Book Secondary 2017",
+          "url": "https://kicd.ac.ke/wp-content/uploads/2025/07/Orange-book-secondary-2017.pdf"
+        }
+      ]
+    },
+    {
+      "educationSystem": "8-4-4",
+      "form": "Form 3",
+      "subject": "Kiswahili",
+      "status": "SOURCE UNAVAILABLE",
+      "searchedOn": "2026-08-16",
+      "officialSourceStatus": "Official course-level material was found, but no reliable complete official Form-by-Form hierarchy was available.",
+      "textbookStatus": "NOT USED FOR VERIFICATION",
+      "reason": "The archived Form extract is incomplete and contains transcription/OCR defects, especially for Forms 3-4. Partial or inferred wording was not promoted.",
+      "sources": [
+        {
+          "title": "Volume One bibliographic record",
+          "url": "https://maktaba.pu.ac.ke/cgi-bin/koha/opac-detail.pl?biblionumber=12647"
+        },
+        {
+          "title": "Kiswahili course syllabus",
+          "url": "https://drive.google.com/open?id=187f5kVph_nTAjU3yGt4Y_yMNI_WG1kcZ"
+        },
+        {
+          "title": "Orange Book Secondary 2017",
+          "url": "https://kicd.ac.ke/wp-content/uploads/2025/07/Orange-book-secondary-2017.pdf"
+        }
+      ]
+    },
+    {
+      "educationSystem": "8-4-4",
+      "form": "Form 4",
+      "subject": "Kiswahili",
+      "status": "SOURCE UNAVAILABLE",
+      "searchedOn": "2026-08-16",
+      "officialSourceStatus": "Official course-level material was found, but no reliable complete official Form-by-Form hierarchy was available.",
+      "textbookStatus": "NOT USED FOR VERIFICATION",
+      "reason": "The archived Form extract is incomplete and contains transcription/OCR defects, especially for Forms 3-4. Partial or inferred wording was not promoted.",
+      "sources": [
+        {
+          "title": "Volume One bibliographic record",
+          "url": "https://maktaba.pu.ac.ke/cgi-bin/koha/opac-detail.pl?biblionumber=12647"
+        },
+        {
+          "title": "Kiswahili course syllabus",
+          "url": "https://drive.google.com/open?id=187f5kVph_nTAjU3yGt4Y_yMNI_WG1kcZ"
+        },
+        {
+          "title": "Orange Book Secondary 2017",
+          "url": "https://kicd.ac.ke/wp-content/uploads/2025/07/Orange-book-secondary-2017.pdf"
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "authority": "Kenya Institute of Education (KIE)",
+      "title": "Secondary Education Syllabus Volume Two",
+      "url": "https://kcpe-kcse.com/wp-content/uploads/2018/02/SYLLABUS-ORIGINAL-FOR-MATH-PHYSICS-CHEMISTRY-BIOLOGY-AGRICULTURE-HOME-SCIENCE.pdf",
+      "use": "Official 2002 source for Mathematics, Physics, Chemistry and Biology."
+    },
+    {
+      "authority": "St. Paul's University Library",
+      "title": "Volume Two bibliographic record",
+      "url": "https://library.spu.ac.ke/bib/46784",
+      "use": "Bibliographic confirmation of the KIE 2002 publication."
+    },
+    {
+      "authority": "Kenya Institute of Education (KIE)",
+      "title": "Secondary Education Syllabus Volume Three",
+      "url": "https://www.scribd.com/document/867743223/Kicd-Syllabus-2002-Vol-3-1",
+      "use": "Official 2002 source scan for Christian Religious Education."
+    },
+    {
+      "authority": "Kenya Institute of Education (KIE)",
+      "title": "Secondary Education Syllabus Volume One - English extract",
+      "url": "https://drive.google.com/open?id=1ckKAELak19L3x9FvgCyV9H485KsqtUu4",
+      "use": "Archived Form-by-Form English hierarchy and objectives."
+    },
+    {
+      "authority": "Kenya National Examinations Council / KIE",
+      "title": "English course syllabus",
+      "url": "https://drive.google.com/open?id=1j4AsRQqDIFGZMGfJEp1kp7kEalmeirjV",
+      "use": "Official English content-area wording cross-check."
+    },
+    {
+      "authority": "Pwani University Library",
+      "title": "Volume One bibliographic record",
+      "url": "https://maktaba.pu.ac.ke/cgi-bin/koha/opac-detail.pl?biblionumber=12647",
+      "use": "Bibliographic confirmation of KIE Volume One."
+    },
+    {
+      "authority": "Kenya National Examinations Council / KIE",
+      "title": "Kiswahili course syllabus",
+      "url": "https://drive.google.com/open?id=187f5kVph_nTAjU3yGt4Y_yMNI_WG1kcZ",
+      "use": "Course-level evidence without a reliable complete Form hierarchy."
+    },
+    {
+      "authority": "Kenya Institute of Curriculum Development (KICD)",
+      "title": "Orange Book Secondary 2017",
+      "url": "https://kicd.ac.ke/wp-content/uploads/2025/07/Orange-book-secondary-2017.pdf",
+      "use": "Official curriculum and approved-material context only."
+    }
+  ]
+}

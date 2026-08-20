@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 6",
+  "subject": "Creative Arts",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Creative Arts Curriculum designs - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-six-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1ar14Jn_EMuxsqbJ_evfZCNoHg66r4Fvv/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      14,
+      15,
+      18,
+      20,
+      22,
+      25,
+      27,
+      29,
+      32,
+      34,
+      36,
+      38,
+      40,
+      42,
+      45,
+      52,
+      55,
+      58
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Creating and Executing",
+      "sourcePages": [
+        15,
+        18,
+        20,
+        22,
+        25,
+        27,
+        29,
+        52
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "String Musical Instruments and Drawing",
+          "alternativeNames": [
+            "String Instruments and Drawing String instruments, audio recordings of string instruments, locally available materials for making a fiddle, drawing papers, pencils eraser and cutting tools Portfolio, exhibition, project, aural/oral tests, checklist, rating scale Field visits to cultural centres, club activities. Painting and Collage Water-based colours, drawing papers, black sugar papers, found materials for collage, support (carton box/cardboard/ any other), adhesive, football. Portfolio, exhibition, project, checklist, skill progression charts. Club activities, gallery visits, inter school/class championships"
+          ],
+          "sourcePage": 15
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Painting and Collage",
+          "sourcePage": 18
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Volleyball",
+          "sourcePage": 20
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Rhythm and Pattern Making",
+          "sourcePage": 22
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Weaving",
+          "sourcePage": 25
+        },
+        {
+          "order": 6,
+          "code": "1.6",
+          "name": "Gymnastics",
+          "sourcePage": 27
+        },
+        {
+          "order": 7,
+          "code": "1.7",
+          "name": "Melody",
+          "sourcePage": 29
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Performing and Displaying",
+      "sourcePages": [
+        13,
+        14,
+        32,
+        34,
+        36,
+        38,
+        40,
+        42,
+        55
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Athletics",
+          "alternativeNames": [
+            "Athletics Long jump High jump Found objects, fabric, coloured papers, adhesives, scissors, watercolours/ poster colours, brushes, calligraphy pens, ink, high jump landing gear, tape measure open places or marked fields, digital devices, whistle, long jump runway and landing area, tape measure. Project, portfolio, checklist"
+          ],
+          "sourcePage": 32
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Descant Recorder",
+          "alternativeNames": [
+            "Descant Recorder Descant recorder, baroque fingering Charts/ pictures/photos of fingering, Pictures/photos of fingering chart and posture, Resource persons Found objects, coloured papers, adhesives, scissors, watercolours/ poster colours, brushes, calligraphy pens, ink"
+          ],
+          "sourcePage": 34
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Indigenous Kenyan Instrumental Ensembles",
+          "sourcePage": 36
+        },
+        {
+          "order": 4,
+          "code": "2.4",
+          "name": "Indigenous Kenyan Craft- Pottery",
+          "sourcePage": 38
+        },
+        {
+          "order": 5,
+          "code": "2.5",
+          "name": "Indigenous Kenyan games (optional)",
+          "alternativeNames": [
+            "Indigenous Kenyan Games",
+            "Swimming",
+            "Swimming (Optional)"
+          ],
+          "sourcePage": 42
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Appreciation in Creative Arts",
+      "sourcePages": [
+        45,
+        58
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Analysis of Creative Arts works",
+          "alternativeNames": [
+            "Analysis of Sports Artworks, portfolio folders, display boards, community galleries visual excerpts of relevant music Audio-visual equipment Resource persons, games events and equipment. Oral/aural questions, written tests"
+          ],
+          "sourcePage": 45
+        }
+      ]
+    }
+  ]
+}

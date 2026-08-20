@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 6",
+  "subject": "Science and Technology",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 6 Science and Tech - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-six-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1Cqoxx-afRo1d3DdjdCY8l5STD1lXJhJI/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      14,
+      18,
+      22,
+      24,
+      27,
+      29,
+      31
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Living Things and their Environment",
+      "sourcePages": [
+        13,
+        14,
+        18
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "What is the human circulatory system made up of?",
+          "alternativeNames": [
+            "Fungi"
+          ],
+          "sourcePage": 18
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Invertebrates",
+          "sourcePage": 13
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Human circulatory system",
+          "sourcePage": 18
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Matter",
+      "sourcePages": [
+        13,
+        18,
+        22,
+        24
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Change of State",
+          "sourcePage": 22
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "What measures enhance a healthy human circulatory system?",
+          "alternativeNames": [
+            "Composition of Air"
+          ],
+          "sourcePage": 18
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Force and Energy",
+      "sourcePages": [
+        27,
+        29,
+        31
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Light",
+          "sourcePage": 27
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Levers as simple machines",
+          "sourcePage": 29
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Slopes as simple machines",
+          "sourcePage": 31
+        }
+      ]
+    }
+  ]
+}

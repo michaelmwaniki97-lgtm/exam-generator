@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 8",
+  "subject": "Social Studies",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Social Studies Grade 8 - Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-eight-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1yx30v28nVLKYSByRB9G2Omalh76-ZL6h/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      15,
+      18,
+      22,
+      24,
+      26,
+      28,
+      30,
+      32,
+      38,
+      40,
+      42,
+      44,
+      49,
+      51,
+      53,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Social Studies and Personal Management",
+      "sourcePages": [
+        13,
+        15,
+        61
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Self- Improvement",
+          "alternativeNames": [
+            "Self Improvement"
+          ],
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Self- Esteem Assessment",
+          "alternativeNames": [
+            "Self Esteem"
+          ],
+          "sourcePage": 15
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Community Service Learning",
+      "sourcePages": [
+        18
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Community Service Learning Project",
+          "sourcePage": 18
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "People and Relationships",
+      "sourcePages": [
+        22,
+        24,
+        26,
+        28,
+        30,
+        32,
+        62,
+        63,
+        64
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Scientific Theory about Human Origin",
+          "sourcePage": 22
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Early Civilisation ● Asia, ● Europe",
+          "alternativeNames": [
+            "Early Civilisation"
+          ],
+          "sourcePage": 24
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Trans Saharan Slave Trade",
+          "sourcePage": 26
+        },
+        {
+          "order": 4,
+          "code": "3.4",
+          "name": "Population Growth in Africa",
+          "sourcePage": 28
+        },
+        {
+          "order": 5,
+          "code": "3.5",
+          "name": "Diversity, Inclusion and Interpersonal Skills",
+          "alternativeNames": [
+            "Diversity and interpersonal skills"
+          ],
+          "sourcePage": 64
+        },
+        {
+          "order": 6,
+          "code": "3.6",
+          "name": "Peaceful Conflict Resolution ● Negotiation ● Mediation ● Arbitration",
+          "alternativeNames": [
+            "Peace and Conflict Resolution"
+          ],
+          "sourcePage": 32
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Natural and Historic Built Environments",
+      "sourcePages": [
+        38,
+        40,
+        42,
+        44,
+        65,
+        66,
+        67
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Map Reading and Interpretation",
+          "sourcePage": 38
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Weather and Climate ● Desert ● Semi-desert ● Tropical ● Mediterranean ● Mountain",
+          "alternativeNames": [
+            "Weather and Climate"
+          ],
+          "sourcePage": 40
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "Vegetation in Africa",
+          "sourcePage": 42
+        },
+        {
+          "order": 4,
+          "code": "4.4",
+          "name": "Historical Sites and Monuments in Africa ● Fort Jesus ● Kilwa ● Great Zimbabwe ● Giza pyramids ● Meroe ● Timbuktu ● Robben Island",
+          "alternativeNames": [
+            "Historical sites and monuments"
+          ],
+          "sourcePage": 44
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Political Developments and Governance",
+      "sourcePages": [
+        49,
+        51,
+        53,
+        67
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "The Constitution of Kenya",
+          "sourcePage": 49
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Human Rights",
+          "sourcePage": 51
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Citizenship",
+          "sourcePage": 53
+        }
+      ]
+    }
+  ]
+}

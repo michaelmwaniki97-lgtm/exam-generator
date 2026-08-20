@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 8",
+  "subject": "Islamic Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Islamic Religious Education Grade 8 - July 2024.pdf",
+    "version": "July 2024",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-eight-designs/",
+    "officialDocument": "https://drive.google.com/file/d/10HXITblf3E9bwYFABlcbv_qA9ZGSSod1/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      15,
+      16,
+      19,
+      24,
+      26,
+      29,
+      31,
+      34,
+      36,
+      38,
+      41,
+      43,
+      45,
+      47,
+      51
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Qur’an",
+      "sourcePages": [
+        12,
+        13,
+        15,
+        16
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Modes of preservation of the Qur’an",
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Divisions of the Qur’an",
+          "sourcePage": 15
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Selected verses (Al-Luqman 12-19) 08 2 Hadith",
+          "alternativeNames": [
+            "Selected verses (Al- Luqman 12-19)"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Hadith",
+      "sourcePages": [
+        12,
+        19
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Ulum al- Hadith",
+          "alternativeNames": [
+            "Ulum al-Hadith"
+          ],
+          "sourcePage": 19
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Selected Hadith 06 3 Pillars of Iman",
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Pillars of Iman",
+      "sourcePages": [
+        12,
+        24,
+        26
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Belief in revealed scriptures",
+          "sourcePage": 24
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Ulul-Azm Prophets 05 4 Devotional Acts",
+          "alternativeNames": [
+            "Ulul-Azm Prophets"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Devotional Acts",
+      "sourcePages": [
+        12,
+        29,
+        31
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Prayers on special occasions",
+          "sourcePage": 29
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Hajj and Umrah 07 5 Akhlaq (Moral Teachings)",
+          "alternativeNames": [
+            "Hajj and Umrah"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Akhlaq (Moral Teachings)",
+      "sourcePages": [
+        12,
+        34,
+        36,
+        38
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Commanding good and forbidding evil",
+          "sourcePage": 34
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Virtues in Islam",
+          "sourcePage": 36
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Prohibitions in Islam 16 6 Muamalat (Social Relations)",
+          "alternativeNames": [
+            "Prohibitions in Islam"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Muamalat (Social Relations)",
+      "sourcePages": [
+        12,
+        41,
+        43,
+        45,
+        47
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Divorce",
+          "sourcePage": 41
+        },
+        {
+          "order": 2,
+          "code": "6.2",
+          "name": "Types of divorce",
+          "sourcePage": 43
+        },
+        {
+          "order": 3,
+          "code": "6.3",
+          "name": "Trade and Finance in Islam",
+          "sourcePage": 45
+        },
+        {
+          "order": 4,
+          "code": "6.4",
+          "name": "Human Rights 06 7 Islamic Heritage and Civilisation",
+          "alternativeNames": [
+            "Human Rights"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "code": "7.0",
+      "name": "Islamic Heritage and Civilisation",
+      "sourcePages": [
+        51
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "7.1",
+          "name": "The Rightly Guided Caliphs",
+          "sourcePage": 51
+        }
+      ]
+    }
+  ]
+}

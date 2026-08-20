@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 7",
+  "subject": "Pre-Technical Studies",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Pre-Technical Studies Grade 7 - July 2024 - Revised.pdf",
+    "version": "July 2024",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-seven-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1vBIF-5Z0-hpYxr2YWJIrg1ATzO9f4YRH/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      15,
+      17,
+      20,
+      22,
+      24,
+      27,
+      29,
+      31,
+      34,
+      36,
+      39,
+      43,
+      48,
+      50,
+      51,
+      52,
+      53
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Foundations of Pre -Technical Studies",
+      "sourcePages": [
+        13,
+        15,
+        17,
+        48
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Introduction to Pre- Technical Studies",
+          "alternativeNames": [
+            "Introduction to Pre-Technical Studies"
+          ],
+          "sourcePage": 48
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Safety in the Immediate Environment",
+          "sourcePage": 15
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Computer Concepts",
+          "sourcePage": 17
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Communication in Pre-Technical Studies",
+      "sourcePages": [
+        20,
+        22,
+        24,
+        50
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Introduction to Drawing",
+          "sourcePage": 20
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Free-hand sketching",
+          "alternativeNames": [
+            "Freehand sketching"
+          ],
+          "sourcePage": 22
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "ICT Tools in Communication",
+          "sourcePage": 24
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Materials for Production",
+      "sourcePages": [
+        12,
+        27,
+        29,
+        31,
+        51,
+        52
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Introduction to Materials",
+          "sourcePage": 27
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Metallic Materials",
+          "sourcePage": 29
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Non- Metallic Materials",
+          "alternativeNames": [
+            "Non -Metallic Materials",
+            "Non-Metallic Materials"
+          ],
+          "sourcePage": 31
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Tools and Production",
+      "sourcePages": [
+        34,
+        36,
+        53
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Measuring and Marking Out Tools",
+          "sourcePage": 34
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "computer hardware ● Question and Answer ●",
+          "alternativeNames": [
+            "Computer Hardware"
+          ],
+          "sourcePage": 53
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Entrepreneurship",
+      "sourcePages": [
+        12,
+        39,
+        43
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Introduction to Entrepreneurship",
+          "sourcePage": 39
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Production Unit",
+          "sourcePage": 12
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Financial Goals",
+          "sourcePage": 43
+        }
+      ]
+    }
+  ]
+}

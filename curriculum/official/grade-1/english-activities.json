@@ -1,0 +1,630 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 1",
+  "subject": "English Activities",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 1-3 English Activities - Revised Sept.pdf",
+    "version": "Revised Sept",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/lower-primary/",
+    "officialDocument": "https://drive.google.com/file/d/10KIOCSmh7CyDbjElisPQeeMTLu8AJI9z/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      40,
+      41,
+      43,
+      44,
+      45,
+      46,
+      48,
+      49,
+      50,
+      52,
+      53,
+      55,
+      57,
+      58,
+      59,
+      60,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      84
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.1",
+      "name": "Listening and Speaking",
+      "occurrenceCodes": [
+        "1.1",
+        "2.1",
+        "3.1",
+        "4.1",
+        "5.1",
+        "6.1",
+        "7.1",
+        "8.1",
+        "9.1",
+        "10.1",
+        "11.1",
+        "12.1",
+        "13.1",
+        "14.1",
+        "15.1"
+      ],
+      "sourcePages": [
+        13,
+        17,
+        21,
+        26,
+        30,
+        34,
+        38,
+        44,
+        49,
+        55,
+        60,
+        66,
+        71,
+        75,
+        80
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1.1",
+          "name": "Pronunciation and vocabulary",
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "2.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 17
+        },
+        {
+          "order": 3,
+          "code": "3.1.1",
+          "name": "Pronunciation and vocabulary",
+          "sourcePage": 21
+        },
+        {
+          "order": 4,
+          "code": "4.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 26
+        },
+        {
+          "order": 5,
+          "code": "5.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 30
+        },
+        {
+          "order": 6,
+          "code": "6.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 34
+        },
+        {
+          "order": 7,
+          "code": "7.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 38
+        },
+        {
+          "order": 8,
+          "code": "8.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 44
+        },
+        {
+          "order": 9,
+          "code": "9.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 49
+        },
+        {
+          "order": 10,
+          "code": "10.1.1",
+          "name": "Pronunciation and vocabulary",
+          "sourcePage": 55
+        },
+        {
+          "order": 11,
+          "code": "11.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 60
+        },
+        {
+          "order": 12,
+          "code": "12.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 66
+        },
+        {
+          "order": 13,
+          "code": "13.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 71
+        },
+        {
+          "order": 14,
+          "code": "14.1.1",
+          "name": "Pronunciation and Vocabulary",
+          "sourcePage": 75
+        },
+        {
+          "order": 15,
+          "code": "15.1.1",
+          "name": "Pronunciation and vocabulary",
+          "sourcePage": 80
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "1.2",
+      "name": "Reading",
+      "occurrenceCodes": [
+        "1.2",
+        "2.2",
+        "3.2",
+        "4.2",
+        "5.2",
+        "6.2",
+        "7.2",
+        "8.2",
+        "9.2",
+        "10.2",
+        "11.2",
+        "12.2",
+        "13.2",
+        "14.2",
+        "15.2"
+      ],
+      "sourcePages": [
+        14,
+        18,
+        22,
+        27,
+        31,
+        35,
+        40,
+        45,
+        50,
+        57,
+        62,
+        63,
+        67,
+        68,
+        72,
+        76,
+        77,
+        81,
+        82
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.2.1",
+          "name": "Pre-reading",
+          "sourcePage": 14
+        },
+        {
+          "order": 2,
+          "code": "2.2.1",
+          "name": "Pre-reading",
+          "sourcePage": 18
+        },
+        {
+          "order": 3,
+          "code": "3.2.1",
+          "name": "Pre-reading",
+          "sourcePage": 22
+        },
+        {
+          "order": 4,
+          "code": "4.2.1",
+          "name": "Pre-reading",
+          "sourcePage": 27
+        },
+        {
+          "order": 5,
+          "code": "5.2.1",
+          "name": "Pre- reading",
+          "sourcePage": 31
+        },
+        {
+          "order": 6,
+          "code": "6.2.1",
+          "name": "Word Reading",
+          "sourcePage": 35
+        },
+        {
+          "order": 7,
+          "code": "7.2.1",
+          "name": "Word Reading",
+          "sourcePage": 40
+        },
+        {
+          "order": 8,
+          "code": "8.2.1",
+          "name": "Fluency",
+          "sourcePage": 45
+        },
+        {
+          "order": 9,
+          "code": "9.2.1",
+          "name": "Fluency",
+          "sourcePage": 50
+        },
+        {
+          "order": 10,
+          "code": "10.2.1",
+          "name": "Fluency",
+          "sourcePage": 57
+        },
+        {
+          "order": 11,
+          "code": "11.2.1",
+          "name": "Fluency",
+          "sourcePage": 62
+        },
+        {
+          "order": 12,
+          "code": "11.2.2",
+          "name": "Comprehension",
+          "sourcePage": 63
+        },
+        {
+          "order": 13,
+          "code": "12.2.1",
+          "name": "Comprehension",
+          "alternativeNames": [
+            "Fluency"
+          ],
+          "sourcePage": 68
+        },
+        {
+          "order": 14,
+          "code": "13.2.2",
+          "name": "Comprehension",
+          "sourcePage": 72
+        },
+        {
+          "order": 15,
+          "code": "14.2.1",
+          "name": "Fluency",
+          "sourcePage": 76
+        },
+        {
+          "order": 16,
+          "code": "14.2.2",
+          "name": "Comprehension",
+          "sourcePage": 77
+        },
+        {
+          "order": 17,
+          "code": "15.2.1",
+          "name": "Fluency",
+          "sourcePage": 81
+        },
+        {
+          "order": 18,
+          "code": "15.2.2",
+          "name": "Comprehension",
+          "sourcePage": 82
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "1.3",
+      "name": "Language use",
+      "occurrenceCodes": [
+        "1.3",
+        "2.3",
+        "3.3",
+        "4.3",
+        "5.3",
+        "6.3",
+        "7.3",
+        "8.3",
+        "9.3",
+        "10.3",
+        "11.3",
+        "12.3",
+        "13.3",
+        "14.3"
+      ],
+      "sourcePages": [
+        15,
+        19,
+        23,
+        28,
+        32,
+        36,
+        41,
+        46,
+        52,
+        58,
+        64,
+        69,
+        73,
+        78
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.3.1",
+          "name": "Verb ‘to be’- Present Tense",
+          "sourcePage": 15
+        },
+        {
+          "order": 2,
+          "code": "2.3.1",
+          "name": "Verbs ‘to do’- Present form",
+          "sourcePage": 19
+        },
+        {
+          "order": 3,
+          "code": "3.3.1",
+          "name": "Verb ‘to have’ – present form",
+          "sourcePage": 23
+        },
+        {
+          "order": 4,
+          "code": "4.3.1",
+          "name": "Singular and plurals (adding -s and -es)",
+          "sourcePage": 28
+        },
+        {
+          "order": 5,
+          "code": "5.3.1",
+          "name": "Tense: Present Simple Tense",
+          "sourcePage": 32
+        },
+        {
+          "order": 6,
+          "code": "6.3.1",
+          "name": "Tense: Present Continuous Tense (Adding -ing)",
+          "sourcePage": 36
+        },
+        {
+          "order": 7,
+          "code": "7.3.1",
+          "name": "Tense: Simple Past Tense (Adding -ed / -d)",
+          "sourcePage": 41
+        },
+        {
+          "order": 8,
+          "code": "8.3.1",
+          "name": "Demonstratives: this, that, these and those",
+          "sourcePage": 46
+        },
+        {
+          "order": 9,
+          "code": "9.3.1",
+          "name": "Nouns: Common and proper nouns",
+          "sourcePage": 52
+        },
+        {
+          "order": 10,
+          "code": "10.3.1",
+          "name": "Simple prepositions (in, on, under, between, behind, in front, inside, outside)",
+          "sourcePage": 58
+        },
+        {
+          "order": 11,
+          "code": "11.3.1",
+          "name": "Adjectives: (one and two- syllable adjectives)",
+          "sourcePage": 64
+        },
+        {
+          "order": 12,
+          "code": "12.3.1",
+          "name": "Possessives: (my, our, her, his, their, its)",
+          "sourcePage": 69
+        },
+        {
+          "order": 13,
+          "code": "13.3.1",
+          "name": "Yes/ No questions (with can, may, will)",
+          "sourcePage": 73
+        },
+        {
+          "order": 14,
+          "code": "14.3.1",
+          "name": "Adverbs of Place",
+          "sourcePage": 78
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "1.4",
+      "name": "Writing",
+      "occurrenceCodes": [
+        "1.4",
+        "2.4",
+        "3.4",
+        "4.4",
+        "5.4",
+        "6.4",
+        "7.4",
+        "8.4",
+        "9.4",
+        "10.4",
+        "11.4",
+        "12.4",
+        "13.4",
+        "14.4",
+        "15.4"
+      ],
+      "sourcePages": [
+        16,
+        20,
+        25,
+        29,
+        33,
+        37,
+        43,
+        48,
+        53,
+        59,
+        65,
+        70,
+        74,
+        79,
+        84
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.4.1",
+          "name": "Pre-writing",
+          "sourcePage": 16
+        },
+        {
+          "order": 2,
+          "code": "2.4.1",
+          "name": "Pre-writing",
+          "sourcePage": 20
+        },
+        {
+          "order": 3,
+          "code": "3.4.1",
+          "name": "Handwriting",
+          "sourcePage": 25
+        },
+        {
+          "order": 4,
+          "code": "4.4.1",
+          "name": "Handwriting",
+          "sourcePage": 29
+        },
+        {
+          "order": 5,
+          "code": "5.4.1",
+          "name": "Handwriting",
+          "sourcePage": 33
+        },
+        {
+          "order": 6,
+          "code": "6.4.1",
+          "name": "Spelling",
+          "sourcePage": 37
+        },
+        {
+          "order": 7,
+          "code": "7.4.1",
+          "name": "Spelling",
+          "sourcePage": 43
+        },
+        {
+          "order": 8,
+          "code": "8.4.1",
+          "name": "Spelling",
+          "sourcePage": 48
+        },
+        {
+          "order": 9,
+          "code": "9.4.1",
+          "name": "Punctuation (capital letters, small letters and the full stop)",
+          "sourcePage": 53
+        },
+        {
+          "order": 10,
+          "code": "10.4.1",
+          "name": "Punctuation - Capital letters - Question marks",
+          "sourcePage": 59
+        },
+        {
+          "order": 11,
+          "code": "11.4.1",
+          "name": "Guided Writing",
+          "sourcePage": 65
+        },
+        {
+          "order": 12,
+          "code": "12.4.1",
+          "name": "Guided Writing",
+          "sourcePage": 70
+        },
+        {
+          "order": 13,
+          "code": "13.4.1",
+          "name": "Guided Writing",
+          "sourcePage": 74
+        },
+        {
+          "order": 14,
+          "code": "14.4.1",
+          "name": "Guided Writing",
+          "sourcePage": 79
+        },
+        {
+          "order": 15,
+          "code": "15.4.1",
+          "name": "Guided Writing",
+          "sourcePage": 84
+        }
+      ]
+    }
+  ]
+}

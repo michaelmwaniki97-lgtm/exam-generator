@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 1",
+  "subject": "Environmental Activities",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Grade 1-3 Environmental Activities-Revised.pdf",
+    "version": "Revised",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/lower-primary/",
+    "officialDocument": "https://drive.google.com/file/d/1aw6VOZadfc1cFTa0x4o4ztzdorLY8xUS/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      13,
+      14,
+      16,
+      18,
+      20,
+      21,
+      23,
+      25,
+      26,
+      29,
+      31,
+      33
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Social Environment",
+      "sourcePages": [
+        13,
+        14,
+        16,
+        18,
+        20,
+        21
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Cleaning My Body",
+          "sourcePage": 14
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Our Home",
+          "sourcePage": 16
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Family Needs",
+          "sourcePage": 18
+        },
+        {
+          "order": 4,
+          "code": "1.4",
+          "name": "Our School",
+          "sourcePage": 20
+        },
+        {
+          "order": 5,
+          "code": "1.5",
+          "name": "Our market",
+          "sourcePage": 21
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Natural Environment",
+      "sourcePages": [
+        23,
+        25,
+        26
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Weather and the Sky",
+          "sourcePage": 23
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Soil",
+          "sourcePage": 25
+        },
+        {
+          "order": 3,
+          "code": "2.3",
+          "name": "Sound",
+          "sourcePage": 26
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Resources in Our Environment",
+      "sourcePages": [
+        13,
+        29,
+        31,
+        33
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Water",
+          "sourcePage": 29
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Plants",
+          "sourcePage": 31
+        },
+        {
+          "order": 3,
+          "code": "3.3",
+          "name": "Animals 10 TOTAL NUMBER OF LESSONS",
+          "alternativeNames": [
+            "Animals"
+          ],
+          "sourcePage": 13
+        }
+      ]
+    }
+  ]
+}

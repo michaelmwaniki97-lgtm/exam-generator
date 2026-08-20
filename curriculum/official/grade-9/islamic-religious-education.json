@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 9",
+  "subject": "Islamic Religious Education",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Islamic Religious Education Grade 9 - July 2024.pdf",
+    "version": "July 2024",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-nine-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1QAtDW4Pq0enTVPOb32TlfQzge2au4RRC/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      15,
+      18,
+      20,
+      23,
+      25,
+      28,
+      30,
+      33,
+      35,
+      36,
+      39,
+      41,
+      43,
+      44,
+      46,
+      48,
+      52,
+      54,
+      56
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Qur’an",
+      "sourcePages": [
+        12,
+        13,
+        15
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Ulum al- Qur’an",
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Selected Chapter Surah Al-Hujurat (Q 49) 05 2 Hadith",
+          "alternativeNames": [
+            "Selected Chapter Surah al- Hujurat (Q 49)"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Hadith",
+      "sourcePages": [
+        12,
+        18,
+        20
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Ulum al-Hadith",
+          "sourcePage": 18
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Selected Hadith 08 3 Pillars of Iman",
+          "alternativeNames": [
+            "Selected Hadith"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Pillars of Iman",
+      "sourcePages": [
+        12,
+        23,
+        25
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Belief in the Last Day (Day of Judgement)",
+          "sourcePage": 23
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Belief in Qadar 04 4 Devotional Acts",
+          "alternativeNames": [
+            "Belief in Qadar"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Devotional Acts",
+      "sourcePages": [
+        12,
+        28,
+        30
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Shariah (Islamic law)",
+          "sourcePage": 28
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Tawbah (Repentance) 05 5 Akhlaq (Moral Teachings)",
+          "alternativeNames": [
+            "Tawbah (Repentance)"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Akhlaq (Moral Teachings)",
+      "sourcePages": [
+        12,
+        33,
+        35,
+        36
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Virtues in Islam",
+          "sourcePage": 33
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Significance of Islamic Morality",
+          "sourcePage": 35
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Prohibitions in Islam 06 6 Muamalat (Social Relations)",
+          "alternativeNames": [
+            "Prohibitions in Islam Zina (fornication and adultery)"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "code": "6.0",
+      "name": "Muamalat (Social Relations)",
+      "sourcePages": [
+        12,
+        39,
+        41,
+        43,
+        44,
+        46,
+        48
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "6.1",
+          "name": "Domestic violence",
+          "sourcePage": 39
+        },
+        {
+          "order": 2,
+          "code": "6.2",
+          "name": "Iddah",
+          "sourcePage": 41
+        },
+        {
+          "order": 3,
+          "code": "6.3",
+          "name": "Child custody",
+          "sourcePage": 43
+        },
+        {
+          "order": 4,
+          "code": "6.4",
+          "name": "Polygamy in Islam",
+          "sourcePage": 44
+        },
+        {
+          "order": 5,
+          "code": "6.5",
+          "name": "Trade and Finance in Islam",
+          "sourcePage": 46
+        },
+        {
+          "order": 6,
+          "code": "6.6",
+          "name": "Contemporary Issues 06 7 Islamic Heritage and Civilisation",
+          "alternativeNames": [
+            "Contemporary Issues"
+          ],
+          "sourcePage": 12
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "code": "7.0",
+      "name": "Islamic Heritage and Civilisation",
+      "sourcePages": [
+        52,
+        54,
+        56
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "7.1",
+          "name": "Islam in Kenya",
+          "sourcePage": 52
+        },
+        {
+          "order": 2,
+          "code": "7.2",
+          "name": "Unity of Muslims",
+          "sourcePage": 54
+        },
+        {
+          "order": 3,
+          "code": "7.3",
+          "name": "Muslim Institutions",
+          "sourcePage": 56
+        }
+      ]
+    }
+  ]
+}

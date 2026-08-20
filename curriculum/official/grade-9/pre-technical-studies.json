@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "educationSystem": "CBC",
+  "grade": "Grade 9",
+  "subject": "Pre-Technical Studies",
+  "verificationStatus": "hierarchy_verified_not_imported",
+  "applicationStatus": "provisional_seed_preserved",
+  "outcomeStatus": "source_required",
+  "source": {
+    "authority": "Kenya Institute of Curriculum Development (KICD)",
+    "title": "Pre-Technical Studies Grade 9 - July 2024 - Revised.pdf",
+    "version": "July 2024",
+    "officialLandingPage": "https://kicd.ac.ke/cbc-materials/curriculum-designs/grade-nine-designs/",
+    "officialDocument": "https://drive.google.com/file/d/1sHIe4eN9oE8ojrjBPojqHj7YIdYdFWzP/preview",
+    "retrievedOn": "2026-08-16",
+    "hierarchyPages": [
+      12,
+      13,
+      15,
+      17,
+      20,
+      22,
+      25,
+      27,
+      30,
+      34,
+      37,
+      39,
+      41,
+      48
+    ]
+  },
+  "notes": [
+    "Hierarchy was mechanically transcribed from the official KICD summary and detailed table headings, with source page numbers retained for review.",
+    "Specific Learning Outcomes are intentionally omitted until a separate exact-outcome transcription pass.",
+    "Existing application curriculum data is preserved; this candidate is not active database content."
+  ],
+  "strands": [
+    {
+      "order": 1,
+      "code": "1.0",
+      "name": "Foundations of Pre – Technical Studies",
+      "sourcePages": [
+        12,
+        13,
+        15,
+        17
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "1.1",
+          "name": "Safety on Raised Platforms",
+          "sourcePage": 13
+        },
+        {
+          "order": 2,
+          "code": "1.2",
+          "name": "Handling Hazardous Substances",
+          "sourcePage": 15
+        },
+        {
+          "order": 3,
+          "code": "1.3",
+          "name": "Self- Exploration and Career Development",
+          "alternativeNames": [
+            "Self-Exploration and Career Development"
+          ],
+          "sourcePage": 17
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "code": "2.0",
+      "name": "Communication in Pre-Technical Studies",
+      "sourcePages": [
+        20,
+        22
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "2.1",
+          "name": "Oblique Projection",
+          "sourcePage": 20
+        },
+        {
+          "order": 2,
+          "code": "2.2",
+          "name": "Visual Programming",
+          "sourcePage": 22
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "code": "3.0",
+      "name": "Materials for Production",
+      "sourcePages": [
+        25,
+        27,
+        48
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "3.1",
+          "name": "Wood",
+          "sourcePage": 25
+        },
+        {
+          "order": 2,
+          "code": "3.2",
+          "name": "Handling of Waste Materials",
+          "alternativeNames": [
+            "Handling Waste Materials"
+          ],
+          "sourcePage": 48
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "code": "4.0",
+      "name": "Tools and Production",
+      "sourcePages": [
+        12,
+        30,
+        34
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "4.1",
+          "name": "Holding Tools",
+          "sourcePage": 30
+        },
+        {
+          "order": 2,
+          "code": "4.2",
+          "name": "Driving Tools",
+          "sourcePage": 12
+        },
+        {
+          "order": 3,
+          "code": "4.3",
+          "name": "Project",
+          "sourcePage": 34
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "code": "5.0",
+      "name": "Entrepreneurship",
+      "sourcePages": [
+        37,
+        39,
+        41
+      ],
+      "subStrands": [
+        {
+          "order": 1,
+          "code": "5.1",
+          "name": "Financial Services",
+          "sourcePage": 37
+        },
+        {
+          "order": 2,
+          "code": "5.2",
+          "name": "Government and Business",
+          "sourcePage": 39
+        },
+        {
+          "order": 3,
+          "code": "5.3",
+          "name": "Business Plan",
+          "sourcePage": 41
+        }
+      ]
+    }
+  ]
+}
