@@ -319,6 +319,7 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
       duration: data.duration!,
       topics,
       textbookName,
+      blueprint,
     });
   } catch (error) {
     return {
