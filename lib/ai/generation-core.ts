@@ -121,7 +121,7 @@ export function describeViolations(exam: GeneratedExam, blueprint: ExamBlueprint
     if (section.id !== slot.sectionId || question.sectionId !== slot.sectionId || section.title !== slot.sectionTitle) violations.push(`${slot.slotId} has wrong section`);
     if (question.marks !== slot.marks) violations.push(`${slot.slotId} has ${question.marks} marks, expected ${slot.marks}`);
     const ids = slot.curriculumTargets.map((target) => target.curriculumId);
-    if (!same(question.curriculumIds, ids) || !slot.curriculumTargets.some((target) => target.displayName === question.topic)) violations.push(`${slot.slotId} has wrong curriculum/topic identity`);
+    if (!same(question.curriculumIds, ids) || !slot.curriculumTargets.some((target) => target.displayName === question.topic)) violations.push(`${slot.slotId} has wrong curriculum/topic identity; expected curriculumIds=${JSON.stringify(ids)} and topic=${JSON.stringify(slot.curriculumTargets.map((target) => target.displayName))}`);
     if (question.questionFamily !== slot.questionFamily || question.type !== slot.allowedType) violations.push(`${slot.slotId} has incompatible question family/type`);
     if (question.cognitiveDemand !== slot.cognitiveDemand) violations.push(`${slot.slotId} has wrong cognitive demand`);
     if (!same(question.constraintAcknowledgements, slot.constraints)) violations.push(`${slot.slotId} does not acknowledge its exact component/practical/safety constraints`);
@@ -146,6 +146,27 @@ export function describeViolations(exam: GeneratedExam, blueprint: ExamBlueprint
   return [...new Set([...violations, ...describeSemanticViolations(exam)])];
 }
 
+function buildCorrectivePrompt(problems: string[], blueprint: ExamBlueprint): string {
+  const projection = projectBlueprint(blueprint);
+  const affectedSlots = projection.slots.filter((slot) => problems.some((problem) => problem.includes(slot.slotId)));
+  return `Your previous JSON failed validation. Return the complete corrected JSON object, not a patch.
+
+IMMUTABLE REPAIR CONTRACT: For every question, copy slotId, number, sectionId, marks, curriculumIds, topic, questionFamily, type, cognitiveDemand, and constraintAcknowledgements exactly from GENERATION_BLUEPRINT. Do not rename, reorder, add, remove, or move anything. The exact contracts for affected slots are:
+${JSON.stringify(affectedSlots)}
+
+CONTENT REPAIRS:
+- For a wrong curriculum/topic identity, set curriculumIds to the contract curriculumTarget curriculumId values in order, and set topic to the corresponding displayName exactly, character for character.
+- For a numerical marking answer, write the actual formula or method, substitute the question's actual values, calculate the final numerical result, and include the correct unit when applicable. Do not write only instructions about how one would solve it.
+- Replace every generic allocation label such as "method", "working", "correct answer", "formula", or "unit" with the actual awardable content. For example, use "Substitutes 2.4 dm3 into n = V/24", "Obtains 0.10 mol", or an equally specific fact/step from that question. Labels and answer must agree.
+- Preserve each marking entry's slotId, number, marks, and allocation total exactly.
+- Recheck the whole response against every original requirement, including slots not listed below.
+
+VALIDATION FAILURES:
+${problems.map((problem, index) => `${index + 1}. ${problem}`).join("\n")}
+
+Return valid JSON only, with no markdown or commentary.`;
+}
+
 export type Completion = (messages: Array<{ role: "system" | "user" | "assistant"; content: string }>) => Promise<string>;
 export async function generateExamWithCompletion(params: GenerateExamCoreParams, complete: Completion): Promise<GeneratedExam> {
   const messages: Array<{ role: "system" | "user" | "assistant"; content: string }> = [{ role: "system", content: "You are an experienced Kenyan curriculum exam setter. Return one valid JSON object only." }, { role: "user", content: buildPrompt(params) }];
@@ -157,7 +178,7 @@ export async function generateExamWithCompletion(params: GenerateExamCoreParams,
       if (!isValidGeneratedExam(parsed)) lastProblems = ["response does not match the required schema"];
       else { lastProblems = describeViolations(parsed, params.blueprint); if (!lastProblems.length) return parsed; }
     } catch (error) { lastProblems = [error instanceof Error ? error.message : "response is not valid JSON"]; }
-    if (!attempt) { messages.push({ role: "assistant", content: raw }); messages.push({ role: "user", content: `Correct every problem without changing the immutable blueprint: ${lastProblems.join("; ")}. Return the complete corrected JSON only.` }); }
+    if (!attempt) { messages.push({ role: "assistant", content: raw }); messages.push({ role: "user", content: buildCorrectivePrompt(lastProblems, params.blueprint) }); }
   }
   throw new Error(`The AI could not produce a blueprint-aligned exam after 2 attempts: ${lastProblems.join("; ")}. Please try again.`);
 }

@@ -347,8 +347,14 @@ export function ExamWizard() {
   const handleGenerate = () => {
     setGenerateError(null);
     startGenerating(async () => {
-      const result = await generateExam(data);
-      if (result?.error) setGenerateError(result.error);
+      try {
+        const result = await generateExam(data);
+        if (result?.error) setGenerateError(result.error);
+      } catch {
+        setGenerateError(
+          "The generation request was interrupted before it completed. Please try again."
+        );
+      }
     });
   };
 
