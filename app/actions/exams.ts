@@ -31,6 +31,7 @@ import {
   type SelectedCurriculumRow,
 } from "@/lib/curriculum/exam-selection";
 import type { WizardData } from "@/components/exam-wizard/types";
+import { prepareTextbookGrounding, type GroundingProvenance } from "@/lib/textbooks/exam-grounding";
 
 export type GenerateExamState = { error: string } | undefined;
 
@@ -282,19 +283,27 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
     };
   }
 
+  const topics = toTopicInputs(curriculumSelection, rows);
   let textbookName: string | undefined;
+  let textbookContext;
+  let textbookGrounding: GroundingProvenance | null = null;
   if (data.textbookId) {
-    const textbookResult = await supabase
-      .from("textbooks")
-      .select("id, name")
-      .eq("id", data.textbookId)
-      .eq("subject_id", subject.id)
-      .eq("grade_id", grade.id)
-      .maybeSingle();
-    if (textbookResult.error || !textbookResult.data) {
-      return { error: "The selected textbook does not match the class and subject." };
+    try {
+      const grounding = await prepareTextbookGrounding({
+        textbookId: data.textbookId,
+        subjectId: subject.id,
+        gradeId: grade.id,
+        subjectName: subject.name,
+        gradeName: grade.name,
+        curriculumIds: data.topicIds,
+        topics,
+      });
+      textbookName = grounding.textbookName;
+      textbookContext = grounding.context;
+      textbookGrounding = grounding.provenance;
+    } catch (error) {
+      return { error: error instanceof Error ? error.message : "Textbook grounding failed. Please try again." };
     }
-    textbookName = textbookResult.data.name;
   }
 
   let persistenceClient: ReturnType<typeof createAdminClient>;
@@ -306,7 +315,6 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
     };
   }
 
-  const topics = toTopicInputs(curriculumSelection, rows);
   let generated;
   try {
     generated = await callAi({
@@ -319,6 +327,7 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
       duration: data.duration!,
       topics,
       textbookName,
+      textbookContext,
       blueprint,
     });
   } catch (error) {
@@ -352,6 +361,7 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
           subjectName: subject.name,
           gradeName: grade.name,
           textbookName: textbookName ?? null,
+          textbookGrounding,
           topicIds: data.topicIds,
           assessmentType: {
             id: assessmentType.id,

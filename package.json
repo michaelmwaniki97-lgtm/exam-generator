@@ -18,6 +18,7 @@
     "curriculum:import": "node --env-file=.env.local scripts/import-verified-curriculum.mjs --apply",
     "test:security": "node --test --experimental-strip-types lib/security/core.test.ts lib/auth/validation.test.ts lib/assessment/validation.test.ts",
     "test:create-exam": "node --test --experimental-strip-types lib/assessment/validation.test.ts lib/curriculum/exam-selection.test.ts components/exam-wizard/state.test.ts",
+    "test:textbooks": "node --test --experimental-strip-types lib/textbooks/ingestion.test.ts lib/textbooks/retrieval.test.ts lib/textbooks/security.test.ts",
     "test": "node --test --experimental-strip-types lib/auth/access.test.ts lib/admin/validation.test.ts"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "lucide-react": "^1.31.0",
     "next": "16.3.0",
     "openai": "^7.4.0",
+    "pdfjs-dist": "^6.2.108",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },

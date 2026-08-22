@@ -266,12 +266,9 @@ export function ExamWizard() {
 
     const supabase = createClient();
     void supabase
-      .from("textbooks")
-      .select("id, name, publisher")
-      .eq("subject_id", data.subjectId)
-      .eq("grade_id", data.gradeId)
-      .order("name")
+      .rpc("list_ready_textbooks", { p_subject_id: data.subjectId, p_grade_id: data.gradeId })
       .then((result) => {
+        if (result.error) setSubjectError("Could not load processed textbooks.");
         if (cancelled) return;
         const available = (result.data ?? []) as Textbook[];
         setTextbooks(available);

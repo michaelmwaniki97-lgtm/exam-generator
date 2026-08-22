@@ -10,6 +10,7 @@ const adminNavItems: NavItem[] = [
   { label: "Subjects", href: "/admin/subjects", icon: "book-open" },
   { label: "Grades", href: "/admin/grades", icon: "graduation-cap" },
   { label: "Curriculum", href: "/admin/curriculum", icon: "library" },
+  { label: "Textbooks", href: "/admin/textbooks", icon: "book-open" },
   { label: "Settings", href: "/admin/settings", icon: "settings" },
 ];
 

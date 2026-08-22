@@ -1,0 +1,11 @@
+export const TEXTBOOK_BUCKET = "textbooks";
+export const MAX_PDF_BYTES = 12 * 1024 * 1024;
+export const MAX_EXTRACTED_CHARACTERS = 1_200_000;
+export const MAX_DOCUMENT_CHUNKS = 800;
+export const CHUNK_TARGET_CHARACTERS = 1_600;
+export const CHUNK_OVERLAP_CHARACTERS = 200;
+export const EMBEDDING_BATCH_SIZE = 24;
+export const RETRIEVAL_TOP_K = 8;
+export const MAX_RAG_CONTEXT_CHARACTERS = 14_000;
+export const EMBEDDING_MODEL = "nvidia/nemotron-3-embed-1b";
+export const EMBEDDING_DIMENSION = 2048;
