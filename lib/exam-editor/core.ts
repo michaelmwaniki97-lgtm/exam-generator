@@ -43,15 +43,30 @@ function record(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === "object" && !Array.isArray(value);
 }
 
+function optionalSafeText(value: unknown, max: number): boolean {
+  return value === undefined || isSafeEducationalText(value, max);
+}
+
+function safeTextOrEmpty(value: unknown, max: number): value is string {
+  return value === "" || isSafeEducationalText(value, max);
+}
+
+function safeStringArray(value: unknown, maxItems: number, maxCharacters: number): value is string[] {
+  return Array.isArray(value) && value.length <= maxItems && value.every((item) => isSafeEducationalText(item, maxCharacters));
+}
+
 export function storedContentForDisplayOrThrow(
   examContent: unknown,
   markingContent?: unknown
 ): { exam: StoredExamContent; marking?: StoredMarkingContent } {
-  if (!record(examContent) || typeof examContent.instructions !== "string" || !Array.isArray(examContent.sections) || !record(examContent.meta)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+  if (!record(examContent) || !safeTextOrEmpty(examContent.instructions, 12_000) || !Array.isArray(examContent.sections) || !record(examContent.meta)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
   for (const section of examContent.sections) {
-    if (!record(section) || typeof section.title !== "string" || !Array.isArray(section.questions)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+    if (!record(section) || !optionalSafeText(section.id, 120) || !isSafeEducationalText(section.title, 500) || !Array.isArray(section.questions)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
     for (const question of section.questions) {
-      if (!record(question) || !Number.isInteger(question.number) || typeof question.text !== "string" || !Number.isInteger(question.marks)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+      if (!record(question) || !optionalSafeText(question.slotId, 120) || !Number.isInteger(question.number) || !isSafeEducationalText(question.text, EDITOR_LIMITS.questionText) || !Number.isInteger(question.marks) || Number(question.marks) <= 0) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+      if (question.options !== undefined) {
+        if (!safeStringArray(question.options, 4, EDITOR_LIMITS.optionText) || question.options.length < 1) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+      }
       if (validateQuestionStimuli(question.stimuli, ["passage", "extract", "table", "dataset", "graph", "diagram"]).length) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
     }
   }
@@ -59,10 +74,12 @@ export function storedContentForDisplayOrThrow(
   if (markingContent !== undefined) {
     if (!record(markingContent) || !Array.isArray(markingContent.entries)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
     for (const entry of markingContent.entries) {
-      if (!record(entry) || !Number.isInteger(entry.number) || typeof entry.marking_notes !== "string") throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+      if (!record(entry) || !optionalSafeText(entry.slotId, 120) || !Number.isInteger(entry.number) || !Number.isInteger(entry.marks) || Number(entry.marks) <= 0 || !safeTextOrEmpty(entry.marking_notes, EDITOR_LIMITS.markingNotes)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+      if (entry.answer !== undefined && !isSafeEducationalText(entry.answer, EDITOR_LIMITS.answer)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+      if (entry.markingModel !== undefined && !["point_based", "numerical_method", "essay_rubric", "composition_rubric", "practical_rubric", "performance_rubric"].includes(String(entry.markingModel))) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
       if (entry.rubric !== undefined && (!Number.isInteger(entry.marks) || validateRubricCriteria(entry.rubric, Number(entry.marks)).length)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
       if (entry.numericalMethod !== undefined && (!Number.isInteger(entry.marks) || validateNumericalMethod(entry.numericalMethod, Number(entry.marks)).length)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
-      if (entry.allocations !== undefined && (!Array.isArray(entry.allocations) || entry.allocations.some((allocation) => !record(allocation) || typeof allocation.label !== "string" || !Number.isInteger(allocation.marks) || Number(allocation.marks) <= 0))) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+      if (entry.allocations !== undefined && (!Array.isArray(entry.allocations) || entry.allocations.length > 200 || entry.allocations.some((allocation) => !record(allocation) || !isSafeEducationalText(allocation.label, EDITOR_LIMITS.allocationLabel) || !Number.isInteger(allocation.marks) || Number(allocation.marks) <= 0))) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
     }
     marking = markingContent as StoredMarkingContent;
   }

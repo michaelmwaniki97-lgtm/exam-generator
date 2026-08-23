@@ -7,6 +7,8 @@ const grounding = readFileSync(new URL("./regeneration-grounding.ts", import.met
 const richRenderer = readFileSync(new URL("../../components/exam-content/rich-stimuli.tsx", import.meta.url), "utf8");
 const examView = readFileSync(new URL("../../app/teacher/exams/[id]/page.tsx", import.meta.url), "utf8");
 const markingView = readFileSync(new URL("../../app/teacher/exams/[id]/marking-scheme/page.tsx", import.meta.url), "utf8");
+const documentLoader = readFileSync(new URL("../exam-document/load.ts", import.meta.url), "utf8");
+const documentModel = readFileSync(new URL("../exam-document/model.ts", import.meta.url), "utf8");
 
 test("server actions authenticate, derive teacher identity, and enforce ownership", () => {
   assert.match(action, /auth\.getUser\(\)/);
@@ -41,8 +43,11 @@ test("rich content rendering uses only deterministic React and declarative SVG p
 
 test("stored exam and marking views validate rich JSON and fail with a controlled message", () => {
   for (const source of [examView, markingView]) {
-    assert.match(source, /storedContentForDisplayOrThrow/);
-    assert.match(source, /INVALID_STORED_CONTENT_MESSAGE/);
+    assert.match(source, /loadCanonicalExamDocument/);
+    assert.match(source, /unsupported or invalid stored content/);
     assert.doesNotMatch(source, /JSON\.stringify\(exam\.content\)/);
   }
+  assert.match(documentLoader, /buildExamDocument/);
+  assert.match(documentModel, /storedContentForDisplayOrThrow/);
+  assert.match(documentModel, /INVALID_STORED_CONTENT_MESSAGE/);
 });

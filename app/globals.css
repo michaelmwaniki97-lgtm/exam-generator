@@ -30,14 +30,61 @@ body {
   color: var(--foreground);
 }
 
+.exam-paper { width: min(100%, 210mm); min-height: 297mm; padding: 18mm 17mm; box-shadow: 0 1px 8px rgb(0 0 0 / 12%); font-family: Georgia, "Times New Roman", serif; font-size: 11pt; line-height: 1.45; }
+.exam-header { border-bottom: 1.5px solid #111; padding-bottom: 12px; text-align: center; }
+.exam-header h1 { margin-top: 7px; font-size: 18pt; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.exam-header h2 { margin-top: 2px; font-size: 13pt; font-weight: 700; text-transform: uppercase; }
+.school-name { font-size: 14pt; font-weight: 700; text-transform: uppercase; }
+.practice-notice { min-height: 1em; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 8.5pt; font-weight: 600; }
+.practice-notice:empty { display: none; }
+.paper-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; margin-top: 8px; font-size: 10pt; }
+.candidate-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; margin-top: 18px; text-align: left; }
+.candidate-grid-compact { grid-template-columns: 2fr 1fr; }
+.candidate-field { display: flex; align-items: baseline; gap: 8px; }
+.candidate-field span { flex: 1; border-bottom: 1px dotted #111; }
+.instruction-box { margin-top: 18px; border: 1px solid #333; padding: 10px 14px; break-inside: avoid; }
+.instruction-box h3, .section-heading h3 { font-weight: 700; text-transform: uppercase; letter-spacing: .03em; }
+.instruction-box ol, .section-instructions { margin: 6px 0 0 20px; list-style: decimal; }
+.section-instructions { list-style: disc; }
+.exam-sections { margin-top: 22px; }
+.exam-section + .exam-section { margin-top: 24px; break-before: auto; }
+.section-heading { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid #333; padding-bottom: 4px; break-after: avoid; }
+.section-instructions { break-after: avoid; }
+.questions { margin-top: 12px; }
+.exam-question, .marking-entry { margin-top: 14px; break-inside: avoid-page; }
+.question-row { display: flex; align-items: flex-start; gap: 8px; }
+.question-number { width: 24px; flex: none; font-weight: 700; }
+.question-body { min-width: 0; flex: 1; white-space: pre-wrap; }
+.question-marks { flex: none; white-space: nowrap; font-weight: 700; font-size: 9.5pt; }
+.option { display: grid; grid-template-columns: 22px 1fr; margin: 3px 0 0 12px; }
+.end-marker { margin-top: 28px; border-top: 1px solid #333; padding-top: 9px; text-align: center; font-weight: 700; letter-spacing: .25em; break-before: avoid; }
+.confidential-label { display: inline-block; border: 1.5px solid #111; padding: 4px 10px; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 9pt; font-weight: 800; text-transform: uppercase; }
+.marking-entry { border-bottom: 1px solid #aaa; padding-bottom: 12px; }
+.marking-entry p, .marking-entry ul, .marking-entry ol { margin-top: 5px; }
+.marking-entry ul, .marking-entry ol { margin-left: 20px; }
+.rubric-table { width: 100%; margin-top: 9px; border-collapse: collapse; font-size: 9.5pt; }
+.rubric-table th, .rubric-table td { border: 1px solid #333; padding: 5px 7px; text-align: left; vertical-align: top; }
+.rubric-table td:last-child, .rubric-table th:last-child { width: 52px; text-align: right; }
+.marking-notes { color: #333; }
+
+@media (max-width: 700px) {
+  .exam-paper { min-height: 0; padding: 24px 18px; }
+  .candidate-grid, .candidate-grid-compact { grid-template-columns: 1fr; }
+}
+
 @media print {
   @page {
-    margin: 1.5cm;
+    size: A4 portrait;
+    margin: 14mm 15mm 16mm;
   }
 
   body {
     background: #ffffff;
   }
+  .exam-paper { width: auto; min-height: 0; padding: 0; box-shadow: none; font-size: 10.5pt; }
+  .exam-question, .marking-entry, .instruction-box, table, figure, svg { break-inside: avoid-page; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
 }
 
 @media (prefers-reduced-motion: reduce) {
