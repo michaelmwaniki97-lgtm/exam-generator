@@ -13,7 +13,16 @@ export default async function ExamDetailPage({ params }: { params: Promise<{ id:
   const { id } = await params; if (!UUID_PATTERN.test(id)) notFound();
   let document;
   try { document = await loadCanonicalExamDocument(id, "student"); }
-  catch (error) { if (error instanceof ExamDocumentAccessError && error.status !== 422) notFound(); return <div role="alert" className="rounded-lg border border-amber-300 bg-amber-50 p-5 text-sm text-amber-900">This exam contains unsupported or invalid stored content and cannot be displayed safely.</div>; }
+  catch (error) {
+    const errorClass = error instanceof Error ? error.constructor.name : typeof error;
+    console.error("Exam document display failed", {
+      name: error instanceof Error ? error.name : "UnknownError",
+      message: error instanceof Error ? error.message : "A non-Error value was thrown.",
+      type: errorClass,
+    });
+    if (error instanceof ExamDocumentAccessError && error.status !== 422) notFound();
+    return <div role="alert" className="rounded-lg border border-amber-300 bg-amber-50 p-5 text-sm text-amber-900">This exam contains unsupported or invalid stored content and cannot be displayed safely.</div>;
+  }
   const entitlement = await getExamDownloadEntitlement(id);
   const provider = paymentProviderState();
   return <div className={`flex flex-col gap-5 ${entitlement.allowed ? "" : "unpaid-exam-preview"}`}>
