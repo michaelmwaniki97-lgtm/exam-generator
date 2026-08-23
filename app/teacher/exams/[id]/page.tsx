@@ -14,14 +14,16 @@ export default async function ExamDetailPage({ params }: { params: Promise<{ id:
   let document;
   try { document = await loadCanonicalExamDocument(id, "student"); }
   catch (error) {
-    const errorClass = error instanceof Error ? error.constructor.name : typeof error;
-    console.error("Exam document display failed", {
+    if (error instanceof ExamDocumentAccessError) {
+      if (error.status !== 422) notFound();
+      return <div role="alert" className="rounded-lg border border-amber-300 bg-amber-50 p-5 text-sm text-amber-900">This exam contains unsupported or invalid stored content and cannot be displayed safely.</div>;
+    }
+    console.error("Unexpected exam document display failure", {
       name: error instanceof Error ? error.name : "UnknownError",
-      message: error instanceof Error ? error.message : "A non-Error value was thrown.",
-      type: errorClass,
+      message: "The exam document could not be loaded due to an unexpected server error.",
+      type: error instanceof Error ? error.constructor.name : typeof error,
     });
-    if (error instanceof ExamDocumentAccessError && error.status !== 422) notFound();
-    return <div role="alert" className="rounded-lg border border-amber-300 bg-amber-50 p-5 text-sm text-amber-900">This exam contains unsupported or invalid stored content and cannot be displayed safely.</div>;
+    return <div role="alert" className="rounded-lg border border-red-300 bg-red-50 p-5 text-sm text-red-900">The exam could not be loaded right now. Please try again.</div>;
   }
   const entitlement = await getExamDownloadEntitlement(id);
   const provider = paymentProviderState();

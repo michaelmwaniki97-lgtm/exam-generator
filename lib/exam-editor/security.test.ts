@@ -45,9 +45,16 @@ test("stored exam and marking views validate rich JSON and fail with a controlle
   for (const source of [examView, markingView]) {
     assert.match(source, /loadCanonicalExamDocument/);
     assert.match(source, /unsupported or invalid stored content/);
+    assert.match(source, /error instanceof ExamDocumentAccessError/);
+    assert.match(source, /unexpected server error/);
+    assert.doesNotMatch(source, /message:\s*error\.message/);
     assert.doesNotMatch(source, /JSON\.stringify\(exam\.content\)/);
   }
   assert.match(documentLoader, /buildExamDocument/);
+  assert.match(documentLoader, /teacherError/);
+  assert.match(documentLoader, /examError/);
+  assert.match(documentLoader, /error\.message === INVALID_STORED_CONTENT_MESSAGE/);
+  assert.match(documentLoader, /throw error/);
   assert.match(documentModel, /storedContentForDisplayOrThrow/);
   assert.match(documentModel, /INVALID_STORED_CONTENT_MESSAGE/);
 });
