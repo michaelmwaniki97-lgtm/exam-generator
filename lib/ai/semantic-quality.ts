@@ -47,12 +47,21 @@ function isCalculationLike(question: SemanticQuestion): boolean {
     /\b(?:calculate|compute|work out|determine the (?:mass|volume|percentage|concentration|amount|number))\b/i.test(question.text);
 }
 
-export function describeSemanticViolations(exam: SemanticExam): string[] {
+export type SemanticValidationScope = {
+  questionSlotIds: ReadonlySet<string>;
+  answerSlotIds: ReadonlySet<string>;
+  markingNotesSlotIds: ReadonlySet<string>;
+  allocationSlotIds: ReadonlySet<string>;
+  pairSlotIds: ReadonlySet<string>;
+};
+
+export function describeSemanticViolations(exam: SemanticExam, scope?: SemanticValidationScope): string[] {
   const violations: string[] = [];
   const questionBySlot = new Map<string, SemanticQuestion>();
 
   for (const question of exam.sections.flatMap((section) => section.questions)) {
     questionBySlot.set(question.slotId, question);
+    if (scope && !scope.questionSlotIds.has(question.slotId)) continue;
     const text = question.text.trim();
     const resourceReference = DEPENDENT_RESOURCE_REFERENCE.test(text);
     const inlineNumericData = /\bdata\b/i.test(text) && !/\b(?:graph|chart|diagram|image|figure|table|map|passage|extract|case study|dataset|experiment(?:al)? setup)\b/i.test(text) && hasConcreteGiven(text);
@@ -81,22 +90,22 @@ export function describeSemanticViolations(exam: SemanticExam): string[] {
     const question = entry.slotId ? questionBySlot.get(entry.slotId) : undefined;
     const answer = entry.answer.trim();
     const notes = entry.marking_notes.trim();
-    if (MISSING_INFORMATION_REFERENCE.test(answer) || PLACEHOLDER_ANSWER.test(answer)) {
+    if ((!scope || scope.answerSlotIds.has(slotId)) && (MISSING_INFORMATION_REFERENCE.test(answer) || PLACEHOLDER_ANSWER.test(answer))) {
       violations.push(`marking entry ${slotId} contains placeholder or missing-information language instead of a substantive model answer`);
     }
-    if (PLACEHOLDER_ANSWER.test(notes) || MISSING_INFORMATION_REFERENCE.test(notes)) {
+    if ((!scope || scope.markingNotesSlotIds.has(slotId)) && (PLACEHOLDER_ANSWER.test(notes) || MISSING_INFORMATION_REFERENCE.test(notes))) {
       violations.push(`marking entry ${slotId} has generic marking notes instead of concrete awardable guidance`);
     }
-    if (entry.allocations?.some((allocation) => PLACEHOLDER_CRITERION.test(allocation.label.trim()))) {
+    if ((!scope || scope.allocationSlotIds.has(slotId)) && entry.allocations?.some((allocation) => PLACEHOLDER_CRITERION.test(allocation.label.trim()))) {
       violations.push(`marking entry ${slotId} contains a generic allocation label instead of a specific awardable criterion`);
     }
-    if (question && isCalculationLike(question) && /\d/.test(question.text) && !/\d/.test(answer)) {
+    if ((!scope || scope.pairSlotIds.has(slotId)) && question && isCalculationLike(question) && /\d/.test(question.text) && !/\d/.test(answer)) {
       violations.push(`marking entry ${slotId} gives no worked numerical result for a calculation with concrete numerical givens`);
     }
-    if (question && !DEPENDENT_RESOURCE_REFERENCE.test(question.text) && /\b(?:the )?(?:graph|chart|table|diagram|figure) (?:shows|indicates|illustrates|demonstrates)\b/i.test(answer)) {
+    if ((!scope || scope.pairSlotIds.has(slotId)) && question && !DEPENDENT_RESOURCE_REFERENCE.test(question.text) && /\b(?:the )?(?:graph|chart|table|diagram|figure) (?:shows|indicates|illustrates|demonstrates)\b/i.test(answer)) {
       violations.push(`marking entry ${slotId} invents facts about a graph, table, or figure absent from the question`);
     }
-    if (question && normalizedWords(answer) === normalizedWords(question.text)) {
+    if ((!scope || scope.pairSlotIds.has(slotId)) && question && normalizedWords(answer) === normalizedWords(question.text)) {
       violations.push(`marking entry ${slotId} merely restates the question instead of answering it`);
     }
   }

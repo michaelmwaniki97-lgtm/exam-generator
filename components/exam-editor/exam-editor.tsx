@@ -48,7 +48,6 @@ export function ExamEditor({ examId, initialRevision, exam, marking }: { examId:
   }
 
   return <div className="flex flex-col gap-6">
-    {message && <p role="status" className={`rounded-lg border px-4 py-3 text-sm ${message.kind === "error" ? "border-red-300 bg-red-50 text-red-800" : "border-green-300 bg-green-50 text-green-800"}`}>{message.text}</p>}
     {questions.map(({ section, question }) => {
       const input = inputs.find((item) => item.slotId === question.slotId)!;
       const entry = entries.get(question.slotId)!;
@@ -66,6 +65,6 @@ export function ExamEditor({ examId, initialRevision, exam, marking }: { examId:
         </div>
       </section>;
     })}
-    <div className="sticky bottom-4 flex justify-end"><button type="button" disabled={pending || !dirty} onClick={save} className="inline-flex items-center gap-2 rounded-lg bg-foreground px-5 py-3 text-sm font-bold text-background shadow-lg disabled:opacity-50"><Save size={16} />{pending ? "Saving…" : "Save exam edits"}</button></div>
+    <div className="sticky bottom-4 flex flex-wrap items-center justify-end gap-3"><>{message && <p role="status" className={`rounded-lg border px-4 py-3 text-sm ${message.kind === "error" ? "border-red-300 bg-red-50 text-red-800" : "border-green-300 bg-green-50 text-green-800"}`}>{message.text}</p>}</><button type="button" disabled={pending || !dirty} onClick={save} className="inline-flex items-center gap-2 rounded-lg bg-foreground px-5 py-3 text-sm font-bold text-background shadow-lg disabled:opacity-50"><Save size={16} />{pending ? "Saving…" : "Save exam edits"}</button></div>
   </div>;
 }

@@ -104,7 +104,7 @@ export function isValidGeneratedExam(value: unknown): value is GeneratedExam {
 }
 function same(actual: string[], expected: string[]): boolean { return actual.length === expected.length && actual.every((value, index) => value === expected[index]); }
 
-export function describeViolations(exam: GeneratedExam, blueprint: ExamBlueprint): string[] {
+export function describeStructuralViolations(exam: GeneratedExam, blueprint: ExamBlueprint): string[] {
   const projection = projectBlueprint(blueprint); const violations: string[] = [];
   const questions = exam.sections.flatMap((section) => section.questions.map((question) => ({ section, question })));
   const expectedSections = [...new Map(projection.slots.map((slot) => [slot.sectionId, slot.sectionTitle])).entries()];
@@ -148,7 +148,11 @@ export function describeViolations(exam: GeneratedExam, blueprint: ExamBlueprint
   }
   const markingTotal = exam.marking_scheme.reduce((sum, entry) => sum + (entry.marks ?? 0), 0);
   if (markingTotal !== projection.totalMarks) violations.push(`marking scheme total is ${markingTotal}, expected ${projection.totalMarks}`);
-  return [...new Set([...violations, ...describeSemanticViolations(exam)])];
+  return [...new Set(violations)];
+}
+
+export function describeViolations(exam: GeneratedExam, blueprint: ExamBlueprint): string[] {
+  return [...new Set([...describeStructuralViolations(exam, blueprint), ...describeSemanticViolations(exam)])];
 }
 
 function buildCorrectivePrompt(problems: string[], blueprint: ExamBlueprint): string {

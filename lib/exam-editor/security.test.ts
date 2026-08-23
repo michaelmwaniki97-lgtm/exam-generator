@@ -18,7 +18,8 @@ test("every save and regeneration mutation uses the atomic revision RPC", () => 
   assert.equal((action.match(/update_exam_and_scheme_atomic/g) ?? []).length, 1);
   assert.match(action, /p_expected_revision: expectedRevision/);
   assert.match(action, /saveExamEdits[\s\S]*return persist/);
-  assert.match(action, /regenerateExamQuestion[\s\S]*return persist/);
+  assert.match(action, /regenerateExamQuestion[\s\S]*const result = await persist/);
+  assert.match(action, /regenerateExamQuestion[\s\S]*return result/);
 });
 
 test("regeneration grounding is pinned to canonical textbook, document, class, and subject", () => {

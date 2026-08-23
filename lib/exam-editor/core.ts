@@ -1,11 +1,13 @@
 import type { ExamBlueprint } from "../blueprint/types.ts";
 import {
   describeViolations,
+  describeStructuralViolations,
   type ExamQuestion,
   type ExamSection,
   type GeneratedExam,
   type MarkingSchemeEntry,
 } from "../ai/generation-core.ts";
+import { describeSemanticViolations } from "../ai/semantic-quality.ts";
 
 export const EDITOR_LIMITS = {
   questionText: 8_000,
@@ -38,6 +40,10 @@ function clean(value: string, label: string, max: number): string {
   if (result.length > max) throw new ExamEditorError(`${label} is too long.`);
   return result;
 }
+function sameStrings(left: readonly string[], right: readonly string[]): boolean {
+  return left.length === right.length && left.every((value, index) => value === right[index]);
+}
+
 
 export function editableExamOrThrow(
   examContent: unknown,
@@ -78,16 +84,31 @@ export function validateCanonicalExam(
   }
 }
 
+export function validateCanonicalStructure(
+  exam: StoredExamContent,
+  marking: StoredMarkingContent,
+  blueprint: ExamBlueprint
+): void {
+  const problems = describeStructuralViolations(generated(exam, marking), blueprint);
+  if (problems.length) {
+    throw new ExamEditorError(`This exam cannot be edited safely: ${problems.join("; ")}`);
+  }
+}
+
 export function applyEditableChanges(
   examContent: unknown,
   markingContent: unknown,
   inputs: readonly EditableSlotInput[]
-): { exam: StoredExamContent; marking: StoredMarkingContent } {
+): { exam: StoredExamContent; marking: StoredMarkingContent; changedSlotIds: string[] } {
   const { exam, marking, blueprint } = editableExamOrThrow(examContent, markingContent);
   const questions = exam.sections.flatMap((section) => section.questions);
   if (inputs.length !== questions.length) throw new ExamEditorError("The submitted exam is incomplete. Refresh and try again.");
   const inputBySlot = new Map(inputs.map((input) => [input.slotId, input]));
   if (inputBySlot.size !== inputs.length) throw new ExamEditorError("The submitted exam contains duplicate questions.");
+  const changedQuestionSlots = new Set<string>();
+  const changedAnswerSlots = new Set<string>();
+  const changedMarkingNotesSlots = new Set<string>();
+  const changedAllocationSlots = new Set<string>();
 
   const nextSections = exam.sections.map((section) => ({
     ...section,
@@ -95,6 +116,7 @@ export function applyEditableChanges(
       const input = inputBySlot.get(question.slotId);
       if (!input) throw new ExamEditorError("The submitted exam does not match the current exam. Refresh and try again.");
       let options: string[] | undefined;
+      const text = clean(input.questionText, `Question ${question.number}`, EDITOR_LIMITS.questionText);
       if (question.type === "objective") {
         if (!Array.isArray(input.options) || input.options.length !== 4) throw new ExamEditorError(`Question ${question.number} must have exactly four options.`);
         options = input.options.map((option, index) => clean(option, `Question ${question.number} option ${index + 1}`, EDITOR_LIMITS.optionText));
@@ -102,7 +124,10 @@ export function applyEditableChanges(
       } else if (input.options !== undefined) {
         throw new ExamEditorError(`Question ${question.number} does not accept options.`);
       }
-      return { ...question, text: clean(input.questionText, `Question ${question.number}`, EDITOR_LIMITS.questionText), ...(options ? { options } : {}) };
+      const changed = text !== question.text || !sameStrings(options ?? [], question.options ?? []);
+      if (!changed) return question;
+      changedQuestionSlots.add(question.slotId);
+      return { ...question, text, ...(options ? { options } : {}) };
     }),
   }));
 
@@ -111,18 +136,40 @@ export function applyEditableChanges(
     if (!input) throw new ExamEditorError("The submitted marking scheme does not match the current exam. Refresh and try again.");
     const allocations = entry.allocations ?? [];
     if (input.allocationLabels.length !== allocations.length) throw new ExamEditorError(`Question ${entry.number} marking points are incomplete.`);
+    const answer = clean(input.answer, `Question ${entry.number} model answer`, EDITOR_LIMITS.answer);
+    const markingNotes = clean(input.markingNotes, `Question ${entry.number} marking notes`, EDITOR_LIMITS.markingNotes);
+    const allocationLabels = allocations.map((_allocation, index) => clean(input.allocationLabels[index], `Question ${entry.number} marking point ${index + 1}`, EDITOR_LIMITS.allocationLabel));
+    const answerChanged = answer !== entry.answer;
+    const markingNotesChanged = markingNotes !== entry.marking_notes;
+    const allocationsChanged = !sameStrings(allocationLabels, allocations.map((allocation) => allocation.label));
+    const changed = answerChanged || markingNotesChanged || allocationsChanged;
+    if (!changed) return entry;
+    if (answerChanged) changedAnswerSlots.add(entry.slotId!);
+    if (markingNotesChanged) changedMarkingNotesSlots.add(entry.slotId!);
+    if (allocationsChanged) changedAllocationSlots.add(entry.slotId!);
     return {
       ...entry,
-      answer: clean(input.answer, `Question ${entry.number} model answer`, EDITOR_LIMITS.answer),
-      marking_notes: clean(input.markingNotes, `Question ${entry.number} marking notes`, EDITOR_LIMITS.markingNotes),
-      allocations: allocations.map((allocation, index) => ({ ...allocation, label: clean(input.allocationLabels[index], `Question ${entry.number} marking point ${index + 1}`, EDITOR_LIMITS.allocationLabel) })),
+      answer,
+      marking_notes: markingNotes,
+      allocations: allocations.map((allocation, index) => ({ ...allocation, label: allocationLabels[index] })),
     };
   });
 
   const nextExam = { ...exam, sections: nextSections };
   const nextMarking = { ...marking, entries: nextEntries };
-  validateCanonicalExam(nextExam, nextMarking, blueprint);
-  return { exam: nextExam, marking: nextMarking };
+  validateCanonicalStructure(nextExam, nextMarking, blueprint);
+  const pairSlots = new Set([...changedQuestionSlots, ...changedAnswerSlots]);
+  const semanticProblems = describeSemanticViolations(generated(nextExam, nextMarking), {
+    questionSlotIds: changedQuestionSlots,
+    answerSlotIds: changedAnswerSlots,
+    markingNotesSlotIds: changedMarkingNotesSlots,
+    allocationSlotIds: changedAllocationSlots,
+    pairSlotIds: pairSlots,
+  });
+  if (semanticProblems.length) {
+    throw new ExamEditorError(`Edited content does not meet current quality requirements: ${semanticProblems.join("; ")}`);
+  }
+  return { exam: nextExam, marking: nextMarking, changedSlotIds: [...new Set([...changedQuestionSlots, ...changedAnswerSlots, ...changedMarkingNotesSlots, ...changedAllocationSlots])] };
 }
 
 function words(value: string): Set<string> {
@@ -154,6 +201,17 @@ export function replaceOneSlot(
   if (materiallyDuplicates(question.text, others)) throw new ExamEditorError("The regenerated question materially duplicates another question in this exam.");
   const nextExam = { ...exam, sections: exam.sections.map((section) => ({ ...section, questions: section.questions.map((item) => item.slotId === slotId ? question : item) })) };
   const nextMarking = { ...marking, entries: marking.entries.map((item) => item.slotId === slotId ? entry : item) };
-  validateCanonicalExam(nextExam, nextMarking, blueprint);
+  validateCanonicalStructure(nextExam, nextMarking, blueprint);
+  const targetScope = new Set([slotId]);
+  const semanticProblems = describeSemanticViolations(generated(nextExam, nextMarking), {
+    questionSlotIds: targetScope,
+    answerSlotIds: targetScope,
+    markingNotesSlotIds: targetScope,
+    allocationSlotIds: targetScope,
+    pairSlotIds: targetScope,
+  });
+  if (semanticProblems.length) {
+    throw new ExamEditorError(`The regenerated target does not meet current quality requirements: ${semanticProblems.join("; ")}`);
+  }
   return { exam: nextExam, marking: nextMarking };
 }
