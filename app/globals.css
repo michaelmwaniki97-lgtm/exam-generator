@@ -83,6 +83,8 @@ body {
   }
   .exam-paper { width: auto; min-height: 0; padding: 0; box-shadow: none; font-size: 10.5pt; }
   .exam-question, .marking-entry, .instruction-box, table, figure, svg { break-inside: avoid-page; }
+  .unpaid-exam-preview .exam-paper { display: none !important; }
+  .unpaid-exam-preview .unpaid-print-notice { display: block !important; margin: 24mm; font: 12pt ui-sans-serif, system-ui, sans-serif; }
   thead { display: table-header-group; }
   tr { break-inside: avoid; }
 }

@@ -13,7 +13,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
   try { kind = parseExamDocumentKind(new URL(request.url).searchParams); }
   catch { return new Response("Invalid document kind.", { status: 400, headers: { "Cache-Control": "no-store" } }); }
   try {
-    const document = await loadCanonicalExamDocument(id, kind);
+    const document = await loadCanonicalExamDocument(id, kind, { requirePaid: true });
     const pdf = await renderExamPdf(document);
     if (!pdf.length || pdf.length > 25_000_000) return new Response("The PDF could not be generated safely.", { status: 422 });
     const filename = safePdfFilename([document.school, document.subject, document.grade, document.term, document.year, document.paperCode], kind === "marking");

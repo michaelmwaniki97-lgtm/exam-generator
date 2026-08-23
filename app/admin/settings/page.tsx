@@ -1,15 +1,12 @@
-import { Settings } from "lucide-react";
-import { PlaceholderSection } from "@/components/dashboard/placeholder-section";
+import { PriceForm } from "@/components/payments/price-form";
+import { getExamPackagePrice } from "@/lib/payments/server";
 
-export default function AdminSettingsPage() {
+export default async function AdminSettingsPage() {
+  const price = await getExamPackagePrice();
   return (
     <div className="flex flex-col gap-8">
       <h2 className="text-2xl font-bold text-foreground">Settings</h2>
-      <PlaceholderSection
-        icon={Settings}
-        title="Settings coming soon"
-        description="This is where you'll configure exam pricing and other app-wide settings."
-      />
+      <PriceForm currentPrice={price}/>
     </div>
   );
 }

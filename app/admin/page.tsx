@@ -64,7 +64,7 @@ export default async function AdminPage() {
       supabase.from("teachers").select("id", { count: "exact", head: true }),
       supabase.from("exams").select("id", { count: "exact", head: true }),
       supabase.from("subjects").select("id", { count: "exact", head: true }),
-      supabase.from("payments").select("amount").eq("status", "success"),
+      supabase.from("payments").select("amount").eq("status", "paid"),
     ]);
 
   const revenue = (payments ?? []).reduce((sum, p) => sum + Number(p.amount), 0);
