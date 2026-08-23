@@ -4,6 +4,8 @@ import { logout } from "@/app/actions/auth";
 import { createClient } from "@/lib/supabase/server";
 import { DashboardLayout, type NavItem } from "@/components/dashboard/dashboard-layout";
 
+export const maxDuration = 300;
+
 const teacherNavItems: NavItem[] = [
   { label: "Dashboard", href: "/teacher/dashboard", icon: "layout-dashboard" },
   { label: "My Exams", href: "/teacher/exams", icon: "file-text" },
