@@ -8,6 +8,8 @@ export const AI_CONFIG = {
   baseURL: "https://integrate.api.nvidia.com/v1",
   apiKey: process.env.NVIDIA_API_KEY,
   model: process.env.NVIDIA_MODEL || "meta/llama-3.3-70b-instruct",
+  providerTimeoutMs: 120_000,
+  generationBudgetMs: 270_000,
   embeddingTimeoutMs: 90_000,
   transportRetries: 0,
 } as const;

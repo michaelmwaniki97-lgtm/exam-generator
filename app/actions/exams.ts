@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { generateExam as callAi, type TopicInput } from "@/lib/ai/generate-exam";
+import { generateExam as callAi, AiProviderTimeoutError, GenerationDeadlineError, type TopicInput } from "@/lib/ai/generate-exam";
 import {
   APPLICATION_EXAM_LIMITS,
   examStructureLabel,
@@ -359,9 +359,10 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
     });
   } catch (error) {
     return {
-      error:
-        error instanceof Error
-          ? error.message
+      error: error instanceof AiProviderTimeoutError || error instanceof GenerationDeadlineError
+        ? error.message
+        : error instanceof Error && error.message.startsWith("The AI could not produce")
+          ? "The generated exam failed validation. Please try again."
           : "Exam generation failed. Please try again.",
     };
   }

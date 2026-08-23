@@ -1,5 +1,7 @@
 import { ExamWizard } from "@/components/exam-wizard/exam-wizard";
 
+export const maxDuration = 300;
+
 export default function CreateExamPage() {
   return (
     <div className="flex flex-col gap-8">
