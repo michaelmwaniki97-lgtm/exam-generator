@@ -1,16 +1,28 @@
 "use client";
 import { useActionState } from "react";
-import { processTextbookDocument, removeTextbookDocument, uploadTextbookDocument, type TextbookActionState } from "@/app/actions/textbooks";
+import { createTextbookRecord, processTextbookDocument, removeTextbookDocument, uploadTextbookDocument, type TextbookActionState } from "@/app/actions/textbooks";
 
 type Book = { id: string; name: string; publisher: string | null; subject: { name: string } | null; grade: { name: string } | null };
 type Document = { id: string; textbook_id: string; original_filename: string; file_size: number; processing_status: string; processing_error: string | null; page_count: number | null; chunk_count: number | null; source_type: string; created_at: string };
+type Option = { id: string; name: string };
 function Message({ state }: { state: TextbookActionState }) { return state ? <p role="status" className={`rounded-lg border px-3 py-2 text-sm ${state.status === "error" ? "border-red-200 bg-red-50 text-red-700" : "border-green-200 bg-green-50 text-green-700"}`}>{state.message}</p> : null; }
 
-export function TextbookManager({ books, documents }: { books: Book[]; documents: Document[] }) {
+export function TextbookManager({ books, documents, subjects, grades }: { books: Book[]; documents: Document[]; subjects: Option[]; grades: Option[] }) {
+  const [createState, createAction, creating] = useActionState(createTextbookRecord, undefined);
   const [uploadState, uploadAction, uploading] = useActionState(uploadTextbookDocument, undefined);
   const [processState, processAction, processing] = useActionState(processTextbookDocument, undefined);
   const [removeState, removeAction, removing] = useActionState(removeTextbookDocument, undefined);
   return <div className="flex flex-col gap-6">
+    <form action={createAction} className="grid gap-4 rounded-lg border border-border bg-card p-5 sm:grid-cols-2">
+      <h2 className="sm:col-span-2 text-lg font-bold">Create textbook record</h2>
+      <label className="text-sm font-semibold">Name/title<input name="name" required maxLength={180} className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2" /></label>
+      <label className="text-sm font-semibold">Publisher<input name="publisher" maxLength={180} className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2" /></label>
+      <label className="text-sm font-semibold">Grade/Form<select name="gradeId" required className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2"><option value="">Select grade or form</option>{grades.map((grade) => <option key={grade.id} value={grade.id}>{grade.name}</option>)}</select></label>
+      <label className="text-sm font-semibold">Subject<select name="subjectId" required className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2"><option value="">Select subject</option>{subjects.map((subject) => <option key={subject.id} value={subject.id}>{subject.name}</option>)}</select></label>
+      <div className="sm:col-span-2"><button disabled={creating} className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white disabled:opacity-60">{creating ? "Creating…" : "Create textbook record"}</button></div>
+      <div className="sm:col-span-2"><Message state={createState} /></div>
+    </form>
+
     <form action={uploadAction} className="grid gap-4 rounded-lg border border-border bg-card p-5 sm:grid-cols-2">
       <h2 className="sm:col-span-2 text-lg font-bold">Private authorized PDF upload</h2>
       <label className="text-sm font-semibold">Textbook record<select name="textbookId" required className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2"><option value="">Select textbook</option>{books.map((book) => <option key={book.id} value={book.id}>{book.grade?.name} · {book.subject?.name} · {book.name}{book.publisher ? ` (${book.publisher})` : ""}</option>)}</select></label>

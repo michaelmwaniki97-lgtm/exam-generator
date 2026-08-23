@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import nextConfig from "../../next.config.ts";
 import { chunkTextbookPages } from "./chunking.ts";
 import { extractPdfTextCore } from "./pdf-core.ts";
 import { hasPdfSignature, safePdfFilename, validateUploadMetadata } from "./validation.ts";
@@ -26,6 +27,11 @@ test("chunking is deterministic, ordered, overlapped, page-bound and empty-safe"
   const pages = [{ page: 2, text: "Second page content. ".repeat(80) }, { page: 1, text: "First page content. ".repeat(80) }, { page: 3, text: "   " }];
   const first = chunkTextbookPages(pages, 500, 80); const second = chunkTextbookPages(pages, 500, 80);
   assert.deepEqual(first, second); assert.equal(first[0].pageStart, 1); assert.ok(first.every((chunk) => chunk.pageStart === chunk.pageEnd && chunk.text.length <= 580)); assert.ok(first.length > 2);
+});
+test("Next server extraction keeps PDF.js external and off browser workers", async () => {
+  assert.ok(nextConfig.serverExternalPackages?.includes("pdfjs-dist"));
+  const extracted = await extractPdfTextCore(textPdf("Server-side chemistry textbook content. ".repeat(6)));
+  assert.match(extracted.pages[0].text, /Server-side chemistry textbook content/);
 });
 test("text PDF extraction preserves page order and content", async () => {
   const phrase = "Chemistry explains matter and its transformations. ".repeat(6); const extracted = await extractPdfTextCore(textPdf(phrase));

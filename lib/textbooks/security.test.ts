@@ -25,5 +25,7 @@ test("processing cannot publish ready before chunk persistence", () => {
   const readyPosition = actionSource.indexOf('status: "ready"');
   assert.ok(insertPosition >= 0 && readyPosition > insertPosition);
   assert.match(actionSource, /catch \(error\)[\s\S]*?status: "failed"/);
-  assert.doesNotMatch(actionSource, /console\.(?:log|error|warn)/);
+  assert.match(actionSource, /process\.env\.NODE_ENV === "development"/);
+  assert.match(actionSource, /\[Textbook Processing\] stage=\$\{stage\} document=\$\{document\.id\} error=\$\{diagnosticError\(error\)\}/);
+  assert.doesNotMatch(actionSource, /console\.error\([^\n]*(?:apiKey|storage_path|storagePath|Authorization)/);
 });
