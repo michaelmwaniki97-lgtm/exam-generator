@@ -31,21 +31,21 @@ export function mayDownloadExamPackage(role: "teacher" | "admin" | null, ownsExa
 export type PaymentAttempt = {
   id: string; examId: string; teacherId: string; amount: number; currency: typeof PAYMENT_CURRENCY;
   phone: string; provider: string; status: PaymentStatus; externalRequestId: string | null;
-  providerReference: string | null; createdAt: string; completedAt: string | null;
+  providerRequestId: string | null; providerReference: string | null; createdAt: string; completedAt: string | null;
 };
 export type BeginAttemptResult = { attempt: PaymentAttempt; created: boolean };
 export type PaymentActor = { userId: string; teacherId: string; role: "teacher" | "admin" };
 
-export type ProviderInitiation = { accepted: boolean; externalRequestId?: string; safeMessage?: string };
+export type ProviderInitiation = { accepted: boolean; externalRequestId?: string; providerRequestId?: string; safeMessage?: string };
 export type ProviderCheck =
   | { status: "pending" }
   | { status: "failed" | "cancelled" | "expired"; resultCode?: string; safeMessage?: string }
-  | { status: "paid"; amount: number; currency: typeof PAYMENT_CURRENCY; providerReference: string; resultCode?: string };
+  | { status: "paid"; amount?: number; currency?: typeof PAYMENT_CURRENCY; providerReference?: string; resultCode?: string };
 
 export interface PaymentProvider {
   readonly id: string;
   initiate(input: { paymentId: string; examId: string; amount: number; currency: typeof PAYMENT_CURRENCY; phone: string }): Promise<ProviderInitiation>;
-  checkStatus(input: { paymentId: string; externalRequestId: string }): Promise<ProviderCheck>;
+  checkStatus(input: { paymentId: string; externalRequestId: string; providerRequestId?: string | null }): Promise<ProviderCheck>;
 }
 
 export interface PaymentRepository {
@@ -53,7 +53,9 @@ export interface PaymentRepository {
   beginAttempt(input: { examId: string; teacherId: string; phone: string; provider: string; idempotencyKey: string }): Promise<BeginAttemptResult>;
   saveInitiation(paymentId: string, result: ProviderInitiation): Promise<PaymentAttempt>;
   getAttempt(paymentId: string): Promise<PaymentAttempt | null>;
-  finalizePaid(input: { paymentId: string; examId: string; teacherId: string; provider: string; amount: number; currency: typeof PAYMENT_CURRENCY; providerReference: string; resultCode?: string }): Promise<boolean>;
+  getAttemptByExternalRequest(externalRequestId: string): Promise<PaymentAttempt | null>;
+  getLatestAttemptForExam(actor: PaymentActor, examId: string): Promise<PaymentAttempt | null>;
+  finalizePaid(input: { paymentId: string; examId: string; teacherId: string; provider: string; amount: number; currency: typeof PAYMENT_CURRENCY; providerReference: string; providerReceipt?: string; resultCode?: string }): Promise<boolean>;
   recordTerminal(paymentId: string, status: "failed" | "cancelled" | "expired", resultCode?: string, safeMessage?: string): Promise<void>;
 }
 
@@ -70,15 +72,27 @@ export async function initiateExamPayment(input: { actor: PaymentActor | null; e
   return { attempt, reused: false };
 }
 
-export async function reconcilePayment(input: { paymentId: string; repository: PaymentRepository; provider: PaymentProvider }): Promise<PaymentStatus> {
+function checkoutReference(provider: string, externalRequestId: string): string {
+  const value = `${provider}-checkout-${externalRequestId}`;
+  if (value.length < 4 || value.length > 80) throw new PaymentError("VERIFICATION_FAILED", "Payment could not be verified.");
+  return value;
+}
+
+export async function reconcilePayment(input: { paymentId: string; repository: PaymentRepository; provider: PaymentProvider; providerReceipt?: string }): Promise<PaymentStatus> {
   const attempt = await input.repository.getAttempt(input.paymentId);
   if (!attempt || attempt.provider !== input.provider.id || !attempt.externalRequestId) throw new PaymentError("VERIFICATION_FAILED", "Payment could not be verified.");
-  if (attempt.status === "paid") return "paid";
+  if (attempt.status === "paid") {
+    if (!input.providerReceipt) return "paid";
+    if (!attempt.providerReference) throw new PaymentError("VERIFICATION_FAILED", "Payment could not be verified.");
+    const retained = await input.repository.finalizePaid({ paymentId: attempt.id, examId: attempt.examId, teacherId: attempt.teacherId, provider: attempt.provider, amount: attempt.amount, currency: attempt.currency, providerReference: attempt.providerReference, providerReceipt: input.providerReceipt });
+    if (!retained) throw new PaymentError("VERIFICATION_FAILED", "Payment could not be verified.");
+    return "paid";
+  }
   if (!ACTIVE_PAYMENT_STATUSES.includes(attempt.status as (typeof ACTIVE_PAYMENT_STATUSES)[number])) return attempt.status;
-  const result = await input.provider.checkStatus({ paymentId: attempt.id, externalRequestId: attempt.externalRequestId });
+  const result = await input.provider.checkStatus({ paymentId: attempt.id, externalRequestId: attempt.externalRequestId, providerRequestId: attempt.providerRequestId });
   if (result.status === "pending") return "pending";
   if (result.status !== "paid") { await input.repository.recordTerminal(attempt.id, result.status, result.resultCode, result.safeMessage); return result.status; }
-  const paid = await input.repository.finalizePaid({ paymentId: attempt.id, examId: attempt.examId, teacherId: attempt.teacherId, provider: attempt.provider, amount: result.amount, currency: result.currency, providerReference: result.providerReference, resultCode: result.resultCode });
+  const paid = await input.repository.finalizePaid({ paymentId: attempt.id, examId: attempt.examId, teacherId: attempt.teacherId, provider: attempt.provider, amount: result.amount ?? attempt.amount, currency: result.currency ?? attempt.currency, providerReference: result.providerReference ?? checkoutReference(attempt.provider, attempt.externalRequestId), providerReceipt: input.providerReceipt, resultCode: result.resultCode });
   if (!paid) throw new PaymentError("VERIFICATION_FAILED", "Payment could not be verified.");
   return "paid";
 }
@@ -89,7 +103,7 @@ export class FakePaymentProvider implements PaymentProvider {
   private result: ProviderCheck;
   private accepts: boolean;
   constructor(result: ProviderCheck = { status: "pending" }, accepts = true) { this.result = result; this.accepts = accepts; }
-  async initiate(input: { paymentId: string }): Promise<ProviderInitiation> { this.initiations += 1; return this.accepts ? { accepted: true, externalRequestId: `fake-${input.paymentId}` } : { accepted: false, safeMessage: "Payment request could not be started." }; }
+  async initiate(input: { paymentId: string }): Promise<ProviderInitiation> { this.initiations += 1; return this.accepts ? { accepted: true, providerRequestId: `fake-merchant-${input.paymentId}`, externalRequestId: `fake-${input.paymentId}` } : { accepted: false, safeMessage: "Payment request could not be started." }; }
   async checkStatus(): Promise<ProviderCheck> { return this.result; }
   setResult(result: ProviderCheck) { this.result = result; }
 }

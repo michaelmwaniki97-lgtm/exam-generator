@@ -1,11 +1,13 @@
 "use client";
 
 import { useActionState } from "react";
-import { initiatePaymentAction, type PaymentActionState } from "@/app/actions/payments";
+import { checkPaymentStatusAction, initiatePaymentAction, type PaymentActionState } from "@/app/actions/payments";
 
 export function PaymentPanel({ examId, price, configured }: { examId: string; price: number; configured: boolean }) {
   const bound = initiatePaymentAction.bind(null, examId);
+  const check = checkPaymentStatusAction.bind(null, examId);
   const [state, action, pending] = useActionState<PaymentActionState, FormData>(bound, undefined);
+  const [checkState, checkAction, checking] = useActionState<PaymentActionState, FormData>(check, undefined);
   return <section className="rounded-lg border border-amber-300 bg-amber-50 p-5 text-amber-950 print:hidden">
     <h3 className="font-semibold">Unlock exam package — KES {price}</h3>
     <p className="mt-1 text-sm">One payment unlocks both the student PDF and the marking-scheme PDF.</p>
@@ -15,6 +17,8 @@ export function PaymentPanel({ examId, price, configured }: { examId: string; pr
       <button disabled={pending || !configured} className="rounded-md bg-green-700 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50">{pending ? "Starting…" : "Pay with M-Pesa"}</button>
     </form>
     {state && <p role="status" className="mt-3 text-sm">{state.message}</p>}
+    {(state?.status === "pending" || checkState?.status === "pending") && <form action={checkAction} className="mt-3"><button disabled={checking} className="rounded-md border border-amber-500 bg-white px-4 py-2 text-sm font-semibold disabled:opacity-50">{checking ? "Checking…" : "Check payment status"}</button></form>}
+    {checkState && <p role="status" className="mt-3 text-sm">{checkState.message}</p>}
     <p className="mt-3 text-xs text-amber-800">The preview remains available for review. Screenshots cannot be technically prevented.</p>
   </section>;
 }
