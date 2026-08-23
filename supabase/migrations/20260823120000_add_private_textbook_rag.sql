@@ -50,7 +50,6 @@ create index textbook_documents_textbook_status_idx on public.textbook_documents
 create index textbook_documents_uploaded_by_idx on public.textbook_documents(uploaded_by);
 create index textbook_chunks_document_idx on public.textbook_chunks(document_id, chunk_index);
 create index textbook_chunks_textbook_idx on public.textbook_chunks(textbook_id);
-create index textbook_chunks_embedding_hnsw_idx on public.textbook_chunks using hnsw (embedding extensions.vector_cosine_ops);
 
 alter table public.textbook_documents enable row level security;
 alter table public.textbook_chunks enable row level security;
@@ -83,6 +82,7 @@ as $$
   order by t.name;
 $$;
 
+revoke all on function public.list_ready_textbooks(uuid, uuid) from public, anon;
 grant execute on function public.list_ready_textbooks(uuid, uuid) to authenticated;
 
 create or replace function public.match_textbook_chunks(
