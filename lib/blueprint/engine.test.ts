@@ -264,12 +264,35 @@ test("KJSEA Mathematics 903 profile is the exact structural authority", () => {
     [["section-a", 20], ["section-b", 80]]
   );
   assert.equal(blueprint.sections[0].slotIds.length, 20);
+  assert.ok(blueprint.sections.every((section) => section.markAuthority === "OFFICIAL_EXACT"));
   assert.ok(blueprint.questionSlots.slice(0, 20).every((slot) => slot.questionFamily === "objective" && slot.targetMarks === 1));
   assert.equal(blueprint.assessmentProfile.profileId, "kjsea-903");
   assert.throws(
     () => buildExamBlueprint({ ...input, totalMarks: 99 }),
     (error) => error instanceof BlueprintBuildError && error.issues.some((item) => item.code === "OFFICIAL_TOTAL_MISMATCH")
   );
+});
+
+test("KJSEA English comprehension slots permit passages and composition slots require rubrics", () => {
+  const common = { educationSystem: "CBC" as const, educationLevel: "Junior School", gradeId: "grade-9", gradeName: "Grade 9", subjectId: "english", subjectName: "English", assessmentTypeId: "kjsea_practice" as const, examStructure: "kjsea_style" as const, curriculum: curriculumNodes({ gradeId: "grade-9", subjectId: "english", count: 5 }) };
+  const paper1 = buildExamBlueprint(blueprintInput({ ...common, componentCode: "901/1", totalMarks: 50, durationMinutes: 100 }));
+  const comprehension = paper1.questionSlots.filter((slot) => slot.questionFamily === "comprehension");
+  assert.ok(comprehension.length > 0); assert.ok(comprehension.every((slot) => slot.allowedStimulusTypes.includes("passage")));
+  const paper2 = buildExamBlueprint(blueprintInput({ ...common, componentCode: "901/2", totalMarks: 50, durationMinutes: 105 }));
+  const composition = paper2.questionSlots.find((slot) => slot.questionFamily === "creative_composition");
+  assert.deepEqual(composition?.allowedMarkingModels, ["composition_rubric"]);
+});
+
+test("KJSEA Mathematics data families and Integrated Science practical slots carry only canonical rich capabilities", () => {
+  const maths = buildExamBlueprint(blueprintInput({ educationSystem: "CBC", educationLevel: "Junior School", gradeId: "grade-9", gradeName: "Grade 9", subjectId: "mathematics", subjectName: "Mathematics", assessmentTypeId: "kjsea_practice", examStructure: "kjsea_style", componentCode: "903", totalMarks: 100, durationMinutes: 120, curriculum: curriculumNodes({ gradeId: "grade-9", subjectId: "mathematics" }) }));
+  assert.ok(maths.questionSlots.filter((slot) => slot.questionFamily !== "objective").some((slot) => slot.allowedStimulusTypes.some((type) => ["table", "dataset", "graph"].includes(type))));
+  const science = buildExamBlueprint(blueprintInput({ educationSystem: "CBC", educationLevel: "Junior School", gradeId: "grade-9", gradeName: "Grade 9", subjectId: "integrated-science", subjectName: "Integrated Science", assessmentTypeId: "kjsea_practice", examStructure: "kjsea_style", componentCode: "905/2", totalMarks: 30, durationMinutes: 60, curriculum: curriculumNodes({ gradeId: "grade-9", subjectId: "integrated-science", count: 6, parentCount: 3 }) }));
+  assert.ok(science.questionSlots.every((slot) => slot.allowedStimulusTypes.length > 0 && slot.allowedMarkingModels[0] === "practical_rubric"));
+  assert.equal(science.totalMarks, 30); assert.equal(science.durationMinutes, 60); assert.equal(science.sections.length, 3);
+  assert.deepEqual(science.sections.map((section) => section.id), ["chemistry", "biology", "physics"]);
+  assert.ok(science.assessmentProfile.sections.every((section) => section.marks === null));
+  assert.ok(science.sections.every((section) => section.markAuthority === "GENERATION_FLEXIBLE" && section.evidenceStatus === "APPLICATION_HEURISTIC"));
+  assert.equal(science.sections.reduce((total, section) => total + section.targetMarks, 0), 30);
 });
 
 test("all selected curriculum is retained when marks are fewer than sub-topics", () => {

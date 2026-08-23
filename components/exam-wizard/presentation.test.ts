@@ -9,6 +9,7 @@ const assessment = read("./step-assessment.tsx");
 const review = read("./step-review.tsx");
 const action = read("../../app/actions/exams.ts");
 const rules = read("../../lib/assessment/rules.ts");
+const blueprintSummary = read("./blueprint-summary.tsx");
 
 test("KJSEA presentation uses KJSEA practice terminology and disclaims issuance", () => {
   assert.match(assessment, /Verified KJSEA practice profile/);
@@ -34,4 +35,9 @@ test("persisted legacy verification status has an explicit compatible scope", ()
   assert.match(action, /verificationScope:[\s\S]*?"OFFICIAL_PROFILE"/);
   assert.match(action, /"COMPONENT_IDENTITY_AND_DURATION"/);
   assert.match(action, /"SOURCE_REQUIRED"/);
+});
+
+test("unknown official section splits are displayed as generation allocations", () => {
+  assert.match(blueprintSummary, /generation allocation \(official split unknown\)/);
+  assert.match(blueprintSummary, /markAuthority === "GENERATION_FLEXIBLE"/);
 });

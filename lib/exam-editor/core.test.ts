@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import type { ExamBlueprint } from "../blueprint/types.ts";
 import type { GeneratedExam } from "../ai/generation-core.ts";
-import { applyEditableChanges, materiallyDuplicates, replaceOneSlot, type StoredExamContent, type StoredMarkingContent } from "./core.ts";
+import { applyEditableChanges, INVALID_STORED_CONTENT_MESSAGE, materiallyDuplicates, replaceOneSlot, storedContentForDisplayOrThrow, type StoredExamContent, type StoredMarkingContent } from "./core.ts";
 import { regenerateSlotWithCompletion } from "./regeneration-core.ts";
 
 function blueprint(): ExamBlueprint {
@@ -25,7 +25,7 @@ function generated(): GeneratedExam {
   ] };
 }
 function stored() { const value = generated(); return { exam: { instructions: value.instructions, sections: value.sections, meta: { blueprint: blueprint(), preserved: "yes" } } as StoredExamContent, marking: { entries: value.marking_scheme } as StoredMarkingContent }; }
-function inputs(value = stored()) { const { exam, marking } = value; const entries = new Map(marking.entries.map((entry) => [entry.slotId, entry])); return exam.sections.flatMap((section) => section.questions.map((question) => { const entry = entries.get(question.slotId)!; return { slotId: question.slotId, questionText: question.text, ...(question.options ? { options: [...question.options] } : {}), answer: entry.answer, markingNotes: entry.marking_notes, allocationLabels: entry.allocations!.map((allocation) => allocation.label) }; })); }
+function inputs(value = stored()) { const { exam, marking } = value; const entries = new Map(marking.entries.map((entry) => [entry.slotId, entry])); return exam.sections.flatMap((section) => section.questions.map((question) => { const entry = entries.get(question.slotId)!; return { slotId: question.slotId, questionText: question.text, ...(question.options ? { options: [...question.options] } : {}), answer: entry.answer ?? entry.numericalMethod?.finalAnswer ?? "", markingNotes: entry.marking_notes, allocationLabels: (entry.allocations ?? []).map((allocation) => allocation.label), rubricDescriptors: (entry.rubric ?? []).map((criterion) => criterion.descriptor) }; })); }
 function historical() {
   const value = stored();
   value.marking.entries[0].marking_notes = "The answer should include the correct method.";
@@ -215,4 +215,76 @@ test("invalid regenerated marking entry remains fully strict", async () => {
     ),
     /regenerated target.*generic marking notes/
   );
+});
+
+function richStored() {
+  const value = stored();
+  const slot = value.exam.meta.blueprint!.questionSlots[0];
+  slot.questionFamily = "comprehension"; slot.questionFamilyLabel = "Comprehension"; slot.allowedStimulusTypes = ["passage"]; slot.allowedMarkingModels = ["point_based"];
+  const question = value.exam.sections[0].questions[0];
+  question.questionFamily = "comprehension"; question.type = "comprehension"; question.text = "From the passage below, identify the method used to clean the water.";
+  delete question.options;
+  question.stimuli = [{ type: "passage", id: "passage-1", sourceType: "generated", content: "Amina poured the muddy water through a clean filter to remove insoluble particles." }];
+  value.marking.entries[0].markingModel = "point_based";
+  return value;
+}
+
+test("rich passage text edits persist while stimulus structure stays locked", () => {
+  const value = richStored(); const editable = inputs(value);
+  editable[0].stimulusTextEdits = [{ id: "passage-1", content: "Amina carefully filtered muddy water to remove insoluble particles." }];
+  const next = applyEditableChanges(value.exam, value.marking, editable);
+  assert.equal(next.exam.sections[0].questions[0].stimuli?.[0].type, "passage");
+  assert.equal(next.exam.sections[0].questions[0].stimuli?.[0].content, editable[0].stimulusTextEdits[0].content);
+});
+
+test("structural rich-content tampering fails server-side", () => {
+  const value = richStored(); const editable = inputs(value);
+  editable[0].stimulusTextEdits = [{ id: "forged-stimulus", content: "Replacement" }];
+  assert.throws(() => applyEditableChanges(value.exam, value.marking, editable), /stimulus structure cannot be changed/);
+});
+
+test("rubric descriptor edits preserve locked criteria and mark totals", () => {
+  const value = stored(); const slot = value.exam.meta.blueprint!.questionSlots[1];
+  slot.questionFamily = "creative_composition"; slot.allowedMarkingModels = ["composition_rubric"];
+  const question = value.exam.sections[0].questions[1]; question.questionFamily = "creative_composition"; question.type = "extended_response"; question.text = "Write a short composition about conserving water.";
+  value.marking.entries[1] = { slotId: "slot-02", number: 2, markingModel: "composition_rubric", marking_notes: "Apply the school rubric consistently.", marks: 2, rubric: [{ criterion: "Content and language", descriptor: "Develops relevant ideas using clear language.", marks: 2 }] };
+  const editable = inputs(value); editable[1].rubricDescriptors = ["Develops relevant water-conservation ideas using coherent and accurate language."];
+  const next = applyEditableChanges(value.exam, value.marking, editable);
+  assert.equal(next.marking.entries[1].rubric?.[0].marks, 2);
+  assert.equal(next.marking.entries[1].rubric?.[0].criterion, "Content and language");
+  assert.equal(next.marking.entries[1].rubric?.[0].descriptor, editable[1].rubricDescriptors[0]);
+});
+
+test("regenerating a rich question changes only its owned question, stimulus and scheme", () => {
+  const value = richStored(); const question = structuredClone(value.exam.sections[0].questions[0]); const entry = structuredClone(value.marking.entries[0]);
+  question.text = "From the passage below, name the separation method Amina used.";
+  question.stimuli![0] = { type: "passage", id: "passage-2", sourceType: "generated", content: "Amina passed the mixture through filter paper and collected clear water." };
+  entry.answer = "Filtration."; entry.allocations![0].label = "Identifies filtration from the passage";
+  const untouchedQuestion = structuredClone(value.exam.sections[0].questions[1]); const untouchedEntry = structuredClone(value.marking.entries[1]);
+  const next = replaceOneSlot(value.exam, value.marking, "slot-01", question, entry);
+  assert.deepEqual(next.exam.sections[0].questions[1], untouchedQuestion); assert.deepEqual(next.marking.entries[1], untouchedEntry);
+  assert.deepEqual(next.exam.sections[0].questions[0].stimuli, question.stimuli);
+});
+
+test("stored-content boundary accepts legacy and valid rich exams", () => {
+  const legacy = stored(); assert.equal(storedContentForDisplayOrThrow(legacy.exam, legacy.marking).exam.sections.length, 1);
+  const rich = richStored(); assert.equal(storedContentForDisplayOrThrow(rich.exam, rich.marking).exam.sections[0].questions[0].stimuli?.[0].type, "passage");
+});
+
+test("malformed stored stimulus types, graphs and diagrams fail with a controlled message", () => {
+  const cases = [
+    { type: "image", id: "bad", src: "https://example.test/x" },
+    { type: "graph", id: "bad", graphType: "line", xAxis: null, yAxis: {}, series: null },
+    { type: "diagram", id: "bad", width: 100, height: 100, primitives: [{ type: "foreignObject" }] },
+  ];
+  for (const stimulus of cases) {
+    const value = stored(); value.exam.sections[0].questions[0].stimuli = [stimulus as never];
+    assert.throws(() => storedContentForDisplayOrThrow(value.exam, value.marking), (error: unknown) => error instanceof Error && error.message === INVALID_STORED_CONTENT_MESSAGE && !error.message.includes(JSON.stringify(stimulus)));
+  }
+});
+
+test("malformed stored rubric fails safely and cannot be saved back", () => {
+  const value = stored(); value.marking.entries[0].markingModel = "composition_rubric"; value.marking.entries[0].rubric = [{ criterion: "Ideas", descriptor: "Relevant ideas", marks: 99 }]; delete value.marking.entries[0].answer; delete value.marking.entries[0].allocations;
+  assert.throws(() => storedContentForDisplayOrThrow(value.exam, value.marking), new RegExp(INVALID_STORED_CONTENT_MESSAGE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.throws(() => applyEditableChanges(value.exam, value.marking, inputs(value)), /unsupported or invalid stored content/);
 });

@@ -4,6 +4,9 @@ import test from "node:test";
 
 const action = readFileSync(new URL("../../app/actions/exam-editor.ts", import.meta.url), "utf8");
 const grounding = readFileSync(new URL("./regeneration-grounding.ts", import.meta.url), "utf8");
+const richRenderer = readFileSync(new URL("../../components/exam-content/rich-stimuli.tsx", import.meta.url), "utf8");
+const examView = readFileSync(new URL("../../app/teacher/exams/[id]/page.tsx", import.meta.url), "utf8");
+const markingView = readFileSync(new URL("../../app/teacher/exams/[id]/marking-scheme/page.tsx", import.meta.url), "utf8");
 
 test("server actions authenticate, derive teacher identity, and enforce ownership", () => {
   assert.match(action, /auth\.getUser\(\)/);
@@ -28,4 +31,18 @@ test("regeneration grounding is pinned to canonical textbook, document, class, a
   assert.match(grounding, /eq\("grade_id", input\.gradeId\)/);
   assert.match(grounding, /eq\("id", documentId\).*eq\("textbook_id", textbook\.id\).*eq\("processing_status", "ready"\)/);
   assert.match(grounding, /documentId: document\.id/);
+});
+
+test("rich content rendering uses only deterministic React and declarative SVG primitives", () => {
+  assert.doesNotMatch(richRenderer, /dangerouslySetInnerHTML|href=|src=|foreignObject|fetch\(/);
+  assert.match(richRenderer, /<table/); assert.match(richRenderer, /<svg/);
+  assert.match(richRenderer, /stimulus\.primitives\.map/);
+});
+
+test("stored exam and marking views validate rich JSON and fail with a controlled message", () => {
+  for (const source of [examView, markingView]) {
+    assert.match(source, /storedContentForDisplayOrThrow/);
+    assert.match(source, /INVALID_STORED_CONTENT_MESSAGE/);
+    assert.doesNotMatch(source, /JSON\.stringify\(exam\.content\)/);
+  }
 });

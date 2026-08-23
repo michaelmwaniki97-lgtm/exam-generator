@@ -26,6 +26,8 @@ import {
   type TimeFitStatus,
   type TopicAllocation,
 } from "./types.ts";
+import { allowedStimulusTypes } from "../assessment/rich-content.ts";
+import { allowedMarkingModels } from "../assessment/marking-models.ts";
 
 const COGNITIVE_PERCENTAGES = {
   easy: { FOUNDATIONAL: 55, APPLICATION: 35, REASONING: 10 },
@@ -292,6 +294,14 @@ function buildSlotDrafts(
           Math.round(slotMarks * familyDefinition.estimatedMinutesPerMark)
         ),
         constraints,
+        allowedStimulusTypes: allowedStimulusTypes(
+          family,
+          input.assessmentProfile.stimulusCapabilities
+        ),
+        allowedMarkingModels: allowedMarkingModels(
+          family,
+          input.assessmentProfile.markingModelHint
+        ),
         evidenceStatus: "APPLICATION_HEURISTIC",
       });
     });
@@ -497,12 +507,18 @@ export function buildExamBlueprint(input: BlueprintInput): ExamBlueprint {
       sectionCognitive[0].targetPercent += sectionPercentResidual;
     }
 
+    const profileSection = input.assessmentProfile.sections.find((section) => section.id === id);
+    const markAuthority = input.assessmentProfile.ruleStatus === "OFFICIAL_VERIFIED" && profileSection?.marks !== null && profileSection?.marks !== undefined
+      ? "OFFICIAL_EXACT" as const
+      : "GENERATION_FLEXIBLE" as const;
+
     return {
       id,
       label: group.label,
       purpose: group.purpose,
       instructions: [...(group.instructions ?? [])],
       targetMarks: sectionMarks[index],
+      markAuthority,
       estimatedMinutes: sum(slots.map((slot) => slot.estimatedMinutes)),
       questionTypeTargets: aggregateQuestionTypes(slots),
       topicAllocationIds: [
@@ -510,7 +526,7 @@ export function buildExamBlueprint(input: BlueprintInput): ExamBlueprint {
       ],
       cognitiveTargets: sectionCognitive,
       slotIds: slots.map((slot) => slot.id),
-      evidenceStatus: input.assessmentProfile.ruleStatus === "OFFICIAL_VERIFIED"
+      evidenceStatus: markAuthority === "OFFICIAL_EXACT"
         ? "OFFICIAL_CONSTRAINT"
         : "APPLICATION_HEURISTIC",
     };

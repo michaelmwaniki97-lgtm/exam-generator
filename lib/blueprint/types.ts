@@ -8,6 +8,8 @@ import type {
   SchoolAssessmentType,
 } from "@/lib/assessment/rules";
 import type { AssessmentProfile } from "@/lib/assessment/profiles";
+import type { SupportedStimulusType } from "@/lib/assessment/rich-content";
+import type { MarkingModel } from "@/lib/assessment/marking-models";
 
 export const BLUEPRINT_VERSION = 1 as const;
 
@@ -155,6 +157,8 @@ export type QuestionSlot = {
   cognitiveDemand: CognitiveDemand;
   estimatedMinutes: number;
   constraints: string[];
+  allowedStimulusTypes: SupportedStimulusType[];
+  allowedMarkingModels: MarkingModel[];
   evidenceStatus: "APPLICATION_HEURISTIC";
 };
 
@@ -164,6 +168,7 @@ export type BlueprintSection = {
   purpose: string;
   instructions: string[];
   targetMarks: number;
+  markAuthority: "OFFICIAL_EXACT" | "GENERATION_FLEXIBLE";
   estimatedMinutes: number;
   questionTypeTargets: QuestionTypeTarget[];
   topicAllocationIds: string[];

@@ -4,6 +4,8 @@ import { ArrowLeft, ClipboardCheck } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import type { ExamSection } from "@/lib/ai/generate-exam";
 import { UUID_PATTERN } from "@/lib/admin/validation";
+import { RichStimuli } from "@/components/exam-content/rich-stimuli";
+import { INVALID_STORED_CONTENT_MESSAGE, storedContentForDisplayOrThrow } from "@/lib/exam-editor/core";
 
 type ExamContent = {
   instructions: string;
@@ -47,7 +49,9 @@ export default async function ExamDetailPage({ params }: { params: Promise<{ id:
 
   if (!exam) notFound();
 
-  const content = exam.content as unknown as ExamContent;
+  let content: ExamContent;
+  try { content = storedContentForDisplayOrThrow(exam.content).exam as unknown as ExamContent; }
+  catch { return <div role="alert" className="rounded-lg border border-amber-300 bg-amber-50 p-5 text-sm text-amber-900">{INVALID_STORED_CONTENT_MESSAGE}</div>; }
   const teacher = exam.teachers as unknown as { school: string | null } | null;
   const totalMarks = content.sections
     .flatMap((section) => section.questions)
@@ -183,7 +187,8 @@ export default async function ExamDetailPage({ params }: { params: Promise<{ id:
                 <div className="flex flex-col gap-5">
                   {section.questions.map((question) => (
                     <div key={question.number} className="flex items-start justify-between gap-4">
-                      <p className="text-sm font-normal leading-relaxed text-foreground">
+                      <div className="min-w-0 flex-1 text-sm font-normal leading-relaxed text-foreground">
+                        <p>
                         <span className="font-semibold">{question.number}.</span> {question.text}
                         {question.options && question.options.length > 0 && (
                           <span className="mt-1.5 block pl-5">
@@ -194,7 +199,9 @@ export default async function ExamDetailPage({ params }: { params: Promise<{ id:
                             ))}
                           </span>
                         )}
-                      </p>
+                        </p>
+                        <RichStimuli stimuli={question.stimuli} />
+                      </div>
                       <span className="shrink-0 whitespace-nowrap text-xs font-semibold tabular-nums text-foreground/60">
                         ({question.marks} mark{question.marks === 1 ? "" : "s"})
                       </span>

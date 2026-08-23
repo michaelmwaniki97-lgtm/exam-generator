@@ -4,6 +4,7 @@ import { ArrowLeft, Lock } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import type { ExamSection, MarkingSchemeEntry } from "@/lib/ai/generate-exam";
 import { UUID_PATTERN } from "@/lib/admin/validation";
+import { INVALID_STORED_CONTENT_MESSAGE, storedContentForDisplayOrThrow } from "@/lib/exam-editor/core";
 
 type ExamContent = {
   instructions: string;
@@ -30,9 +31,12 @@ export default async function MarkingSchemePage({ params }: { params: Promise<{ 
 
   if (!exam) notFound();
 
-  const content = exam.content as unknown as ExamContent;
   const markingSchemeRows = exam.marking_schemes as unknown as { content: { entries: MarkingSchemeEntry[] } }[];
-  const entries = markingSchemeRows?.[0]?.content?.entries ?? [];
+  let content: ExamContent; let entries: MarkingSchemeEntry[];
+  try {
+    const stored = storedContentForDisplayOrThrow(exam.content, markingSchemeRows?.[0]?.content);
+    content = stored.exam as unknown as ExamContent; entries = stored.marking?.entries ?? [];
+  } catch { return <div role="alert" className="rounded-lg border border-amber-300 bg-amber-50 p-5 text-sm text-amber-900">{INVALID_STORED_CONTENT_MESSAGE}</div>; }
   const entryByNumber = new Map(entries.map((entry) => [entry.number, entry]));
   const totalMarks = content.sections
     .flatMap((section) => section.questions)
@@ -80,9 +84,10 @@ export default async function MarkingSchemePage({ params }: { params: Promise<{ 
                   return (
                     <div key={question.number} className="flex items-start justify-between gap-4">
                       <div>
-                        <p className="text-sm font-semibold text-foreground">
-                          {question.number}. {entry?.answer ?? "Not provided"}
-                        </p>
+                        <p className="text-sm font-semibold text-foreground">{question.number}. {entry?.markingModel?.replaceAll("_", " ") ?? "point based"}</p>
+                        {entry?.answer && <p className="mt-1 text-sm text-foreground">{entry.answer}</p>}
+                        {entry?.numericalMethod && <div className="mt-2 text-sm text-foreground"><p className="font-semibold">Final answer: {entry.numericalMethod.finalAnswer}{entry.numericalMethod.units ? ` ${entry.numericalMethod.units}` : ""}</p><ol className="mt-1 list-decimal pl-5">{entry.numericalMethod.methodSteps.map((step, index) => <li key={index}>{step.step} ({step.marks})</li>)}</ol>{entry.numericalMethod.accuracyMarks > 0 && <p>Accuracy: {entry.numericalMethod.accuracyMarks} mark(s)</p>}{entry.numericalMethod.tolerance && <p>Tolerance: {entry.numericalMethod.tolerance}</p>}</div>}
+                        {entry?.rubric && <div className="mt-2 overflow-x-auto"><table className="w-full border-collapse text-sm"><thead><tr><th scope="col" className="border border-border px-3 py-2 text-left">Criterion</th><th scope="col" className="border border-border px-3 py-2 text-left">Expectation</th><th scope="col" className="border border-border px-3 py-2 text-right">Marks</th></tr></thead><tbody>{entry.rubric.map((criterion) => <tr key={criterion.criterion}><th scope="row" className="border border-border px-3 py-2 text-left">{criterion.criterion}</th><td className="border border-border px-3 py-2">{criterion.descriptor}</td><td className="border border-border px-3 py-2 text-right">{criterion.marks}</td></tr>)}</tbody></table></div>}
                         {entry?.marking_notes && (
                           <p className="mt-1 text-sm font-normal text-foreground/60">
                             {entry.marking_notes}

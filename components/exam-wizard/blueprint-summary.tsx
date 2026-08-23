@@ -200,7 +200,7 @@ export function BlueprintSummary({
               >
                 <span className="text-foreground/75">{section.label}</span>
                 <span className="font-semibold text-foreground">
-                  {section.targetMarks} marks
+                  {section.targetMarks} marks{section.markAuthority === "GENERATION_FLEXIBLE" && blueprint.assessmentProfile.ruleStatus === "OFFICIAL_VERIFIED" ? " · generation allocation (official split unknown)" : ""}
                 </span>
               </div>
             ))}
@@ -264,7 +264,7 @@ export function BlueprintSummary({
                     {section.label}
                   </p>
                   <p className="text-xs text-foreground/60">
-                    {section.targetMarks} marks · about{" "}
+                    {section.targetMarks} marks{section.markAuthority === "GENERATION_FLEXIBLE" && blueprint.assessmentProfile.ruleStatus === "OFFICIAL_VERIFIED" ? " (generation allocation; official split unknown)" : ""} · about{" "}
                     {section.estimatedMinutes} minutes
                   </p>
                 </div>

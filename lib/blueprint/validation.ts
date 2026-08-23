@@ -405,7 +405,7 @@ export function validateExamBlueprint(
   );
   if (input.component?.componentType === "PRACTICAL") {
     if (
-      !blueprint.profileId.startsWith("science-practical-") ||
+      (!blueprint.profileId.startsWith("science-practical-") && blueprint.assessmentProfile.profileId !== "kjsea-905-2") ||
       blueprint.questionSlots.some(
         (slot) => !practicalFamilies.has(slot.questionFamily)
       )

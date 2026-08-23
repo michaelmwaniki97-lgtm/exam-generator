@@ -8,6 +8,8 @@ import {
   type MarkingSchemeEntry,
 } from "../ai/generation-core.ts";
 import { describeSemanticViolations } from "../ai/semantic-quality.ts";
+import { isSafeEducationalText, validateQuestionStimuli } from "../assessment/rich-content.ts";
+import { validateNumericalMethod, validateRubricCriteria } from "../assessment/marking-models.ts";
 
 export const EDITOR_LIMITS = {
   questionText: 8_000,
@@ -30,14 +32,48 @@ export type EditableSlotInput = {
   answer: string;
   markingNotes: string;
   allocationLabels: string[];
+  stimulusTextEdits?: Array<{ id: string; content: string }>;
+  rubricDescriptors?: string[];
 };
 
 export class ExamEditorError extends Error {}
+export const INVALID_STORED_CONTENT_MESSAGE = "This exam contains unsupported or invalid stored content and cannot be displayed safely.";
+
+function record(value: unknown): value is Record<string, unknown> {
+  return !!value && typeof value === "object" && !Array.isArray(value);
+}
+
+export function storedContentForDisplayOrThrow(
+  examContent: unknown,
+  markingContent?: unknown
+): { exam: StoredExamContent; marking?: StoredMarkingContent } {
+  if (!record(examContent) || typeof examContent.instructions !== "string" || !Array.isArray(examContent.sections) || !record(examContent.meta)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+  for (const section of examContent.sections) {
+    if (!record(section) || typeof section.title !== "string" || !Array.isArray(section.questions)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+    for (const question of section.questions) {
+      if (!record(question) || !Number.isInteger(question.number) || typeof question.text !== "string" || !Number.isInteger(question.marks)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+      if (validateQuestionStimuli(question.stimuli, ["passage", "extract", "table", "dataset", "graph", "diagram"]).length) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+    }
+  }
+  let marking: StoredMarkingContent | undefined;
+  if (markingContent !== undefined) {
+    if (!record(markingContent) || !Array.isArray(markingContent.entries)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+    for (const entry of markingContent.entries) {
+      if (!record(entry) || !Number.isInteger(entry.number) || typeof entry.marking_notes !== "string") throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+      if (entry.rubric !== undefined && (!Number.isInteger(entry.marks) || validateRubricCriteria(entry.rubric, Number(entry.marks)).length)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+      if (entry.numericalMethod !== undefined && (!Number.isInteger(entry.marks) || validateNumericalMethod(entry.numericalMethod, Number(entry.marks)).length)) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+      if (entry.allocations !== undefined && (!Array.isArray(entry.allocations) || entry.allocations.some((allocation) => !record(allocation) || typeof allocation.label !== "string" || !Number.isInteger(allocation.marks) || Number(allocation.marks) <= 0))) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
+    }
+    marking = markingContent as StoredMarkingContent;
+  }
+  return { exam: examContent as StoredExamContent, ...(marking ? { marking } : {}) };
+}
 
 function clean(value: string, label: string, max: number): string {
   const result = value.trim();
   if (!result) throw new ExamEditorError(`${label} cannot be empty.`);
   if (result.length > max) throw new ExamEditorError(`${label} is too long.`);
+  if (!isSafeEducationalText(result, max)) throw new ExamEditorError(`${label} contains unsupported markup or executable content.`);
   return result;
 }
 function sameStrings(left: readonly string[], right: readonly string[]): boolean {
@@ -49,8 +85,9 @@ export function editableExamOrThrow(
   examContent: unknown,
   markingContent: unknown
 ): { exam: StoredExamContent; marking: StoredMarkingContent; blueprint: ExamBlueprint } {
-  const exam = examContent as StoredExamContent;
-  const marking = markingContent as StoredMarkingContent;
+  const stored = storedContentForDisplayOrThrow(examContent, markingContent);
+  const exam = stored.exam;
+  const marking = stored.marking!;
   if (!exam || !Array.isArray(exam.sections) || !exam.meta?.blueprint) {
     throw new ExamEditorError("This historical exam does not contain a complete blueprint and cannot be edited safely.");
   }
@@ -125,9 +162,15 @@ export function applyEditableChanges(
         throw new ExamEditorError(`Question ${question.number} does not accept options.`);
       }
       const changed = text !== question.text || !sameStrings(options ?? [], question.options ?? []);
-      if (!changed) return question;
+      const editableStimuli = (question.stimuli ?? []).filter((stimulus) => stimulus.type === "passage" || stimulus.type === "extract");
+      const stimulusEdits = input.stimulusTextEdits ?? [];
+      if (stimulusEdits.length !== editableStimuli.length || stimulusEdits.some((edit, index) => edit.id !== editableStimuli[index].id)) throw new ExamEditorError(`Question ${question.number} stimulus structure cannot be changed.`);
+      const stimulusContent = new Map(stimulusEdits.map((edit) => [edit.id, clean(edit.content, `Question ${question.number} stimulus`, 5_000)]));
+      const stimuli = question.stimuli?.map((stimulus) => (stimulus.type === "passage" || stimulus.type === "extract") ? { ...stimulus, content: stimulusContent.get(stimulus.id)! } : stimulus);
+      const stimulusChanged = JSON.stringify(stimuli ?? []) !== JSON.stringify(question.stimuli ?? []);
+      if (!changed && !stimulusChanged) return question;
       changedQuestionSlots.add(question.slotId);
-      return { ...question, text, ...(options ? { options } : {}) };
+      return { ...question, text, ...(options ? { options } : {}), ...(stimuli ? { stimuli } : {}) };
     }),
   }));
 
@@ -136,10 +179,21 @@ export function applyEditableChanges(
     if (!input) throw new ExamEditorError("The submitted marking scheme does not match the current exam. Refresh and try again.");
     const allocations = entry.allocations ?? [];
     if (input.allocationLabels.length !== allocations.length) throw new ExamEditorError(`Question ${entry.number} marking points are incomplete.`);
-    const answer = clean(input.answer, `Question ${entry.number} model answer`, EDITOR_LIMITS.answer);
     const markingNotes = clean(input.markingNotes, `Question ${entry.number} marking notes`, EDITOR_LIMITS.markingNotes);
     const allocationLabels = allocations.map((_allocation, index) => clean(input.allocationLabels[index], `Question ${entry.number} marking point ${index + 1}`, EDITOR_LIMITS.allocationLabel));
-    const answerChanged = answer !== entry.answer;
+    let answer = entry.answer;
+    let numericalMethod = entry.numericalMethod;
+    let rubric = entry.rubric;
+    if ((entry.markingModel ?? "point_based") === "point_based") answer = clean(input.answer, `Question ${entry.number} model answer`, EDITOR_LIMITS.answer);
+    if (entry.markingModel === "numerical_method") {
+      numericalMethod = { ...entry.numericalMethod!, finalAnswer: clean(input.answer, `Question ${entry.number} final answer`, EDITOR_LIMITS.answer) };
+    }
+    if (entry.rubric) {
+      const descriptors = input.rubricDescriptors ?? [];
+      if (descriptors.length !== entry.rubric.length) throw new ExamEditorError(`Question ${entry.number} rubric structure cannot be changed.`);
+      rubric = entry.rubric.map((criterion, index) => ({ ...criterion, descriptor: clean(descriptors[index], `Question ${entry.number} rubric descriptor`, 800) }));
+    } else if (input.rubricDescriptors?.length) throw new ExamEditorError(`Question ${entry.number} does not accept rubric criteria.`);
+    const answerChanged = answer !== entry.answer || JSON.stringify(numericalMethod) !== JSON.stringify(entry.numericalMethod) || JSON.stringify(rubric) !== JSON.stringify(entry.rubric);
     const markingNotesChanged = markingNotes !== entry.marking_notes;
     const allocationsChanged = !sameStrings(allocationLabels, allocations.map((allocation) => allocation.label));
     const changed = answerChanged || markingNotesChanged || allocationsChanged;
@@ -147,12 +201,10 @@ export function applyEditableChanges(
     if (answerChanged) changedAnswerSlots.add(entry.slotId!);
     if (markingNotesChanged) changedMarkingNotesSlots.add(entry.slotId!);
     if (allocationsChanged) changedAllocationSlots.add(entry.slotId!);
-    return {
-      ...entry,
-      answer,
-      marking_notes: markingNotes,
-      allocations: allocations.map((allocation, index) => ({ ...allocation, label: allocationLabels[index] })),
-    };
+    const base = { ...entry, marking_notes: markingNotes };
+    if ((entry.markingModel ?? "point_based") === "point_based") return { ...base, answer, allocations: allocations.map((allocation, index) => ({ ...allocation, label: allocationLabels[index] })) };
+    if (entry.markingModel === "numerical_method") return { ...base, numericalMethod };
+    return { ...base, rubric };
   });
 
   const nextExam = { ...exam, sections: nextSections };
