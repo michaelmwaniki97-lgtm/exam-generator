@@ -130,6 +130,7 @@ function activeGroups(
 
 function structureOrigin(input: BlueprintInput): StructureOrigin {
   if (input.examStructure === "standard") return "STANDARD_SCHOOL";
+  if (input.examStructure === "kjsea_style") return "KJSEA_STYLE_PRACTICE";
   if (input.gradeName === "Form 3") return "KCSE_STYLE_PRACTICE";
   if (input.gradeName === "Form 4" && input.assessmentType.id === "mock") {
     return "KCSE_STYLE_MOCK";
@@ -240,7 +241,7 @@ function buildSlotDrafts(
           (family) => questionFamilyDefinition(family).preferredMarks
         )
       ) / group.families.length;
-    let slotCount = Math.max(1, Math.round(marks / preferredMarks));
+    let slotCount = group.exactQuestionCount ?? Math.max(1, Math.round(marks / preferredMarks));
     if (input.assessmentType.id === "quiz") slotCount = Math.min(slotCount, 6);
     if (input.educationLevel === "Lower Primary") {
       slotCount = Math.min(slotCount, 8);
@@ -251,13 +252,12 @@ function buildSlotDrafts(
       Array.from({ length: slotCount }, () => 1)
     );
 
+    const fixedFamilies = Object.entries(group.fixedFamilyCounts ?? {}).flatMap(
+      ([family, count]) => Array.from({ length: count ?? 0 }, () => family as QuestionFamily)
+    );
     marksBySlot.forEach((slotMarks, slotIndex) => {
-      const family = selectFamily(
-        input,
-        group.families,
-        slotMarks,
-        slotIndex,
-        `section-${sectionIndex}`
+      const family = fixedFamilies[slotIndex] ?? selectFamily(
+        input, group.families, slotMarks, slotIndex, `section-${sectionIndex}`
       );
       const familyDefinition = questionFamilyDefinition(family);
       const constraints = [
@@ -275,10 +275,15 @@ function buildSlotDrafts(
         );
       }
       if (input.component) constraints.push("KEEP_WITHIN_COMPONENT_PROFILE");
+      if (input.assessmentProfile.ruleStatus === "OFFICIAL_VERIFIED") {
+        constraints.push("PRESERVE_OFFICIAL_PROFILE_STRUCTURE");
+      }
+
+      const sectionId = group.id ?? `section-${String(sectionIndex + 1).padStart(2, "0")}`;
 
       drafts.push({
         id: `slot-${String(sectionIndex + 1).padStart(2, "0")}-${String(slotIndex + 1).padStart(2, "0")}`,
-        sectionId: `section-${String(sectionIndex + 1).padStart(2, "0")}`,
+        sectionId,
         targetMarks: slotMarks,
         questionFamily: family,
         questionFamilyLabel: familyDefinition.label,
@@ -450,10 +455,9 @@ export function buildExamBlueprint(input: BlueprintInput): ExamBlueprint {
   const curriculum = orderedCurriculum(input);
   const profile = resolveSubjectBlueprintProfile(input);
   const groups = activeGroups(input, profile.groups);
-  const sectionMarks = allocateIntegerMarks(
-    input.totalMarks,
-    groups.map((group) => group.weight)
-  );
+  const sectionMarks = groups.every((group) => group.exactMarks !== undefined)
+    ? groups.map((group) => group.exactMarks!)
+    : allocateIntegerMarks(input.totalMarks, groups.map((group) => group.weight));
   const allFamilies = [...new Set(groups.flatMap((group) => group.families))];
   const topicAllocations = buildTopicAllocations(
     input,
@@ -480,7 +484,7 @@ export function buildExamBlueprint(input: BlueprintInput): ExamBlueprint {
   }
 
   const sections: BlueprintSection[] = groups.map((group, index) => {
-    const id = `section-${String(index + 1).padStart(2, "0")}`;
+    const id = group.id ?? `section-${String(index + 1).padStart(2, "0")}`;
     const slots = questionSlots.filter((slot) => slot.sectionId === id);
     const sectionCognitive = aggregateCognitive(slots).map((target) => ({
       ...target,
@@ -497,6 +501,7 @@ export function buildExamBlueprint(input: BlueprintInput): ExamBlueprint {
       id,
       label: group.label,
       purpose: group.purpose,
+      instructions: [...(group.instructions ?? [])],
       targetMarks: sectionMarks[index],
       estimatedMinutes: sum(slots.map((slot) => slot.estimatedMinutes)),
       questionTypeTargets: aggregateQuestionTypes(slots),
@@ -505,7 +510,9 @@ export function buildExamBlueprint(input: BlueprintInput): ExamBlueprint {
       ],
       cognitiveTargets: sectionCognitive,
       slotIds: slots.map((slot) => slot.id),
-      evidenceStatus: "APPLICATION_HEURISTIC",
+      evidenceStatus: input.assessmentProfile.ruleStatus === "OFFICIAL_VERIFIED"
+        ? "OFFICIAL_CONSTRAINT"
+        : "APPLICATION_HEURISTIC",
     };
   });
 
@@ -553,6 +560,7 @@ export function buildExamBlueprint(input: BlueprintInput): ExamBlueprint {
     durationMinutes: input.durationMinutes,
     difficulty: input.difficulty,
     profileId: profile.id,
+    assessmentProfile: input.assessmentProfile,
     curriculumScope: {
       selectedCount: curriculum.length,
       parentCount,

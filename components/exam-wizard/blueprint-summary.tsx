@@ -4,6 +4,7 @@ import {
   resolveAssessmentRules,
   type AssessmentContext,
 } from "@/lib/assessment/rules";
+import { resolveAssessmentProfile } from "@/lib/assessment/profiles";
 import { buildExamBlueprint } from "@/lib/blueprint/engine";
 import type { ExamBlueprint } from "@/lib/blueprint/types";
 import type { Strand, WizardData } from "./types";
@@ -77,6 +78,17 @@ function buildPreview(
   );
 
   try {
+    const assessmentProfile = resolveAssessmentProfile({
+      educationSystem: data.educationSystem,
+      level: data.level,
+      gradeName: data.gradeName,
+      subjectName: data.subjectName,
+      assessmentType: assessmentType.id,
+      examStructure: data.examStructure,
+      component,
+      requestedMarks: data.marks,
+      requestedDurationMinutes: data.duration,
+    });
     return buildExamBlueprint({
       educationSystem: data.educationSystem,
       educationLevel: data.level,
@@ -92,6 +104,7 @@ function buildPreview(
         componentRule?.verificationStatus === "VERIFIED"
           ? componentRule.components.map((candidate) => candidate.id)
           : [],
+      assessmentProfile,
       totalMarks: data.marks,
       durationMinutes: data.duration,
       difficulty: data.difficulty,

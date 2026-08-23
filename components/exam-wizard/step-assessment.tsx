@@ -38,6 +38,7 @@ export function StepAssessment({
   const selectedComponent = verifiedComponents.find(
     (component) => component.id === data.componentId
   );
+  const isKjseaPractice = data.examStructure === "kjsea_style";
 
   const selectAssessmentType = (value: string) => {
     const type = getSchoolAssessmentType(value);
@@ -53,12 +54,20 @@ export function StepAssessment({
     }
 
     const nextRules = resolveAssessmentRules(context, type.id);
+    const nextComponentRule = resolveAssessmentRules(
+      context,
+      type.id,
+      nextRules.defaultExamStructure
+    ).officialComponentRule;
+    const soleComponent = nextComponentRule?.components.length === 1
+      ? nextComponentRule.components[0]
+      : null;
     onChange({
       examType: type.id as SchoolAssessmentTypeId,
       examStructure: nextRules.defaultExamStructure,
-      componentId: "",
-      marks: type.defaultMarks,
-      duration: type.defaultDuration,
+      componentId: soleComponent?.id ?? "",
+      marks: soleComponent?.officialMarks ?? type.defaultMarks,
+      duration: soleComponent?.durationMinutes ?? type.defaultDuration,
     });
   };
 
@@ -79,6 +88,7 @@ export function StepAssessment({
     );
     onChange({
       componentId: component?.id ?? "",
+      marks: component?.officialMarks ?? data.marks,
       duration: component?.durationMinutes ?? data.duration,
     });
   };
@@ -138,8 +148,9 @@ export function StepAssessment({
               ))}
             </select>
             <p className="mt-1.5 text-xs text-foreground/55">
-              KCSE-style reuses a verified paper structure for school practice; it
-              does not make this an official KNEC examination.
+              KCSE-style uses a verified KCSE component identity and duration for
+              school practice. Exact marks and paper structure remain unknown unless
+              separately verified; this is not an official KNEC examination.
             </p>
           </div>
         )}
@@ -183,11 +194,11 @@ export function StepAssessment({
           />
         </div>
 
-        {data.examStructure === "kcse_style" &&
+        {(data.examStructure === "kcse_style" || data.examStructure === "kjsea_style") &&
           verifiedComponents.length > 1 && (
           <div>
             <label htmlFor="component" className={labelClass}>
-              KCSE-style paper / component
+              {isKjseaPractice ? "KJSEA" : "KCSE"}-style paper / component
               {componentRule?.componentSelectionRequired && (
                 <span className="text-accent"> *</span>
               )}
@@ -198,7 +209,7 @@ export function StepAssessment({
               value={data.componentId}
               onChange={(event) => selectComponent(event.target.value)}
             >
-              <option value="">Select a verified KCSE-style component</option>
+              <option value="">Select a verified practice component</option>
               {verifiedComponents.map((component) => (
                 <option key={component.id} value={component.id}>
                   {component.label} · {component.paperCode} ·{" "}
@@ -219,14 +230,18 @@ export function StepAssessment({
       {componentRule?.verificationStatus === "VERIFIED" && (
         <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3">
           <p className="text-sm font-semibold text-emerald-900">
-            Based on verified KCSE paper structure
+            {isKjseaPractice
+              ? "Verified KJSEA practice profile"
+              : "Verified KCSE component identity and duration"}
           </p>
           <p className="mt-1 text-xs leading-relaxed text-emerald-800">
-            {data.gradeName === "Form 3"
-              ? "Uses verified KCSE paper structure for school practice. This is not an official Form 3 KNEC examination."
+            {isKjseaPractice
+              ? "This configures school-generated KJSEA-style practice material using a verified KJSEA profile. It is not issued or endorsed by KNEC."
+              : data.gradeName === "Form 3"
+              ? "Uses a verified KCSE component identity and duration for school practice. Exact marks, sections and question counts remain unknown. This is not an official Form 3 KNEC examination."
               : data.examType === "mock"
-                ? "This configures a KCSE-style Form 4 Mock; it is not an official KNEC examination."
-                : "This configures a KCSE-style school End Term examination; it is not administered by KNEC."}{" "}
+                ? "This configures a KCSE-style Form 4 Mock using a verified component identity and duration; exact marks, sections and question counts remain unknown. It is not an official KNEC examination."
+                : "This configures a KCSE-style school End Term paper using a verified component identity and duration; exact marks, sections and question counts remain unknown. It is not administered by KNEC."}{" "}
             Source: {componentRule.source?.title} (
             {componentRule.source?.reference}).
           </p>
@@ -248,7 +263,9 @@ export function StepAssessment({
       {selectedType && (
         <p className="text-xs text-foreground/55">
           {data.examStructure === "kcse_style"
-            ? "Total marks remain teacher-configurable and are not asserted as a fixed KNEC total. Selecting a verified component suggests its verified duration, which the teacher can still review."
+            ? "Total marks remain teacher-configurable where the exact official total is unknown. The verified component duration is fixed."
+            : data.examStructure === "kjsea_style"
+              ? "Verified KJSEA component marks and duration are fixed for this school-generated practice paper."
             : "Marks and duration remain teacher-configurable for this school examination."}
         </p>
       )}

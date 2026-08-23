@@ -52,6 +52,7 @@ export function StepSettings({
             max={APPLICATION_EXAM_LIMITS.marks.max}
             step={1}
             className={inputClass}
+            readOnly={data.examStructure === "kjsea_style"}
             value={data.marks ?? ""}
             onChange={(event) =>
               onChange({
@@ -76,6 +77,7 @@ export function StepSettings({
             max={APPLICATION_EXAM_LIMITS.durationMinutes.max}
             step={1}
             className={inputClass}
+            readOnly={data.examStructure !== "standard"}
             value={data.duration ?? ""}
             onChange={(event) =>
               onChange({
@@ -84,8 +86,9 @@ export function StepSettings({
             }
           />
           <p className="mt-1.5 text-xs text-foreground/55">
-            Application limit: {APPLICATION_EXAM_LIMITS.durationMinutes.min}–
-            {APPLICATION_EXAM_LIMITS.durationMinutes.max} minutes.
+            {data.examStructure !== "standard"
+              ? "Verified national-practice duration is fixed by the selected component."
+              : `Application limit: ${APPLICATION_EXAM_LIMITS.durationMinutes.min}–${APPLICATION_EXAM_LIMITS.durationMinutes.max} minutes.`}
           </p>
         </div>
       </div>

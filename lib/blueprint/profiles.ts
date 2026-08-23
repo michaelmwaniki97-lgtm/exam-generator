@@ -13,10 +13,15 @@ export type QuestionFamilyDefinition = {
 };
 
 export type ProfileGroup = {
+  id?: string;
   label: string;
   purpose: string;
   weight: number;
   families: QuestionFamily[];
+  exactMarks?: number;
+  exactQuestionCount?: number;
+  fixedFamilyCounts?: Partial<Record<QuestionFamily, number>>;
+  instructions?: readonly string[];
 };
 
 export type SubjectBlueprintProfile = {
@@ -237,6 +242,29 @@ function lowerPrimaryProfile(profile: SubjectBlueprintProfile): SubjectBlueprint
 export function resolveSubjectBlueprintProfile(
   input: BlueprintInput
 ): SubjectBlueprintProfile {
+  if (input.assessmentProfile.sections.length) {
+    return {
+      id: input.assessmentProfile.profileId,
+      practical: input.component?.componentType === "PRACTICAL",
+      groups: [...input.assessmentProfile.sections]
+        .sort((a, b) => a.order - b.order)
+        .map((section) => ({
+          id: section.id,
+          label: section.title,
+          purpose: section.instructions.join(" ") || `Complete ${section.title}.`,
+          weight: section.marks ?? 1,
+          families: [...section.allowedQuestionFamilies],
+          ...(section.marks === null ? {} : { exactMarks: section.marks }),
+          ...(section.questionCount?.exact === undefined
+            ? {}
+            : { exactQuestionCount: section.questionCount.exact }),
+          ...(section.fixedFamilyCounts
+            ? { fixedFamilyCounts: section.fixedFamilyCounts }
+            : {}),
+          instructions: section.instructions,
+        })),
+    };
+  }
   if (input.component?.componentType === "PRACTICAL") {
     return {
       id: `science-practical-${input.component.paperCode}`,

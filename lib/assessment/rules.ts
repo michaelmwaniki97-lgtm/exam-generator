@@ -1,6 +1,6 @@
 export type EducationSystem = "CBC" | "8-4-4";
 
-export type ExamStructure = "standard" | "kcse_style";
+export type ExamStructure = "standard" | "kcse_style" | "kjsea_style";
 
 export type SchoolAssessmentTypeId =
   | "quiz"
@@ -10,6 +10,7 @@ export type SchoolAssessmentTypeId =
   | "revision_test"
   | "diagnostic_assessment"
   | "assignment"
+  | "kjsea_practice"
   | "mock"
   | "custom";
 
@@ -49,7 +50,7 @@ export type OfficialComponent = {
   officialLabel: string;
   componentType: OfficialComponentType;
   durationMinutes: number;
-  officialMarks: null;
+  officialMarks: number | null;
   verificationStatus: ComponentVerificationStatus;
   source: OfficialRuleSource;
 };
@@ -137,6 +138,14 @@ export const SCHOOL_ASSESSMENT_TYPES: Readonly<
     defaultMarks: 30,
     defaultDuration: 60,
   },
+  kjsea_practice: {
+    id: "kjsea_practice",
+    label: "KJSEA Practice",
+    description:
+      "A school-generated practice paper constrained by a verified KJSEA component profile.",
+    defaultMarks: null,
+    defaultDuration: null,
+  },
   mock: {
     id: "mock",
     label: "Mock",
@@ -164,6 +173,11 @@ const CBC_ASSESSMENT_TYPE_IDS: readonly SchoolAssessmentTypeId[] = [
   "custom",
 ];
 
+const GRADE_NINE_ASSESSMENT_TYPE_IDS: readonly SchoolAssessmentTypeId[] = [
+  ...CBC_ASSESSMENT_TYPE_IDS,
+  "kjsea_practice",
+];
+
 const FORM_ASSESSMENT_TYPE_IDS: readonly SchoolAssessmentTypeId[] = [
   "cat",
   "midterm",
@@ -188,6 +202,63 @@ const KCSE_2026_SOURCE: OfficialRuleSource = {
         "The Kenya National Examinations Council (Kenya Certificate of Secondary Education) Rules",
       reference: "KCSE subject-code schedule",
     },
+  ],
+};
+
+const KJSEA_2026_SOURCE: OfficialRuleSource = {
+  issuer: "Kenya National Examinations Council",
+  title: "KJSEA Regulations",
+  reference: "KJSEA subject and paper format schedules",
+  year: 2026,
+  publishedOn: "2026-02-26",
+  supplementalReferences: [
+    {
+      issuer: "Kenya National Examinations Council",
+      title: "2026 KJSEA Timetable and Instructions",
+      reference: "KNEC/TD/SE/KJSEA/TT/2026/003",
+    },
+  ],
+};
+
+function kjseaComponent(
+  paperNumber: number,
+  paperCode: string,
+  label: string,
+  durationMinutes: number,
+  officialMarks: number,
+  componentType: OfficialComponentType = "WRITTEN"
+): OfficialComponent {
+  return {
+    id: `kjsea-2026-${paperCode.replace("/", "-")}`,
+    paperNumber,
+    paperCode,
+    label,
+    officialLabel: label,
+    componentType,
+    durationMinutes,
+    officialMarks,
+    verificationStatus: "VERIFIED",
+    source: KJSEA_2026_SOURCE,
+  };
+}
+
+const VERIFIED_KJSEA_COMPONENTS: Readonly<Record<string, readonly OfficialComponent[]>> = {
+  English: [
+    kjseaComponent(1, "901/1", "English Language", 100, 50),
+    kjseaComponent(2, "901/2", "English Composition & Literary Analysis", 105, 50),
+  ],
+  Kiswahili: [
+    kjseaComponent(1, "902/1", "Kiswahili Lugha", 100, 50),
+    kjseaComponent(2, "902/2", "Kiswahili Insha na Utangulizi wa Fasihi", 105, 50),
+  ],
+  Mathematics: [kjseaComponent(1, "903", "Mathematics", 120, 100)],
+  "Integrated Science": [
+    kjseaComponent(1, "905/1", "Integrated Science Paper 1", 100, 70),
+    kjseaComponent(2, "905/2", "Integrated Science Written Practical Skills", 60, 30, "PRACTICAL"),
+  ],
+  "Social Studies": [kjseaComponent(1, "907", "Social Studies", 90, 100)],
+  "Christian Religious Education": [
+    kjseaComponent(1, "908", "Christian Religious Education", 90, 100),
   ],
 };
 
@@ -249,7 +320,7 @@ function kcseSubjectRule({
       componentSelectionRequired: true,
       source: KCSE_2026_SOURCE,
       note:
-        "Verified KCSE paper structure for configuring a KCSE-style school examination. The school examination is not administered by KNEC.",
+        "Verified KCSE component identities and durations for configuring KCSE-style school practice. Exact marks, sections and question counts remain unknown unless separately verified. The school examination is not administered by KNEC.",
     },
   };
 }
@@ -483,6 +554,7 @@ export function getSchoolAssessmentType(
 
 const STANDARD_EXAM_STRUCTURES = ["standard"] as const;
 const KCSE_STYLE_EXAM_STRUCTURES = ["kcse_style"] as const;
+const KJSEA_STYLE_EXAM_STRUCTURES = ["kjsea_style"] as const;
 const OPTIONAL_KCSE_EXAM_STRUCTURES = ["standard", "kcse_style"] as const;
 
 export function examStructureLabel(
@@ -490,6 +562,7 @@ export function examStructureLabel(
   assessmentTypeId: string
 ): string {
   if (structure === "kcse_style") return "KCSE-style Paper";
+  if (structure === "kjsea_style") return "KJSEA-style Practice Paper";
   return assessmentTypeId === "revision_test"
     ? "Standard Revision Test"
     : "Standard School Exam";
@@ -542,6 +615,15 @@ export function resolveAllowedExamStructures(
     return STANDARD_EXAM_STRUCTURES;
   }
 
+  if (assessmentTypeId === "kjsea_practice") {
+    return context.educationSystem === "CBC" &&
+      context.level === "Junior School" &&
+      context.gradeName === "Grade 9" &&
+      VERIFIED_KJSEA_COMPONENTS[context.subjectName]
+      ? KJSEA_STYLE_EXAM_STRUCTURES
+      : STANDARD_EXAM_STRUCTURES;
+  }
+
   const verifiedRule = verifiedKcseRuleForContext(context);
   if (!verifiedRule) return STANDARD_EXAM_STRUCTURES;
 
@@ -586,6 +668,24 @@ export function resolveOfficialComponentRule(
   const effectiveExamStructure = examStructure ?? defaultExamStructure;
 
   if (
+    effectiveExamStructure === "kjsea_style" &&
+    assessmentTypeId === "kjsea_practice"
+  ) {
+    const components = VERIFIED_KJSEA_COMPONENTS[context.subjectName];
+    if (!components || context.gradeName !== "Grade 9") return null;
+    return {
+      id: `kjsea-2026-subject-${components[0].paperCode.split("/")[0]}`,
+      verificationStatus: "VERIFIED",
+      subjectCode: components[0].paperCode.split("/")[0],
+      officialSubjectName: context.subjectName,
+      components,
+      componentSelectionRequired: components.length > 1,
+      source: KJSEA_2026_SOURCE,
+      note: "Verified KJSEA structure for school-generated practice; this is not a KNEC-issued paper.",
+    };
+  }
+
+  if (
     effectiveExamStructure === "kcse_style" &&
     allowedExamStructures.includes(effectiveExamStructure)
   ) {
@@ -606,7 +706,9 @@ export function resolveAssessmentRules(
 ): AssessmentRuleResolution {
   const ids =
     context.educationSystem === "CBC"
-      ? CBC_ASSESSMENT_TYPE_IDS
+      ? context.gradeName === "Grade 9"
+        ? GRADE_NINE_ASSESSMENT_TYPE_IDS
+        : CBC_ASSESSMENT_TYPE_IDS
       : FORM_ASSESSMENT_TYPE_IDS;
   const allowedExamStructures = resolveAllowedExamStructures(
     context,

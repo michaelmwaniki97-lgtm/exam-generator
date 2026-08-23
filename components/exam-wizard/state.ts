@@ -84,7 +84,7 @@ export function transitionWizardData(
       options.allowedExamStructureIds?.includes(requestedStructure)
         ? requestedStructure
         : defaultExamStructure(options.allowedExamStructureIds);
-    next.componentId = "";
+    next.componentId = patch.componentId ?? "";
   }
 
   if (
@@ -95,7 +95,7 @@ export function transitionWizardData(
       options.allowedExamStructureIds?.includes(patch.examStructure!)
         ? patch.examStructure!
         : defaultExamStructure(options.allowedExamStructureIds);
-    next.componentId = "";
+    next.componentId = patch.componentId ?? "";
   }
 
   return next;

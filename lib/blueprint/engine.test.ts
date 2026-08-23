@@ -7,6 +7,7 @@ import {
   type ExamStructure,
   type SchoolAssessmentTypeId,
 } from "../assessment/rules.ts";
+import { resolveAssessmentProfile } from "../assessment/profiles.ts";
 import {
   BlueprintBuildError,
   buildExamBlueprint,
@@ -98,6 +99,19 @@ function blueprintInput(options: InputOptions = {}): BlueprintInput {
       ) ?? null
     : null;
 
+  const totalMarks = options.totalMarks ?? 30;
+  const durationMinutes = options.durationMinutes ?? 45;
+  const assessmentProfile = resolveAssessmentProfile({
+    educationSystem,
+    level: educationLevel,
+    gradeName,
+    subjectName,
+    assessmentType: assessmentType.id,
+    examStructure,
+    component,
+    requestedMarks: totalMarks,
+    requestedDurationMinutes: durationMinutes,
+  });
   return {
     educationSystem,
     educationLevel,
@@ -113,8 +127,9 @@ function blueprintInput(options: InputOptions = {}): BlueprintInput {
       componentRule?.verificationStatus === "VERIFIED"
         ? componentRule.components.map((candidate) => candidate.id)
         : [],
-    totalMarks: options.totalMarks ?? 30,
-    durationMinutes: options.durationMinutes ?? 45,
+    assessmentProfile,
+    totalMarks,
+    durationMinutes,
     difficulty: options.difficulty ?? "medium",
     curriculum:
       options.curriculum ??
@@ -233,6 +248,28 @@ test("the builder is deterministic and an explicit seed is repeatable", () => {
   const seeded = { ...input, seed: "variation-2026" };
   assert.deepEqual(buildExamBlueprint(seeded), buildExamBlueprint(seeded));
   assert.equal(buildExamBlueprint(seeded).variationSeed, "variation-2026");
+});
+
+test("KJSEA Mathematics 903 profile is the exact structural authority", () => {
+  const input = blueprintInput({
+    educationSystem: "CBC", educationLevel: "Junior School", gradeId: "grade-9",
+    gradeName: "Grade 9", subjectId: "mathematics", subjectName: "Mathematics",
+    assessmentTypeId: "kjsea_practice", examStructure: "kjsea_style",
+    componentCode: "903", totalMarks: 100, durationMinutes: 120,
+    curriculum: curriculumNodes({ gradeId: "grade-9", subjectId: "mathematics" }),
+  });
+  const blueprint = buildExamBlueprint(input);
+  assert.deepEqual(
+    blueprint.sections.map((section) => [section.id, section.targetMarks]),
+    [["section-a", 20], ["section-b", 80]]
+  );
+  assert.equal(blueprint.sections[0].slotIds.length, 20);
+  assert.ok(blueprint.questionSlots.slice(0, 20).every((slot) => slot.questionFamily === "objective" && slot.targetMarks === 1));
+  assert.equal(blueprint.assessmentProfile.profileId, "kjsea-903");
+  assert.throws(
+    () => buildExamBlueprint({ ...input, totalMarks: 99 }),
+    (error) => error instanceof BlueprintBuildError && error.issues.some((item) => item.code === "OFFICIAL_TOTAL_MISMATCH")
+  );
 });
 
 test("all selected curriculum is retained when marks are fewer than sub-topics", () => {

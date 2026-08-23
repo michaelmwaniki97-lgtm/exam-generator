@@ -7,6 +7,7 @@ import type {
   OfficialComponent,
   SchoolAssessmentType,
 } from "@/lib/assessment/rules";
+import type { AssessmentProfile } from "@/lib/assessment/profiles";
 
 export const BLUEPRINT_VERSION = 1 as const;
 
@@ -63,6 +64,7 @@ export type QuestionFamily =
 
 export type StructureOrigin =
   | "STANDARD_SCHOOL"
+  | "KJSEA_STYLE_PRACTICE"
   | "KCSE_STYLE_SCHOOL"
   | "KCSE_STYLE_MOCK"
   | "KCSE_STYLE_PRACTICE";
@@ -100,6 +102,7 @@ export type BlueprintInput = {
   allowedExamStructures: readonly ExamStructure[];
   component: OfficialComponent | null;
   allowedComponentIds: readonly string[];
+  assessmentProfile: AssessmentProfile;
   totalMarks: number;
   durationMinutes: number;
   difficulty: "easy" | "medium" | "hard";
@@ -119,7 +122,7 @@ export type QuestionTypeTarget = {
   label: string;
   slotCount: number;
   targetMarks: number;
-  evidenceStatus: "APPLICATION_HEURISTIC";
+  evidenceStatus: "APPLICATION_HEURISTIC" | "OFFICIAL_CONSTRAINT";
 };
 
 export type CognitiveTarget = {
@@ -159,13 +162,14 @@ export type BlueprintSection = {
   id: string;
   label: string;
   purpose: string;
+  instructions: string[];
   targetMarks: number;
   estimatedMinutes: number;
   questionTypeTargets: QuestionTypeTarget[];
   topicAllocationIds: string[];
   cognitiveTargets: CognitiveTarget[];
   slotIds: string[];
-  evidenceStatus: "APPLICATION_HEURISTIC";
+  evidenceStatus: "APPLICATION_HEURISTIC" | "OFFICIAL_CONSTRAINT";
 };
 
 export type BlueprintValidationIssue = {
@@ -221,6 +225,7 @@ export type ExamBlueprint = {
   durationMinutes: number;
   difficulty: "easy" | "medium" | "hard";
   profileId: string;
+  assessmentProfile: AssessmentProfile;
   curriculumScope: {
     selectedCount: number;
     parentCount: number;

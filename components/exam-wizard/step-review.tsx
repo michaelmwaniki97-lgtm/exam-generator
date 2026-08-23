@@ -45,6 +45,7 @@ export function StepReview({ data, strands }: { data: WizardData; strands: Stran
   const component = componentRule?.components.find(
     (candidate) => candidate.id === data.componentId
   );
+  const isKjseaPractice = data.examStructure === "kjsea_style";
   const selectedStrands = strands
     .map((strand) => ({
       ...strand,
@@ -99,7 +100,7 @@ export function StepReview({ data, strands }: { data: WizardData; strands: Stran
         {component && (
           <>
             <ReviewRow
-              label="KCSE-style component"
+              label={`${isKjseaPractice ? "KJSEA" : "KCSE"}-style component`}
               value={component.label}
             />
             <ReviewRow label="Paper code" value={component.paperCode} />
@@ -112,7 +113,7 @@ export function StepReview({ data, strands }: { data: WizardData; strands: Stran
               }
             />
             <ReviewRow
-              label="Verified KCSE duration"
+              label={`Verified ${isKjseaPractice ? "KJSEA" : "KCSE"} duration`}
               value={`${component.durationMinutes} minutes`}
             />
           </>
@@ -127,10 +128,17 @@ export function StepReview({ data, strands }: { data: WizardData; strands: Stran
           data.examStructure === "kcse_style" &&
           component && (
             <p className="mt-3 rounded-lg bg-accent/5 px-3 py-2 text-xs leading-relaxed text-foreground/70">
-              Uses verified KCSE paper structure for school practice. This is not
-              an official Form 3 KNEC examination.
+              Uses a verified KCSE component identity and duration for school
+              practice. Exact marks, sections and question counts remain unknown.
+              This is not an official Form 3 KNEC examination.
             </p>
           )}
+        {isKjseaPractice && component && (
+          <p className="mt-3 rounded-lg bg-accent/5 px-3 py-2 text-xs leading-relaxed text-foreground/70">
+            This is school-generated KJSEA-style practice material using a verified
+            KJSEA profile. It is not issued or endorsed by KNEC.
+          </p>
+        )}
         <ReviewRow label="Term" value={data.term} />
         {data.year && <ReviewRow label="Year" value={String(data.year)} />}
       </div>

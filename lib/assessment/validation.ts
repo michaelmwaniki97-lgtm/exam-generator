@@ -114,11 +114,11 @@ export function validateAssessmentSelection({
   }
 
   if (examStructureId === "standard" && componentId) {
-    return "A KCSE-style component cannot be used with a Standard School Exam.";
+    return "A national-practice component cannot be used with a Standard School Exam.";
   }
 
   if (
-    examStructureId === "kcse_style" &&
+    (examStructureId === "kcse_style" || examStructureId === "kjsea_style") &&
     (!componentRule || componentRule.verificationStatus !== "VERIFIED")
   ) {
     return "KCSE-style paper structure is not verified for this class, subject, and assessment.";

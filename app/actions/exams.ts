@@ -18,6 +18,7 @@ import {
   validateAssessmentSelection,
   validateBasicExamInput,
 } from "@/lib/assessment/validation";
+import { resolveAssessmentProfile } from "@/lib/assessment/profiles";
 import {
   BlueprintBuildError,
   buildExamBlueprint,
@@ -221,6 +222,31 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
         : null);
   }
 
+  const assessmentProfile = resolveAssessmentProfile({
+    educationSystem,
+    level: grade.level,
+    gradeName: grade.name,
+    subjectName: subject.name,
+    assessmentType: assessmentType.id,
+    examStructure: data.examStructure,
+    component,
+    requestedMarks: data.marks!,
+    requestedDurationMinutes: data.duration!,
+  });
+  if (
+    assessmentProfile.ruleStatus === "OFFICIAL_VERIFIED" &&
+    data.marks !== assessmentProfile.paper.totalMarks
+  ) {
+    return {
+      error: `This verified ${assessmentProfile.paper.paperCode} practice profile requires exactly ${assessmentProfile.paper.totalMarks} marks and ${assessmentProfile.paper.durationMinutes} minutes.`,
+    };
+  }
+  if (component && data.duration !== assessmentProfile.paper.durationMinutes) {
+    return {
+      error: `The verified ${assessmentProfile.paper.paperCode} component duration is ${assessmentProfile.paper.durationMinutes} minutes and cannot be silently overridden.`,
+    };
+  }
+
   const topicsResult = await supabase
     .from("sub_strands")
     .select(
@@ -269,6 +295,7 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
         componentRule?.verificationStatus === "VERIFIED"
           ? componentRule.components.map((candidate) => candidate.id)
           : [],
+      assessmentProfile,
       totalMarks: data.marks!,
       durationMinutes: data.duration!,
       difficulty: data.difficulty as "easy" | "medium" | "hard",
@@ -384,6 +411,10 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
                 configuredDurationMinutes: data.duration,
                 officialMarks: component.officialMarks,
                 verificationStatus: component.verificationStatus,
+                verificationScope:
+                  assessmentProfile.ruleStatus === "OFFICIAL_VERIFIED"
+                    ? "OFFICIAL_PROFILE"
+                    : "COMPONENT_IDENTITY_AND_DURATION",
                 source: component.source,
               }
             : null,
@@ -393,12 +424,19 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
                 subjectCode: componentRule.subjectCode,
                 officialSubjectName: componentRule.officialSubjectName,
                 verificationStatus: componentRule.verificationStatus,
+                verificationScope:
+                  assessmentProfile.ruleStatus === "OFFICIAL_VERIFIED"
+                    ? "OFFICIAL_PROFILE"
+                    : componentRule.verificationStatus === "VERIFIED"
+                      ? "COMPONENT_IDENTITY_AND_DURATION"
+                      : "SOURCE_REQUIRED",
                 source: componentRule.source,
               }
             : null,
           curriculumSelection,
           curriculumPolicy: "new_exam_active_roots_only",
           blueprint,
+          assessmentProfile,
           teacherReviewRequired: true,
         },
       },

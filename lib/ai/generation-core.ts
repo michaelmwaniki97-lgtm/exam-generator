@@ -22,7 +22,7 @@ export type GenerationBlueprintSlot = {
   questionFamily: QuestionFamily; questionFamilyLabel: string; allowedType: AiQuestionType; cognitiveDemand: Demand; constraints: string[];
 };
 export type GenerationBlueprint = {
-  version: number; totalMarks: number; durationMinutes: number;
+  version: number; totalMarks: number; durationMinutes: number; instructions: string | null;
   component: null | { id: string; paperCode: string; displayName: string; componentType: "WRITTEN" | "PRACTICAL" };
   slots: GenerationBlueprintSlot[];
 };
@@ -45,6 +45,7 @@ export function projectBlueprint(blueprint: ExamBlueprint): GenerationBlueprint 
   const topics = new Map(blueprint.topicAllocations.map((topic) => [topic.curriculumId, topic]));
   return {
     version: blueprint.blueprintVersion, totalMarks: blueprint.totalMarks, durationMinutes: blueprint.durationMinutes,
+    instructions: blueprint.assessmentProfile?.generalInstructions.join("\n") ?? null,
     component: blueprint.component && { id: blueprint.component.id, paperCode: blueprint.component.paperCode, displayName: blueprint.component.displayName, componentType: blueprint.component.componentType },
     slots: blueprint.questionSlots.map((slot, index) => ({
       slotId: slot.id, number: index + 1, sectionId: slot.sectionId, sectionTitle: sections.get(slot.sectionId)?.label ?? slot.sectionId,
@@ -66,6 +67,7 @@ export function buildPrompt(params: GenerateExamCoreParams): string {
   const grounding = params.textbookContext ? JSON.stringify(params.textbookContext.chunks) : "";
   return `Create the content for a ${params.difficulty} ${params.examType} for ${params.gradeName} (${params.level}) ${params.subjectName}.
 The supplied generation blueprint is immutable and authoritative. Fill every slot exactly once. Do not invent, delete, reorder, resize, rename, or move slots or sections. Copy IDs, number, marks, questionFamily, type, cognitiveDemand, constraints, curriculum IDs and display names exactly. The question text must genuinely satisfy the family, cognitive demand, component, and every constraint. Acknowledging a constraint without satisfying it is invalid. Practical content must be safe, age-appropriate, teacher-reviewed, and must not introduce dangerous or unsupported procedures.
+Copy the GENERATION_BLUEPRINT instructions string exactly; do not add or rewrite paper instructions.
 SELF-CONTAINED QUESTIONS: write the actual executable student-facing task, never a description or template. Include every value, formula, condition, context, passage, or datum needed to answer it. Never say "solve a problem involving", "given its percentage composition", "using the data provided", or similar unless the actual problem, percentages, or data immediately appear in the question text.
 SUPPORTED CONTENT: the renderer displays only plain text and multiple-choice options. It does not render graphs, charts, diagrams, images, figures, stimulus tables, maps, source extracts, passages, case studies, datasets, or experiment-setup illustrations. Do not ask learners to interpret, study, refer to, or use any such missing resource. Convert necessary information into explicit inline prose, values, or coordinate/data pairs. Asking a learner to draw their own graph from inline values is permitted.
 CALCULATIONS: create a concrete solvable problem. Supply usable numerical values and units, percentage composition, chemical formula, constants, equations, and conditions such as STP/RTP whenever needed. Symbolic problems are allowed when genuinely solvable symbolically.
@@ -106,6 +108,7 @@ function same(actual: string[], expected: string[]): boolean { return actual.len
 
 export function describeStructuralViolations(exam: GeneratedExam, blueprint: ExamBlueprint): string[] {
   const projection = projectBlueprint(blueprint); const violations: string[] = [];
+  if (projection.instructions !== null && exam.instructions !== projection.instructions) violations.push("general instructions do not match the deterministic assessment profile");
   const questions = exam.sections.flatMap((section) => section.questions.map((question) => ({ section, question })));
   const expectedSections = [...new Map(projection.slots.map((slot) => [slot.sectionId, slot.sectionTitle])).entries()];
   if (exam.sections.length !== expectedSections.length) violations.push(`section count is ${exam.sections.length}, expected ${expectedSections.length}`);

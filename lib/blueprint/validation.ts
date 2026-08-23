@@ -92,12 +92,12 @@ export function validateBlueprintInput(
     );
   }
 
-  if (input.examStructure === "kcse_style" && !input.component) {
+  if ((input.examStructure === "kcse_style" || input.examStructure === "kjsea_style") && !input.component) {
     issues.push(
       issue(
         "COMPONENT_REQUIRED",
         "ERROR",
-        "A canonical verified component is required for KCSE-style planning."
+        "A canonical verified component is required for national-style planning."
       )
     );
   }
@@ -203,6 +203,40 @@ export function validateExamBlueprint(
   const difficultyPercent = sum(
     blueprint.cognitiveProfile.targets.map((target) => target.targetPercent)
   );
+  const profile = input.assessmentProfile;
+
+  if (blueprint.assessmentProfile.profileId !== profile.profileId) {
+    issues.push(issue("ASSESSMENT_PROFILE_MISMATCH", "ERROR", "Blueprint assessment profile identity does not match the canonical server profile."));
+  }
+  if (profile.ruleStatus === "OFFICIAL_VERIFIED") {
+    if (profile.paper.totalMarks !== input.totalMarks) {
+      issues.push(issue("OFFICIAL_TOTAL_MISMATCH", "ERROR", "Official profile total marks cannot be overridden.", "OFFICIAL_CONSTRAINT"));
+    }
+    if (profile.paper.durationMinutes !== input.durationMinutes) {
+      issues.push(issue("OFFICIAL_DURATION_MISMATCH", "ERROR", "Official profile duration cannot be overridden.", "OFFICIAL_CONSTRAINT"));
+    }
+    const ordered = [...profile.sections].sort((a, b) => a.order - b.order);
+    ordered.forEach((expected, index) => {
+      const actual = blueprint.sections[index];
+      const slots = actual
+        ? blueprint.questionSlots.filter((slot) => slot.sectionId === actual.id)
+        : [];
+      if (!actual || actual.id !== expected.id || (expected.marks !== null && actual.targetMarks !== expected.marks)) {
+        issues.push(issue("OFFICIAL_SECTION_MISMATCH", "ERROR", `Official section ${expected.id} identity, order and marks must remain exact.`, "OFFICIAL_CONSTRAINT"));
+      }
+      if (expected.questionCount?.exact !== undefined && slots.length !== expected.questionCount.exact) {
+        issues.push(issue("OFFICIAL_QUESTION_COUNT_MISMATCH", "ERROR", `Official section ${expected.id} requires exactly ${expected.questionCount.exact} question slots.`, "OFFICIAL_CONSTRAINT"));
+      }
+      for (const [family, count] of Object.entries(expected.fixedFamilyCounts ?? {})) {
+        if (slots.filter((slot) => slot.questionFamily === family).length !== count) {
+          issues.push(issue("OFFICIAL_FAMILY_COUNT_MISMATCH", "ERROR", `Official section ${expected.id} has an exact ${family} count.`, "OFFICIAL_CONSTRAINT"));
+        }
+      }
+    });
+    if (blueprint.sections.length !== ordered.length) {
+      issues.push(issue("OFFICIAL_SECTION_COUNT_MISMATCH", "ERROR", "Official section count must remain exact.", "OFFICIAL_CONSTRAINT"));
+    }
+  }
 
   if (blueprint.sections.length === 0 || blueprint.questionSlots.length === 0) {
     issues.push(
