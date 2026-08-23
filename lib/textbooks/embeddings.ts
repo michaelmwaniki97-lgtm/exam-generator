@@ -10,7 +10,7 @@ export async function embedTexts(input: string[], inputType: "passage" | "query"
     method: "POST",
     headers: { Authorization: `Bearer ${AI_CONFIG.apiKey}`, "Content-Type": "application/json" },
     body: JSON.stringify({ model: EMBEDDING_MODEL, input, input_type: inputType, encoding_format: "float", truncate: "NONE" }),
-    signal: AbortSignal.timeout(AI_CONFIG.requestTimeoutMs),
+    signal: AbortSignal.timeout(AI_CONFIG.embeddingTimeoutMs),
     cache: "no-store",
   });
   if (!response.ok) throw new Error("The embedding provider could not process this textbook.");
