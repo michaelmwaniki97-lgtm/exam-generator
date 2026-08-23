@@ -58,3 +58,18 @@ test("stored exam and marking views validate rich JSON and fail with a controlle
   assert.match(documentModel, /storedContentForDisplayOrThrow/);
   assert.match(documentModel, /INVALID_STORED_CONTENT_MESSAGE/);
 });
+
+test("exam pages do not label unexpected loader failures as invalid stored content", () => {
+  for (const source of [examView, markingView]) {
+    const accessBranch = source.indexOf("if (error instanceof ExamDocumentAccessError)");
+    const invalidContent = source.indexOf("unsupported or invalid stored content", accessBranch);
+    const unexpectedBranch = source.indexOf("console.error", invalidContent);
+    const retryMessage = source.indexOf("Please try again", unexpectedBranch);
+    assert.ok(accessBranch >= 0);
+    assert.ok(invalidContent > accessBranch);
+    assert.ok(unexpectedBranch > invalidContent);
+    assert.ok(retryMessage > unexpectedBranch);
+  }
+  assert.match(documentLoader, /error\.message === INVALID_STORED_CONTENT_MESSAGE/);
+  assert.match(documentLoader, /throw error/);
+});
