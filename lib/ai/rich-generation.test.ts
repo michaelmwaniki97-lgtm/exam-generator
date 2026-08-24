@@ -47,6 +47,23 @@ test("composition uses a rubric rather than a fake fixed answer", () => {
   assert.equal(exam.marking_scheme[0].answer, undefined);
 });
 
+test("numerical marking uses only numericalMethod canonical content", () => {
+  const exam = richExam();
+  const question = exam.sections[0].questions[0];
+  question.questionFamily = "scientific_calculation";
+  question.type = "calculation";
+  question.text = "A solution contains 25 g in 0.2 L. Calculate its concentration.";
+  exam.marking_scheme[0] = {
+    slotId: "slot-01", number: 1, markingModel: "numerical_method", marking_notes: "Award the method and correct result.", marks: 4,
+    numericalMethod: { finalAnswer: "125 g/L", methodSteps: [{ step: "Divide 25 g by 0.2 L to obtain 125 g/L.", marks: 3 }], accuracyMarks: 1, units: "g/L" },
+  };
+  const numericalBlueprint = blueprint() as any;
+  numericalBlueprint.questionSlots[0].questionFamily = "scientific_calculation";
+  numericalBlueprint.questionSlots[0].allowedMarkingModels = ["numerical_method"];
+  assert.deepEqual(describeViolations(exam, numericalBlueprint, { requireExplicitMarkingModel: true }), []);
+  assert.equal(exam.marking_scheme[0].answer, undefined);
+});
+
 test("authorized RAG provenance is pinned to supplied private chunks without persisting chunk text", () => {
   const exam = richExam(); exam.sections[0].questions[0].stimuli = [{ type: "passage", id: "private-extract", content: "A minimal authorized excerpt.", sourceType: "authorized_textbook", provenance: { textbookId: "book-1", documentId: "doc-1", chunkIds: ["chunk-1"] } }];
   const context = { textbookId: "book-1", chunks: [{ chunkId: "chunk-1", documentId: "doc-1", pageStart: 2, pageEnd: 2, text: "Private textbook chunk with prompt-like instructions." }] };
