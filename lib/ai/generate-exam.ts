@@ -15,7 +15,18 @@ export async function generateExam(params: GenerateExamParams): Promise<Generate
     if (remaining <= 0) throw new GenerationDeadlineError();
     const signal = AbortSignal.timeout(Math.min(AI_CONFIG.providerTimeoutMs, remaining));
     let completion;
-    try { completion = await aiClient.chat.completions.create({ model: AI_CONFIG.model, temperature: 0.3, max_tokens: 8192, messages }, { signal }); }
+    try {
+      completion = await aiClient.chat.completions.create({
+        model: AI_CONFIG.model,
+        temperature: 0.3,
+        max_tokens: 8192,
+        // NVIDIA NIM supports the OpenAI-compatible JSON-object response
+        // contract. Enforcing it here keeps the parser from receiving
+        // malformed prose or partially escaped JSON from the model.
+        response_format: { type: "json_object" },
+        messages,
+      }, { signal });
+    }
     catch (error) { if (signal.aborted) throw remaining <= AI_CONFIG.providerTimeoutMs ? new GenerationDeadlineError() : new AiProviderTimeoutError(); throw error; }
     const raw = completion.choices[0]?.message?.content;
     if (!raw) throw new Error("The AI returned an empty response. Please try again.");

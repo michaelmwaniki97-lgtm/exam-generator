@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import type { ExamBlueprint } from "../blueprint/types.ts";
-import { buildPrompt, describeViolations, generateExamWithCompletion, projectBlueprint, QUESTION_FAMILY_TO_AI_TYPE, type GeneratedExam } from "./generation-core.ts";
+import { assembleServerQuestions, buildPrompt, buildServerQuestionSkeleton, describeViolations, generateExamWithCompletion, projectBlueprint, QUESTION_FAMILY_TO_AI_TYPE, type GeneratedExam } from "./generation-core.ts";
 
 function blueprint(): ExamBlueprint {
   return {
@@ -18,6 +18,12 @@ function blueprint(): ExamBlueprint {
     ],
   } as unknown as ExamBlueprint;
 }
+test("server owns question structure while content is model-supplied", () => {
+  const shell = buildServerQuestionSkeleton(blueprint());
+  assert.equal(shell.sections[0].id, "section-01");
+  const sections = assembleServerQuestions(blueprint(), { "slot-01": { topic: "Mixtures", text: "Observe the mixture." }, "slot-02": { topic: "Length", text: "Measure the sample." } });
+  assert.deepEqual(sections[0].questions.map((q) => [q?.slotId, q?.number, q?.marks]), [["slot-01", 1, 2], ["slot-02", 2, 4]]);
+});
 
 function validExam(): GeneratedExam {
   return {
