@@ -15,6 +15,7 @@ export async function generateExam(params: GenerateExamParams): Promise<Generate
     if (remaining <= 0) throw new GenerationDeadlineError();
     const signal = AbortSignal.timeout(Math.min(AI_CONFIG.providerTimeoutMs, remaining));
     let completion;
+    for (let attempt = 0; ; attempt++) {
     try {
       completion = await aiClient.chat.completions.create({
         model: AI_CONFIG.model,
@@ -30,7 +31,22 @@ export async function generateExam(params: GenerateExamParams): Promise<Generate
         messages,
       }, { signal });
     }
-    catch (error) { if (signal.aborted) throw remaining <= AI_CONFIG.providerTimeoutMs ? new GenerationDeadlineError() : new AiProviderTimeoutError(); throw error; }
+    catch (error) {
+      if (signal.aborted) throw remaining <= AI_CONFIG.providerTimeoutMs ? new GenerationDeadlineError() : new AiProviderTimeoutError();
+      const status = typeof error === "object" && error !== null && "status" in error ? Number(error.status) : 0;
+      if (AI_CONFIG.provider === "groq" && status === 429 && attempt < 2) {
+        const headers = typeof error === "object" && error !== null && "headers" in error ? error.headers as { get?: (name: string) => string | null } : undefined;
+        const retryAfter = headers?.get?.("retry-after") ?? headers?.get?.("x-ratelimit-reset-requests") ?? "1";
+        const seconds = Number(retryAfter);
+        const waitMs = Math.max(1000, (Number.isFinite(seconds) ? seconds * 1000 : 1000) + 250);
+        if (waitMs >= remaining) throw new GenerationDeadlineError();
+        await new Promise((resolve) => setTimeout(resolve, waitMs));
+        continue;
+      }
+      throw error;
+    }
+    break;
+    }
     const raw = completion.choices[0]?.message?.content;
     if (!raw) throw new Error("The AI returned an empty response. Please try again.");
     return raw;

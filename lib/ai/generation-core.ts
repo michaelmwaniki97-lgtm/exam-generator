@@ -113,7 +113,6 @@ export async function generateQuestionContentWithCompletion(input: { blueprint: 
   const schema: StructuredResponseFormat = { type: "json_schema", json_schema: { name: "question_content", strict: true, schema: { type: "object", additionalProperties: false, properties: { questions: { type: "array", items: { type: "object", additionalProperties: false, properties: { slotId: { type: "string" }, text: { type: "string" }, topic: { type: "string" }, options: { type: "array", items: { type: "string" } } }, required: ["slotId", "text", "topic", "options"] } } }, required: ["questions"] } } };
   const content: Record<string, ServerQuestionContent> = {};
   for (let offset = 0; offset < slots.length; offset += 2) {
-    if (offset > 0) await new Promise((resolve) => setTimeout(resolve, 1000));
     const batch = slots.slice(offset, offset + 2);
     const prompt = `Generate question CONTENT only. Return exactly {"questions":[{"slotId":"...","text":"...","topic":"...","options":[]}]}. Always include options as an array; use [] for non-objective questions and exactly four options for objective questions. Do not return sections, marks, numbers, IDs other than slotId, or marking. Fill every fixed slot exactly once. Fixed slots=${JSON.stringify(batch)} CURRICULUM=${JSON.stringify(input.topics)}`;
     let parsed: unknown = null;
@@ -129,7 +128,6 @@ export async function generateMarkingContentWithCompletion(input: { blueprint: E
   const questions = input.questions.flatMap((section) => section.questions);
   const result = new Map<string, MarkingContent>();
   for (const slot of slots) {
-    if (result.size > 0) await new Promise((resolve) => setTimeout(resolve, 1000));
     const question = questions.find((q) => q.slotId === slot.slotId)!;
     let valid = false;
     let failure = "";
