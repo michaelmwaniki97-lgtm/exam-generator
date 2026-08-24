@@ -23,7 +23,10 @@ export async function generateExam(params: GenerateExamParams): Promise<Generate
         // NVIDIA NIM supports the OpenAI-compatible JSON-object response
         // contract. Enforcing it here keeps the parser from receiving
         // malformed prose or partially escaped JSON from the model.
-        response_format: { type: "json_object" },
+        response_format: AI_CONFIG.provider === "groq"
+          ? { type: "json_schema", json_schema: { name: "generation_payload", strict: true, schema: { type: "object", additionalProperties: true } } }
+          : { type: "json_object" },
+        ...(AI_CONFIG.provider === "groq" ? { reasoning_effort: "low" as const } : {}),
         messages,
       }, { signal });
     }

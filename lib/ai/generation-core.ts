@@ -128,10 +128,14 @@ export async function generateMarkingContentWithCompletion(input: { blueprint: E
       const prompt = `Generate marking CONTENT only for this finalized question. Return exactly one JSON object with only answer, marking_notes, and allocations keys. Do not return slotId, number, marks, entries, or any wrapper. The answer must be substantive and allocations must contain specific awardable points with positive integer marks summing exactly to ${slot.marks}. QUESTION=${JSON.stringify({ text: question.text, marks: slot.marks })}`;
       const parsed = extractJson(await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }]));
       const entry = isRecord(parsed) ? parsed : undefined;
-      const allocations = Array.isArray(entry?.allocations) ? entry.allocations : [];
+      const allocations = Array.isArray(entry?.allocations)
+        ? entry.allocations
+        : isRecord(entry?.allocations)
+          ? Object.entries(entry.allocations).map(([label, marks]) => ({ label, marks }))
+          : [];
       const answer = typeof entry?.answer === "string" ? entry.answer.trim() : "";
       const total = allocations.reduce((sum, a) => sum + (isRecord(a) && Number.isInteger(a.marks) ? Number(a.marks) : 0), 0);
-      if (answer && total === slot.marks) { result.set(slot.slotId, entry as MarkingContent); valid = true; }
+      if (answer && total === slot.marks) { result.set(slot.slotId, { ...entry, allocations } as MarkingContent); valid = true; }
     }
     if (!valid) throw new Error(`Marking validation failed for entries: ${slot.slotId}`);
   }
