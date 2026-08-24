@@ -361,7 +361,9 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
     return {
       error: error instanceof AiProviderTimeoutError || error instanceof GenerationDeadlineError
         ? error.message
-        : error instanceof Error && error.message.startsWith("The AI could not produce")
+        : error instanceof Error && (error.message.startsWith("The AI could not produce") || error.message.includes("generation stage failed") || error.message.startsWith("Staged exam validation failed"))
+          ? error.message
+          : error instanceof Error && error.message.startsWith("The AI could not produce")
           ? "The generated exam failed validation. Please try again."
           : "Exam generation failed. Please try again.",
     };

@@ -35,8 +35,12 @@ export async function generateExam(params: GenerateExamParams): Promise<Generate
     if (!raw) throw new Error("The AI returned an empty response. Please try again.");
     return raw;
   };
-  const sections = await generateQuestionContentWithCompletion(params, complete);
-  const marking = await generateMarkingContentWithCompletion({ blueprint: params.blueprint, questions: sections }, complete);
+  let sections;
+  try { sections = await generateQuestionContentWithCompletion(params, complete); }
+  catch (error) { throw new Error(`Question-generation stage failed: ${error instanceof Error ? error.message : "unknown error"}`); }
+  let marking;
+  try { marking = await generateMarkingContentWithCompletion({ blueprint: params.blueprint, questions: sections }, complete); }
+  catch (error) { throw new Error(`Marking-generation stage failed: ${error instanceof Error ? error.message : "unknown error"}`); }
   const exam: GeneratedExam = { instructions: params.blueprint.assessmentProfile?.generalInstructions.join("\n") ?? "Answer all questions.", sections, marking_scheme: marking };
   const violations = describeViolations(exam, params.blueprint);
   if (violations.length) throw new Error(`Staged exam validation failed: ${violations.join("; ")}`);

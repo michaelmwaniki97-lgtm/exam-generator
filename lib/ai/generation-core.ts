@@ -110,7 +110,8 @@ export function assembleServerQuestions(blueprint: ExamBlueprint, content: Recor
 export async function generateQuestionContentWithCompletion(input: { blueprint: ExamBlueprint; topics: TopicInput[] }, complete: Completion): Promise<ExamSection[]> {
   const slots = projectBlueprint(input.blueprint).slots;
   const prompt = `Generate question CONTENT only. Return exactly {"questions":[{"slotId":"...","text":"...","topic":"..."}]}. Do not return sections, marks, numbers, IDs other than slotId, or marking. Fill every slot exactly once. Fixed slots=${JSON.stringify(slots)} CURRICULUM=${JSON.stringify(input.topics)}`;
-  const parsed = extractJson(await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }]));
+  let parsed: unknown = null;
+  for (let attempt = 0; attempt < 2; attempt++) { try { parsed = extractJson(await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }])); break; } catch { if (attempt === 1) throw new Error("Question content response was not valid JSON."); } }
   const rows = isRecord(parsed) && Array.isArray(parsed.questions) ? parsed.questions : [];
   const content: Record<string, ServerQuestionContent> = {};
   for (const slot of slots) { const row = rows.find((x) => isRecord(x) && x.slotId === slot.slotId); if (!isRecord(row) || typeof row.text !== "string" || typeof row.topic !== "string") throw new Error(`Question content validation failed for ${slot.slotId}`); content[slot.slotId] = { text: row.text, topic: row.topic, options: Array.isArray(row.options) ? row.options : undefined, stimuli: Array.isArray(row.stimuli) ? row.stimuli as RichStimulus[] : undefined }; }
@@ -126,7 +127,9 @@ export async function generateMarkingContentWithCompletion(input: { blueprint: E
     let valid = false;
     for (let attempt = 0; attempt < 3 && !valid; attempt++) {
       const prompt = `Generate marking CONTENT only for this finalized question. Return exactly one JSON object with only answer, marking_notes, and allocations keys. Do not return slotId, number, marks, entries, or any wrapper. The answer must be substantive and allocations must contain specific awardable points with positive integer marks summing exactly to ${slot.marks}. QUESTION=${JSON.stringify({ text: question.text, marks: slot.marks })}`;
-      const parsed = extractJson(await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }]));
+      let parsed: unknown;
+      try { parsed = extractJson(await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }])); }
+      catch { continue; }
       const entry = isRecord(parsed) ? parsed : undefined;
       const allocations = Array.isArray(entry?.allocations)
         ? entry.allocations
@@ -134,8 +137,10 @@ export async function generateMarkingContentWithCompletion(input: { blueprint: E
           ? Object.entries(entry.allocations).map(([label, marks]) => ({ label, marks }))
           : [];
       const answer = typeof entry?.answer === "string" ? entry.answer.trim() : "";
+      const notes = typeof entry?.marking_notes === "string" ? entry.marking_notes.trim() : "";
       const total = allocations.reduce((sum, a) => sum + (isRecord(a) && Number.isInteger(a.marks) ? Number(a.marks) : 0), 0);
-      if (answer && total === slot.marks) { result.set(slot.slotId, { ...entry, allocations } as MarkingContent); valid = true; }
+      const labelsValid = allocations.every((a) => isRecord(a) && typeof a.label === "string" && a.label.trim().length > 0);
+      if (answer && notes && labelsValid && total === slot.marks) { result.set(slot.slotId, { ...entry, allocations } as MarkingContent); valid = true; }
     }
     if (!valid) throw new Error(`Marking validation failed for entries: ${slot.slotId}`);
   }
