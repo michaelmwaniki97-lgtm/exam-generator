@@ -8,7 +8,7 @@ export type GenerateExamParams = GenerateExamCoreParams;
 export class AiProviderTimeoutError extends Error { constructor() { super("The AI provider timed out. Please try again."); this.name = "AiProviderTimeoutError"; } }
 export class GenerationDeadlineError extends Error { constructor() { super("Exam generation reached its execution limit. Please try a smaller exam."); this.name = "GenerationDeadlineError"; } }
 export async function generateExam(params: GenerateExamParams): Promise<GeneratedExam> {
-  if (!AI_CONFIG.apiKey) throw new Error("NVIDIA_API_KEY is not set. Add it to .env.local to enable exam generation.");
+  if (!AI_CONFIG.apiKey) throw new Error(`${AI_CONFIG.apiKeyEnv} is not set for AI_PROVIDER=${AI_CONFIG.provider}. Add it to .env.local to enable exam generation.`);
   const deadline = Date.now() + AI_CONFIG.generationBudgetMs;
   const complete = async (messages: Array<{ role: "system" | "user" | "assistant"; content: string }>) => {
     const remaining = deadline - Date.now();
