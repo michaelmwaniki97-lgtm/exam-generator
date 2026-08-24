@@ -120,25 +120,21 @@ export async function generateQuestionContentWithCompletion(input: { blueprint: 
 export async function generateMarkingContentWithCompletion(input: { blueprint: ExamBlueprint; questions: ExamSection[] }, complete: Completion): Promise<MarkingSchemeEntry[]> {
   const slots = projectBlueprint(input.blueprint).slots;
   const questions = input.questions.flatMap((section) => section.questions);
-  const prompt = (ids?: Set<string>) => { const selected = questions.filter((q) => !ids || ids.has(q.slotId)).map((q) => ({ slotId: q.slotId, text: q.text, marks: q.marks })); const single = ids && ids.size === 1; return single ? `Generate marking CONTENT only for this finalized question. Return exactly one JSON object with only answer, marking_notes, and allocations keys. Do not return slotId, number, marks, entries, or any wrapper. The answer must state the actual model answer. allocations must be an array of specific awardable points; each point has label and positive integer marks, and their sum MUST equal the known marks. QUESTION=${JSON.stringify(selected[0])}` : `Generate marking CONTENT only for these finalized questions. Return exactly one JSON object shaped {"entries":[{"slotId":"...","answer":"...","marking_notes":"...","allocations":[{"label":"...","marks":1}]}]}. Allocations must be positive and total exactly to the question marks. QUESTIONS=${JSON.stringify(selected)}`; };
-  let pending = new Set(slots.map((slot) => slot.slotId));
   const result = new Map<string, MarkingContent>();
-  for (let attempt = 0; attempt < 3 && pending.size; attempt++) {
-    const parsed = extractJson(await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt(attempt ? pending : undefined) }]));
-    const entries = attempt > 0 && pending.size === 1 ? [{ ...(isRecord(parsed) ? parsed : {}), slotId: [...pending][0] }] : isRecord(parsed) && Array.isArray(parsed.entries) ? parsed.entries : [];
-    const next = new Set<string>();
-    for (const slot of slots.filter((s) => pending.has(s.slotId))) {
-      const entry = entries.find((candidate) => isRecord(candidate) && candidate.slotId === slot.slotId) as Record<string, unknown> | undefined;
+  for (const slot of slots) {
+    const question = questions.find((q) => q.slotId === slot.slotId)!;
+    let valid = false;
+    for (let attempt = 0; attempt < 3 && !valid; attempt++) {
+      const prompt = `Generate marking CONTENT only for this finalized question. Return exactly one JSON object with only answer, marking_notes, and allocations keys. Do not return slotId, number, marks, entries, or any wrapper. The answer must be substantive and allocations must contain specific awardable points with positive integer marks summing exactly to ${slot.marks}. QUESTION=${JSON.stringify({ text: question.text, marks: slot.marks })}`;
+      const parsed = extractJson(await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }]));
+      const entry = isRecord(parsed) ? parsed : undefined;
       const allocations = Array.isArray(entry?.allocations) ? entry.allocations : [];
       const answer = typeof entry?.answer === "string" ? entry.answer.trim() : "";
       const total = allocations.reduce((sum, a) => sum + (isRecord(a) && Number.isInteger(a.marks) ? Number(a.marks) : 0), 0);
-      if (!answer || total !== slot.marks) { next.add(slot.slotId); continue; }
-      const { slotId: _slotId, number: _number, marks: _marks, ...content } = (entry ?? {}) as Record<string, unknown>;
-      result.set(slot.slotId, content as MarkingContent);
+      if (answer && total === slot.marks) { result.set(slot.slotId, entry as MarkingContent); valid = true; }
     }
-    pending = next;
+    if (!valid) throw new Error(`Marking validation failed for entries: ${slot.slotId}`);
   }
-  if (pending.size) throw new Error(`Marking validation failed for entries: ${[...pending].join(", ")}`);
   return slots.map((slot) => ({ ...(result.get(slot.slotId)!), slotId: slot.slotId, number: slot.number, marks: slot.marks }));
 }
 
