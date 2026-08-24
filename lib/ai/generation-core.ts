@@ -42,6 +42,7 @@ export type GenerationBlueprint = {
 };
 export type ServerQuestionContent = { text: string; topic: string; options?: string[]; stimuli?: RichStimulus[] };
 export type ServerQuestionSkeleton = { sections: { id: string; title: string; questions: (ExamQuestion | null)[] }[]; slots: GenerationBlueprintSlot[] };
+export type StructuredResponseFormat = { type: "json_schema"; json_schema: { name: string; strict: true; schema: Record<string, unknown> } } | { type: "json_object" };
 export type ExamQuestion = {
   slotId: string; number: number; sectionId: string; curriculumIds: string[]; topic: string; text: string; marks: number;
   questionFamily: QuestionFamily; type: AiQuestionType; cognitiveDemand: Demand; constraintAcknowledgements: string[]; options?: string[];
@@ -97,21 +98,22 @@ export function buildServerQuestionSkeleton(blueprint: ExamBlueprint): ServerQue
 export function assembleServerQuestions(blueprint: ExamBlueprint, content: Record<string, ServerQuestionContent>): ExamSection[] {
   const projected = projectBlueprint(blueprint);
   const sections = buildServerQuestionSkeleton(blueprint).sections;
-  projected.slots.forEach((slot, index) => {
+  projected.slots.forEach((slot) => {
     const value = content[slot.slotId];
     if (!value) throw new Error(`Missing question content for ${slot.slotId}`);
     const section = sections.find((candidate) => candidate.id === slot.sectionId)!;
     const position = projected.slots.filter((candidate) => candidate.sectionId === slot.sectionId).indexOf(slot);
-    section.questions[position] = { slotId: slot.slotId, number: slot.number, sectionId: slot.sectionId, curriculumIds: slot.curriculumTargets.map((target) => target.curriculumId), topic: slot.curriculumTargets[0]?.displayName ?? "", text: value.text, marks: slot.marks, questionFamily: slot.questionFamily, type: slot.allowedType, cognitiveDemand: slot.cognitiveDemand, constraintAcknowledgements: [...slot.constraints], options: value.options, stimuli: value.stimuli };
+    section.questions[position] = { slotId: slot.slotId, number: slot.number, sectionId: slot.sectionId, curriculumIds: slot.curriculumTargets.map((target) => target.curriculumId), topic: slot.curriculumTargets[0]?.displayName ?? "", text: value.text, marks: slot.marks, questionFamily: slot.questionFamily, type: slot.allowedType, cognitiveDemand: slot.cognitiveDemand, constraintAcknowledgements: [...slot.constraints], ...(value.options?.length ? { options: value.options } : {}), ...(value.stimuli?.length ? { stimuli: value.stimuli } : {}) };
   });
   return sections as ExamSection[];
 }
 
 export async function generateQuestionContentWithCompletion(input: { blueprint: ExamBlueprint; topics: TopicInput[] }, complete: Completion): Promise<ExamSection[]> {
   const slots = projectBlueprint(input.blueprint).slots;
-  const prompt = `Generate question CONTENT only. Return exactly {"questions":[{"slotId":"...","text":"...","topic":"..."}]}. Do not return sections, marks, numbers, IDs other than slotId, or marking. Fill every slot exactly once. Fixed slots=${JSON.stringify(slots)} CURRICULUM=${JSON.stringify(input.topics)}`;
+  const prompt = `Generate question CONTENT only. Return exactly {"questions":[{"slotId":"...","text":"...","topic":"...","options":[]}]}. Always include options as an array; use [] for non-objective questions and exactly four options for objective questions. Do not return sections, marks, numbers, IDs other than slotId, or marking. Fill every slot exactly once. Fixed slots=${JSON.stringify(slots)} CURRICULUM=${JSON.stringify(input.topics)}`;
   let parsed: unknown = null;
-  for (let attempt = 0; attempt < 2; attempt++) { try { parsed = extractJson(await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }])); break; } catch { if (attempt === 1) throw new Error("Question content response was not valid JSON."); } }
+  const schema: StructuredResponseFormat = { type: "json_schema", json_schema: { name: "question_content", strict: true, schema: { type: "object", additionalProperties: false, properties: { questions: { type: "array", items: { type: "object", additionalProperties: false, properties: { slotId: { type: "string" }, text: { type: "string" }, topic: { type: "string" }, options: { type: "array", items: { type: "string" } } }, required: ["slotId", "text", "topic", "options"] } } }, required: ["questions"] } } };
+  for (let attempt = 0; attempt < 2; attempt++) { try { const raw = await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }], schema); if (!raw.trim()) throw new Error("empty response"); parsed = JSON.parse(raw); break; } catch (error) { if (attempt === 1) throw new Error(`Question content request failed: ${error instanceof Error ? error.message : "invalid JSON"}`); } }
   const rows = isRecord(parsed) && Array.isArray(parsed.questions) ? parsed.questions : [];
   const content: Record<string, ServerQuestionContent> = {};
   for (const slot of slots) { const row = rows.find((x) => isRecord(x) && x.slotId === slot.slotId); if (!isRecord(row) || typeof row.text !== "string" || typeof row.topic !== "string") throw new Error(`Question content validation failed for ${slot.slotId}`); content[slot.slotId] = { text: row.text, topic: row.topic, options: Array.isArray(row.options) ? row.options : undefined, stimuli: Array.isArray(row.stimuli) ? row.stimuli as RichStimulus[] : undefined }; }
@@ -128,7 +130,8 @@ export async function generateMarkingContentWithCompletion(input: { blueprint: E
     for (let attempt = 0; attempt < 3 && !valid; attempt++) {
       const prompt = `Generate marking CONTENT only for this finalized question. Return exactly one JSON object with only answer, marking_notes, and allocations keys. Do not return slotId, number, marks, entries, or any wrapper. The answer must be substantive and allocations must contain specific awardable points with positive integer marks summing exactly to ${slot.marks}. QUESTION=${JSON.stringify({ text: question.text, marks: slot.marks })}`;
       let parsed: unknown;
-      try { parsed = extractJson(await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }])); }
+      const schema: StructuredResponseFormat = { type: "json_schema", json_schema: { name: "marking_content", strict: true, schema: { type: "object", additionalProperties: false, properties: { answer: { type: "string" }, marking_notes: { type: "string" }, allocations: { type: "array", items: { type: "object", additionalProperties: false, properties: { label: { type: "string" }, marks: { type: "integer" } }, required: ["label", "marks"] } } }, required: ["answer", "marking_notes", "allocations"] } } };
+      try { parsed = extractJson(await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }], schema)); }
       catch { continue; }
       const entry = isRecord(parsed) ? parsed : undefined;
       const allocations = Array.isArray(entry?.allocations)
@@ -302,7 +305,7 @@ ${problems.map((problem, index) => `${index + 1}. ${problem}`).join("\n")}
 Return valid JSON only, with no markdown or commentary.`;
 }
 
-export type Completion = (messages: Array<{ role: "system" | "user" | "assistant"; content: string }>) => Promise<string>;
+export type Completion = (messages: Array<{ role: "system" | "user" | "assistant"; content: string }>, responseFormat?: StructuredResponseFormat) => Promise<string>;
 function fillMissingPointAllocations(exam: GeneratedExam, blueprint: ExamBlueprint): GeneratedExam {
   const marks = new Map(blueprint.questionSlots.map((slot) => [slot.id, slot.targetMarks]));
   for (const entry of exam.marking_scheme) {

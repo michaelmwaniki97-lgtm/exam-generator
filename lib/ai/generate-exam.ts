@@ -1,7 +1,7 @@
 import "server-only";
 import { aiClient } from "./client";
 import { AI_CONFIG } from "./config";
-import { describeViolations, generateMarkingContentWithCompletion, generateQuestionContentWithCompletion, type ExamQuestion, type ExamSection, type GenerateExamCoreParams, type GeneratedExam, type MarkAllocation, type MarkingSchemeEntry, type TopicInput } from "./generation-core";
+import { describeViolations, generateMarkingContentWithCompletion, generateQuestionContentWithCompletion, type ExamQuestion, type ExamSection, type GenerateExamCoreParams, type GeneratedExam, type MarkAllocation, type MarkingSchemeEntry, type TopicInput, type StructuredResponseFormat } from "./generation-core";
 
 export type { ExamQuestion, ExamSection, GeneratedExam, MarkAllocation, MarkingSchemeEntry, TopicInput };
 export type GenerateExamParams = GenerateExamCoreParams;
@@ -10,7 +10,7 @@ export class GenerationDeadlineError extends Error { constructor() { super("Exam
 export async function generateExam(params: GenerateExamParams): Promise<GeneratedExam> {
   if (!AI_CONFIG.apiKey) throw new Error(`${AI_CONFIG.apiKeyEnv} is not set for AI_PROVIDER=${AI_CONFIG.provider}. Add it to .env.local to enable exam generation.`);
   const deadline = Date.now() + AI_CONFIG.generationBudgetMs;
-  const complete = async (messages: Array<{ role: "system" | "user" | "assistant"; content: string }>) => {
+  const complete = async (messages: Array<{ role: "system" | "user" | "assistant"; content: string }>, responseFormat?: StructuredResponseFormat) => {
     const remaining = deadline - Date.now();
     if (remaining <= 0) throw new GenerationDeadlineError();
     const signal = AbortSignal.timeout(Math.min(AI_CONFIG.providerTimeoutMs, remaining));
@@ -23,9 +23,9 @@ export async function generateExam(params: GenerateExamParams): Promise<Generate
         // NVIDIA NIM supports the OpenAI-compatible JSON-object response
         // contract. Enforcing it here keeps the parser from receiving
         // malformed prose or partially escaped JSON from the model.
-        response_format: AI_CONFIG.provider === "groq"
+        response_format: responseFormat ?? (AI_CONFIG.provider === "groq"
           ? { type: "json_schema", json_schema: { name: "generation_payload", strict: true, schema: { type: "object", additionalProperties: true } } }
-          : { type: "json_object" },
+          : { type: "json_object" }),
         ...(AI_CONFIG.provider === "groq" ? { reasoning_effort: "low" as const } : {}),
         messages,
       }, { signal });
