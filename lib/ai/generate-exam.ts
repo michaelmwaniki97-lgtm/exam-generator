@@ -1,7 +1,7 @@
 import "server-only";
 import { aiClient } from "./client";
 import { AI_CONFIG } from "./config";
-import { generateExamWithCompletion, type ExamQuestion, type ExamSection, type GenerateExamCoreParams, type GeneratedExam, type MarkAllocation, type MarkingSchemeEntry, type TopicInput } from "./generation-core";
+import { describeViolations, generateMarkingContentWithCompletion, generateQuestionContentWithCompletion, type ExamQuestion, type ExamSection, type GenerateExamCoreParams, type GeneratedExam, type MarkAllocation, type MarkingSchemeEntry, type TopicInput } from "./generation-core";
 
 export type { ExamQuestion, ExamSection, GeneratedExam, MarkAllocation, MarkingSchemeEntry, TopicInput };
 export type GenerateExamParams = GenerateExamCoreParams;
@@ -10,7 +10,7 @@ export class GenerationDeadlineError extends Error { constructor() { super("Exam
 export async function generateExam(params: GenerateExamParams): Promise<GeneratedExam> {
   if (!AI_CONFIG.apiKey) throw new Error("NVIDIA_API_KEY is not set. Add it to .env.local to enable exam generation.");
   const deadline = Date.now() + AI_CONFIG.generationBudgetMs;
-  return generateExamWithCompletion(params, async (messages) => {
+  const complete = async (messages: Array<{ role: "system" | "user" | "assistant"; content: string }>) => {
     const remaining = deadline - Date.now();
     if (remaining <= 0) throw new GenerationDeadlineError();
     const signal = AbortSignal.timeout(Math.min(AI_CONFIG.providerTimeoutMs, remaining));
@@ -31,5 +31,11 @@ export async function generateExam(params: GenerateExamParams): Promise<Generate
     const raw = completion.choices[0]?.message?.content;
     if (!raw) throw new Error("The AI returned an empty response. Please try again.");
     return raw;
-  });
+  };
+  const sections = await generateQuestionContentWithCompletion(params, complete);
+  const marking = await generateMarkingContentWithCompletion({ blueprint: params.blueprint, questions: sections }, complete);
+  const exam: GeneratedExam = { instructions: params.blueprint.assessmentProfile?.generalInstructions.join("\n") ?? "Answer all questions.", sections, marking_scheme: marking };
+  const violations = describeViolations(exam, params.blueprint);
+  if (violations.length) throw new Error(`Staged exam validation failed: ${violations.join("; ")}`);
+  return exam;
 }

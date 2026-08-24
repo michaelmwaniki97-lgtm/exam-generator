@@ -107,6 +107,16 @@ export function assembleServerQuestions(blueprint: ExamBlueprint, content: Recor
   return sections as ExamSection[];
 }
 
+export async function generateQuestionContentWithCompletion(input: { blueprint: ExamBlueprint; topics: TopicInput[] }, complete: Completion): Promise<ExamSection[]> {
+  const slots = projectBlueprint(input.blueprint).slots;
+  const prompt = `Generate question CONTENT only. Return exactly {"questions":[{"slotId":"...","text":"...","topic":"..."}]}. Do not return sections, marks, numbers, IDs other than slotId, or marking. Fill every slot exactly once. Fixed slots=${JSON.stringify(slots)} CURRICULUM=${JSON.stringify(input.topics)}`;
+  const parsed = extractJson(await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }]));
+  const rows = isRecord(parsed) && Array.isArray(parsed.questions) ? parsed.questions : [];
+  const content: Record<string, ServerQuestionContent> = {};
+  for (const slot of slots) { const row = rows.find((x) => isRecord(x) && x.slotId === slot.slotId); if (!isRecord(row) || typeof row.text !== "string" || typeof row.topic !== "string") throw new Error(`Question content validation failed for ${slot.slotId}`); content[slot.slotId] = { text: row.text, topic: row.topic, options: Array.isArray(row.options) ? row.options : undefined, stimuli: Array.isArray(row.stimuli) ? row.stimuli as RichStimulus[] : undefined }; }
+  return assembleServerQuestions(input.blueprint, content);
+}
+
 export async function generateMarkingContentWithCompletion(input: { blueprint: ExamBlueprint; questions: ExamSection[] }, complete: Completion): Promise<MarkingSchemeEntry[]> {
   const slots = projectBlueprint(input.blueprint).slots;
   const questions = input.questions.flatMap((section) => section.questions);
