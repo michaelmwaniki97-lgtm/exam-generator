@@ -19,11 +19,11 @@ export async function generateExam(params: GenerateExamParams): Promise<Generate
       completion = await aiClient.chat.completions.create({
         model: AI_CONFIG.model,
         temperature: 0.3,
-        max_tokens: AI_CONFIG.provider === "groq" ? 4096 : 8192,
+        max_tokens: AI_CONFIG.provider === "groq" ? 2048 : 8192,
         // NVIDIA NIM supports the OpenAI-compatible JSON-object response
         // contract. Enforcing it here keeps the parser from receiving
         // malformed prose or partially escaped JSON from the model.
-        response_format: responseFormat ?? (AI_CONFIG.provider === "groq"
+        response_format: responseFormat ?? (AI_CONFIG.provider === "groq" || AI_CONFIG.provider === "openai"
           ? { type: "json_schema", json_schema: { name: "generation_payload", strict: true, schema: { type: "object", additionalProperties: true } } }
           : { type: "json_object" }),
         ...(AI_CONFIG.provider === "groq" ? { reasoning_effort: "low" as const } : {}),

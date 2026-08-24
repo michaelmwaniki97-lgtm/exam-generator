@@ -110,13 +110,17 @@ export function assembleServerQuestions(blueprint: ExamBlueprint, content: Recor
 
 export async function generateQuestionContentWithCompletion(input: { blueprint: ExamBlueprint; topics: TopicInput[] }, complete: Completion): Promise<ExamSection[]> {
   const slots = projectBlueprint(input.blueprint).slots;
-  const prompt = `Generate question CONTENT only. Return exactly {"questions":[{"slotId":"...","text":"...","topic":"...","options":[]}]}. Always include options as an array; use [] for non-objective questions and exactly four options for objective questions. Do not return sections, marks, numbers, IDs other than slotId, or marking. Fill every slot exactly once. Fixed slots=${JSON.stringify(slots)} CURRICULUM=${JSON.stringify(input.topics)}`;
-  let parsed: unknown = null;
   const schema: StructuredResponseFormat = { type: "json_schema", json_schema: { name: "question_content", strict: true, schema: { type: "object", additionalProperties: false, properties: { questions: { type: "array", items: { type: "object", additionalProperties: false, properties: { slotId: { type: "string" }, text: { type: "string" }, topic: { type: "string" }, options: { type: "array", items: { type: "string" } } }, required: ["slotId", "text", "topic", "options"] } } }, required: ["questions"] } } };
-  for (let attempt = 0; attempt < 2; attempt++) { try { const raw = await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }], schema); if (!raw.trim()) throw new Error("empty response"); parsed = JSON.parse(raw); break; } catch (error) { if (attempt === 1) throw new Error(`Question content request failed: ${error instanceof Error ? error.message : "invalid JSON"}`); } }
-  const rows = isRecord(parsed) && Array.isArray(parsed.questions) ? parsed.questions : [];
   const content: Record<string, ServerQuestionContent> = {};
-  for (const slot of slots) { const row = rows.find((x) => isRecord(x) && x.slotId === slot.slotId); if (!isRecord(row) || typeof row.text !== "string" || typeof row.topic !== "string") throw new Error(`Question content validation failed for ${slot.slotId}`); content[slot.slotId] = { text: row.text, topic: row.topic, options: Array.isArray(row.options) ? row.options : undefined, stimuli: Array.isArray(row.stimuli) ? row.stimuli as RichStimulus[] : undefined }; }
+  for (let offset = 0; offset < slots.length; offset += 2) {
+    if (offset > 0) await new Promise((resolve) => setTimeout(resolve, 1000));
+    const batch = slots.slice(offset, offset + 2);
+    const prompt = `Generate question CONTENT only. Return exactly {"questions":[{"slotId":"...","text":"...","topic":"...","options":[]}]}. Always include options as an array; use [] for non-objective questions and exactly four options for objective questions. Do not return sections, marks, numbers, IDs other than slotId, or marking. Fill every fixed slot exactly once. Fixed slots=${JSON.stringify(batch)} CURRICULUM=${JSON.stringify(input.topics)}`;
+    let parsed: unknown = null;
+    for (let attempt = 0; attempt < 2; attempt++) { try { const raw = await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }], schema); if (!raw.trim()) throw new Error("empty response"); parsed = JSON.parse(raw); break; } catch (error) { if (attempt === 1) throw new Error(`Question content request failed: ${error instanceof Error ? error.message : "invalid JSON"}`); } }
+    const rows = isRecord(parsed) && Array.isArray(parsed.questions) ? parsed.questions : [];
+    for (const slot of batch) { const row = rows.find((x) => isRecord(x) && x.slotId === slot.slotId); if (!isRecord(row) || typeof row.text !== "string" || typeof row.topic !== "string") throw new Error(`Question content validation failed for ${slot.slotId}`); content[slot.slotId] = { text: row.text, topic: row.topic, options: Array.isArray(row.options) ? row.options : undefined, stimuli: Array.isArray(row.stimuli) ? row.stimuli as RichStimulus[] : undefined }; }
+  }
   return assembleServerQuestions(input.blueprint, content);
 }
 
@@ -125,10 +129,12 @@ export async function generateMarkingContentWithCompletion(input: { blueprint: E
   const questions = input.questions.flatMap((section) => section.questions);
   const result = new Map<string, MarkingContent>();
   for (const slot of slots) {
+    if (result.size > 0) await new Promise((resolve) => setTimeout(resolve, 1000));
     const question = questions.find((q) => q.slotId === slot.slotId)!;
     let valid = false;
-    for (let attempt = 0; attempt < 3 && !valid; attempt++) {
-      const prompt = `Generate marking CONTENT only for this finalized question. Return exactly one JSON object with only answer, marking_notes, and allocations keys. Do not return slotId, number, marks, entries, or any wrapper. The answer must be substantive and allocations must contain specific awardable points with positive integer marks summing exactly to ${slot.marks}. QUESTION=${JSON.stringify({ text: question.text, marks: slot.marks })}`;
+    let failure = "";
+    for (let attempt = 0; attempt < 5 && !valid; attempt++) {
+      const prompt = `Generate marking CONTENT only for this finalized question. Return exactly one JSON object with only answer, marking_notes, and allocations keys. Do not return slotId, number, marks, entries, or any wrapper. The answer must be substantive and allocations must contain specific awardable points with positive integer marks summing exactly to ${slot.marks}. ${failure ? `Previous attempt failed because: ${failure}. Correct that failure now.` : ""} QUESTION=${JSON.stringify({ text: question.text, marks: slot.marks })}`;
       let parsed: unknown;
       const schema: StructuredResponseFormat = { type: "json_schema", json_schema: { name: "marking_content", strict: true, schema: { type: "object", additionalProperties: false, properties: { answer: { type: "string" }, marking_notes: { type: "string" }, allocations: { type: "array", items: { type: "object", additionalProperties: false, properties: { label: { type: "string" }, marks: { type: "integer" } }, required: ["label", "marks"] } } }, required: ["answer", "marking_notes", "allocations"] } } };
       try { parsed = extractJson(await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }], schema)); }
@@ -144,8 +150,9 @@ export async function generateMarkingContentWithCompletion(input: { blueprint: E
       const total = allocations.reduce((sum, a) => sum + (isRecord(a) && Number.isInteger(a.marks) ? Number(a.marks) : 0), 0);
       const labelsValid = allocations.every((a) => isRecord(a) && typeof a.label === "string" && a.label.trim().length > 0);
       if (answer && notes && labelsValid && total === slot.marks) { result.set(slot.slotId, { ...entry, allocations } as MarkingContent); valid = true; }
+      else failure = !answer ? "answer must be a substantive non-empty string" : !notes ? "marking_notes must be a substantive non-empty string" : !labelsValid ? "every allocation needs a non-empty label" : `allocation marks total ${total}, but must total ${slot.marks}`;
     }
-    if (!valid) throw new Error(`Marking validation failed for entries: ${slot.slotId}`);
+    if (!valid) throw new Error(`Marking validation failed for entries: ${slot.slotId}; ${failure}`);
   }
   return slots.map((slot) => ({ ...(result.get(slot.slotId)!), slotId: slot.slotId, number: slot.number, marks: slot.marks }));
 }
