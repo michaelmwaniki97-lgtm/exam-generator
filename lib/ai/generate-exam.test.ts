@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import type { ExamBlueprint } from "../blueprint/types.ts";
-import { assembleServerQuestions, buildPrompt, buildServerQuestionSkeleton, describeViolations, generateExamWithCompletion, projectBlueprint, QUESTION_FAMILY_TO_AI_TYPE, type GeneratedExam } from "./generation-core.ts";
+import { assembleServerQuestions, buildPrompt, buildServerQuestionSkeleton, describeViolations, generateExamWithCompletion, generateQuestionContentWithCompletion, projectBlueprint, QUESTION_FAMILY_TO_AI_TYPE, type GeneratedExam } from "./generation-core.ts";
 
 function blueprint(): ExamBlueprint {
   return {
@@ -66,6 +66,27 @@ test("malformed JSON gets one corrective retry and then fails", async () => {
   let calls = 0;
   await assert.rejects(() => generateExamWithCompletion({ subjectName: "Chemistry", gradeName: "Form 4", level: "Secondary", examType: "Mock", difficulty: "medium", marks: 6, duration: 20, topics: [], blueprint: blueprint() }, async () => { calls++; return "not json"; }), /after 2 attempts/);
   assert.equal(calls, 2);
+});
+test("partial question batch retries before assembling the server-owned structure", async () => {
+  let calls = 0;
+  const sections = await generateQuestionContentWithCompletion({ blueprint: blueprint(), topics: [] }, async () => {
+    calls++;
+    return JSON.stringify({ questions: calls === 1
+      ? [{ slotId: "slot-01", text: "Observe the mixture.", topic: "Mixtures", options: [] }]
+      : [{ slotId: "slot-01", text: "Observe the mixture.", topic: "Mixtures", options: [] }, { slotId: "slot-02", text: "Measure the sample.", topic: "Length", options: [] }] });
+  });
+  assert.equal(calls, 2);
+  assert.deepEqual(sections[0].questions.map((question) => question.slotId), ["slot-01", "slot-02"]);
+});
+test("staged question prompt preserves difficulty and authorized RAG grounding", async () => {
+  let prompt = "";
+  await generateQuestionContentWithCompletion({ blueprint: blueprint(), topics: [], subjectName: "Chemistry", gradeName: "Form 4", level: "Secondary", examType: "Mock", difficulty: "hard", textbookContext: { textbookId: "book", chunks: [{ chunkId: "chunk", documentId: "doc", pageStart: 1, pageEnd: 1, text: "Mixtures can be separated by filtration." }] } }, async (messages) => {
+    prompt = messages.at(-1)?.content ?? "";
+    return JSON.stringify({ questions: [{ slotId: "slot-01", text: "Observe the mixture.", topic: "Mixtures", options: [] }, { slotId: "slot-02", text: "Measure the sample.", topic: "Length", options: [] }] });
+  });
+  assert.match(prompt, /hard-difficulty/);
+  assert.match(prompt, /TEXTBOOK_REFERENCE_BOUNDARY_START/);
+  assert.match(prompt, /Mixtures can be separated/);
 });
 test("bounded corrective retry returns the corrected response", async () => {
   let calls = 0;

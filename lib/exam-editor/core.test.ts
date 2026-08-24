@@ -58,7 +58,7 @@ test("material duplication is rejected deterministically", () => { assert.equal(
 test("regeneration uses at most one corrective retry and reuses full Phase 6 validation", async () => {
   const value = stored(); let calls = 0;
   const result = await regenerateSlotWithCompletion({ exam: value.exam, marking: value.marking, blueprint: blueprint(), slotId: "slot-01", subjectName: "Chemistry", gradeName: "Form 3", examType: "Test", difficulty: "medium" }, async (messages) => {
-    calls++; const question = structuredClone(value.exam.sections[0].questions[0]); const entry = structuredClone(value.marking.entries[0]);
+    calls++; assert.match(messages[1].content, /methodSteps\[\]\.marks/); assert.doesNotMatch(messages[1].content, /methodMarks/); const question = structuredClone(value.exam.sections[0].questions[0]); const entry = structuredClone(value.marking.entries[0]);
     if (calls === 1) question.marks = 99; else { question.text = "Which method separates chalk from water?"; entry.allocations![0].label = "Selects filtration for insoluble chalk"; assert.match(messages.at(-1)!.content, /99 marks/); }
     return JSON.stringify({ question, marking_entry: entry });
   });
