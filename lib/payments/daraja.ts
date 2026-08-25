@@ -89,6 +89,11 @@ function resultCode(value: unknown): number | null {
   return null;
 }
 
+export function parseDarajaExpiresIn(value: unknown): number | null {
+  const parsed = typeof value === "number" ? value : typeof value === "string" && /^\d+$/.test(value) ? Number(value) : NaN;
+  return Number.isSafeInteger(parsed) && parsed >= 60 && parsed <= 86_400 ? parsed : null;
+}
+
 async function boundedJson(response: Response): Promise<unknown> {
   const declared = Number(response.headers.get("content-length"));
   if (Number.isFinite(declared) && declared > RESPONSE_LIMIT) throw new PaymentError("VERIFICATION_FAILED", "Payment provider returned an invalid response.");
@@ -177,11 +182,12 @@ export class DarajaPaymentProvider implements PaymentProvider {
     if (this.token && this.token.expiresAt - 60_000 > now) return this.token.value;
     const basic = Buffer.from(`${this.config.consumerKey}:${this.config.consumerSecret}`, "utf8").toString("base64");
     const json = await this.request("oauth", this.config.oauthUrl, { method: "GET", headers: { Authorization: `Basic ${basic}`, Accept: "application/json" } });
-    if (!boundedString(json.access_token, 4096) || typeof json.expires_in !== "number" || !Number.isSafeInteger(json.expires_in) || json.expires_in < 60 || json.expires_in > 86_400) {
+    const expiresIn = parseDarajaExpiresIn(json.expires_in);
+    if (!boundedString(json.access_token, 4096) || expiresIn === null) {
       logDarajaTelemetry({ stage: "oauth", event: "terminal_failure", environment: this.config.environment, classification: "oauth_rejected", ...safeDarajaOAuthShapeFields(json) });
       throw new PaymentError("VERIFICATION_FAILED", "M-Pesa service returned an invalid authentication response.");
     }
-    this.token = { value: json.access_token, expiresAt: now + json.expires_in * 1000 };
+    this.token = { value: json.access_token, expiresAt: now + expiresIn * 1000 };
     return this.token.value;
   }
 

@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { DarajaPaymentProvider, darajaAccountReference, darajaPassword, loadDarajaConfig, parseDarajaCallback, type DarajaCallback, type DarajaConfig } from "./daraja.ts";
+import { DarajaPaymentProvider, darajaAccountReference, darajaPassword, loadDarajaConfig, parseDarajaCallback, parseDarajaExpiresIn, type DarajaCallback, type DarajaConfig } from "./daraja.ts";
 import { processDarajaCallback, reconcileOwnedExamPayment } from "./daraja-service.ts";
 import { classifyNetworkFailure, safeDarajaOAuthShapeFields, safeDarajaResponseFields, safeDarajaTelemetryEvent } from "./telemetry.ts";
 import { PAYMENT_CURRENCY, PaymentError, type BeginAttemptResult, type PaymentActor, type PaymentAttempt, type PaymentProvider, type PaymentRepository, type ProviderCheck, type ProviderInitiation } from "./core.ts";
@@ -70,8 +70,17 @@ test("telemetry logger schema drops unknown fields and sanitizes allowed text ag
 });
 test("OAuth shape diagnostics expose validation metadata without token values",()=>{
   const fields=safeDarajaOAuthShapeFields({access_token:"super-secret-token",expires_in:"3599",unexpected_key:"ignored value"});
-  assert.deepEqual(fields,{responseIsJson:true,topLevelJsonKeys:["access_token","expires_in","unexpected_key"],accessTokenPresent:true,accessTokenType:"string",accessTokenNonempty:true,expiresInPresent:true,expiresInType:"string",expiresInSafeValue:"3599",expiresInParseableInteger:true,failedConditions:["expires_in_not_number"]});
+  assert.deepEqual(fields,{responseIsJson:true,topLevelJsonKeys:["access_token","expires_in","unexpected_key"],accessTokenPresent:true,accessTokenType:"string",accessTokenNonempty:true,expiresInPresent:true,expiresInType:"string",expiresInSafeValue:"3599",expiresInParseableInteger:true,failedConditions:[]});
   assert.doesNotMatch(JSON.stringify(fields),/super-secret-token|ignored value/);
+});
+test("OAuth expiry accepts numeric and digits-only values within existing bounds",()=>{
+  assert.equal(parseDarajaExpiresIn(3599),3599);
+  assert.equal(parseDarajaExpiresIn("3599"),3599);
+});
+test("OAuth expiry rejects invalid strings and out-of-range strings",()=>{
+  for(const value of [""," "," 3599","3599 ","35.99","+3599","-3599","3e3","NaN","Infinity"])assert.equal(parseDarajaExpiresIn(value),null);
+  for(const value of ["59","86401"])assert.equal(parseDarajaExpiresIn(value),null);
+  for(const value of [NaN,Infinity,-Infinity])assert.equal(parseDarajaExpiresIn(value),null);
 });
 test("OAuth shape diagnostics identify every existing validator predicate",()=>{
   assert.deepEqual(safeDarajaOAuthShapeFields({access_token:"",expires_in:59}).failedConditions,["access_token_empty","expires_in_below_minimum"]);

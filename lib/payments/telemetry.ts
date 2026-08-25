@@ -64,10 +64,12 @@ export function safeDarajaOAuthShapeFields(value: unknown): SafeOAuthShapeFields
   const tokenWithinLimit = tokenString && token.length <= 4096;
   const tokenWithoutControls = tokenString && !/[\u0000-\u001f\u007f]/.test(token);
   const expiresNumber = typeof expires === "number";
-  const expiresSafeInteger = expiresNumber && Number.isSafeInteger(expires);
-  const expiresDigits = typeof expires === "string" && /^\d{1,10}$/.test(expires);
-  const parseableInteger = expiresSafeInteger || (expiresDigits && Number.isSafeInteger(Number(expires)));
-  const safeExpires = expiresSafeInteger && expires >= 0 ? String(expires) : expiresDigits ? expires : undefined;
+  const expiresString = typeof expires === "string";
+  const expiresDigits = expiresString && /^\d+$/.test(expires);
+  const normalizedExpires = expiresNumber ? expires : expiresDigits ? Number(expires) : NaN;
+  const expiresSafeInteger = Number.isSafeInteger(normalizedExpires);
+  const parseableInteger = expiresSafeInteger;
+  const safeExpires = expiresSafeInteger && normalizedExpires >= 0 ? String(expires) : expiresDigits ? expires : undefined;
   const failedConditions = [
     ...(!tokenPresent ? ["access_token_missing"] : []),
     ...(tokenPresent && !tokenString ? ["access_token_not_string"] : []),
@@ -75,10 +77,10 @@ export function safeDarajaOAuthShapeFields(value: unknown): SafeOAuthShapeFields
     ...(tokenString && !tokenWithinLimit ? ["access_token_too_long"] : []),
     ...(tokenString && !tokenWithoutControls ? ["access_token_has_control_characters"] : []),
     ...(!expiresPresent ? ["expires_in_missing"] : []),
-    ...(expiresPresent && !expiresNumber ? ["expires_in_not_number"] : []),
-    ...(expiresNumber && !expiresSafeInteger ? ["expires_in_not_safe_integer"] : []),
-    ...(expiresSafeInteger && expires < 60 ? ["expires_in_below_minimum"] : []),
-    ...(expiresSafeInteger && expires > 86_400 ? ["expires_in_above_maximum"] : []),
+    ...(expiresPresent && !expiresNumber && !expiresDigits ? ["expires_in_invalid_format"] : []),
+    ...((expiresNumber || expiresDigits) && !expiresSafeInteger ? ["expires_in_not_safe_integer"] : []),
+    ...(expiresSafeInteger && normalizedExpires < 60 ? ["expires_in_below_minimum"] : []),
+    ...(expiresSafeInteger && normalizedExpires > 86_400 ? ["expires_in_above_maximum"] : []),
   ];
   return {
     responseIsJson: true,
