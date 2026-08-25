@@ -4,13 +4,16 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { login } from "@/app/actions/auth";
 import { inputClass, labelClass, primaryButtonClass } from "@/components/ui/field-styles";
+import { PasswordInput } from "@/components/auth/password-input";
 
 export default function LoginPage() {
   const [state, formAction, pending] = useActionState(login, undefined);
 
   return (
     <div>
-      <h1 className="text-xl font-semibold text-foreground">Log in</h1>
+      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Welcome back</p>
+      <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground">Log in to your account</h1>
+      <p className="mt-2 text-sm leading-6 text-foreground/60">Continue creating and reviewing your assessment documents.</p>
       <form action={formAction} className="mt-6 flex flex-col gap-4">
         <div>
           <label htmlFor="email" className={labelClass}>
@@ -27,18 +30,8 @@ export default function LoginPage() {
           />
         </div>
         <div>
-          <label htmlFor="password" className={labelClass}>
-            Password
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            required
-            maxLength={128}
-            autoComplete="current-password"
-            className={inputClass}
-          />
+          <div className="mb-1.5 flex items-center justify-between"><label htmlFor="password" className="text-sm font-semibold text-foreground">Password</label><Link href="/forgot-password" className="rounded-sm text-xs font-semibold text-accent hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">Forgot password?</Link></div>
+          <PasswordInput id="password" name="password" autoComplete="current-password" />
         </div>
 
         {state?.error && (

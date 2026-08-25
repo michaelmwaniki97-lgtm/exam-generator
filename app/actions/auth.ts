@@ -1,13 +1,17 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import { getUserRole } from "@/lib/auth/session";
 import { homeForRole } from "@/lib/auth/access";
 import {
   validateLoginFields,
+  validateNewPassword,
+  validateRecoveryEmail,
   validateSignupFields,
 } from "@/lib/auth/validation";
+import { recoveryRedirectUrl } from "@/lib/auth/recovery";
 
 export type AuthFormState = { error?: string; success?: string } | undefined;
 export type ProfileFormState = { error?: string; success?: string } | undefined;
@@ -79,6 +83,44 @@ export async function logout() {
   const supabase = await createClient();
   await supabase.auth.signOut();
   redirect("/login");
+}
+
+export async function requestPasswordReset(
+  _prevState: AuthFormState,
+  formData: FormData
+): Promise<AuthFormState> {
+  const email = String(formData.get("email") ?? "").trim();
+  const validationError = validateRecoveryEmail(email);
+  if (validationError) return { error: validationError };
+
+  let redirectTo: string;
+  try { redirectTo = recoveryRedirectUrl(process.env); }
+  catch { return { error: "Password recovery is temporarily unavailable. Please try again later." }; }
+
+  const supabase = await createClient();
+  await supabase.auth.resetPasswordForEmail(email, { redirectTo });
+  return { success: "If an account exists for that email, we’ve sent password reset instructions." };
+}
+
+export async function resetPassword(
+  _prevState: AuthFormState,
+  formData: FormData
+): Promise<AuthFormState> {
+  const password = String(formData.get("password") ?? "");
+  const confirmation = String(formData.get("confirmPassword") ?? "");
+  const validationError = validateNewPassword(password, confirmation);
+  if (validationError) return { error: validationError };
+
+  const cookieStore = await cookies();
+  if (cookieStore.get("auth-recovery")?.value !== "active") return { error: "This password reset link is invalid or has expired. Request a new one." };
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { error: "This password reset link is invalid or has expired. Request a new one." };
+  const { error } = await supabase.auth.updateUser({ password });
+  if (error) return { error: "We could not update your password. The reset link may have expired." };
+  await supabase.auth.signOut();
+  cookieStore.delete("auth-recovery");
+  return { success: "Your password has been updated. You can now log in with your new password." };
 }
 
 export async function updateTeacherProfile(

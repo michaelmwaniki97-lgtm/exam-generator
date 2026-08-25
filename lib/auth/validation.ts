@@ -51,3 +51,16 @@ export function validateLoginFields({
   }
   return null;
 }
+
+export function validateRecoveryEmail(email: string): string | null {
+  if (!email) return "Please enter your email.";
+  if (email.length > AUTH_INPUT_LIMITS.email) return "Email address is too long.";
+  return null;
+}
+
+export function validateNewPassword(password: string, confirmation: string): string | null {
+  if (password.length < 6) return "Password must be at least 6 characters long.";
+  if (password.length > AUTH_INPUT_LIMITS.password) return `Password must be ${AUTH_INPUT_LIMITS.password} characters or fewer.`;
+  if (password !== confirmation) return "Passwords do not match.";
+  return null;
+}

@@ -4,13 +4,16 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { signup } from "@/app/actions/auth";
 import { inputClass, labelClass, primaryButtonClass } from "@/components/ui/field-styles";
+import { PasswordInput } from "@/components/auth/password-input";
 
 export default function SignupPage() {
   const [state, formAction, pending] = useActionState(signup, undefined);
 
   return (
     <div>
-      <h1 className="text-xl font-semibold text-foreground">Create a teacher account</h1>
+      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Get started</p>
+      <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground">Create a teacher account</h1>
+      <p className="mt-2 text-sm leading-6 text-foreground/60">Set up your workspace for curriculum-aware assessment creation.</p>
       <form action={formAction} className="mt-6 flex flex-col gap-4">
         <div>
           <label htmlFor="name" className={labelClass}>
@@ -44,16 +47,7 @@ export default function SignupPage() {
           <label htmlFor="password" className={labelClass}>
             Password
           </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            required
-            minLength={6}
-            maxLength={128}
-            autoComplete="new-password"
-            className={inputClass}
-          />
+          <PasswordInput id="password" name="password" autoComplete="new-password" minLength={6} />
         </div>
         <div>
           <label htmlFor="school" className={labelClass}>

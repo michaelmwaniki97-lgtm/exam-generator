@@ -3,6 +3,8 @@ import test from "node:test";
 import {
   AUTH_INPUT_LIMITS,
   validateLoginFields,
+  validateNewPassword,
+  validateRecoveryEmail,
   validateSignupFields,
 } from "./validation.ts";
 
@@ -23,6 +25,15 @@ test("normal signup and login fields pass server-side bounds", () => {
     }),
     null
   );
+});
+
+test("password recovery fields preserve signup password rules", () => {
+  assert.equal(validateRecoveryEmail(validSignup.email), null);
+  assert.match(validateRecoveryEmail("") ?? "", /enter your email/);
+  assert.match(validateRecoveryEmail("e".repeat(AUTH_INPUT_LIMITS.email + 1)) ?? "", /too long/);
+  assert.equal(validateNewPassword("new-password", "new-password"), null);
+  assert.match(validateNewPassword("short", "short") ?? "", /at least 6/);
+  assert.match(validateNewPassword("new-password", "different") ?? "", /do not match/);
 });
 
 test("signup rejects missing, undersized and oversized fields", () => {
