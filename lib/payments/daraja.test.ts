@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { DarajaPaymentProvider, darajaAccountReference, darajaPassword, loadDarajaConfig, parseDarajaCallback, type DarajaCallback, type DarajaConfig } from "./daraja.ts";
 import { processDarajaCallback, reconcileOwnedExamPayment } from "./daraja-service.ts";
+import { classifyNetworkFailure, safeDarajaResponseFields, safeDarajaTelemetryEvent } from "./telemetry.ts";
 import { PAYMENT_CURRENCY, PaymentError, type BeginAttemptResult, type PaymentActor, type PaymentAttempt, type PaymentProvider, type PaymentRepository, type ProviderCheck, type ProviderInitiation } from "./core.ts";
 
 const env = (extra:Record<string,string>={}) => ({PAYMENT_PROVIDER:"daraja",MPESA_ENVIRONMENT:"sandbox",MPESA_CONSUMER_KEY:"consumer-key",MPESA_CONSUMER_SECRET:"consumer-secret",MPESA_BUSINESS_SHORTCODE:"174379",MPESA_PARTY_B:"174379",MPESA_PASSKEY:"passkey",MPESA_TRANSACTION_TYPE:"CustomerPayBillOnline",PUBLIC_APP_URL:"https://school.example/",...extra});
@@ -51,5 +52,21 @@ test("transaction UI labels only real mpesa_ref as an M-Pesa receipt",()=>{const
 test("forward migration separates generic reference from nullable receipt and removes old RPC",()=>{const sql=readFileSync(new URL("../../supabase/migrations/20260823200000_add_daraja_request_correlation.sql",import.meta.url),"utf8");assert.match(sql,/mpesa_ref = p_mpesa_receipt/);assert.doesNotMatch(sql,/mpesa_ref = p_provider_reference/);assert.match(sql,/drop function if exists public\.finalize_verified_payment\(uuid, uuid, uuid, text, integer, text, text, text, text\)/);assert.match(sql,/payments_mpesa_receipt_unique/)});
 test("Daraja query rejects mismatched provider identifiers",async()=>{for(const mismatch of [{MerchantRequestID:"merchant-1",CheckoutRequestID:"wrong"},{MerchantRequestID:"wrong",CheckoutRequestID:"checkout-1"}]){let n=0;const provider=new DarajaPaymentProvider(config(),(async()=>json(++n===1?token:{ResponseCode:"0",ResponseDescription:"ok",...mismatch,ResultCode:"0",ResultDesc:"ok"})) as typeof fetch,()=>fixedDate);await assert.rejects(()=>provider.checkStatus({paymentId:"p",externalRequestId:"checkout-1",providerRequestId:"merchant-1"}),PaymentError)}});
 test("network failures are normalized without leaking upstream details",async()=>{const provider=new DarajaPaymentProvider(config(),(async()=>{throw new Error("secret upstream detail")}) as typeof fetch,()=>fixedDate);await assert.rejects(()=>provider.initiate({paymentId:"p",examId:"e",amount:100,currency:"KES",phone:"254712345678"}),(error:unknown)=>error instanceof PaymentError&&!error.message.includes("secret"))});
+test("diagnostic fields allowlist safe provider metadata and redact phone or token-like values",()=>{
+  const fields=safeDarajaResponseFields("stk_push",{ResponseCode:"1",ResponseDescription:"Invalid phone 254712345678 token abcdefghijklmnopqrstuvwxyzABCDEF",MerchantRequestID:"merchant",CheckoutRequestID:"checkout",Password:"never-log",access_token:"never-log"});
+  const serialized=JSON.stringify(fields);
+  assert.deepEqual(fields,{code:"1",message:"Invalid phone [redacted-phone] token [redacted-value]",merchantRequestIdReturned:true,checkoutRequestIdReturned:true});
+  for(const forbidden of ["254712345678","never-log","Password","access_token","\"merchant\"","\"checkout\""])assert.doesNotMatch(serialized,new RegExp(forbidden));
+});
+test("network diagnostics classify timeout without retaining exception details",()=>{
+  const error=new Error("credential and phone detail");error.name="TimeoutError";
+  assert.deepEqual(classifyNetworkFailure("oauth",error),{classification:"oauth_network",networkKind:"timeout"});
+  assert.doesNotMatch(JSON.stringify(classifyNetworkFailure("oauth",error)),/credential|phone detail/);
+});
+test("telemetry logger schema drops unknown fields and sanitizes allowed text again",()=>{
+  const event=safeDarajaTelemetryEvent({stage:"stk_push",event:"terminal_failure",classification:"stk_rejected",message:"Rejected 254712345678",Authorization:"Bearer never-log"} as Parameters<typeof safeDarajaTelemetryEvent>[0]&{Authorization:string});
+  assert.deepEqual(event,{stage:"stk_push",event:"terminal_failure",classification:"stk_rejected",message:"Rejected [redacted-phone]"});
+  assert.doesNotMatch(JSON.stringify(event),/Authorization|never-log|254712345678/);
+});
 test("browser actions cannot submit amount status or CheckoutRequestID",()=>{const source=readFileSync(new URL("../../app/actions/payments.ts",import.meta.url),"utf8");assert.doesNotMatch(source,/formData\.get\(["'](?:amount|status|checkout|CheckoutRequestID)/)});
 test("provider config is server-only and fake provider cannot be selected",()=>{const source=readFileSync(new URL("./provider-config.ts",import.meta.url),"utf8");assert.match(source,/server-only/);assert.doesNotMatch(source,/FakePaymentProvider|fallback/);assert.doesNotMatch(source,/NEXT_PUBLIC_/)});

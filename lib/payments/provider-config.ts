@@ -1,6 +1,7 @@
 import "server-only";
 import type { PaymentProvider } from "./core";
 import { DarajaPaymentProvider, loadDarajaConfig } from "./daraja";
+import { logDarajaTelemetry } from "./telemetry";
 
 export type PaymentProviderMode = "unconfigured" | "daraja";
 export type PublicPaymentProviderState = { configured: boolean; provider: "M-Pesa"; environment: "sandbox" | "production" | null };
@@ -12,6 +13,12 @@ export function paymentProviderState(): PublicPaymentProviderState {
 }
 
 export function configuredPaymentProvider(): PaymentProvider {
-  if (!provider) provider = new DarajaPaymentProvider(loadDarajaConfig(process.env));
+  if (!provider) {
+    try { provider = new DarajaPaymentProvider(loadDarajaConfig(process.env)); }
+    catch (error) {
+      logDarajaTelemetry({ stage: "config", event: "terminal_failure", classification: "config" });
+      throw error;
+    }
+  }
   return provider;
 }

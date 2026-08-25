@@ -1,3 +1,5 @@
+import { logDarajaTelemetry } from "./telemetry.ts";
+
 export const PAYMENT_CURRENCY = "KES" as const;
 export const PRICE_LIMITS = { minimum: 1, maximum: 100_000 } as const;
 export const ACTIVE_PAYMENT_STATUSES = ["initiated", "pending"] as const;
@@ -68,7 +70,12 @@ export async function initiateExamPayment(input: { actor: PaymentActor | null; e
   let providerResult: ProviderInitiation;
   try { providerResult = await input.provider.initiate({ paymentId: begun.attempt.id, examId: input.examId, amount: begun.attempt.amount, currency: begun.attempt.currency, phone }); }
   catch { await input.repository.recordTerminal(begun.attempt.id, "failed", undefined, "Payment request could not be started."); throw new PaymentError("NOT_CONFIGURED", "Payment request could not be started."); }
-  const attempt = await input.repository.saveInitiation(begun.attempt.id, providerResult);
+  let attempt: PaymentAttempt;
+  try { attempt = await input.repository.saveInitiation(begun.attempt.id, providerResult); }
+  catch (error) {
+    if (input.provider.id === "daraja") logDarajaTelemetry({ stage: "persistence", event: "terminal_failure", classification: "persistence" });
+    throw error;
+  }
   return { attempt, reused: false };
 }
 

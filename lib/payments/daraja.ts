@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { PaymentError, type PaymentProvider, type ProviderCheck, type ProviderInitiation } from "./core.ts";
+import { classifyNetworkFailure, logDarajaTelemetry, safeDarajaResponseFields } from "./telemetry.ts";
 
 const SANDBOX_ORIGIN = "https://sandbox.safaricom.co.ke";
 const PRODUCTION_ORIGIN = "https://api.safaricom.co.ke";
@@ -144,37 +145,75 @@ export class DarajaPaymentProvider implements PaymentProvider {
   private now: () => Date;
   constructor(config: DarajaConfig, fetcher: Fetch = fetch, now: () => Date = () => new Date()) { this.config = config; this.fetcher = fetcher; this.now = now; }
 
-  private async request(url: string, init: RequestInit): Promise<Record<string, unknown>> {
+  private async request(stage: "oauth" | "stk_push" | null, url: string, init: RequestInit): Promise<Record<string, unknown>> {
+    if (stage) logDarajaTelemetry({ stage, event: "request_started", environment: this.config.environment });
     let response: Response;
     try { response = await this.fetcher(url, { ...init, signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) }); }
-    catch { throw new PaymentError("VERIFICATION_FAILED", "M-Pesa service is temporarily unavailable."); }
-    const json = await boundedJson(response);
-    if (!response.ok) throw new PaymentError("VERIFICATION_FAILED", "M-Pesa service rejected the request.");
-    return record(json);
+    catch (error) {
+      if (stage) logDarajaTelemetry({ stage, event: "terminal_failure", environment: this.config.environment, ...classifyNetworkFailure(stage, error) });
+      throw new PaymentError("VERIFICATION_FAILED", "M-Pesa service is temporarily unavailable.");
+    }
+    let json: unknown;
+    try { json = await boundedJson(response); }
+    catch (error) {
+      if (stage) logDarajaTelemetry({ stage, event: "terminal_failure", environment: this.config.environment, classification: stage === "oauth" ? "oauth_rejected" : "stk_rejected", httpStatus: response.status });
+      throw error;
+    }
+    const safeFields = stage ? safeDarajaResponseFields(stage, json) : {};
+    if (stage) logDarajaTelemetry({ stage, event: "response", environment: this.config.environment, httpStatus: response.status, ...safeFields });
+    if (!response.ok) {
+      if (stage) logDarajaTelemetry({ stage, event: "terminal_failure", environment: this.config.environment, classification: stage === "oauth" ? "oauth_rejected" : "stk_rejected", httpStatus: response.status, ...safeFields });
+      throw new PaymentError("VERIFICATION_FAILED", "M-Pesa service rejected the request.");
+    }
+    try { return record(json); }
+    catch (error) {
+      if (stage) logDarajaTelemetry({ stage, event: "terminal_failure", environment: this.config.environment, classification: stage === "oauth" ? "oauth_rejected" : "stk_rejected", httpStatus: response.status, ...safeFields });
+      throw error;
+    }
   }
 
   private async accessToken(): Promise<string> {
     const now = this.now().getTime();
     if (this.token && this.token.expiresAt - 60_000 > now) return this.token.value;
     const basic = Buffer.from(`${this.config.consumerKey}:${this.config.consumerSecret}`, "utf8").toString("base64");
-    const json = await this.request(this.config.oauthUrl, { method: "GET", headers: { Authorization: `Basic ${basic}`, Accept: "application/json" } });
-    if (!boundedString(json.access_token, 4096) || typeof json.expires_in !== "number" || !Number.isSafeInteger(json.expires_in) || json.expires_in < 60 || json.expires_in > 86_400) throw new PaymentError("VERIFICATION_FAILED", "M-Pesa service returned an invalid authentication response.");
+    const json = await this.request("oauth", this.config.oauthUrl, { method: "GET", headers: { Authorization: `Basic ${basic}`, Accept: "application/json" } });
+    if (!boundedString(json.access_token, 4096) || typeof json.expires_in !== "number" || !Number.isSafeInteger(json.expires_in) || json.expires_in < 60 || json.expires_in > 86_400) {
+      logDarajaTelemetry({ stage: "oauth", event: "terminal_failure", environment: this.config.environment, classification: "oauth_rejected" });
+      throw new PaymentError("VERIFICATION_FAILED", "M-Pesa service returned an invalid authentication response.");
+    }
     this.token = { value: json.access_token, expiresAt: now + json.expires_in * 1000 };
     return this.token.value;
   }
 
-  private async authorizedPost(url: string, body: Record<string, unknown>): Promise<Record<string, unknown>> {
+  private async authorizedPost(url: string, body: Record<string, unknown>, telemetryStage: "stk_push" | null = null): Promise<Record<string, unknown>> {
     const token = await this.accessToken();
-    return this.request(url, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(body) });
+    return this.request(telemetryStage, url, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(body) });
   }
 
   async initiate(input: { paymentId: string; examId: string; amount: number; currency: "KES"; phone: string }): Promise<ProviderInitiation> {
-    if (!Number.isSafeInteger(input.amount) || input.amount <= 0 || input.currency !== "KES" || !/^254[17]\d{8}$/.test(input.phone)) throw new PaymentError("VERIFICATION_FAILED", "Payment request could not be started.");
-    const timestamp = darajaTimestamp(this.now());
-    const json = await this.authorizedPost(this.config.stkPushUrl, { BusinessShortCode: this.config.businessShortCode, Password: darajaPassword(this.config.businessShortCode, this.config.passkey, timestamp), Timestamp: timestamp, TransactionType: this.config.transactionType, Amount: input.amount, PartyA: input.phone, PartyB: this.config.partyB, PhoneNumber: input.phone, CallBackURL: this.config.callbackUrl, AccountReference: darajaAccountReference(input.paymentId), TransactionDesc: "Exam download" });
-    if (!boundedString(json.ResponseCode, 16) || !boundedString(json.ResponseDescription, 500)) throw new PaymentError("VERIFICATION_FAILED", "M-Pesa service returned an invalid initiation response.");
-    if (json.ResponseCode !== "0") return { accepted: false, safeMessage: "Payment request could not be started." };
-    if (!boundedString(json.MerchantRequestID, 160) || !boundedString(json.CheckoutRequestID, 160) || !boundedString(json.CustomerMessage, 500)) throw new PaymentError("VERIFICATION_FAILED", "M-Pesa service returned an invalid initiation response.");
+    if (!Number.isSafeInteger(input.amount) || input.amount <= 0 || input.currency !== "KES" || !/^254[17]\d{8}$/.test(input.phone)) {
+      logDarajaTelemetry({ stage: "stk_push", event: "terminal_failure", environment: this.config.environment, classification: "other" });
+      throw new PaymentError("VERIFICATION_FAILED", "Payment request could not be started.");
+    }
+    let timestamp: string;
+    try { timestamp = darajaTimestamp(this.now()); }
+    catch (error) {
+      logDarajaTelemetry({ stage: "stk_push", event: "terminal_failure", environment: this.config.environment, classification: "other" });
+      throw error;
+    }
+    const json = await this.authorizedPost(this.config.stkPushUrl, { BusinessShortCode: this.config.businessShortCode, Password: darajaPassword(this.config.businessShortCode, this.config.passkey, timestamp), Timestamp: timestamp, TransactionType: this.config.transactionType, Amount: input.amount, PartyA: input.phone, PartyB: this.config.partyB, PhoneNumber: input.phone, CallBackURL: this.config.callbackUrl, AccountReference: darajaAccountReference(input.paymentId), TransactionDesc: "Exam download" }, "stk_push");
+    if (!boundedString(json.ResponseCode, 16) || !boundedString(json.ResponseDescription, 500)) {
+      logDarajaTelemetry({ stage: "stk_push", event: "terminal_failure", environment: this.config.environment, classification: "stk_rejected", ...safeDarajaResponseFields("stk_push", json) });
+      throw new PaymentError("VERIFICATION_FAILED", "M-Pesa service returned an invalid initiation response.");
+    }
+    if (json.ResponseCode !== "0") {
+      logDarajaTelemetry({ stage: "stk_push", event: "terminal_failure", environment: this.config.environment, classification: "stk_rejected", ...safeDarajaResponseFields("stk_push", json) });
+      return { accepted: false, safeMessage: "Payment request could not be started." };
+    }
+    if (!boundedString(json.MerchantRequestID, 160) || !boundedString(json.CheckoutRequestID, 160) || !boundedString(json.CustomerMessage, 500)) {
+      logDarajaTelemetry({ stage: "stk_push", event: "terminal_failure", environment: this.config.environment, classification: "stk_rejected", ...safeDarajaResponseFields("stk_push", json) });
+      throw new PaymentError("VERIFICATION_FAILED", "M-Pesa service returned an invalid initiation response.");
+    }
     return { accepted: true, providerRequestId: json.MerchantRequestID, externalRequestId: json.CheckoutRequestID, safeMessage: "Check your phone to complete the M-Pesa payment." };
   }
 
