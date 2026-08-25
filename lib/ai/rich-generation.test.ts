@@ -57,7 +57,7 @@ test("numerical marking uses only numericalMethod canonical content", () => {
     slotId: "slot-01", number: 1, markingModel: "numerical_method", marking_notes: "Award the method and correct result.", marks: 4,
     numericalMethod: { finalAnswer: "125 g/L", methodSteps: [{ step: "Divide 25 g by 0.2 L to obtain 125 g/L.", marks: 3 }], accuracyMarks: 1, units: "g/L" },
   };
-  const numericalBlueprint = blueprint() as any;
+  const numericalBlueprint = blueprint();
   numericalBlueprint.questionSlots[0].questionFamily = "scientific_calculation";
   numericalBlueprint.questionSlots[0].allowedMarkingModels = ["numerical_method"];
   assert.deepEqual(describeViolations(exam, numericalBlueprint, { requireExplicitMarkingModel: true }), []);
