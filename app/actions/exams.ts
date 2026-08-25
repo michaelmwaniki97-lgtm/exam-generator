@@ -2,7 +2,6 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
 import { generateExam as callAi, AiProviderTimeoutError, GenerationDeadlineError, type TopicInput } from "@/lib/ai/generate-exam";
 import {
   APPLICATION_EXAM_LIMITS,
@@ -33,8 +32,10 @@ import {
 } from "@/lib/curriculum/exam-selection";
 import type { WizardData } from "@/components/exam-wizard/types";
 import { prepareTextbookGrounding, type GroundingProvenance } from "@/lib/textbooks/exam-grounding";
+import { acquiredOrThrow, claimFullGeneration, failAiReservation, persistGeneratedExam } from "@/lib/ai/abuse-controls";
+import { AiAbuseControlError, assertGenerationProviderBudget } from "@/lib/ai/abuse-controls-core";
 
-export type GenerateExamState = { error: string } | undefined;
+export type GenerateExamState = { error: string; preserveRequest?: boolean } | undefined;
 
 type TopicRow = {
   id: string;
@@ -135,7 +136,7 @@ function toBlueprintCurriculum(
   });
 }
 
-export async function generateExam(data: WizardData): Promise<GenerateExamState> {
+export async function generateExam(data: WizardData, requestId: string): Promise<GenerateExamState> {
   const validationError = validateBasicExamInput(data, APPLICATION_EXAM_LIMITS);
   if (validationError) return { error: validationError };
 
@@ -310,6 +311,27 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
     };
   }
 
+  try {
+    assertGenerationProviderBudget(blueprint);
+  } catch (error) {
+    return { error: error instanceof AiAbuseControlError ? error.message : "This exam exceeds the supported generation budget." };
+  }
+
+  let claim;
+  try {
+    claim = acquiredOrThrow(await claimFullGeneration(teacher.id, requestId), "generation");
+  } catch (error) {
+    return {
+      error: error instanceof AiAbuseControlError ? error.message : "Generation controls are temporarily unavailable.",
+      preserveRequest: error instanceof AiAbuseControlError && (error.code === "BUSY" || error.code === "UNAVAILABLE"),
+    };
+  }
+  if (claim.outcome === "completed" && claim.operation === "generation") redirect(`/teacher/exams/${claim.examId}`);
+  const reservationId = claim.reservationId;
+  let reservationClosed = false;
+
+  try {
+
   const topics = toTopicInputs(curriculumSelection, rows);
   let textbookName: string | undefined;
   let textbookContext;
@@ -331,15 +353,6 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
     } catch (error) {
       return { error: error instanceof Error ? error.message : "Textbook grounding failed. Please try again." };
     }
-  }
-
-  let persistenceClient: ReturnType<typeof createAdminClient>;
-  try {
-    persistenceClient = createAdminClient();
-  } catch {
-    return {
-      error: "Exam generation is temporarily unavailable. Please contact an administrator.",
-    };
   }
 
   let generated;
@@ -369,19 +382,21 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
     };
   }
 
-  const { data: examRow, error: insertError } = await persistenceClient
-    .from("exams")
-    .insert({
-      teacher_id: teacher.id,
-      subject_id: subject.id,
-      grade_id: grade.id,
-      exam_type: assessmentType.label,
-      marks: data.marks,
-      duration: data.duration,
-      difficulty: data.difficulty,
-      term: data.term,
-      year: data.year,
-      status: "generated",
+  let examId: string;
+  try {
+    examId = await persistGeneratedExam({
+    teacherId: teacher.id,
+    reservationId,
+    requestId,
+    exam: {
+      subjectId: subject.id,
+      gradeId: grade.id,
+      examType: assessmentType.label,
+      marks: data.marks!,
+      duration: data.duration!,
+      difficulty: data.difficulty as "easy" | "medium" | "hard",
+      term: data.term!,
+      year: data.year!,
       content: {
         instructions: generated.instructions,
         sections: generated.sections,
@@ -443,22 +458,16 @@ export async function generateExam(data: WizardData): Promise<GenerateExamState>
           teacherReviewRequired: true,
         },
       },
-    })
-    .select("id")
-    .single();
-
-  if (insertError || !examRow) {
-    return { error: "Could not save the generated exam. Please try again." };
+    },
+    markingContent: { entries: generated.marking_scheme },
+    });
+  } catch {
+    return { error: "Could not save the generated exam and marking scheme. Please try again." };
   }
+  reservationClosed = true;
 
-  const { error: markingError } = await persistenceClient
-    .from("marking_schemes")
-    .insert({ exam_id: examRow.id, content: { entries: generated.marking_scheme } });
-
-  if (markingError) {
-    await persistenceClient.from("exams").delete().eq("id", examRow.id);
-    return { error: "Could not save the marking scheme. Please try again." };
+  redirect(`/teacher/exams/${examId}`);
+  } finally {
+    if (!reservationClosed) await failAiReservation(teacher.id, reservationId);
   }
-
-  redirect(`/teacher/exams/${examRow.id}`);
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { ArrowLeft, ArrowRight, Loader2, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { generateExam } from "@/app/actions/exams";
@@ -80,6 +80,7 @@ export function ExamWizard() {
   const [data, setData] = useState<WizardData>(EMPTY_WIZARD_DATA);
   const [generating, startGenerating] = useTransition();
   const [generateError, setGenerateError] = useState<string | null>(null);
+  const generationRequestId = useRef(crypto.randomUUID());
 
   const [grades, setGrades] = useState<Grade[]>([]);
   const [loadingGrades, setLoadingGrades] = useState(true);
@@ -345,8 +346,11 @@ export function ExamWizard() {
     setGenerateError(null);
     startGenerating(async () => {
       try {
-        const result = await generateExam(data);
-        if (result?.error) setGenerateError(result.error);
+        const result = await generateExam(data, generationRequestId.current);
+        if (result?.error) {
+          if (!result.preserveRequest) generationRequestId.current = crypto.randomUUID();
+          setGenerateError(result.error);
+        }
       } catch {
         setGenerateError(
           "The generation request was interrupted before it completed. Please try again."

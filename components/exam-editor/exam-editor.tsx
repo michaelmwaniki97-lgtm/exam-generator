@@ -42,7 +42,7 @@ export function ExamEditor({ examId, initialRevision, exam, marking }: { examId:
     if (dirty) return setMessage({ kind: "error", text: "Save or refresh your current edits before regenerating a question." });
     setMessage(null); setActiveSlot(slotId);
     startTransition(async () => {
-      const result = await regenerateExamQuestion(examId, slotId, revision);
+      const result = await regenerateExamQuestion(examId, slotId, revision, crypto.randomUUID());
       setActiveSlot(null);
       if (!result.ok) return setMessage({ kind: "error", text: result.error });
       setRevision(result.revision); setMessage({ kind: "success", text: "The question and its matching marking entry were regenerated." }); router.refresh();

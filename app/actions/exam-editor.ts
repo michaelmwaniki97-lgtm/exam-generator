@@ -8,6 +8,8 @@ import { applyEditableChanges, editableExamOrThrow, ExamEditorError, type Editab
 import { regenerateQuestion } from "@/lib/exam-editor/regenerate-question";
 import { prepareRegenerationGrounding } from "@/lib/exam-editor/regeneration-grounding";
 import type { GroundingProvenance } from "@/lib/textbooks/exam-grounding";
+import { acquiredOrThrow, claimQuestionRegeneration, failAiReservation, persistRegeneratedQuestion } from "@/lib/ai/abuse-controls";
+import { AiAbuseControlError } from "@/lib/ai/abuse-controls-core";
 
 export type ExamEditorActionResult = { ok: true; revision: number } | { ok: false; error: string; stale?: boolean };
 type CanonicalExam = { id: string; teacher_id: string; subject_id: string; grade_id: string; exam_type: string; difficulty: string; status: string; revision: number; content: StoredExamContent; marking_schemes: Array<{ content: StoredMarkingContent }> };
@@ -87,20 +89,32 @@ export async function saveExamEdits(examId: string, expectedRevision: number, in
   }
 }
 
-export async function regenerateExamQuestion(examId: string, slotId: string, expectedRevision: number): Promise<ExamEditorActionResult> {
+export async function regenerateExamQuestion(examId: string, slotId: string, expectedRevision: number, requestId: string): Promise<ExamEditorActionResult> {
   let stage = "authentication";
   regenerationDiagnostic(slotId, stage, "started");
   try {
     if (!slotId || slotId.length > 200) throw new ExamEditorError("The requested question is invalid.");
     const teacherId = await authenticatedTeacher();
     stage = "canonical_load";
-    const { admin, exam, marking } = await loadCanonical(examId, teacherId);
+    const { exam, marking } = await loadCanonical(examId, teacherId);
     regenerationDiagnostic(slotId, stage, "ok");
     const { blueprint } = editableExamOrThrow(exam.content, marking);
     stage = "target_contract";
     const slot = blueprint.questionSlots.find((item) => item.id === slotId);
     if (!slot) throw new ExamEditorError("The requested question does not belong to this exam.");
     regenerationDiagnostic(slotId, stage, "ok");
+    stage = "reservation";
+    const reservationClaim = await claimQuestionRegeneration({ teacherId, examId, slotId, requestId, expectedRevision });
+    if (reservationClaim.outcome === "stale") {
+      return { ok: false, stale: true, error: "This exam changed in another tab or session. Refresh the page before regenerating." };
+    }
+    const claim = acquiredOrThrow(reservationClaim, "regeneration");
+    if (claim.outcome === "completed" && claim.operation === "regeneration") {
+      return { ok: true, revision: claim.resultRevision };
+    }
+    const reservationId = claim.reservationId;
+    let reservationClosed = false;
+    try {
     const meta = exam.content.meta as StoredExamContent["meta"] & { subjectName?: string; gradeName?: string; textbookName?: string | null; textbookGrounding?: GroundingProvenance | null; questionGrounding?: Record<string, GroundingProvenance> };
     let textbookName: string | undefined; let textbookContext; let provenance: GroundingProvenance | undefined;
     stage = "grounding";
@@ -115,11 +129,16 @@ export async function regenerateExamQuestion(examId: string, slotId: string, exp
     regenerationDiagnostic(slotId, stage, "ok");
     const nextExam = provenance ? { ...regenerated.exam, meta: { ...regenerated.exam.meta, questionGrounding: { ...(meta.questionGrounding ?? {}), [slotId]: provenance } } } : regenerated.exam;
     stage = "rpc_call";
-    const result = await persist(admin, exam, teacherId, expectedRevision, nextExam, regenerated.marking);
-    regenerationDiagnostic(slotId, stage, result.ok ? "ok" : "failed");
-    return result;
+    const revision = await persistRegeneratedQuestion({ teacherId, reservationId, requestId, examId, slotId, expectedRevision, examContent: nextExam, markingContent: regenerated.marking });
+    reservationClosed = true;
+    revalidatePath(`/teacher/exams/${exam.id}`); revalidatePath(`/teacher/exams/${exam.id}/edit`); revalidatePath(`/teacher/exams/${exam.id}/marking-scheme`);
+    regenerationDiagnostic(slotId, stage, "ok");
+    return { ok: true, revision };
+    } finally {
+      if (!reservationClosed) await failAiReservation(teacherId, reservationId);
+    }
   } catch (error) {
     regenerationDiagnostic(slotId, stage, "failed");
-    return { ok: false, error: error instanceof ExamEditorError ? error.message : "Question regeneration failed. The original question and marking scheme were preserved." };
+    return { ok: false, error: error instanceof ExamEditorError || error instanceof AiAbuseControlError ? error.message : "Question regeneration failed. The original question and marking scheme were preserved." };
   }
 }

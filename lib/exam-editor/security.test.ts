@@ -16,15 +16,27 @@ test("server actions authenticate, derive teacher identity, and enforce ownershi
   assert.match(action, /exam\.teacher_id !== teacherId/);
   assert.match(action, /status === "paid".*status === "downloaded"/);
   assert.match(action, /saveExamEdits\(examId: string, expectedRevision: number, inputs: EditableSlotInput\[\]\)/);
-  assert.match(action, /regenerateExamQuestion\(examId: string, slotId: string, expectedRevision: number\)/);
+  assert.match(action, /regenerateExamQuestion\(examId: string, slotId: string, expectedRevision: number, requestId: string\)/);
 });
 
-test("every save and regeneration mutation uses the atomic revision RPC", () => {
+test("regeneration authorization and reservation claim precede provider work", () => {
+  const regeneration = action.slice(action.indexOf("export async function regenerateExamQuestion"));
+  const authentication = regeneration.indexOf("await authenticatedTeacher()");
+  const canonicalLoad = regeneration.indexOf("await loadCanonical(examId, teacherId)");
+  const lease = regeneration.indexOf("await claimQuestionRegeneration");
+  const groundingWork = regeneration.indexOf("await prepareRegenerationGrounding");
+  const providerWork = regeneration.indexOf("await regenerateQuestion");
+  assert.ok(authentication >= 0 && authentication < canonicalLoad);
+  assert.ok(canonicalLoad < lease);
+  assert.ok(lease < groundingWork && groundingWork < providerWork);
+});
+
+test("ordinary saves retain their RPC and regeneration uses its reservation-aware atomic RPC", () => {
   assert.equal((action.match(/update_exam_and_scheme_atomic/g) ?? []).length, 1);
   assert.match(action, /p_expected_revision: expectedRevision/);
   assert.match(action, /saveExamEdits[\s\S]*return persist/);
-  assert.match(action, /regenerateExamQuestion[\s\S]*const result = await persist/);
-  assert.match(action, /regenerateExamQuestion[\s\S]*return result/);
+  assert.match(action, /regenerateExamQuestion[\s\S]*await persistRegeneratedQuestion/);
+  assert.match(action, /regenerateExamQuestion[\s\S]*return \{ ok: true, revision \}/);
 });
 
 test("regeneration grounding is pinned to canonical textbook, document, class, and subject", () => {
