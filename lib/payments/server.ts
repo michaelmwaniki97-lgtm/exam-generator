@@ -1,4 +1,5 @@
 import "server-only";
+import { randomUUID } from "node:crypto";
 import { createAdminClient } from "../supabase/admin";
 import { createClient } from "../supabase/server";
 import { getCurrentUser, getUserRole } from "../auth/session";
@@ -57,7 +58,8 @@ export class SupabasePaymentRepository implements PaymentRepository {
     return { attempt: attempt(row), created: row.idempotency_key === input.idempotencyKey } as BeginAttemptResult;
   }
   async saveInitiation(paymentId: string, result: ProviderInitiation): Promise<PaymentAttempt> {
-    const changes = result.accepted && result.externalRequestId && result.providerRequestId ? { status: "pending", verification_status: "pending", external_request_id: result.externalRequestId, provider_request_id: result.providerRequestId, result_description: result.safeMessage?.slice(0, 500) ?? null, updated_at: new Date().toISOString() } : { status: "failed", verification_status: "rejected", result_description: result.safeMessage?.slice(0, 500) ?? "Payment request failed.", updated_at: new Date().toISOString() };
+    const now = Date.now();
+    const changes = result.accepted && result.externalRequestId && result.providerRequestId ? { status: "pending", verification_status: "pending", external_request_id: result.externalRequestId, provider_request_id: result.providerRequestId, result_description: result.safeMessage?.slice(0, 500) ?? null, query_next_at: new Date(now + 30_000).toISOString(), updated_at: new Date(now).toISOString() } : { status: "failed", verification_status: "rejected", result_description: result.safeMessage?.slice(0, 500) ?? "Payment request failed.", updated_at: new Date(now).toISOString() };
     const { data, error } = await this.admin.from("payments").update(changes).eq("id", paymentId).eq("status", "initiated").select("*").single();
     if (error || !data) throw new PaymentError("VERIFICATION_FAILED", "Payment request could not be recorded.");
     return attempt(data as PaymentRow);
@@ -68,6 +70,16 @@ export class SupabasePaymentRepository implements PaymentRepository {
     await this.assertOwnedExam(actor, examId);
     const { data } = await this.admin.from("payments").select("*").eq("exam_id", examId).eq("teacher_id", actor.teacherId).in("status", ["initiated", "pending", "paid"]).order("created_at", { ascending: false }).limit(1).maybeSingle();
     return data ? attempt(data as PaymentRow) : null;
+  }
+  async acquireQueryLease(paymentId: string) {
+    const leaseToken = randomUUID();
+    const { data, error } = await this.admin.rpc("acquire_payment_query_lease", { p_payment_id: paymentId, p_lease_token: leaseToken });
+    if (error) throw new PaymentError("VERIFICATION_FAILED", "Payment status could not be checked.");
+    return data === true ? leaseToken : null;
+  }
+  async completeQueryLease(paymentId: string, leaseToken: string) {
+    const { data, error } = await this.admin.rpc("complete_payment_query_lease", { p_payment_id: paymentId, p_lease_token: leaseToken });
+    return !error && data === true;
   }
   async finalizePaid(input: { paymentId: string; examId: string; teacherId: string; provider: string; amount: number; currency: "KES"; providerReference: string; providerReceipt?: string; resultCode?: string }) {
     const { data, error } = await this.admin.rpc("finalize_verified_payment", { p_payment_id: input.paymentId, p_exam_id: input.examId, p_teacher_id: input.teacherId, p_provider: input.provider, p_amount: input.amount, p_currency: input.currency, p_provider_reference: input.providerReference, p_mpesa_receipt: input.providerReceipt ?? null, p_result_code: input.resultCode ?? null, p_result_description: null });
