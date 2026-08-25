@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import type { ExamBlueprint } from "../blueprint/types.ts";
-import { assembleServerQuestions, buildPrompt, buildServerQuestionSkeleton, describeViolations, generateExamWithCompletion, generateQuestionContentWithCompletion, projectBlueprint, QUESTION_FAMILY_TO_AI_TYPE, type GeneratedExam } from "./generation-core.ts";
+import { assembleServerQuestions, buildPrompt, buildServerQuestionSkeleton, describeViolations, generateExamWithCompletion, generateMarkingContentWithCompletion, generateQuestionContentWithCompletion, projectBlueprint, QUESTION_FAMILY_TO_AI_TYPE, type GeneratedExam } from "./generation-core.ts";
 
 function blueprint(): ExamBlueprint {
   return {
@@ -78,6 +78,58 @@ test("partial question batch retries before assembling the server-owned structur
   assert.equal(calls, 2);
   assert.deepEqual(sections[0].questions.map((question) => question.slotId), ["slot-01", "slot-02"]);
 });
+test("staged batch preserves a valid slot and retries only the incomplete slot", async () => {
+  let calls = 0;
+  const sections = await generateQuestionContentWithCompletion({ blueprint: blueprint(), topics: [], subjectName: "Chemistry", gradeName: "Form 3" }, async (messages) => {
+    calls++;
+    if (calls === 1) return JSON.stringify({ questions: [
+      { slotId: "slot-01", text: "State two observable properties of clean water.", topic: "Mixtures", options: [] },
+      { slotId: "slot-02", text: "Interpret the graph shown and record the measured length.", topic: "Length", options: [] },
+    ] });
+    const correction = messages.at(-1)?.content ?? "";
+    assert.match(correction, /slot-02.*references a graph/);
+    assert.doesNotMatch(correction, /"slotId":"slot-01"/);
+    return JSON.stringify({ questions: [{ slotId: "slot-02", text: "Measure the sample length in centimetres using a ruler and record the reading.", topic: "Length", options: [] }] });
+  });
+  assert.equal(calls, 2);
+  assert.equal(sections[0].questions[0].text, "State two observable properties of clean water.");
+  assert.equal(sections[0].questions[1].text, "Measure the sample length in centimetres using a ruler and record the reading.");
+});
+test("staged missing-resource questions cannot survive the bounded retry", async () => {
+  let calls = 0;
+  await assert.rejects(
+    generateQuestionContentWithCompletion({ blueprint: blueprint(), topics: [] }, async () => {
+      calls++;
+      return JSON.stringify({ questions: [
+        { slotId: "slot-01", text: "Interpret the graph shown below.", topic: "Mixtures", options: [] },
+        { slotId: "slot-02", text: "Measure the sample length in centimetres using a ruler.", topic: "Length", options: [] },
+      ].filter((question) => calls === 1 || question.slotId === "slot-01") });
+    }),
+    /slot-01.*references a graph/
+  );
+  assert.equal(calls, 2);
+});
+test("marking retries a defective entry without regenerating its question", async () => {
+  const questions = assembleServerQuestions(blueprint(), {
+    "slot-01": { topic: "Mixtures", text: "State two observable properties of clean water." },
+    "slot-02": { topic: "Length", text: "Measure the sample length in centimetres using a ruler and record the reading." },
+  });
+  const original = structuredClone(questions);
+  let calls = 0;
+  const marking = await generateMarkingContentWithCompletion({ blueprint: blueprint(), questions }, async (messages) => {
+    calls++;
+    const prompt = messages.at(-1)?.content ?? "";
+    if (calls === 1) return JSON.stringify({ marking_notes: "Award for two relevant properties.", markingModel: "point_based", answer: "The student should give the correct answer.", allocations: [{ label: "States the two observable properties", marks: 2 }] });
+    if (calls === 2) {
+      assert.match(prompt, /placeholder or missing-information language/);
+      return JSON.stringify({ marking_notes: "Award one mark for each stated property.", markingModel: "point_based", answer: "Pure water is colourless and clear.", allocations: [{ label: "States colourless", marks: 1 }, { label: "States clear", marks: 1 }] });
+    }
+    return JSON.stringify({ marking_notes: "Award for a correctly recorded measurement and unit.", markingModel: "point_based", answer: "Accept the correctly observed ruler reading in centimetres.", allocations: [{ label: "Records the observed reading with the centimetre unit", marks: 4 }] });
+  });
+  assert.equal(calls, 3);
+  assert.deepEqual(questions, original);
+  assert.equal(marking[0].answer, "Pure water is colourless and clear.");
+});
 test("staged question prompt preserves difficulty and authorized RAG grounding", async () => {
   let prompt = "";
   await generateQuestionContentWithCompletion({ blueprint: blueprint(), topics: [], subjectName: "Chemistry", gradeName: "Form 4", level: "Secondary", examType: "Mock", difficulty: "hard", textbookContext: { textbookId: "book", chunks: [{ chunkId: "chunk", documentId: "doc", pageStart: 1, pageEnd: 1, text: "Mixtures can be separated by filtration." }] } }, async (messages) => {
@@ -103,6 +155,8 @@ test("rejects empirical-formula template without percentages", () => { const exa
 test("rejects graph interpretation without a rendered resource", () => { const exam = copy(); exam.sections[0].questions[0].text = "Interpret a graph showing the relationship between concentration and volume of a solution."; assert.match(violations(exam), /renderer cannot provide/); });
 test("rejects molar-volume problem template without givens", () => { const exam = copy(); exam.sections[0].questions[0].text = "Solve a problem involving the molar gas volume of a gas."; assert.match(violations(exam), /no actual problem or usable givens/); });
 test("rejects percentage-nitrogen calculation without data or formula", () => { const exam = copy(); exam.sections[0].questions[0].text = "Calculate the percentage of nitrogen in a nitrogen-containing fertilizer."; assert.match(violations(exam), /supplies no usable composition/); });
+test("rejects a general calculation without usable inputs", () => { const exam = copy(); exam.sections[0].questions[0].text = "Calculate the concentration of the solution."; assert.match(violations(exam), /no usable numerical, formula, or symbolic givens/); });
+test("rejects an unresolved provided-information reference", () => { const exam = copy(); exam.sections[0].questions[0].text = "Using the information provided, explain why the mixture separates."; assert.match(violations(exam), /information that is not present/); });
 test("rejects missing-information language instead of an answer", () => { const exam = copy(); exam.marking_scheme[0].answer = "To calculate this, we need to know the percentage composition of the compound."; assert.match(violations(exam), /placeholder or missing-information language/); });
 test("rejects generic marking notes without awardable points", () => { const exam = copy(); exam.marking_scheme[0].marking_notes = "The answer should include the relevant facts."; assert.match(violations(exam), /generic marking notes/); });
 test("rejects marking answers that invent an absent graph", () => { const exam = copy(); exam.marking_scheme[0].answer = "The graph shows a linear relationship between concentration and volume."; assert.match(violations(exam), /resource that is not validly attached/); });
@@ -110,6 +164,8 @@ test("accepts a concrete empirical-formula question", () => { const exam = copy(
 test("accepts a concrete molar-volume problem and worked result", () => { const exam = copy(); exam.sections[0].questions[0].text = "At RTP, 1 mole of gas occupies 24 dm3. Calculate the amount in moles in 2.4 dm3 of oxygen."; exam.marking_scheme[0].answer = "n = 2.4 dm3 / 24 dm3 mol-1 = 0.10 mol."; assert.equal(violations(exam), ""); });
 test("accepts an explanatory question with specific criteria", () => { const exam = copy(); exam.sections[0].questions[0].text = "Explain two reasons why separating mixtures is useful in everyday life."; exam.marking_scheme[0].answer = "It removes harmful impurities from water and recovers useful materials during recycling."; exam.marking_scheme[0].allocations = [{ label: "Explains removal of harmful impurities", marks: 1 }, { label: "Explains recovery of useful recyclable material", marks: 1 }]; assert.equal(violations(exam), ""); });
 test("accepts a legitimate non-numerical question", () => { const exam = copy(); exam.sections[0].questions[0].text = "State two observable differences between a mixture and a pure substance."; exam.marking_scheme[0].answer = "A mixture has variable composition and its components retain their properties; a pure substance has fixed composition and characteristic properties."; assert.equal(violations(exam), ""); });
+test("accepts a qualitative question with information stated inline", () => { const exam = copy(); exam.sections[0].questions[0].text = "Given that salt dissolves in water but sand does not, explain how water can separate a salt-and-sand mixture."; exam.marking_scheme[0].answer = "Water dissolves the salt while sand remains insoluble, allowing filtration to remove sand before evaporating the water."; assert.equal(violations(exam), ""); });
+test("accepts a solvable symbolic calculation", () => { const exam = copy(); exam.sections[0].questions[0].text = "Calculate density in terms of the variables m and V, where m is mass and V is volume."; exam.marking_scheme[0].answer = "Density is m divided by V."; assert.equal(violations(exam), ""); });
 test("semantic violations are included in the single corrective retry", async () => { let calls = 0; const result = await generateExamWithCompletion({ subjectName: "Chemistry", gradeName: "Form 4", level: "Secondary", examType: "Mock", difficulty: "medium", marks: 6, duration: 20, topics: [], blueprint: blueprint() }, async (messages) => { calls++; if (calls === 1) { const invalid = copy(); invalid.sections[0].questions[0].text = "Interpret a graph showing concentration against volume."; return JSON.stringify(invalid); } assert.match(messages.at(-1)?.content ?? "", /renderer cannot provide/); return JSON.stringify(validExam()); }); assert.equal(calls, 2); assert.deepEqual(result, validExam()); });
 test("accepts usable numerical data written inline", () => { const exam = copy(); exam.sections[0].questions[0].text = "Using the data 2.0 g, 4.0 g and 6.0 g, calculate the mean mass."; exam.marking_scheme[0].answer = "Mean mass = (2.0 + 4.0 + 6.0) / 3 = 4.0 g."; assert.equal(violations(exam), ""); });
 test("corrective retry receives exact topic and marking repair contracts", async () => { let calls = 0; const result = await generateExamWithCompletion({ subjectName: "Chemistry", gradeName: "Form 4", level: "Secondary", examType: "Mock", difficulty: "medium", marks: 6, duration: 20, topics: [], blueprint: blueprint() }, async (messages) => { calls++; if (calls === 1) { const invalid = copy(); invalid.sections[0].questions[0].curriculumIds = ["curriculum-b"]; invalid.sections[0].questions[0].topic = "Length"; invalid.sections[0].questions[0].text = "Using 2.4 dm3 at RTP, calculate the amount of gas in moles."; invalid.marking_scheme[0].answer = "Use the molar-volume formula."; invalid.marking_scheme[0].allocations = [{ label: "Method", marks: 2 }]; invalid.marking_scheme[1].allocations = [{ label: "Working", marks: 4 }]; return JSON.stringify(invalid); } const correction = messages.at(-1)?.content ?? ""; assert.match(correction, /curriculumIds.*curriculum-a/); assert.match(correction, /topic.*Mixtures/); assert.match(correction, /Substitutes 2\.4 dm3/); assert.match(correction, /generic allocation label/); return JSON.stringify(validExam()); }); assert.equal(calls, 2); assert.deepEqual(result, validExam()); });

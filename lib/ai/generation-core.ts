@@ -1,5 +1,5 @@
 import type { ExamBlueprint, QuestionFamily } from "../blueprint/types.ts";
-import { describeSemanticViolations } from "./semantic-quality.ts";
+import { describeQuestionCompletenessViolations, describeSemanticViolations } from "./semantic-quality.ts";
 import {
   isSafeEducationalText,
   validateQuestionStimuli,
@@ -123,25 +123,49 @@ export async function generateQuestionContentWithCompletion(input: { blueprint: 
   for (let offset = 0; offset < slots.length; offset += 2) {
     const batch = slots.slice(offset, offset + 2);
     const batchIndex = Math.floor(offset / 2) + 1;
-    const prompt = `Generate ${input.difficulty ?? "appropriate"}-difficulty question CONTENT only for ${input.gradeName ?? "the specified grade"} ${input.subjectName ?? "the specified subject"}${input.examType ? ` ${input.examType}` : ""}. Return exactly {"questions":[{"slotId":"...","text":"...","topic":"...","options":[]}]}. Always include options as an array; use [] for non-objective questions and exactly four options for objective questions. Do not return sections, marks, numbers, IDs other than slotId, or marking. Fill every fixed slot exactly once. Questions must be self-contained and satisfy each slot's family, cognitive demand, constraints and curriculum targets. Fixed slots=${JSON.stringify(batch)} CURRICULUM=${JSON.stringify(input.topics)}${grounding}`;
-    let parsed: unknown = null;
+    let pending = batch;
+    let failures: string[] = [];
     for (let attempt = 0; attempt < 2; attempt++) {
+      const attemptedSlots = pending;
+      const prompt = `Generate ${input.difficulty ?? "appropriate"}-difficulty question CONTENT only for ${input.gradeName ?? "the specified grade"} ${input.subjectName ?? "the specified subject"}${input.examType ? ` ${input.examType}` : ""}. Return exactly {"questions":[{"slotId":"...","text":"...","topic":"...","options":[]}]}. Always include options as an array; use [] for non-objective questions and exactly four options for objective questions. Do not return sections, marks, numbers, IDs other than slotId, stimuli, or marking. Fill every fixed slot exactly once. Questions must be self-contained and satisfy each slot's family, cognitive demand, constraints and curriculum targets. Do not refer to a graph, table, diagram, image, map, passage, dataset, values, or information that is not fully present in the question text. Write the actual student task, never a description such as "solve a problem involving". Calculations must contain all usable numerical, formula, or symbolic givens.${failures.length ? ` Correct only these failed slots. VALIDATION_FAILURES=${JSON.stringify(failures)}` : ""} Fixed slots=${JSON.stringify(pending)} CURRICULUM=${JSON.stringify(input.topics)}${grounding}`;
       const startedAt = Date.now();
-      telemetry?.questionAttemptStarted?.({ batchIndex, slotCount: batch.length, retryNumber: attempt, startedAt });
+      telemetry?.questionAttemptStarted?.({ batchIndex, slotCount: attemptedSlots.length, retryNumber: attempt, startedAt });
       try {
         const raw = await complete([{ role: "system", content: "Return JSON only." }, { role: "user", content: prompt }], schema);
         if (!raw.trim()) throw new Error("empty response");
-        parsed = JSON.parse(raw);
+        const parsed: unknown = JSON.parse(raw);
         const rows = isRecord(parsed) && Array.isArray(parsed.questions) ? parsed.questions : [];
-        for (const slot of batch) {
+        const failedSlots: GenerationBlueprintSlot[] = [];
+        const nextFailures: string[] = [];
+        for (const slot of pending) {
           const row = rows.find((x) => isRecord(x) && x.slotId === slot.slotId);
-          if (!isRecord(row) || typeof row.text !== "string" || typeof row.topic !== "string") throw new Error(`Question content validation failed for ${slot.slotId}`);
-          content[slot.slotId] = { text: row.text, topic: row.topic, options: Array.isArray(row.options) ? row.options : undefined, stimuli: Array.isArray(row.stimuli) ? row.stimuli as RichStimulus[] : undefined };
+          if (!isRecord(row) || typeof row.text !== "string" || typeof row.topic !== "string") {
+            failedSlots.push(slot);
+            nextFailures.push(`${slot.slotId} question content is missing or malformed`);
+            continue;
+          }
+          const candidate: ExamQuestion = { slotId: slot.slotId, number: slot.number, sectionId: slot.sectionId, curriculumIds: slot.curriculumTargets.map((target) => target.curriculumId), topic: row.topic, text: row.text, marks: slot.marks, questionFamily: slot.questionFamily, type: slot.allowedType, cognitiveDemand: slot.cognitiveDemand, constraintAcknowledgements: [...slot.constraints], ...(Array.isArray(row.options) && row.options.length ? { options: row.options as string[] } : {}) };
+          const semanticProblems = describeQuestionCompletenessViolations([candidate]);
+          if (semanticProblems.length) {
+            failedSlots.push(slot);
+            nextFailures.push(...semanticProblems);
+            continue;
+          }
+          content[slot.slotId] = { text: row.text, topic: row.topic, options: Array.isArray(row.options) ? row.options as string[] : undefined };
         }
-        telemetry?.questionAttemptCompleted?.({ batchIndex, slotCount: batch.length, retryNumber: attempt, startedAt, completedAt: Date.now(), outcome: "success" });
+        if (failedSlots.length) {
+          pending = failedSlots;
+          failures = nextFailures;
+          telemetry?.questionAttemptCompleted?.({ batchIndex, slotCount: attemptedSlots.length, retryNumber: attempt, startedAt, completedAt: Date.now(), outcome: attempt === 1 ? "failure" : "retry" });
+          if (attempt === 1) throw new Error(failures.join("; "));
+          continue;
+        }
+        telemetry?.questionAttemptCompleted?.({ batchIndex, slotCount: attemptedSlots.length, retryNumber: attempt, startedAt, completedAt: Date.now(), outcome: "success" });
+        pending = [];
         break;
       } catch (error) {
-        telemetry?.questionAttemptCompleted?.({ batchIndex, slotCount: batch.length, retryNumber: attempt, startedAt, completedAt: Date.now(), outcome: attempt === 1 ? "failure" : "retry" });
+        if (attempt === 1 && pending.length && failures.length) throw new Error(`Question content request failed: ${error instanceof Error ? error.message : "invalid JSON"}`, { cause: error });
+        telemetry?.questionAttemptCompleted?.({ batchIndex, slotCount: attemptedSlots.length, retryNumber: attempt, startedAt, completedAt: Date.now(), outcome: attempt === 1 ? "failure" : "retry" });
         if (attempt === 1) throw new Error(`Question content request failed: ${error instanceof Error ? error.message : "invalid JSON"}`, { cause: error });
       }
     }
@@ -192,8 +216,14 @@ export async function generateMarkingContentWithCompletion(input: { blueprint: E
       const numericalProblems = requiredModel === "numerical_method" ? validateNumericalMethod(entry?.numericalMethod, slot.marks) : [];
       const variantValid = requiredModel === "numerical_method" ? numericalProblems.length === 0 : requiredModel !== "point_based" && validateRubricCriteria(entry?.rubric, slot.marks).length === 0;
       const contentValid = requiredModel === "point_based" ? Boolean(answer) : Boolean(notes);
-      if (contentValid && entry?.markingModel === requiredModel && (pointValid || variantValid)) { result.set(slot.slotId, (requiredModel === "point_based" ? { answer, marking_notes: notes, markingModel: requiredModel, allocations } : requiredModel === "numerical_method" ? { marking_notes: notes, markingModel: requiredModel, numericalMethod: entry.numericalMethod } : { marking_notes: notes, markingModel: requiredModel, rubric: entry.rubric }) as MarkingContent); valid = true; }
-      else failure = requiredModel === "point_based" && !answer ? "answer must be a substantive non-empty string" : !notes ? "marking_notes must be a substantive non-empty string" : entry?.markingModel !== requiredModel ? `markingModel must be ${requiredModel}` : requiredModel === "point_based" ? `allocation marks total ${total}, but must total ${slot.marks}` : numericalProblems.join("; ") || "required numericalMethod or rubric content is missing";
+      if (contentValid && entry?.markingModel === requiredModel && (pointValid || variantValid)) {
+        const markingContent = (requiredModel === "point_based" ? { answer, marking_notes: notes, markingModel: requiredModel, allocations } : requiredModel === "numerical_method" ? { marking_notes: notes, markingModel: requiredModel, numericalMethod: entry.numericalMethod } : { marking_notes: notes, markingModel: requiredModel, rubric: entry.rubric }) as MarkingContent;
+        const candidateEntry: MarkingSchemeEntry = { ...markingContent, slotId: slot.slotId, number: slot.number, marks: slot.marks };
+        const target = new Set([slot.slotId]);
+        const pairProblems = describeSemanticViolations({ sections: [{ questions: [question] }], marking_scheme: [candidateEntry] }, { questionSlotIds: new Set(), answerSlotIds: target, markingNotesSlotIds: target, allocationSlotIds: target, pairSlotIds: target });
+        if (pairProblems.length) failure = pairProblems.join("; ");
+        else { result.set(slot.slotId, markingContent); valid = true; }
+      } else failure = requiredModel === "point_based" && !answer ? "answer must be a substantive non-empty string" : !notes ? "marking_notes must be a substantive non-empty string" : entry?.markingModel !== requiredModel ? `markingModel must be ${requiredModel}` : requiredModel === "point_based" ? `allocation marks total ${total}, but must total ${slot.marks}` : numericalProblems.join("; ") || "required numericalMethod or rubric content is missing";
       telemetry?.markingAttemptCompleted?.({ ...attemptEvent, completedAt: Date.now(), outcome: valid ? "success" : attempt === 4 ? "failure" : "retry" });
     }
     if (!valid) throw new Error(`Marking validation failed for entries: ${slot.slotId}; ${failure}`);

@@ -36,11 +36,13 @@ const PLACEHOLDER_CRITERION = /^(?:correct (?:answer|working|method|response)|sh
 const PERCENTAGE_COMPOSITION_TEMPLATE = /\b(?:empirical|molecular) formula\b[^.!?]{0,100}\b(?:given|using|from) (?:its|the|a) percentage composition\b/i;
 const VAGUE_PROBLEM_TEMPLATE = /\bsolve (?:a|the) problem involving\b/i;
 const PERCENTAGE_NITROGEN_TEMPLATE = /\bcalculate (?:the )?percentage of nitrogen\b/i;
+const UNRESOLVED_GIVEN_REFERENCE = /\b(?:using|from)\s+(?:the\s+)?(?:data|values?|information|details?|results?|composition)(?=\s*(?:[,.!?]|$))|\bgiven\s+(?:its|the)\s+(?:data|values?|information|details?|results?|composition)\b|\b(?:data|values?|information|details?|results?|composition)\s+(?:given|provided|shown|above|below)\b/i;
 const NUMERIC_VALUE = /(?:^|[^A-Za-z])[-+]?\d+(?:\.\d+)?\s*(?:%|°?[CFK]|mol|g|kg|mg|cm3|cm³|dm3|dm³|m3|m³|cm|mm|km|m|L|ml|kPa|Pa|atm|s|min|h)?\b/i;
 const CHEMICAL_FORMULA = /\b(?:[A-Z][a-z]?\d+|[A-Z][a-z]?[A-Z][A-Za-z]*(?:\d+|\([A-Z][A-Za-z0-9]*\d)[A-Za-z0-9()]*)\b/;
+const SYMBOLIC_GIVEN = /\b(?:in terms of|where\s+[a-z](?:\s*(?:,|and)\s*[a-z])+|variables?\s+[a-z])\b/i;
 
 function hasConcreteGiven(text: string): boolean {
-  return NUMERIC_VALUE.test(text) || CHEMICAL_FORMULA.test(text) || /\b(?:equation|formula)\s*[:=]\s*\S+/i.test(text);
+  return NUMERIC_VALUE.test(text) || CHEMICAL_FORMULA.test(text) || /\b(?:equation|formula)\s*[:=]\s*\S+/i.test(text) || SYMBOLIC_GIVEN.test(text);
 }
 
 function normalizedWords(text: string): string {
@@ -74,13 +76,9 @@ export type SemanticValidationScope = {
   pairSlotIds: ReadonlySet<string>;
 };
 
-export function describeSemanticViolations(exam: SemanticExam, scope?: SemanticValidationScope): string[] {
+export function describeQuestionCompletenessViolations(questions: readonly SemanticQuestion[]): string[] {
   const violations: string[] = [];
-  const questionBySlot = new Map<string, SemanticQuestion>();
-
-  for (const question of exam.sections.flatMap((section) => section.questions)) {
-    questionBySlot.set(question.slotId, question);
-    if (scope && !scope.questionSlotIds.has(question.slotId)) continue;
+  for (const question of questions) {
     const text = question.text.trim();
     const resourceReference = DEPENDENT_RESOURCE_REFERENCE.test(text);
     const inlineNumericData = /\bdata\b/i.test(text) && !/\b(?:graph|chart|diagram|image|figure|table|map|passage|extract|case study|dataset|experiment(?:al)? setup)\b/i.test(text) && hasConcreteGiven(text);
@@ -96,13 +94,26 @@ export function describeSemanticViolations(exam: SemanticExam, scope?: SemanticV
     if (PERCENTAGE_NITROGEN_TEMPLATE.test(text) && !hasConcreteGiven(text)) {
       violations.push(`${question.slotId} asks for percentage nitrogen but supplies no usable composition, mass, or chemical formula`);
     }
-    if (isCalculationLike(question) && /\b(?:given|using) (?:the )?(?:data|values?|information|percentage composition)\b/i.test(text) && !hasConcreteGiven(text) && !hasRequiredStimulus(question)) {
+    if (isCalculationLike(question) && !hasConcreteGiven(text) && !hasRequiredStimulus(question)) {
       violations.push(`${question.slotId} is a calculation question but contains no usable numerical, formula, or symbolic givens`);
+    } else if (UNRESOLVED_GIVEN_REFERENCE.test(text) && !hasConcreteGiven(text) && !hasRequiredStimulus(question)) {
+      violations.push(`${question.slotId} refers to given, provided, or shown information that is not present in the question`);
     }
     if (question.marks <= 4 && /\ball (?:physical|chemical|possible|common) (?:properties|methods|uses|effects|examples)\b/i.test(text)) {
       violations.push(`${question.slotId} is too broad for its ${question.marks}-mark allocation`);
     }
   }
+  return [...new Set(violations)];
+}
+
+export function describeSemanticViolations(exam: SemanticExam, scope?: SemanticValidationScope): string[] {
+  const violations: string[] = [];
+  const questionBySlot = new Map<string, SemanticQuestion>();
+
+  for (const question of exam.sections.flatMap((section) => section.questions)) {
+    questionBySlot.set(question.slotId, question);
+  }
+  violations.push(...describeQuestionCompletenessViolations(exam.sections.flatMap((section) => section.questions).filter((question) => !scope || scope.questionSlotIds.has(question.slotId))));
 
   for (const entry of exam.marking_scheme) {
     const slotId = entry.slotId ?? "unknown slot";
