@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import type { ExamBlueprint } from "../blueprint/types.ts";
+import type { DatasetStimulus, DiagramStimulus, GraphStimulus, TableStimulus, TextStimulus } from "../assessment/rich-content.ts";
 import { assembleServerQuestions, buildPrompt, buildServerQuestionSkeleton, describeViolations, generateExamWithCompletion, generateMarkingContentWithCompletion, generateQuestionContentWithCompletion, projectBlueprint, QUESTION_FAMILY_TO_AI_TYPE, type GeneratedExam } from "./generation-core.ts";
 
 function blueprint(): ExamBlueprint {
@@ -18,6 +19,21 @@ function blueprint(): ExamBlueprint {
     ],
   } as unknown as ExamBlueprint;
 }
+function visualBlueprint(): ExamBlueprint {
+  const value = structuredClone(blueprint());
+  value.questionSlots[0].questionFamily = "data_graph_interpretation";
+  value.questionSlots[0].questionFamilyLabel = "Data and visual interpretation";
+  value.questionSlots[0].allowedStimulusTypes = ["graph", "table", "dataset", "diagram"];
+  value.questionSlots[0].allowedMarkingModels = ["point_based"];
+  value.questionSlots[1].allowedStimulusTypes = [];
+  value.questionSlots[1].allowedMarkingModels = ["point_based"];
+  return value;
+}
+const graph: GraphStimulus = { type: "graph", id: "rate-graph", title: "Reaction rate", graphType: "line", xAxis: { label: "Time", unit: "s", min: 0, max: 20 }, yAxis: { label: "Gas volume", unit: "cm3", min: 0, max: 40 }, series: [{ name: "Experiment A", points: [{ x: 0, y: 0 }, { x: 10, y: 30 }, { x: 20, y: 40 }] }] };
+const table: TableStimulus = { type: "table", id: "temperature-table", caption: "Solubility observations", columns: ["Temperature (°C)", "Mass dissolved (g)"], rows: [["20", "12"], ["40", "19"]] };
+const dataset: DatasetStimulus = { type: "dataset", id: "mass-data", labels: ["A", "B"], series: [{ name: "Mass", unit: "g", values: [4, 7] }] };
+const diagram: DiagramStimulus = { type: "diagram", id: "apparatus", caption: "Gas collection apparatus", width: 240, height: 120, primitives: [{ type: "rectangle", x: 20, y: 40, width: 60, height: 60, label: "Flask" }, { type: "arrow", x1: 80, y1: 60, x2: 180, y2: 60, label: "Gas" }, { type: "label", x: 185, y: 65, text: "Collector" }] };
+const groundedPassage: TextStimulus = { type: "passage", id: "source-extract", content: "The sample dissolved more rapidly as its temperature increased.", sourceType: "authorized_textbook", provenance: { textbookId: "book-1", documentId: "document-1", chunkIds: ["chunk-1"], attribution: "Authorized classroom source" } };
 test("server owns question structure while content is model-supplied", () => {
   const shell = buildServerQuestionSkeleton(blueprint());
   assert.equal(shell.sections[0].id, "section-01");
@@ -108,6 +124,109 @@ test("staged missing-resource questions cannot survive the bounded retry", async
     /slot-01.*references a graph/
   );
   assert.equal(calls, 2);
+});
+test("valid graph stimulus survives staged canonicalization and final validation", async () => {
+  const richBlueprint = visualBlueprint();
+  const sections = await generateQuestionContentWithCompletion({ blueprint: richBlueprint, topics: [] }, async (_messages, responseFormat) => {
+    assert.match(JSON.stringify(responseFormat), /"stimuli"/);
+    assert.match(JSON.stringify(responseFormat), /"graphType"/);
+    return JSON.stringify({ questions: [
+      { slotId: "slot-01", text: "Study the graph below and state the gas volume at 10 seconds.", topic: "Mixtures", options: [], stimuli: [graph] },
+      { slotId: "slot-02", text: "Measure the sample length in centimetres using a ruler.", topic: "Length", options: [] },
+    ] });
+  });
+  assert.deepEqual(sections[0].questions[0].stimuli, [graph]);
+  const exam: GeneratedExam = { instructions: "Answer all questions.", sections, marking_scheme: [
+    { slotId: "slot-01", number: 1, markingModel: "point_based", answer: "The graph shows 30 cm3 at 10 seconds.", marking_notes: "Award for reading the correct plotted value.", marks: 2, allocations: [{ label: "Reads 30 cm3 at 10 seconds", marks: 2 }] },
+    { slotId: "slot-02", number: 2, markingModel: "point_based", answer: "Accept the correctly observed ruler reading in centimetres.", marking_notes: "Award for the measured value and unit.", marks: 4, allocations: [{ label: "Records the observed reading with centimetre unit", marks: 4 }] },
+  ] };
+  assert.deepEqual(describeViolations(exam, richBlueprint), []);
+});
+test("malformed graph is repaired without regenerating its valid sibling", async () => {
+  const richBlueprint = visualBlueprint();
+  let calls = 0;
+  const sections = await generateQuestionContentWithCompletion({ blueprint: richBlueprint, topics: [] }, async (messages) => {
+    calls++;
+    if (calls === 1) return JSON.stringify({ questions: [
+      { slotId: "slot-01", text: "Study the graph below and state the trend.", topic: "Mixtures", options: [], stimuli: [{ ...graph, series: [{ name: "Experiment A", points: [] }] }] },
+      { slotId: "slot-02", text: "State the SI unit of length.", topic: "Length", options: [] },
+    ] });
+    const correction = messages.at(-1)?.content ?? "";
+    assert.match(correction, /slot-01 graph series or points are invalid/);
+    assert.doesNotMatch(correction, /"slotId":"slot-02"/);
+    return JSON.stringify({ questions: [{ slotId: "slot-01", text: "Study the graph below and state the gas volume at 10 seconds.", topic: "Mixtures", options: [], stimuli: [graph] }] });
+  });
+  assert.equal(calls, 2);
+  assert.deepEqual(sections[0].questions[0].stimuli, [graph]);
+  assert.equal(sections[0].questions[1].text, "State the SI unit of length.");
+});
+test("valid table and dataset stimuli survive while an empty table is rejected", async () => {
+  const richBlueprint = visualBlueprint();
+  const tableSections = await generateQuestionContentWithCompletion({ blueprint: richBlueprint, topics: [] }, async () => JSON.stringify({ questions: [
+    { slotId: "slot-01", text: "Use the table below to state the mass dissolved at 40 °C.", topic: "Mixtures", options: [], stimuli: [table] },
+    { slotId: "slot-02", text: "State the SI unit of length.", topic: "Length", options: [] },
+  ] }));
+  assert.deepEqual(tableSections[0].questions[0].stimuli, [table]);
+  const datasetSections = await generateQuestionContentWithCompletion({ blueprint: richBlueprint, topics: [] }, async () => JSON.stringify({ questions: [
+    { slotId: "slot-01", text: "Use the dataset below to identify the sample with the greater mass.", topic: "Mixtures", options: [], stimuli: [dataset] },
+    { slotId: "slot-02", text: "State the SI unit of length.", topic: "Length", options: [] },
+  ] }));
+  assert.deepEqual(datasetSections[0].questions[0].stimuli, [dataset]);
+  let calls = 0;
+  await assert.rejects(generateQuestionContentWithCompletion({ blueprint: richBlueprint, topics: [] }, async () => {
+    calls++;
+    return JSON.stringify({ questions: calls === 1 ? [
+      { slotId: "slot-01", text: "Use the table below to state the result.", topic: "Mixtures", options: [], stimuli: [{ ...table, rows: [] }] },
+      { slotId: "slot-02", text: "State the SI unit of length.", topic: "Length", options: [] },
+    ] : [{ slotId: "slot-01", text: "Use the table below to state the result.", topic: "Mixtures", options: [], stimuli: [{ ...table, rows: [] }] }] });
+  }), /table rows are invalid/);
+});
+test("valid declarative diagram survives and malformed diagram is rejected", async () => {
+  const richBlueprint = visualBlueprint();
+  const sections = await generateQuestionContentWithCompletion({ blueprint: richBlueprint, topics: [] }, async () => JSON.stringify({ questions: [
+    { slotId: "slot-01", text: "Study the diagram provided and identify the direction of gas flow.", topic: "Mixtures", options: [], stimuli: [diagram] },
+    { slotId: "slot-02", text: "State the SI unit of length.", topic: "Length", options: [] },
+  ] }));
+  assert.deepEqual(sections[0].questions[0].stimuli, [diagram]);
+  let calls = 0;
+  await assert.rejects(generateQuestionContentWithCompletion({ blueprint: richBlueprint, topics: [] }, async () => {
+    calls++;
+    return JSON.stringify({ questions: calls === 1 ? [
+      { slotId: "slot-01", text: "Study the diagram provided and identify the flask.", topic: "Mixtures", options: [], stimuli: [{ ...diagram, primitives: [] }] },
+      { slotId: "slot-02", text: "State the SI unit of length.", topic: "Length", options: [] },
+    ] : [{ slotId: "slot-01", text: "Study the diagram provided and identify the flask.", topic: "Mixtures", options: [], stimuli: [{ ...diagram, primitives: [] }] }] });
+  }), /diagram dimensions or primitive count are invalid/);
+});
+test("canonical text-stimulus provenance survives staged canonicalization", async () => {
+  const richBlueprint = visualBlueprint();
+  richBlueprint.questionSlots[0].questionFamily = "comprehension";
+  richBlueprint.questionSlots[0].questionFamilyLabel = "Comprehension";
+  richBlueprint.questionSlots[0].allowedStimulusTypes = ["passage"];
+  const sections = await generateQuestionContentWithCompletion({ blueprint: richBlueprint, topics: [] }, async () => JSON.stringify({ questions: [
+    { slotId: "slot-01", text: "Use the passage below to state how temperature affected dissolving.", topic: "Mixtures", options: [], stimuli: [groundedPassage] },
+    { slotId: "slot-02", text: "State the SI unit of length.", topic: "Length", options: [] },
+  ] }));
+  assert.deepEqual(sections[0].questions[0].stimuli, [groundedPassage]);
+});
+test("marking generation receives attached graph data and validates the pair", async () => {
+  const richBlueprint = visualBlueprint();
+  const questions = assembleServerQuestions(richBlueprint, {
+    "slot-01": { topic: "Mixtures", text: "Study the graph below and state the gas volume at 10 seconds.", stimuli: [graph] },
+    "slot-02": { topic: "Length", text: "State the SI unit of length." },
+  });
+  let firstPrompt = "";
+  let calls = 0;
+  const marking = await generateMarkingContentWithCompletion({ blueprint: richBlueprint, questions }, async (messages) => {
+    calls++;
+    if (calls === 1) {
+      firstPrompt = messages.at(-1)?.content ?? "";
+      return JSON.stringify({ marking_notes: "Award for reading the plotted value.", markingModel: "point_based", answer: "The graph shows 30 cm3 at 10 seconds.", allocations: [{ label: "Reads 30 cm3 at 10 seconds", marks: 2 }] });
+    }
+    return JSON.stringify({ marking_notes: "Award for the correct SI unit.", markingModel: "point_based", answer: "The metre is the SI unit of length.", allocations: [{ label: "States metre", marks: 4 }] });
+  });
+  assert.match(firstPrompt, /"id":"rate-graph"/);
+  assert.match(firstPrompt, /"points":\[\{"x":0,"y":0\}/);
+  assert.equal(marking[0].answer, "The graph shows 30 cm3 at 10 seconds.");
 });
 test("marking retries a defective entry without regenerating its question", async () => {
   const questions = assembleServerQuestions(blueprint(), {

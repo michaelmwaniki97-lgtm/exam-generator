@@ -4,10 +4,13 @@ import type { QuestionFamily } from "../blueprint/types.ts";
 export const RICH_CONTENT_LIMITS = {
   stimuliPerQuestion: 3,
   serializedCharactersPerQuestion: 20_000,
+  idCharacters: 120,
   titleCharacters: 160,
   instructionCharacters: 500,
   passageCharacters: 5_000,
   extractCharacters: 1_500,
+  attributionCharacters: 240,
+  provenanceChunkIds: 12,
   tableColumns: 8,
   tableRows: 20,
   tableCellCharacters: 240,
@@ -16,24 +19,19 @@ export const RICH_CONTENT_LIMITS = {
   graphSeries: 4,
   graphPointsPerSeries: 40,
   diagramPrimitives: 40,
+  polygonPoints: 12,
   labelCharacters: 120,
+  unitCharacters: 40,
   coordinateMagnitude: 1_000_000,
 } as const;
 
-export type SupportedStimulusType =
-  | "passage"
-  | "extract"
-  | "table"
-  | "dataset"
-  | "graph"
-  | "diagram";
+export const SUPPORTED_STIMULUS_TYPES = ["passage", "extract", "table", "dataset", "graph", "diagram"] as const;
+export type SupportedStimulusType = typeof SUPPORTED_STIMULUS_TYPES[number];
 
-export type StimulusSourceType =
-  | "generated"
-  | "authorized_textbook"
-  | "teacher_supplied"
-  | "public_domain"
-  | "oer";
+export const STIMULUS_SOURCE_TYPES = ["generated", "authorized_textbook", "teacher_supplied", "public_domain", "oer"] as const;
+export type StimulusSourceType = typeof STIMULUS_SOURCE_TYPES[number];
+
+export const GRAPH_TYPES = ["line", "bar", "scatter"] as const;
 
 type StimulusBase = {
   id: string;
@@ -68,7 +66,7 @@ export type DatasetStimulus = StimulusBase & {
 
 export type GraphStimulus = StimulusBase & {
   type: "graph";
-  graphType: "line" | "bar" | "scatter";
+  graphType: typeof GRAPH_TYPES[number];
   xAxis: { label: string; unit: string; min: number; max: number };
   yAxis: { label: string; unit: string; min: number; max: number };
   series: Array<{
@@ -98,6 +96,60 @@ export type RichStimulus =
   | DatasetStimulus
   | GraphStimulus
   | DiagramStimulus;
+
+type JsonSchema = Record<string, unknown>;
+const boundedString = (maxLength: number): JsonSchema => ({ type: "string", minLength: 1, maxLength, pattern: "\\S" });
+const boundedNumber = (minimum = -RICH_CONTENT_LIMITS.coordinateMagnitude, maximum = RICH_CONTENT_LIMITS.coordinateMagnitude): JsonSchema => ({ type: "number", minimum, maximum });
+const closedObject = (properties: Record<string, JsonSchema>, required: string[]): JsonSchema => ({ type: "object", additionalProperties: false, properties, required });
+const baseSchema = (type: SupportedStimulusType): Record<string, JsonSchema> => ({
+  type: { const: type },
+  id: boundedString(RICH_CONTENT_LIMITS.idCharacters),
+  title: boundedString(RICH_CONTENT_LIMITS.titleCharacters),
+  instructions: boundedString(RICH_CONTENT_LIMITS.instructionCharacters),
+});
+const provenanceSchema = closedObject({
+  textbookId: boundedString(RICH_CONTENT_LIMITS.idCharacters),
+  documentId: boundedString(RICH_CONTENT_LIMITS.idCharacters),
+  chunkIds: { type: "array", maxItems: RICH_CONTENT_LIMITS.provenanceChunkIds, items: boundedString(RICH_CONTENT_LIMITS.idCharacters) },
+  attribution: boundedString(RICH_CONTENT_LIMITS.attributionCharacters),
+}, []);
+const pointSchema = closedObject({ x: boundedNumber(), y: boundedNumber() }, ["x", "y"]);
+const diagramPointSchema = closedObject({ x: boundedNumber(0), y: boundedNumber(0) }, ["x", "y"]);
+const optionalLabel = { label: boundedString(RICH_CONTENT_LIMITS.labelCharacters) };
+const diagramPrimitiveSchemas: JsonSchema[] = [
+  ...(["line", "arrow"] as const).map((type) => closedObject({ type: { const: type }, x1: boundedNumber(0), y1: boundedNumber(0), x2: boundedNumber(0), y2: boundedNumber(0), ...optionalLabel }, ["type", "x1", "y1", "x2", "y2"])),
+  closedObject({ type: { const: "circle" }, cx: boundedNumber(0), cy: boundedNumber(0), r: { type: "number", exclusiveMinimum: 0, maximum: RICH_CONTENT_LIMITS.coordinateMagnitude }, ...optionalLabel }, ["type", "cx", "cy", "r"]),
+  closedObject({ type: { const: "rectangle" }, x: boundedNumber(0), y: boundedNumber(0), width: { type: "number", exclusiveMinimum: 0, maximum: RICH_CONTENT_LIMITS.coordinateMagnitude }, height: { type: "number", exclusiveMinimum: 0, maximum: RICH_CONTENT_LIMITS.coordinateMagnitude }, ...optionalLabel }, ["type", "x", "y", "width", "height"]),
+  closedObject({ type: { const: "polygon" }, points: { type: "array", minItems: 3, maxItems: RICH_CONTENT_LIMITS.polygonPoints, items: diagramPointSchema }, ...optionalLabel }, ["type", "points"]),
+  closedObject({ type: { const: "label" }, x: boundedNumber(0), y: boundedNumber(0), text: boundedString(RICH_CONTENT_LIMITS.labelCharacters) }, ["type", "x", "y", "text"]),
+];
+
+/** Provider-facing schema; validateQuestionStimuli remains the final runtime authority. */
+export function richStimuliArrayJsonSchema(): JsonSchema {
+  const text = (type: "passage" | "extract", maxLength: number) => closedObject({
+    ...baseSchema(type), content: boundedString(maxLength), sourceType: { enum: STIMULUS_SOURCE_TYPES }, provenance: provenanceSchema,
+  }, ["type", "id", "content", "sourceType"]);
+  const table = closedObject({
+    ...baseSchema("table"), caption: boundedString(RICH_CONTENT_LIMITS.titleCharacters),
+    columns: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.tableColumns, items: boundedString(RICH_CONTENT_LIMITS.tableCellCharacters) },
+    rows: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.tableRows, items: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.tableColumns, items: boundedString(RICH_CONTENT_LIMITS.tableCellCharacters) } },
+  }, ["type", "id", "columns", "rows"]);
+  const dataset = closedObject({
+    ...baseSchema("dataset"), labels: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.datasetValuesPerSeries, items: boundedString(RICH_CONTENT_LIMITS.labelCharacters) },
+    series: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.datasetSeries, items: closedObject({ name: boundedString(RICH_CONTENT_LIMITS.labelCharacters), unit: boundedString(RICH_CONTENT_LIMITS.unitCharacters), values: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.datasetValuesPerSeries, items: boundedNumber() } }, ["name", "unit", "values"]) },
+  }, ["type", "id", "labels", "series"]);
+  const axis = closedObject({ label: boundedString(RICH_CONTENT_LIMITS.labelCharacters), unit: boundedString(RICH_CONTENT_LIMITS.unitCharacters), min: boundedNumber(), max: boundedNumber() }, ["label", "unit", "min", "max"]);
+  const graph = closedObject({
+    ...baseSchema("graph"), graphType: { enum: GRAPH_TYPES }, xAxis: axis, yAxis: axis,
+    series: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.graphSeries, items: closedObject({ name: boundedString(RICH_CONTENT_LIMITS.labelCharacters), points: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.graphPointsPerSeries, items: pointSchema } }, ["name", "points"]) },
+  }, ["type", "id", "graphType", "xAxis", "yAxis", "series"]);
+  const diagram = closedObject({
+    ...baseSchema("diagram"), caption: boundedString(RICH_CONTENT_LIMITS.titleCharacters),
+    width: { type: "number", exclusiveMinimum: 0, maximum: RICH_CONTENT_LIMITS.coordinateMagnitude }, height: { type: "number", exclusiveMinimum: 0, maximum: RICH_CONTENT_LIMITS.coordinateMagnitude },
+    primitives: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.diagramPrimitives, items: { anyOf: diagramPrimitiveSchemas } },
+  }, ["type", "id", "width", "height", "primitives"]);
+  return { type: "array", maxItems: RICH_CONTENT_LIMITS.stimuliPerQuestion, items: { anyOf: [text("passage", RICH_CONTENT_LIMITS.passageCharacters), text("extract", RICH_CONTENT_LIMITS.extractCharacters), table, dataset, graph, diagram] } };
+}
 
 const FAMILY_STIMULI: Partial<Record<QuestionFamily, readonly SupportedStimulusType[]>> = {
   comprehension: ["passage", "extract"],
@@ -167,7 +219,7 @@ function finite(value: unknown): value is number {
 }
 
 function validBase(value: Record<string, unknown>): boolean {
-  return isSafeEducationalText(value.id, 120) && optionalText(value.title, RICH_CONTENT_LIMITS.titleCharacters) &&
+  return isSafeEducationalText(value.id, RICH_CONTENT_LIMITS.idCharacters) && optionalText(value.title, RICH_CONTENT_LIMITS.titleCharacters) &&
     optionalText(value.instructions, RICH_CONTENT_LIMITS.instructionCharacters);
 }
 
@@ -185,9 +237,9 @@ function validProvenance(value: unknown): boolean {
   if (!record(value)) return false;
   const allowed = new Set(["textbookId", "documentId", "chunkIds", "attribution"]);
   if (Object.keys(value).some((key) => !allowed.has(key))) return false;
-  return optionalText(value.textbookId, 120) && optionalText(value.documentId, 120) &&
-    optionalText(value.attribution, 240) &&
-    (value.chunkIds === undefined || (Array.isArray(value.chunkIds) && value.chunkIds.length <= 12 && value.chunkIds.every((id) => isSafeEducationalText(id, 120))));
+  return optionalText(value.textbookId, RICH_CONTENT_LIMITS.idCharacters) && optionalText(value.documentId, RICH_CONTENT_LIMITS.idCharacters) &&
+    optionalText(value.attribution, RICH_CONTENT_LIMITS.attributionCharacters) &&
+    (value.chunkIds === undefined || (Array.isArray(value.chunkIds) && value.chunkIds.length <= RICH_CONTENT_LIMITS.provenanceChunkIds && value.chunkIds.every((id) => isSafeEducationalText(id, RICH_CONTENT_LIMITS.idCharacters))));
 }
 
 export function validateStimulus(value: unknown): string[] {
@@ -196,9 +248,9 @@ export function validateStimulus(value: unknown): string[] {
     if (!exactKeys(value, ["content", "sourceType", "provenance"])) return [`${value.type} contains unsupported properties`];
     const max = value.type === "passage" ? RICH_CONTENT_LIMITS.passageCharacters : RICH_CONTENT_LIMITS.extractCharacters;
     if (!isSafeEducationalText(value.content, max)) return [`${value.type} content is empty, unsafe, or oversized`];
-    if (!["generated", "authorized_textbook", "teacher_supplied", "public_domain", "oer"].includes(String(value.sourceType))) return [`${value.type} source type is invalid`];
+    if (!(STIMULUS_SOURCE_TYPES as readonly string[]).includes(String(value.sourceType))) return [`${value.type} source type is invalid`];
     if (value.provenance !== undefined && !validProvenance(value.provenance)) return [`${value.type} provenance is invalid`];
-    if (value.sourceType === "authorized_textbook" && (!record(value.provenance) || !isSafeEducationalText(value.provenance.textbookId, 120) || !isSafeEducationalText(value.provenance.documentId, 120))) return [`${value.type} authorized textbook provenance is incomplete`];
+    if (value.sourceType === "authorized_textbook" && (!record(value.provenance) || !isSafeEducationalText(value.provenance.textbookId, RICH_CONTENT_LIMITS.idCharacters) || !isSafeEducationalText(value.provenance.documentId, RICH_CONTENT_LIMITS.idCharacters))) return [`${value.type} authorized textbook provenance is incomplete`];
     if (value.sourceType !== "authorized_textbook" && record(value.provenance) && (value.provenance.textbookId !== undefined || value.provenance.documentId !== undefined || value.provenance.chunkIds !== undefined)) return [`${value.type} non-textbook provenance cannot claim private textbook identifiers`];
     return [];
   }
@@ -215,13 +267,13 @@ export function validateStimulus(value: unknown): string[] {
     if (!exactKeys(value, ["labels", "series"])) return ["dataset contains unsupported properties"];
     if (!Array.isArray(value.labels) || value.labels.length < 1 || value.labels.length > RICH_CONTENT_LIMITS.datasetValuesPerSeries || !value.labels.every((label) => isSafeEducationalText(label, RICH_CONTENT_LIMITS.labelCharacters))) return ["dataset labels are missing or invalid"];
     const labelCount = value.labels.length;
-    if (!Array.isArray(value.series) || value.series.length < 1 || value.series.length > RICH_CONTENT_LIMITS.datasetSeries || !value.series.every((series) => record(series) && onlyKeys(series, ["name", "unit", "values"]) && isSafeEducationalText(series.name, RICH_CONTENT_LIMITS.labelCharacters) && isSafeEducationalText(series.unit, 40) && Array.isArray(series.values) && series.values.length === labelCount && series.values.every(finite))) return ["dataset series, units, or values are invalid"];
+    if (!Array.isArray(value.series) || value.series.length < 1 || value.series.length > RICH_CONTENT_LIMITS.datasetSeries || !value.series.every((series) => record(series) && onlyKeys(series, ["name", "unit", "values"]) && isSafeEducationalText(series.name, RICH_CONTENT_LIMITS.labelCharacters) && isSafeEducationalText(series.unit, RICH_CONTENT_LIMITS.unitCharacters) && Array.isArray(series.values) && series.values.length === labelCount && series.values.every(finite))) return ["dataset series, units, or values are invalid"];
     return [];
   }
   if (value.type === "graph") {
     if (!exactKeys(value, ["graphType", "xAxis", "yAxis", "series"])) return ["graph contains unsupported properties"];
-    if (!["line", "bar", "scatter"].includes(String(value.graphType))) return ["graph type is unsupported"];
-    const axis = (candidate: unknown) => record(candidate) && onlyKeys(candidate, ["label", "unit", "min", "max"]) && isSafeEducationalText(candidate.label, RICH_CONTENT_LIMITS.labelCharacters) && isSafeEducationalText(candidate.unit, 40) && finite(candidate.min) && finite(candidate.max) && candidate.min < candidate.max;
+    if (!(GRAPH_TYPES as readonly string[]).includes(String(value.graphType))) return ["graph type is unsupported"];
+    const axis = (candidate: unknown) => record(candidate) && onlyKeys(candidate, ["label", "unit", "min", "max"]) && isSafeEducationalText(candidate.label, RICH_CONTENT_LIMITS.labelCharacters) && isSafeEducationalText(candidate.unit, RICH_CONTENT_LIMITS.unitCharacters) && finite(candidate.min) && finite(candidate.max) && candidate.min < candidate.max;
     if (!axis(value.xAxis) || !axis(value.yAxis)) return ["graph axes, units, or ranges are invalid"];
     const xAxis = value.xAxis as Record<string, number>;
     const yAxis = value.yAxis as Record<string, number>;
@@ -238,7 +290,7 @@ export function validateStimulus(value: unknown): string[] {
       if (primitive.type === "line" || primitive.type === "arrow") return onlyKeys(primitive, ["type", "x1", "y1", "x2", "y2", "label"]) && x(primitive.x1) && y(primitive.y1) && x(primitive.x2) && y(primitive.y2) && optionalText(primitive.label, RICH_CONTENT_LIMITS.labelCharacters);
       if (primitive.type === "circle") return onlyKeys(primitive, ["type", "cx", "cy", "r", "label"]) && x(primitive.cx) && y(primitive.cy) && finite(primitive.r) && primitive.r > 0 && Number(primitive.cx) - primitive.r >= 0 && Number(primitive.cx) + primitive.r <= Number(value.width) && Number(primitive.cy) - primitive.r >= 0 && Number(primitive.cy) + primitive.r <= Number(value.height) && optionalText(primitive.label, RICH_CONTENT_LIMITS.labelCharacters);
       if (primitive.type === "rectangle") return onlyKeys(primitive, ["type", "x", "y", "width", "height", "label"]) && x(primitive.x) && y(primitive.y) && finite(primitive.width) && primitive.width > 0 && finite(primitive.height) && primitive.height > 0 && Number(primitive.x) + primitive.width <= Number(value.width) && Number(primitive.y) + primitive.height <= Number(value.height) && optionalText(primitive.label, RICH_CONTENT_LIMITS.labelCharacters);
-      if (primitive.type === "polygon") return onlyKeys(primitive, ["type", "points", "label"]) && Array.isArray(primitive.points) && primitive.points.length >= 3 && primitive.points.length <= 12 && primitive.points.every((point) => record(point) && onlyKeys(point, ["x", "y"]) && x(point.x) && y(point.y)) && optionalText(primitive.label, RICH_CONTENT_LIMITS.labelCharacters);
+      if (primitive.type === "polygon") return onlyKeys(primitive, ["type", "points", "label"]) && Array.isArray(primitive.points) && primitive.points.length >= 3 && primitive.points.length <= RICH_CONTENT_LIMITS.polygonPoints && primitive.points.every((point) => record(point) && onlyKeys(point, ["x", "y"]) && x(point.x) && y(point.y)) && optionalText(primitive.label, RICH_CONTENT_LIMITS.labelCharacters);
       return primitive.type === "label" && onlyKeys(primitive, ["type", "x", "y", "text"]) && x(primitive.x) && y(primitive.y) && isSafeEducationalText(primitive.text, RICH_CONTENT_LIMITS.labelCharacters);
     };
     return value.primitives.every(primitiveValid) ? [] : ["diagram contains an invalid or unsafe primitive"];
