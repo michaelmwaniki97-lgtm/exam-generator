@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import type { ExamBlueprint } from "../blueprint/types.ts";
-import { describeGroundingProvenanceViolations, describeViolations, generateExamWithCompletion, type GeneratedExam } from "./generation-core.ts";
+import { describeGroundingProvenanceViolations, describeViolations, generateExamWithCompletion, generateQuestionContentWithCompletion, type GeneratedExam, type StructuredResponseFormat } from "./generation-core.ts";
 import { describeSemanticViolations } from "./semantic-quality.ts";
 
 function blueprint(family: "data_graph_interpretation" | "creative_composition" = "data_graph_interpretation"): ExamBlueprint {
@@ -19,6 +19,25 @@ function richExam(): GeneratedExam {
 }
 
 test("rich valid AI output passes", () => assert.deepEqual(describeViolations(richExam(), blueprint(), { requireExplicitMarkingModel: true }), []));
+test("staged rich question response schema requires every declared object property", async () => {
+  let responseFormat: StructuredResponseFormat | undefined;
+  await generateQuestionContentWithCompletion({ blueprint: blueprint(), topics: [], subjectName: "Mathematics" }, async (_messages, format) => {
+    responseFormat = format;
+    return JSON.stringify({ questions: [{ slotId: "slot-01", text: "State one use of rainfall measurements in farming.", topic: "Interpretation", options: [], stimuli: null }] });
+  });
+  assert.equal(responseFormat?.type, "json_schema");
+  const visit = (value: unknown): void => {
+    if (!value || typeof value !== "object") return;
+    if (Array.isArray(value)) { value.forEach(visit); return; }
+    const schema = value as Record<string, unknown>;
+    if (schema.type === "object") {
+      const properties = schema.properties as Record<string, unknown>;
+      assert.deepEqual(new Set(schema.required as string[]), new Set(Object.keys(properties)));
+    }
+    Object.values(schema).forEach(visit);
+  };
+  if (responseFormat?.type === "json_schema") visit(responseFormat.json_schema.schema);
+});
 test("phantom-resource AI output still fails", () => { const exam = richExam(); delete exam.sections[0].questions[0].stimuli; assert.match(describeViolations(exam, blueprint()).join(" "), /renderer cannot provide/); });
 test("AI cannot use rich content to alter canonical marks or slot structure", () => {
   const exam = richExam(); exam.sections[0].questions[0].marks = 40; exam.sections[0].questions[0].stimuli?.push({ type: "table", id: "extra", columns: ["A"], rows: [["B"]] });

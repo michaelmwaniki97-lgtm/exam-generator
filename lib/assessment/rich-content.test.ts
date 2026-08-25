@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { allowedStimulusTypes, isSafeEducationalText, richStimuliArrayJsonSchema, RICH_CONTENT_LIMITS, validateQuestionStimuli, validateStimulus } from "./rich-content.ts";
+import { allowedStimulusTypes, canonicalizeRichStimuli, isSafeEducationalText, richStimuliArrayJsonSchema, RICH_CONTENT_LIMITS, validateQuestionStimuli, validateStimulus } from "./rich-content.ts";
 import { allowedMarkingModels, validateNumericalMethod, validateRubricCriteria } from "./marking-models.ts";
 
 const passage = { type: "passage", id: "reading-1", content: "A short original passage about responsible water use.", sourceType: "generated" };
@@ -46,6 +46,19 @@ test("provider stimulus schema shares canonical discriminators and quantitative 
   assert.match(serialized, /"provenance"/);
   assert.doesNotMatch(serialized, /"additionalProperties":true/);
 });
+test("provider stimulus schema requires every declared object property", () => {
+  const visit = (value: unknown): void => {
+    if (!value || typeof value !== "object") return;
+    if (Array.isArray(value)) { value.forEach(visit); return; }
+    const schema = value as Record<string, unknown>;
+    if (schema.type === "object") {
+      const properties = schema.properties as Record<string, unknown>;
+      assert.deepEqual(new Set(schema.required as string[]), new Set(Object.keys(properties)));
+    }
+    Object.values(schema).forEach(visit);
+  };
+  visit(richStimuliArrayJsonSchema());
+});
 test("unsupported and quantitatively oversized stimuli fail canonicalization", () => {
   assert.match(validateQuestionStimuli([{ type: "map", id: "map-1" }], ["graph"]).join(" "), /unsupported|not permitted/);
   assert.match(validateStimulus({ ...passage, content: "x".repeat(RICH_CONTENT_LIMITS.passageCharacters + 1) }).join(" "), /empty, unsafe, or oversized/);
@@ -57,6 +70,15 @@ test("unsupported and quantitatively oversized stimuli fail canonicalization", (
 test("authorized textbook provenance is bounded and identifier-only", () => {
   assert.deepEqual(validateStimulus({ ...passage, sourceType: "authorized_textbook", provenance: { textbookId: "book-1", documentId: "doc-1", chunkIds: ["chunk-1"] } }), []);
   assert.match(validateStimulus({ ...passage, sourceType: "authorized_textbook", provenance: { url: "https://example.test/private.pdf" } }).join(" "), /provenance/);
+});
+test("nullable provider optionals canonicalize to existing absent semantics", () => {
+  const value = canonicalizeRichStimuli([{ ...passage, title: null, instructions: null, provenance: { textbookId: null, documentId: null, chunkIds: null, attribution: null } }]);
+  assert.deepEqual(validateQuestionStimuli(value, ["passage"]), []);
+  assert.deepEqual(canonicalizeRichStimuli(null), undefined);
+});
+test("canonicalization does not hide malformed provenance", () => {
+  const value = canonicalizeRichStimuli([{ ...passage, provenance: { textbookId: 7, documentId: null, chunkIds: null, attribution: null } }]);
+  assert.match(validateQuestionStimuli(value, ["passage"]).join(" "), /provenance/);
 });
 test("profile and family capabilities are intersected", () => {
   assert.deepEqual(allowedStimulusTypes("comprehension", ["passage", "table"]), ["passage"]);

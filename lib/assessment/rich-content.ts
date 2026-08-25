@@ -100,55 +100,80 @@ export type RichStimulus =
 type JsonSchema = Record<string, unknown>;
 const boundedString = (maxLength: number): JsonSchema => ({ type: "string", minLength: 1, maxLength, pattern: "\\S" });
 const boundedNumber = (minimum = -RICH_CONTENT_LIMITS.coordinateMagnitude, maximum = RICH_CONTENT_LIMITS.coordinateMagnitude): JsonSchema => ({ type: "number", minimum, maximum });
-const closedObject = (properties: Record<string, JsonSchema>, required: string[]): JsonSchema => ({ type: "object", additionalProperties: false, properties, required });
+const nullable = (schema: JsonSchema): JsonSchema => ({ anyOf: [schema, { type: "null" }] });
+const closedObject = (properties: Record<string, JsonSchema>): JsonSchema => ({ type: "object", additionalProperties: false, properties, required: Object.keys(properties) });
 const baseSchema = (type: SupportedStimulusType): Record<string, JsonSchema> => ({
   type: { const: type },
   id: boundedString(RICH_CONTENT_LIMITS.idCharacters),
-  title: boundedString(RICH_CONTENT_LIMITS.titleCharacters),
-  instructions: boundedString(RICH_CONTENT_LIMITS.instructionCharacters),
+  title: nullable(boundedString(RICH_CONTENT_LIMITS.titleCharacters)),
+  instructions: nullable(boundedString(RICH_CONTENT_LIMITS.instructionCharacters)),
 });
 const provenanceSchema = closedObject({
-  textbookId: boundedString(RICH_CONTENT_LIMITS.idCharacters),
-  documentId: boundedString(RICH_CONTENT_LIMITS.idCharacters),
-  chunkIds: { type: "array", maxItems: RICH_CONTENT_LIMITS.provenanceChunkIds, items: boundedString(RICH_CONTENT_LIMITS.idCharacters) },
-  attribution: boundedString(RICH_CONTENT_LIMITS.attributionCharacters),
-}, []);
-const pointSchema = closedObject({ x: boundedNumber(), y: boundedNumber() }, ["x", "y"]);
-const diagramPointSchema = closedObject({ x: boundedNumber(0), y: boundedNumber(0) }, ["x", "y"]);
-const optionalLabel = { label: boundedString(RICH_CONTENT_LIMITS.labelCharacters) };
+  textbookId: nullable(boundedString(RICH_CONTENT_LIMITS.idCharacters)),
+  documentId: nullable(boundedString(RICH_CONTENT_LIMITS.idCharacters)),
+  chunkIds: nullable({ type: "array", maxItems: RICH_CONTENT_LIMITS.provenanceChunkIds, items: boundedString(RICH_CONTENT_LIMITS.idCharacters) }),
+  attribution: nullable(boundedString(RICH_CONTENT_LIMITS.attributionCharacters)),
+});
+const pointSchema = closedObject({ x: boundedNumber(), y: boundedNumber() });
+const diagramPointSchema = closedObject({ x: boundedNumber(0), y: boundedNumber(0) });
+const optionalLabel = { label: nullable(boundedString(RICH_CONTENT_LIMITS.labelCharacters)) };
 const diagramPrimitiveSchemas: JsonSchema[] = [
-  ...(["line", "arrow"] as const).map((type) => closedObject({ type: { const: type }, x1: boundedNumber(0), y1: boundedNumber(0), x2: boundedNumber(0), y2: boundedNumber(0), ...optionalLabel }, ["type", "x1", "y1", "x2", "y2"])),
-  closedObject({ type: { const: "circle" }, cx: boundedNumber(0), cy: boundedNumber(0), r: { type: "number", exclusiveMinimum: 0, maximum: RICH_CONTENT_LIMITS.coordinateMagnitude }, ...optionalLabel }, ["type", "cx", "cy", "r"]),
-  closedObject({ type: { const: "rectangle" }, x: boundedNumber(0), y: boundedNumber(0), width: { type: "number", exclusiveMinimum: 0, maximum: RICH_CONTENT_LIMITS.coordinateMagnitude }, height: { type: "number", exclusiveMinimum: 0, maximum: RICH_CONTENT_LIMITS.coordinateMagnitude }, ...optionalLabel }, ["type", "x", "y", "width", "height"]),
-  closedObject({ type: { const: "polygon" }, points: { type: "array", minItems: 3, maxItems: RICH_CONTENT_LIMITS.polygonPoints, items: diagramPointSchema }, ...optionalLabel }, ["type", "points"]),
-  closedObject({ type: { const: "label" }, x: boundedNumber(0), y: boundedNumber(0), text: boundedString(RICH_CONTENT_LIMITS.labelCharacters) }, ["type", "x", "y", "text"]),
+  ...(["line", "arrow"] as const).map((type) => closedObject({ type: { const: type }, x1: boundedNumber(0), y1: boundedNumber(0), x2: boundedNumber(0), y2: boundedNumber(0), ...optionalLabel })),
+  closedObject({ type: { const: "circle" }, cx: boundedNumber(0), cy: boundedNumber(0), r: { type: "number", exclusiveMinimum: 0, maximum: RICH_CONTENT_LIMITS.coordinateMagnitude }, ...optionalLabel }),
+  closedObject({ type: { const: "rectangle" }, x: boundedNumber(0), y: boundedNumber(0), width: { type: "number", exclusiveMinimum: 0, maximum: RICH_CONTENT_LIMITS.coordinateMagnitude }, height: { type: "number", exclusiveMinimum: 0, maximum: RICH_CONTENT_LIMITS.coordinateMagnitude }, ...optionalLabel }),
+  closedObject({ type: { const: "polygon" }, points: { type: "array", minItems: 3, maxItems: RICH_CONTENT_LIMITS.polygonPoints, items: diagramPointSchema }, ...optionalLabel }),
+  closedObject({ type: { const: "label" }, x: boundedNumber(0), y: boundedNumber(0), text: boundedString(RICH_CONTENT_LIMITS.labelCharacters) }),
 ];
 
 /** Provider-facing schema; validateQuestionStimuli remains the final runtime authority. */
 export function richStimuliArrayJsonSchema(): JsonSchema {
   const text = (type: "passage" | "extract", maxLength: number) => closedObject({
-    ...baseSchema(type), content: boundedString(maxLength), sourceType: { enum: STIMULUS_SOURCE_TYPES }, provenance: provenanceSchema,
-  }, ["type", "id", "content", "sourceType"]);
+    ...baseSchema(type), content: boundedString(maxLength), sourceType: { enum: STIMULUS_SOURCE_TYPES }, provenance: nullable(provenanceSchema),
+  });
   const table = closedObject({
-    ...baseSchema("table"), caption: boundedString(RICH_CONTENT_LIMITS.titleCharacters),
+    ...baseSchema("table"), caption: nullable(boundedString(RICH_CONTENT_LIMITS.titleCharacters)),
     columns: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.tableColumns, items: boundedString(RICH_CONTENT_LIMITS.tableCellCharacters) },
     rows: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.tableRows, items: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.tableColumns, items: boundedString(RICH_CONTENT_LIMITS.tableCellCharacters) } },
-  }, ["type", "id", "columns", "rows"]);
+  });
   const dataset = closedObject({
     ...baseSchema("dataset"), labels: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.datasetValuesPerSeries, items: boundedString(RICH_CONTENT_LIMITS.labelCharacters) },
-    series: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.datasetSeries, items: closedObject({ name: boundedString(RICH_CONTENT_LIMITS.labelCharacters), unit: boundedString(RICH_CONTENT_LIMITS.unitCharacters), values: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.datasetValuesPerSeries, items: boundedNumber() } }, ["name", "unit", "values"]) },
-  }, ["type", "id", "labels", "series"]);
-  const axis = closedObject({ label: boundedString(RICH_CONTENT_LIMITS.labelCharacters), unit: boundedString(RICH_CONTENT_LIMITS.unitCharacters), min: boundedNumber(), max: boundedNumber() }, ["label", "unit", "min", "max"]);
+    series: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.datasetSeries, items: closedObject({ name: boundedString(RICH_CONTENT_LIMITS.labelCharacters), unit: boundedString(RICH_CONTENT_LIMITS.unitCharacters), values: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.datasetValuesPerSeries, items: boundedNumber() } }) },
+  });
+  const axis = closedObject({ label: boundedString(RICH_CONTENT_LIMITS.labelCharacters), unit: boundedString(RICH_CONTENT_LIMITS.unitCharacters), min: boundedNumber(), max: boundedNumber() });
   const graph = closedObject({
     ...baseSchema("graph"), graphType: { enum: GRAPH_TYPES }, xAxis: axis, yAxis: axis,
-    series: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.graphSeries, items: closedObject({ name: boundedString(RICH_CONTENT_LIMITS.labelCharacters), points: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.graphPointsPerSeries, items: pointSchema } }, ["name", "points"]) },
-  }, ["type", "id", "graphType", "xAxis", "yAxis", "series"]);
+    series: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.graphSeries, items: closedObject({ name: boundedString(RICH_CONTENT_LIMITS.labelCharacters), points: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.graphPointsPerSeries, items: pointSchema } }) },
+  });
   const diagram = closedObject({
-    ...baseSchema("diagram"), caption: boundedString(RICH_CONTENT_LIMITS.titleCharacters),
+    ...baseSchema("diagram"), caption: nullable(boundedString(RICH_CONTENT_LIMITS.titleCharacters)),
     width: { type: "number", exclusiveMinimum: 0, maximum: RICH_CONTENT_LIMITS.coordinateMagnitude }, height: { type: "number", exclusiveMinimum: 0, maximum: RICH_CONTENT_LIMITS.coordinateMagnitude },
     primitives: { type: "array", minItems: 1, maxItems: RICH_CONTENT_LIMITS.diagramPrimitives, items: { anyOf: diagramPrimitiveSchemas } },
-  }, ["type", "id", "width", "height", "primitives"]);
+  });
   return { type: "array", maxItems: RICH_CONTENT_LIMITS.stimuliPerQuestion, items: { anyOf: [text("passage", RICH_CONTENT_LIMITS.passageCharacters), text("extract", RICH_CONTENT_LIMITS.extractCharacters), table, dataset, graph, diagram] } };
+}
+
+/** Converts provider-required nullable optionals back to the canonical absent representation. */
+export function canonicalizeRichStimuli(value: unknown): unknown {
+  if (value === null) return undefined;
+  if (!Array.isArray(value)) return value;
+  return value.map((item) => {
+    if (!item || typeof item !== "object" || Array.isArray(item)) return item;
+    const stimulus = { ...(item as Record<string, unknown>) };
+    for (const key of ["title", "instructions", "caption"]) if (stimulus[key] === null) delete stimulus[key];
+    if (stimulus.provenance === null) delete stimulus.provenance;
+    else if (stimulus.provenance && typeof stimulus.provenance === "object" && !Array.isArray(stimulus.provenance)) {
+      const provenance = { ...(stimulus.provenance as Record<string, unknown>) };
+      for (const key of ["textbookId", "documentId", "chunkIds", "attribution"]) if (provenance[key] === null) delete provenance[key];
+      stimulus.provenance = provenance;
+    }
+    if (Array.isArray(stimulus.primitives)) stimulus.primitives = stimulus.primitives.map((item) => {
+      if (!item || typeof item !== "object" || Array.isArray(item)) return item;
+      const primitive = { ...(item as Record<string, unknown>) };
+      if (primitive.label === null) delete primitive.label;
+      return primitive;
+    });
+    return stimulus;
+  });
 }
 
 const FAMILY_STIMULI: Partial<Record<QuestionFamily, readonly SupportedStimulusType[]>> = {
