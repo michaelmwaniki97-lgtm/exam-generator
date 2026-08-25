@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { DarajaPaymentProvider, darajaAccountReference, darajaPassword, loadDarajaConfig, parseDarajaCallback, type DarajaCallback, type DarajaConfig } from "./daraja.ts";
 import { processDarajaCallback, reconcileOwnedExamPayment } from "./daraja-service.ts";
-import { classifyNetworkFailure, safeDarajaResponseFields, safeDarajaTelemetryEvent } from "./telemetry.ts";
+import { classifyNetworkFailure, safeDarajaOAuthShapeFields, safeDarajaResponseFields, safeDarajaTelemetryEvent } from "./telemetry.ts";
 import { PAYMENT_CURRENCY, PaymentError, type BeginAttemptResult, type PaymentActor, type PaymentAttempt, type PaymentProvider, type PaymentRepository, type ProviderCheck, type ProviderInitiation } from "./core.ts";
 
 const env = (extra:Record<string,string>={}) => ({PAYMENT_PROVIDER:"daraja",MPESA_ENVIRONMENT:"sandbox",MPESA_CONSUMER_KEY:"consumer-key",MPESA_CONSUMER_SECRET:"consumer-secret",MPESA_BUSINESS_SHORTCODE:"174379",MPESA_PARTY_B:"174379",MPESA_PASSKEY:"passkey",MPESA_TRANSACTION_TYPE:"CustomerPayBillOnline",PUBLIC_APP_URL:"https://school.example/",...extra});
@@ -67,6 +67,16 @@ test("telemetry logger schema drops unknown fields and sanitizes allowed text ag
   const event=safeDarajaTelemetryEvent({stage:"stk_push",event:"terminal_failure",classification:"stk_rejected",message:"Rejected 254712345678",Authorization:"Bearer never-log"} as Parameters<typeof safeDarajaTelemetryEvent>[0]&{Authorization:string});
   assert.deepEqual(event,{stage:"stk_push",event:"terminal_failure",classification:"stk_rejected",message:"Rejected [redacted-phone]"});
   assert.doesNotMatch(JSON.stringify(event),/Authorization|never-log|254712345678/);
+});
+test("OAuth shape diagnostics expose validation metadata without token values",()=>{
+  const fields=safeDarajaOAuthShapeFields({access_token:"super-secret-token",expires_in:"3599",unexpected_key:"ignored value"});
+  assert.deepEqual(fields,{responseIsJson:true,topLevelJsonKeys:["access_token","expires_in","unexpected_key"],accessTokenPresent:true,accessTokenType:"string",accessTokenNonempty:true,expiresInPresent:true,expiresInType:"string",expiresInSafeValue:"3599",expiresInParseableInteger:true,failedConditions:["expires_in_not_number"]});
+  assert.doesNotMatch(JSON.stringify(fields),/super-secret-token|ignored value/);
+});
+test("OAuth shape diagnostics identify every existing validator predicate",()=>{
+  assert.deepEqual(safeDarajaOAuthShapeFields({access_token:"",expires_in:59}).failedConditions,["access_token_empty","expires_in_below_minimum"]);
+  assert.deepEqual(safeDarajaOAuthShapeFields({access_token:7,expires_in:86401}).failedConditions,["access_token_not_string","expires_in_above_maximum"]);
+  assert.deepEqual(safeDarajaOAuthShapeFields({access_token:"ok",expires_in:3599}).failedConditions,[]);
 });
 test("browser actions cannot submit amount status or CheckoutRequestID",()=>{const source=readFileSync(new URL("../../app/actions/payments.ts",import.meta.url),"utf8");assert.doesNotMatch(source,/formData\.get\(["'](?:amount|status|checkout|CheckoutRequestID)/)});
 test("provider config is server-only and fake provider cannot be selected",()=>{const source=readFileSync(new URL("./provider-config.ts",import.meta.url),"utf8");assert.match(source,/server-only/);assert.doesNotMatch(source,/FakePaymentProvider|fallback/);assert.doesNotMatch(source,/NEXT_PUBLIC_/)});

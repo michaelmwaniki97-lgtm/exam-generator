@@ -15,6 +15,19 @@ type SafeProviderFields = {
   checkoutRequestIdReturned?: boolean;
 };
 
+export type SafeOAuthShapeFields = {
+  responseIsJson: boolean;
+  topLevelJsonKeys: string[];
+  accessTokenPresent: boolean;
+  accessTokenType: string;
+  accessTokenNonempty: boolean;
+  expiresInPresent: boolean;
+  expiresInType: string;
+  expiresInSafeValue?: string;
+  expiresInParseableInteger: boolean;
+  failedConditions: string[];
+};
+
 const SAFE_TEXT_LIMIT = 500;
 
 function safeText(value: unknown, maximum = SAFE_TEXT_LIMIT): string | undefined {
@@ -36,6 +49,48 @@ export function safeDarajaResponseFields(stage: "oauth" | "stk_push", value: unk
       merchantRequestIdReturned: typeof response.MerchantRequestID === "string" && response.MerchantRequestID.length > 0,
       checkoutRequestIdReturned: typeof response.CheckoutRequestID === "string" && response.CheckoutRequestID.length > 0,
     } : {}),
+  };
+}
+
+export function safeDarajaOAuthShapeFields(value: unknown): SafeOAuthShapeFields {
+  const isObject = Boolean(value && typeof value === "object" && !Array.isArray(value));
+  const response = isObject ? value as Record<string, unknown> : {};
+  const tokenPresent = Object.prototype.hasOwnProperty.call(response, "access_token");
+  const expiresPresent = Object.prototype.hasOwnProperty.call(response, "expires_in");
+  const token = response.access_token;
+  const expires = response.expires_in;
+  const tokenString = typeof token === "string";
+  const tokenNonempty = tokenString && token.length > 0;
+  const tokenWithinLimit = tokenString && token.length <= 4096;
+  const tokenWithoutControls = tokenString && !/[\u0000-\u001f\u007f]/.test(token);
+  const expiresNumber = typeof expires === "number";
+  const expiresSafeInteger = expiresNumber && Number.isSafeInteger(expires);
+  const expiresDigits = typeof expires === "string" && /^\d{1,10}$/.test(expires);
+  const parseableInteger = expiresSafeInteger || (expiresDigits && Number.isSafeInteger(Number(expires)));
+  const safeExpires = expiresSafeInteger && expires >= 0 ? String(expires) : expiresDigits ? expires : undefined;
+  const failedConditions = [
+    ...(!tokenPresent ? ["access_token_missing"] : []),
+    ...(tokenPresent && !tokenString ? ["access_token_not_string"] : []),
+    ...(tokenString && !tokenNonempty ? ["access_token_empty"] : []),
+    ...(tokenString && !tokenWithinLimit ? ["access_token_too_long"] : []),
+    ...(tokenString && !tokenWithoutControls ? ["access_token_has_control_characters"] : []),
+    ...(!expiresPresent ? ["expires_in_missing"] : []),
+    ...(expiresPresent && !expiresNumber ? ["expires_in_not_number"] : []),
+    ...(expiresNumber && !expiresSafeInteger ? ["expires_in_not_safe_integer"] : []),
+    ...(expiresSafeInteger && expires < 60 ? ["expires_in_below_minimum"] : []),
+    ...(expiresSafeInteger && expires > 86_400 ? ["expires_in_above_maximum"] : []),
+  ];
+  return {
+    responseIsJson: true,
+    topLevelJsonKeys: isObject ? Object.keys(response).filter((key) => /^[A-Za-z][A-Za-z0-9_]{0,63}$/.test(key)).slice(0, 32).sort() : [],
+    accessTokenPresent: tokenPresent,
+    accessTokenType: typeof token,
+    accessTokenNonempty: tokenNonempty,
+    expiresInPresent: expiresPresent,
+    expiresInType: typeof expires,
+    ...(safeExpires !== undefined ? { expiresInSafeValue: safeExpires } : {}),
+    expiresInParseableInteger: parseableInteger,
+    failedConditions,
   };
 }
 
@@ -61,6 +116,16 @@ type DarajaTelemetryEvent = {
   message?: string;
   merchantRequestIdReturned?: boolean;
   checkoutRequestIdReturned?: boolean;
+  responseIsJson?: boolean;
+  topLevelJsonKeys?: string[];
+  accessTokenPresent?: boolean;
+  accessTokenType?: string;
+  accessTokenNonempty?: boolean;
+  expiresInPresent?: boolean;
+  expiresInType?: string;
+  expiresInSafeValue?: string;
+  expiresInParseableInteger?: boolean;
+  failedConditions?: string[];
 };
 
 export function safeDarajaTelemetryEvent(event: DarajaTelemetryEvent): DarajaTelemetryEvent {
@@ -75,6 +140,16 @@ export function safeDarajaTelemetryEvent(event: DarajaTelemetryEvent): DarajaTel
     ...(safeText(event.message) ? { message: safeText(event.message) } : {}),
     ...(typeof event.merchantRequestIdReturned === "boolean" ? { merchantRequestIdReturned: event.merchantRequestIdReturned } : {}),
     ...(typeof event.checkoutRequestIdReturned === "boolean" ? { checkoutRequestIdReturned: event.checkoutRequestIdReturned } : {}),
+    ...(typeof event.responseIsJson === "boolean" ? { responseIsJson: event.responseIsJson } : {}),
+    ...(Array.isArray(event.topLevelJsonKeys) ? { topLevelJsonKeys: event.topLevelJsonKeys.filter((key) => /^[A-Za-z][A-Za-z0-9_]{0,63}$/.test(key)).slice(0, 32) } : {}),
+    ...(typeof event.accessTokenPresent === "boolean" ? { accessTokenPresent: event.accessTokenPresent } : {}),
+    ...(event.accessTokenType ? { accessTokenType: safeText(event.accessTokenType, 16) } : {}),
+    ...(typeof event.accessTokenNonempty === "boolean" ? { accessTokenNonempty: event.accessTokenNonempty } : {}),
+    ...(typeof event.expiresInPresent === "boolean" ? { expiresInPresent: event.expiresInPresent } : {}),
+    ...(event.expiresInType ? { expiresInType: safeText(event.expiresInType, 16) } : {}),
+    ...(typeof event.expiresInSafeValue === "string" && /^\d{1,10}$/.test(event.expiresInSafeValue) ? { expiresInSafeValue: event.expiresInSafeValue } : {}),
+    ...(typeof event.expiresInParseableInteger === "boolean" ? { expiresInParseableInteger: event.expiresInParseableInteger } : {}),
+    ...(Array.isArray(event.failedConditions) ? { failedConditions: event.failedConditions.filter((condition) => /^[a-z_]{1,64}$/.test(condition)).slice(0, 16) } : {}),
   };
 }
 

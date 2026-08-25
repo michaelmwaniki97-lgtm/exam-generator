@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { PaymentError, type PaymentProvider, type ProviderCheck, type ProviderInitiation } from "./core.ts";
-import { classifyNetworkFailure, logDarajaTelemetry, safeDarajaResponseFields } from "./telemetry.ts";
+import { classifyNetworkFailure, logDarajaTelemetry, safeDarajaOAuthShapeFields, safeDarajaResponseFields } from "./telemetry.ts";
 
 const SANDBOX_ORIGIN = "https://sandbox.safaricom.co.ke";
 const PRODUCTION_ORIGIN = "https://api.safaricom.co.ke";
@@ -156,10 +156,10 @@ export class DarajaPaymentProvider implements PaymentProvider {
     let json: unknown;
     try { json = await boundedJson(response); }
     catch (error) {
-      if (stage) logDarajaTelemetry({ stage, event: "terminal_failure", environment: this.config.environment, classification: stage === "oauth" ? "oauth_rejected" : "stk_rejected", httpStatus: response.status });
+      if (stage) logDarajaTelemetry({ stage, event: "terminal_failure", environment: this.config.environment, classification: stage === "oauth" ? "oauth_rejected" : "stk_rejected", httpStatus: response.status, ...(stage === "oauth" && response.status === 200 ? { responseIsJson: false } : {}) });
       throw error;
     }
-    const safeFields = stage ? safeDarajaResponseFields(stage, json) : {};
+    const safeFields = stage ? { ...safeDarajaResponseFields(stage, json), ...(stage === "oauth" && response.status === 200 ? safeDarajaOAuthShapeFields(json) : {}) } : {};
     if (stage) logDarajaTelemetry({ stage, event: "response", environment: this.config.environment, httpStatus: response.status, ...safeFields });
     if (!response.ok) {
       if (stage) logDarajaTelemetry({ stage, event: "terminal_failure", environment: this.config.environment, classification: stage === "oauth" ? "oauth_rejected" : "stk_rejected", httpStatus: response.status, ...safeFields });
@@ -178,7 +178,7 @@ export class DarajaPaymentProvider implements PaymentProvider {
     const basic = Buffer.from(`${this.config.consumerKey}:${this.config.consumerSecret}`, "utf8").toString("base64");
     const json = await this.request("oauth", this.config.oauthUrl, { method: "GET", headers: { Authorization: `Basic ${basic}`, Accept: "application/json" } });
     if (!boundedString(json.access_token, 4096) || typeof json.expires_in !== "number" || !Number.isSafeInteger(json.expires_in) || json.expires_in < 60 || json.expires_in > 86_400) {
-      logDarajaTelemetry({ stage: "oauth", event: "terminal_failure", environment: this.config.environment, classification: "oauth_rejected" });
+      logDarajaTelemetry({ stage: "oauth", event: "terminal_failure", environment: this.config.environment, classification: "oauth_rejected", ...safeDarajaOAuthShapeFields(json) });
       throw new PaymentError("VERIFICATION_FAILED", "M-Pesa service returned an invalid authentication response.");
     }
     this.token = { value: json.access_token, expiresAt: now + json.expires_in * 1000 };
