@@ -1,6 +1,28 @@
 # Self-Hosted Database Abstraction — RPC Foundation
 
-Status: RPC foundation and CRUD Phases 1-6 are checkpointed; CRUD Phase 7 (textbook and textbook-document reads) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+Status: RPC foundation and CRUD Phases 1-7 are checkpointed; CRUD Phase 8 (the isolated app-settings read) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+
+## CRUD Phase 8: app-settings read
+
+Phase 8 moves the one ordinary runtime `app_settings` read behind the narrow server-only `lib/app-settings-read` repository. Its only operation is `getExamPackagePrice`; it exposes neither arbitrary setting keys nor generic settings CRUD. The migrated call site is `getExamPackagePrice` in `lib/payments/server.ts`, used to display the configured package price when an authorized teacher does not yet have download entitlement and by the already-protected admin settings page.
+
+The exact setting remains `exam_package_price`. Its `value` is non-null JSONB seeded as `{ "amount": 100, "currency": "KES" }`; the read extracts only `amount`. The application accepts a safe whole-KES integer or a digit-only string and enforces the existing inclusive range of KES 1 through KES 100,000. It does not multiply or divide by 100 and performs no floating-point currency conversion. A missing row, query error, JSON null, array, or non-object remains `NOT_CONFIGURED`. A missing, malformed, fractional, zero, negative, or out-of-range amount remains `INVALID_PRICE`. There is no fallback price.
+
+Historical execution used `createAdminClient()` with the fixed key after the relevant server boundary; it did not use the requesting user's table RLS. The Supabase adapter retains that exact service-backed query and `maybeSingle` behavior. The PostgreSQL adapter therefore uses the existing fixed trusted transaction, a parameterized key, an explicit `value` projection, and the database's unique `key` constraint. No request can provide the key, backend, role, price, SQL, or execution mode. No RLS policy or privilege changes are introduced.
+
+Pricing remains server-authoritative. The browser payment action supplies an exam ID and phone, not an amount. The existing payment RPC independently reads the same setting, enforces the integer range and `KES`, and remains authoritative for attempt creation. STK acceptance and callbacks still do not create entitlement; trusted query/finalization, receipt/reference uniqueness, amount/currency checks, idempotency, cooldowns, limits, leases, and both existing PDF gates are unchanged.
+
+The admin settings mutation in `app/actions/payment-settings.ts` remains the existing authenticated, admin-authorized Supabase `.upsert()` and is not part of this read migration. Payment rows, remaining exam reads, textbook processing/removal, Auth, Storage, Daraja, schema, and production data are unchanged.
+
+Contract tests cover the fixed Supabase projection/key, default backend, whole-KES boundaries, missing/null/malformed behavior, and absence of a browser amount/backend/role input. The disposable PostgreSQL integration test changes only synthetic local setting data, restores the original fixture afterward, and proves both trusted access and denial to the raw runtime connection.
+
+PostgreSQL integration files are stateful tests over one disposable parity database and are intentionally launched sequentially. They are not included in `npm test` or any parallel npm/CI test script. Run the parity bootstrap first, then invoke each `*.integration.test.ts` file as its own Node process; do not pass multiple integration files to one `node --test` invocation, because Node may execute them concurrently and their synthetic fixtures can overlap. The Phase 8 setting test restores the fixed `exam_package_price` fixture before its process exits.
+
+Rollback remains configuration-first: omit `DATABASE_BACKEND` or set it to `supabase`. Before checkpoint, remove only the Phase 8 worktree changes; after checkpoint, revert only its reviewed commit. No database or production rollback is required.
+
+Using the reconciled source-occurrence method, one new Supabase fallback call replaces the one direct runtime read. Fallback adapter calls become 47, direct runtime reads become 10, writes remain 31, and the literal `.from()` total remains 88. Auth calls remain 19, Storage calls remain four, and dynamic maintenance reads remain four. Remaining direct runtime reads are `exams` 2, `payments` 6, and the two deferred Storage/write-coupled `textbook_documents` reads.
+
+The recommended next slice is a separately audited read-only migration of the two remaining non-payment `exams` reads, provided they can be isolated without altering ownership, payment, PDF, or mutation semantics. Payment-table reads should remain a separate security-critical phase.
 
 ## CRUD Phase 7: textbook and textbook-document reads
 

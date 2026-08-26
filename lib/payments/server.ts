@@ -5,7 +5,8 @@ import { createClient } from "../supabase/server";
 import { getTrustedRpcDatabase } from "../db";
 import { getCurrentUser, getUserRole } from "../auth/session";
 import { getIdentityReadRepository } from "../identity-read";
-import { mayDownloadExamPackage, PaymentError, PAYMENT_CURRENCY, validateExamPackagePrice, type BeginAttemptResult, type PaymentActor, type PaymentAttempt, type PaymentRepository, type ProviderInitiation } from "./core";
+import { getAppSettingsReadRepository } from "../app-settings-read";
+import { mayDownloadExamPackage, PaymentError, PAYMENT_CURRENCY, type BeginAttemptResult, type PaymentActor, type PaymentAttempt, type PaymentRepository, type ProviderInitiation } from "./core";
 
 type PaymentRow = {
   id: string; exam_id: string; teacher_id: string; amount: number; currency: string; phone: string;
@@ -27,9 +28,7 @@ export async function currentPaymentActor(): Promise<PaymentActor | null> {
 }
 
 export async function getExamPackagePrice(): Promise<number> {
-  const { data, error } = await createAdminClient().from("app_settings").select("value").eq("key", "exam_package_price").maybeSingle();
-  if (error || !data || typeof data.value !== "object" || data.value === null || Array.isArray(data.value)) throw new PaymentError("NOT_CONFIGURED", "Exam download pricing is not configured.");
-  return validateExamPackagePrice((data.value as Record<string, unknown>).amount);
+  return getAppSettingsReadRepository().getExamPackagePrice();
 }
 
 export async function getExamDownloadEntitlement(examId: string): Promise<{ allowed: boolean; admin: boolean; price: number | null }> {
