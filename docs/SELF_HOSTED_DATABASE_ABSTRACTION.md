@@ -1,6 +1,34 @@
 # Self-Hosted Database Abstraction — RPC Foundation
 
-Status: RPC foundation and CRUD Phases 1-9 are checkpointed; CRUD Phase 10A (payment reporting reads) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+Status: RPC foundation and CRUD Phases 1-10A are checkpointed; CRUD Phase 10B (payment entitlement read) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+
+## CRUD Phase 10B: payment entitlement read
+
+Phase 10B moves only the payment-table existence check used by `getExamDownloadEntitlement` into the separate server-only `lib/payment-entitlement` repository. Its sole operation is `hasSuccessfulPaymentForExam(examId)`. It is intentionally not part of payment reporting, generic payment CRUD, or the Phase 10C attempt/reconciliation repository.
+
+The historical Supabase query selected only `id`, filtered by the already-authorized `exam_id`, the teacher ID derived from Supabase Auth, and `status = 'paid'`, then applied `LIMIT 1`. It had no ordering, `single`/`maybeSingle`, provider, `verification_status`, amount, currency, receipt, or correlation filter. Zero rows or a query failure meant no payment entitlement; one or multiple paid rows meant entitlement by existence. Both adapters preserve that effective contract.
+
+Canonical entitlement therefore remains the generic payment state `status = 'paid'`. `verification_status` does not independently participate in this read. The existing trusted finalization function is responsible for verifying exam/teacher/provider/amount/currency/reference correlation before atomically writing both payment `status = 'paid'`, `verification_status = 'verified'`, completion evidence, and the exam entitlement status. Authenticated users retain read-only payment privileges and cannot create this state. STK acceptance, callback receipt, external/provider request IDs, `provider_reference`, or `mpesa_ref` without canonical paid status do not unlock anything.
+
+Ownership remains server-derived: Supabase Auth, admin-first role resolution, exact teacher profile, ownership-scoped exam metadata, then the ownership-scoped payment existence check. PostgreSQL uses the existing authenticated transaction identity and explicit `exam_id` plus `teacher_id` predicates; it does not enter trusted/service execution and additionally rejects `public.is_admin()` as defense in depth. The Supabase adapter retains the ordinary authenticated client and existing payment RLS. No browser argument supplies teacher identity, backend, database role, or execution mode.
+
+Admin behavior is unchanged and remains separate from payment rows. The existing admin document/PDF branch returns before teacher identity or payment lookup; it does not create or infer a payment and does not broaden admin marking-scheme RLS. Dual-role users resolve admin-first and cannot enter the teacher entitlement repository.
+
+Legacy exam status remains unchanged. After the owned exam metadata lookup, entitlement is the existing OR expression: a canonical paid payment row, `exam.status = 'paid'`, or `exam.status = 'downloaded'`. Phase 10B neither removes nor expands that migration-era fallback. Paid PDF loading order remains authentication, role/ownership metadata, entitlement, private exam/marking content, canonical validation, and rendering. Unpaid teacher previews remain unchanged.
+
+The query is provider-neutral. It does not name Daraja, M-Pesa, a receipt, or a provider. Synthetic PostgreSQL coverage proves a hypothetical card-provider row in the same canonical paid state grants entitlement, while pending/failed Daraja rows carrying external request IDs, provider request IDs, provider references, and even receipt-shaped fixture data do not. Future card ingestion/finalization must still satisfy the existing trusted canonical state transition; no card implementation or provider-state redesign is included here.
+
+Amount and currency are not revalidated by the entitlement read because that was not the historical contract. Existing database constraints enforce positive bounded whole-KES rows, while trusted finalization compares the verified provider amount/currency with the stored attempt before writing paid state. Existing payment-core/Daraja tests remain the authority that underpayment or wrong currency cannot finalize.
+
+The three Phase 10C reads remain unchanged in `SupabasePaymentRepository`: `getAttempt(paymentId)`, `getAttemptByExternalRequest(externalRequestId)`, and `getLatestAttemptForExam(actor, examId)`. Their service-client execution, full attempt normalization, Daraja correlation, reuse ordering, and reconciliation semantics are untouched. Every payment write/RPC, callback, query, lease, finalization, entitlement mutation, Auth call, Storage operation, and textbook-document path also remains unchanged.
+
+Contract tests cover the exact Supabase projection/filter/limit, missing/error behavior, environment-only backend, server-derived identity, provider/receipt independence, legacy status fallback, Phase 10C separation, and private-content loading order. Disposable PostgreSQL fixtures cover Teacher A/B, unknown and raw unauthenticated identities, dual-role denial, paid/pending/failed rows, multiple paid rows, other-exam/other-teacher rows, request/reference/receipt-only evidence, malformed IDs, and a canonical synthetic future provider.
+
+Rollback remains configuration-first: omit `DATABASE_BACKEND` or set it to `supabase`. Before checkpoint, remove only the Phase 10B worktree changes; after checkpoint, revert only its reviewed commit. No schema, provider, payment-state, or production rollback is required.
+
+Using the reconciled source-occurrence method, one new Supabase fallback call replaces the direct entitlement read. Fallback adapter calls become 52, direct runtime reads become five, writes remain 31, and the literal `.from()` total remains 88. Auth calls remain 19, Storage calls remain four, and dynamic maintenance reads remain four. Remaining direct reads are the three Phase 10C `payments` reads and two deferred Storage/write-coupled `textbook_documents` reads.
+
+The recommended Phase 10C audit should treat the three service-backed attempt/reconciliation reads as one security-critical state-machine slice. It must preserve full-row normalization, provider correlation, exact latest-attempt status/order semantics, trusted execution, leases/backoff, and every mutation/RPC boundary without combining the work with provider implementation or writes.
 
 ## CRUD Phase 10A: payment reporting reads
 

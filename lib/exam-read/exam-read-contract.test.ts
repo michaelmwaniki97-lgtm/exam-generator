@@ -86,5 +86,6 @@ test("exam repository boundary is server-only and accepts no browser identity, b
   assert.doesNotMatch(payments, /\.from\("exams"\)/);
   assert.match(payments, /getTeacherExamPaymentMetadata\(examId\)/);
   assert.match(payments, /getTrustedExamReadRepository\(\)\.teacherOwnsExam\(examId, actor\.teacherId\)/);
-  assert.match(payments, /supabase\.from\("payments"\)/);
+  assert.match(payments, /getPaymentEntitlementReadRepository\(\)/);
+  assert.doesNotMatch(payments, /(?:supabase|client)\.from\("payments"\)\.select\("id"\)/);
 });

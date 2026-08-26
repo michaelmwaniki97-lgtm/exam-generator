@@ -87,6 +87,6 @@ test("reporting boundary preserves role-specific execution and cannot become pay
   assert.doesNotMatch(postgres, /select\s+\*/i);
   assert.doesNotMatch(factory + teacherPage + adminPage, /headers\(|cookies\(|request\.json|searchParams|teacherId\s*:|adminId\s*:|role\s*:/);
   assert.doesNotMatch(contracts, /phone|mpesa_ref|checkoutRequest|merchantRequest|provider_reference|external_request|lease|callback|content/i);
-  assert.equal((payments.match(/\.from\("payments"\)\.select/g) ?? []).length, 4);
+  assert.equal((payments.match(/\.from\("payments"\)\.select/g) ?? []).length, 3);
   assert.doesNotMatch(payments, /payment-reporting/);
 });

@@ -1,11 +1,11 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
 import { createAdminClient } from "../supabase/admin";
-import { createClient } from "../supabase/server";
 import { getTrustedRpcDatabase } from "../db";
 import { getCurrentUser, getUserRole } from "../auth/session";
 import { getIdentityReadRepository } from "../identity-read";
 import { getAppSettingsReadRepository } from "../app-settings-read";
+import { getPaymentEntitlementReadRepository } from "../payment-entitlement";
 import { getTeacherExamReadContext, getTrustedExamReadRepository } from "../exam-read";
 import { mayDownloadExamPackage, PaymentError, PAYMENT_CURRENCY, type BeginAttemptResult, type PaymentActor, type PaymentAttempt, type PaymentRepository, type ProviderInitiation } from "./core";
 
@@ -36,19 +36,17 @@ export async function getExamDownloadEntitlement(examId: string): Promise<{ allo
   const [user, role] = await Promise.all([getCurrentUser(), getUserRole()]);
   if (!user) throw new PaymentError("UNAUTHENTICATED", "Authentication required.");
   if (mayDownloadExamPackage(role, false, false)) return { allowed: true, admin: true, price: null };
-  const supabase = await createClient();
   let repository: Awaited<ReturnType<typeof getTeacherExamReadContext>>["repository"];
-  let teacherId: string;
   try {
-    ({ repository, teacherId } = await getTeacherExamReadContext());
+    ({ repository } = await getTeacherExamReadContext());
   } catch (error) {
     if (error instanceof Error && error.message === "Teacher access required.") throw new PaymentError("FORBIDDEN", "Access denied.");
     throw error;
   }
   const exam = await repository.getTeacherExamPaymentMetadata(examId);
   if (!exam) throw new PaymentError("NOT_FOUND", "Exam not found.");
-  const { data: paid } = await supabase.from("payments").select("id").eq("exam_id", examId).eq("teacher_id", teacherId).eq("status", "paid").limit(1);
-  const allowed = mayDownloadExamPackage(role, true, !!paid?.length || exam.status === "paid" || exam.status === "downloaded");
+  const hasSuccessfulPayment = await (await getPaymentEntitlementReadRepository()).hasSuccessfulPaymentForExam(examId);
+  const allowed = mayDownloadExamPackage(role, true, hasSuccessfulPayment || exam.status === "paid" || exam.status === "downloaded");
   return { allowed, admin: false, price: allowed ? null : await getExamPackagePrice() };
 }
 
