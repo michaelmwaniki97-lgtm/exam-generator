@@ -17,6 +17,7 @@ const migration = readFileSync(
 );
 const examAction = readFileSync(new URL("../../app/actions/exams.ts", import.meta.url), "utf8");
 const editorAction = readFileSync(new URL("../../app/actions/exam-editor.ts", import.meta.url), "utf8");
+const examReadFactory = readFileSync(new URL("../exam-read/index.ts", import.meta.url), "utf8");
 const regenerationProvider = readFileSync(new URL("../exam-editor/regenerate-question.ts", import.meta.url), "utf8");
 const aiClient = readFileSync(new URL("./client.ts", import.meta.url), "utf8");
 const aiConfig = readFileSync(new URL("./config.ts", import.meta.url), "utf8");
@@ -203,7 +204,11 @@ test("regeneration timeout is capped and the overall deadline fails closed", () 
 
 test("teacher identity is server-derived and reservation RPCs are service-role only", () => {
   assert.match(examAction, /\.eq\("user_id", user\.id\)/);
-  assert.match(editorAction, /async function authenticatedTeacher/);
+  assert.match(editorAction, /getTeacherExamReadContext\(\)/);
+  assert.match(examReadFactory, /supabase\.auth\.getUser\(\)/);
+  assert.match(examReadFactory, /\.eq\("user_id", user\.id\)/);
+  assert.match(examReadFactory, /new PostgresExamReadRepository\(user\.id, teacher\.id\)/);
+  assert.doesNotMatch(examReadFactory, /request|headers\(|cookies\(|userId\s*:/);
   assert.doesNotMatch(examAction, /data\.teacherId/);
   assert.match(migration, /revoke all on function public\.claim_ai_generation\(uuid, uuid\) from public, anon, authenticated/);
   assert.match(migration, /grant execute on function public\.claim_ai_generation\(uuid, uuid\) to service_role/);

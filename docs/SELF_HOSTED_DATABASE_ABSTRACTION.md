@@ -1,6 +1,24 @@
 # Self-Hosted Database Abstraction — RPC Foundation
 
-Status: RPC foundation and CRUD Phase 1 are checkpointed; CRUD Phase 2 (read-only curriculum hierarchy) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+Status: RPC foundation and CRUD Phases 1-2 are checkpointed; CRUD Phase 3 (read-only teacher-owned exams and marking schemes) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+
+## CRUD Phase 3: teacher-owned exam and marking-scheme reads
+
+Phase 3 adds the narrow, server-only `lib/exam-read` repository. Its three operations are `listRecentTeacherExams(limit)`, `listTeacherExams()`, and `getTeacherExamForEditing(id)`. The first two are deliberately metadata-only. They do not return exam JSON, marking content, payment data, phone numbers, provider references, or receipts. The editor projection returns exam JSON and marking content because the existing editor and regeneration validation require both.
+
+The migrated runtime callers are the teacher dashboard recent list, teacher exam history list, teacher edit page, and the canonical pre-read shared by editor save and question regeneration. Each repository context first validates the current Supabase Auth user and derives `teacher.id` from `user.id` on the server. Neither identity, `DATABASE_BACKEND`, nor a PostgreSQL role is accepted from a page, action argument, header, cookie field, or request body. The Supabase adapter retains PostgREST relations and ordering while adding an explicit server-derived `teacher_id` filter in addition to RLS.
+
+The PostgreSQL adapter runs under the existing transaction-local authenticated identity. Every exam query also contains `teacher_id = $n::uuid`; marking content is selected only by joining its parent exam and repeating that ownership predicate. List joins use explicit grade/subject name projections and deterministic descending `created_at` ordering. The editor's exam and scheme reads share one transaction, so they cannot observe different committed revisions. No method accepts a marking-scheme ID, which prevents a standalone scheme identifier from bypassing parent ownership.
+
+Foreign-owned and missing editor exams both normalize to `null`, preserving the current non-enumerating page/action behavior. Invalid route IDs continue to be rejected before repository access by the existing UUID checks. Paid/downloaded editor locking, editable-content validation, revision requirements, stale-revision rejection, atomic save, and regeneration leases remain unchanged; all persistence stays on the reviewed RPC abstraction.
+
+The shared exam-document loader is intentionally deferred. It combines teacher/admin authorization, full private document content, marking-scheme rendering, and the PDF payment entitlement boundary. Payment initiation and entitlement pre-reads are likewise deferred with all `payments` access. The admin dashboard count and admin dependency checks remain Supabase-backed because their privileged semantics differ from teacher ownership. Consequently this phase changes no PDF, payment, Daraja, admin, or document-detail behavior.
+
+Contract tests verify the default/environment-only backend, exact Supabase projections, explicit ownership filters, ordering, limits, nullable year behavior, missing rows, and server-only construction. Disposable PostgreSQL integration fixtures cover two teachers, draft/generated/paid/downloaded states, multiple revisions and dates, grade/subject labels, marking schemes, list data minimization, symmetric cross-teacher denial, unauthenticated denial, missing IDs, and malformed UUID failure. Synthetic content only is used.
+
+Rollback remains configuration-first: omit `DATABASE_BACKEND` or set it to `supabase`. Before checkpoint, remove only the Phase 3 worktree changes; after a reviewed checkpoint, revert only that commit. No schema, data, payment, auth, or storage rollback is required.
+
+The recommended next slice is a separately reviewed document/detail read phase that first separates lightweight authorization and entitlement checks from private content loading, with distinct teacher and admin contracts. It should not migrate payment tables or writes. If that boundary cannot be isolated cleanly, migrate another low-risk read domain instead.
 
 ## CRUD Phase 2: curriculum hierarchy reads
 

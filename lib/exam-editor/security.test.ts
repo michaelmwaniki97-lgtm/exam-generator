@@ -3,6 +3,8 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 const action = readFileSync(new URL("../../app/actions/exam-editor.ts", import.meta.url), "utf8");
+const examReadFactory = readFileSync(new URL("../exam-read/index.ts", import.meta.url), "utf8");
+const postgresExamRead = readFileSync(new URL("../exam-read/postgres.ts", import.meta.url), "utf8");
 const grounding = readFileSync(new URL("./regeneration-grounding.ts", import.meta.url), "utf8");
 const richRenderer = readFileSync(new URL("../../components/exam-content/rich-stimuli.tsx", import.meta.url), "utf8");
 const examView = readFileSync(new URL("../../app/teacher/exams/[id]/page.tsx", import.meta.url), "utf8");
@@ -11,9 +13,13 @@ const documentLoader = readFileSync(new URL("../exam-document/load.ts", import.m
 const documentModel = readFileSync(new URL("../exam-document/model.ts", import.meta.url), "utf8");
 
 test("server actions authenticate, derive teacher identity, and enforce ownership", () => {
-  assert.match(action, /auth\.getUser\(\)/);
-  assert.match(action, /from\("teachers"\).*eq\("user_id", user\.id\)/);
-  assert.match(action, /exam\.teacher_id !== teacherId/);
+  assert.match(action, /getTeacherExamReadContext\(\)/);
+  assert.match(examReadFactory, /supabase\.auth\.getUser\(\)/);
+  assert.match(examReadFactory, /from\("teachers"\).*eq\("user_id", user\.id\)/);
+  assert.match(examReadFactory, /new PostgresExamReadRepository\(user\.id, teacher\.id\)/);
+  assert.match(postgresExamRead, /where id = \$1::uuid and teacher_id = \$2::uuid/);
+  assert.match(postgresExamRead, /ms\.exam_id = \$1::uuid and e\.teacher_id = \$2::uuid/);
+  assert.doesNotMatch(examReadFactory + action, /request\.json|headers\(|cookies\(|userId\s*:/);
   assert.match(action, /status === "paid".*status === "downloaded"/);
   assert.match(action, /saveExamEdits\(examId: string, expectedRevision: number, inputs: EditableSlotInput\[\]\)/);
   assert.match(action, /regenerateExamQuestion\(examId: string, slotId: string, expectedRevision: number, requestId: string\)/);
@@ -21,13 +27,11 @@ test("server actions authenticate, derive teacher identity, and enforce ownershi
 
 test("regeneration authorization and reservation claim precede provider work", () => {
   const regeneration = action.slice(action.indexOf("export async function regenerateExamQuestion"));
-  const authentication = regeneration.indexOf("await authenticatedTeacher()");
-  const canonicalLoad = regeneration.indexOf("await loadCanonical(examId, teacherId)");
+  const canonicalLoad = regeneration.indexOf("await loadCanonical(examId)");
   const lease = regeneration.indexOf("await claimQuestionRegeneration");
   const groundingWork = regeneration.indexOf("await prepareRegenerationGrounding");
   const providerWork = regeneration.indexOf("await regenerateQuestion");
-  assert.ok(authentication >= 0 && authentication < canonicalLoad);
-  assert.ok(canonicalLoad < lease);
+  assert.ok(canonicalLoad >= 0 && canonicalLoad < lease);
   assert.ok(lease < groundingWork && groundingWork < providerWork);
 });
 

@@ -2,15 +2,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { UUID_PATTERN } from "@/lib/admin/validation";
-import { createClient } from "@/lib/supabase/server";
+import { getTeacherExamReadRepository } from "@/lib/exam-read";
 import { editableExamOrThrow, type StoredExamContent, type StoredMarkingContent } from "@/lib/exam-editor/core";
 import { ExamEditor } from "@/components/exam-editor/exam-editor";
 
 export default async function EditExamPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   if (!UUID_PATTERN.test(id)) notFound();
-  const supabase = await createClient();
-  const { data: exam } = await supabase.from("exams").select("id, exam_type, status, revision, content, marking_schemes(content)").eq("id", id).maybeSingle();
+  const exam = await (await getTeacherExamReadRepository()).getTeacherExamForEditing(id);
   if (!exam) notFound();
   const content = exam.content as unknown as StoredExamContent;
   const schemes = exam.marking_schemes as unknown as Array<{ content: StoredMarkingContent }>;

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FileText, Plus } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
+import { getTeacherExamReadRepository } from "@/lib/exam-read";
 
 const STATUS_LABELS: Record<string, string> = {
   draft: "Draft",
@@ -17,33 +17,8 @@ function formatDate(iso: string) {
   });
 }
 
-type ExamRow = {
-  id: string;
-  exam_type: string;
-  marks: number;
-  duration: number;
-  difficulty: string;
-  term: string | null;
-  year: number | null;
-  status: string;
-  created_at: string;
-  subjects: { name: string } | null;
-  grades: { name: string } | null;
-};
-
 export default async function TeacherExamsPage() {
-  const supabase = await createClient();
-
-  // RLS (exams_select_own) already restricts this to the signed-in
-  // teacher's own rows - no need to filter by teacher_id client-side.
-  const { data: exams } = await supabase
-    .from("exams")
-    .select(
-      "id, exam_type, marks, duration, difficulty, term, year, status, created_at, subjects(name), grades(name)"
-    )
-    .order("created_at", { ascending: false });
-
-  const rows = (exams ?? []) as unknown as ExamRow[];
+  const rows = await (await getTeacherExamReadRepository()).listTeacherExams();
 
   return (
     <div className="flex flex-col gap-8">

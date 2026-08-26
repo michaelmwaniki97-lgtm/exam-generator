@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, FileText, Plus } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/auth/session";
+import { getTeacherExamReadRepository } from "@/lib/exam-read";
 
 const STATUS_LABELS: Record<string, string> = {
   draft: "Draft",
@@ -18,15 +19,6 @@ function formatDate(iso: string) {
   });
 }
 
-type RecentExam = {
-  id: string;
-  exam_type: string;
-  status: string;
-  created_at: string;
-  subjects: { name: string } | null;
-  grades: { name: string } | null;
-};
-
 export default async function TeacherDashboardPage() {
   const user = await getCurrentUser();
   const supabase = await createClient();
@@ -37,15 +29,7 @@ export default async function TeacherDashboardPage() {
     .eq("user_id", user!.id)
     .maybeSingle();
 
-  // RLS (exams_select_own) already restricts this to the signed-in
-  // teacher's own rows.
-  const { data: recentExams } = await supabase
-    .from("exams")
-    .select("id, exam_type, status, created_at, subjects(name), grades(name)")
-    .order("created_at", { ascending: false })
-    .limit(5);
-
-  const exams = (recentExams ?? []) as unknown as RecentExam[];
+  const exams = await (await getTeacherExamReadRepository()).listRecentTeacherExams(5);
 
   return (
     <div className="flex flex-col gap-8">

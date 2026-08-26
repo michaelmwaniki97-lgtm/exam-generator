@@ -2,9 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { UUID_PATTERN } from "@/lib/admin/validation";
-import { createClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
 import { DatabaseRpcError, getTrustedRpcDatabase } from "@/lib/db";
+import { getTeacherExamReadContext } from "@/lib/exam-read";
 import { applyEditableChanges, editableExamOrThrow, ExamEditorError, type EditableSlotInput, type StoredExamContent, type StoredMarkingContent } from "@/lib/exam-editor/core";
 import { regenerateQuestion } from "@/lib/exam-editor/regenerate-question";
 import { prepareRegenerationGrounding } from "@/lib/exam-editor/regeneration-grounding";
@@ -31,27 +30,19 @@ function regenerationDiagnostic(target: string, stage: string, result: "started"
   console.error(`[Exam Regeneration] target=${safeTarget} stage=${stage} result=${result}`);
 }
 
-async function authenticatedTeacher() {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new ExamEditorError("You must be signed in to edit an exam.");
-  const { data: teacher } = await supabase.from("teachers").select("id").eq("user_id", user.id).maybeSingle();
-  if (!teacher) throw new ExamEditorError("Only teachers can edit exams.");
-  return teacher.id;
-}
-
-async function loadCanonical(examId: string, teacherId: string) {
+async function loadCanonical(examId: string) {
   if (!UUID_PATTERN.test(examId)) throw new ExamEditorError("The requested exam is invalid.");
-  const admin = createAdminClient();
-  const { data, error } = await admin.from("exams").select("id, teacher_id, subject_id, grade_id, exam_type, difficulty, status, revision, content, marking_schemes(content)").eq("id", examId).maybeSingle();
-  const exam = data as unknown as CanonicalExam | null;
-  if (error || !exam || exam.teacher_id !== teacherId) throw new ExamEditorError("The requested exam was not found or does not belong to you.");
+  let context;
+  try { context = await getTeacherExamReadContext(); }
+  catch { throw new ExamEditorError("You must be signed in as a teacher to edit an exam."); }
+  const exam = await context.repository.getTeacherExamForEditing(examId) as CanonicalExam | null;
+  if (!exam) throw new ExamEditorError("The requested exam was not found or does not belong to you.");
   if (exam.status === "paid" || exam.status === "downloaded") throw new ExamEditorError("Paid or downloaded exams are locked and cannot be edited.");
   if (!Number.isInteger(exam.revision) || exam.revision < 1) throw new ExamEditorError("This exam does not support safe concurrent editing.");
   if (exam.marking_schemes.length !== 1) throw new ExamEditorError("This exam does not have one compatible marking scheme.");
   editableExamOrThrow(exam.content, exam.marking_schemes[0].content);
   diagnostic("canonical_load", `result=ok revision=${exam.revision} schemes=${exam.marking_schemes.length}`);
-  return { admin, exam, marking: exam.marking_schemes[0].content };
+  return { exam, marking: exam.marking_schemes[0].content, teacherId: context.teacherId };
 }
 
 async function persist(exam: CanonicalExam, teacherId: string, expectedRevision: number, content: StoredExamContent, marking: StoredMarkingContent): Promise<ExamEditorActionResult> {
@@ -77,9 +68,8 @@ async function persist(exam: CanonicalExam, teacherId: string, expectedRevision:
 export async function saveExamEdits(examId: string, expectedRevision: number, inputs: EditableSlotInput[]): Promise<ExamEditorActionResult> {
   let stage = "authentication";
   try {
-    const teacherId = await authenticatedTeacher();
     stage = "canonical_load";
-    const { exam, marking } = await loadCanonical(examId, teacherId);
+    const { exam, marking, teacherId } = await loadCanonical(examId);
     stage = "validation";
     const next = applyEditableChanges(exam.content, marking, inputs);
     diagnostic("merge", "result=ok");
@@ -98,9 +88,8 @@ export async function regenerateExamQuestion(examId: string, slotId: string, exp
   regenerationDiagnostic(slotId, stage, "started");
   try {
     if (!slotId || slotId.length > 200) throw new ExamEditorError("The requested question is invalid.");
-    const teacherId = await authenticatedTeacher();
     stage = "canonical_load";
-    const { exam, marking } = await loadCanonical(examId, teacherId);
+    const { exam, marking, teacherId } = await loadCanonical(examId);
     regenerationDiagnostic(slotId, stage, "ok");
     const { blueprint } = editableExamOrThrow(exam.content, marking);
     stage = "target_contract";
