@@ -3,6 +3,7 @@ import {
   type CurriculumStrand,
 } from "@/components/admin/curriculum-manager";
 import { createClient } from "@/lib/supabase/server";
+import { getCatalogRepository } from "@/lib/catalog";
 
 type CurriculumSearchParams = {
   grade?: string;
@@ -16,13 +17,13 @@ export default async function AdminCurriculumPage({
 }) {
   const requested = await searchParams;
   const supabase = await createClient();
-  const [
-    { data: grades, error: gradesError },
-    { data: subjects, error: subjectsError },
-  ] = await Promise.all([
-    supabase.from("grades").select("id, name, level").order("created_at"),
-    supabase.from("subjects").select("id, name").order("name"),
+  const catalog = await getCatalogRepository();
+  const [gradesResult, subjectsResult] = await Promise.all([
+    catalog.listGradesByCreation().then((data) => ({ data, error: false })).catch(() => ({ data: [], error: true })),
+    catalog.listSubjectsByName().then((data) => ({ data, error: false })).catch(() => ({ data: [], error: true })),
   ]);
+  const { data: grades, error: gradesError } = gradesResult;
+  const { data: subjects, error: subjectsError } = subjectsResult;
 
   const gradeRows = grades ?? [];
   const subjectRows = subjects ?? [];

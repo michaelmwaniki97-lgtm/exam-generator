@@ -11,6 +11,7 @@ import { extractPdfText } from "@/lib/textbooks/pdf";
 import { EMBEDDING_BATCH_SIZE, EMBEDDING_DIMENSION, EMBEDDING_MODEL, TEXTBOOK_BUCKET } from "@/lib/textbooks/constants";
 import { hasPdfSignature, isSourceType, safePdfFilename, validateUploadMetadata, type UploadFileLike } from "@/lib/textbooks/validation";
 import { UUID_PATTERN } from "@/lib/admin/validation";
+import { getCatalogRepository } from "@/lib/catalog";
 
 export type TextbookActionState = { status: "success" | "error"; message: string } | undefined;
 const result = (status: "success" | "error", message: string): TextbookActionState => ({ status, message });
@@ -42,9 +43,10 @@ export async function createTextbookRecord(_state: TextbookActionState, formData
   if (publisherValue.length > 180) return result("error", "Publisher must be 180 characters or fewer.");
   if (!UUID_PATTERN.test(subjectId)) return result("error", "Select a valid subject.");
   if (!UUID_PATTERN.test(gradeId)) return result("error", "Select a valid grade or form.");
-  const [{ data: subject }, { data: grade }, { data: existing }] = await Promise.all([
-    context.supabase.from("subjects").select("id").eq("id", subjectId).maybeSingle(),
-    context.supabase.from("grades").select("id").eq("id", gradeId).maybeSingle(),
+  const catalog = await getCatalogRepository();
+  const [subject, grade, { data: existing }] = await Promise.all([
+    catalog.subjectExists(subjectId).catch(() => false),
+    catalog.gradeExists(gradeId).catch(() => false),
     context.supabase.from("textbooks").select("id, name").eq("subject_id", subjectId).eq("grade_id", gradeId),
   ]);
   if (!subject || !grade) return result("error", "The selected subject or grade does not exist.");

@@ -1,12 +1,12 @@
 import { CatalogManager } from "@/components/admin/catalog-manager";
-import { createClient } from "@/lib/supabase/server";
+import { getCatalogRepository } from "@/lib/catalog";
 
 export default async function AdminSubjectsPage() {
-  const supabase = await createClient();
-  const { data: subjects, error } = await supabase
-    .from("subjects")
-    .select("id, name")
-    .order("name");
+  const result = await getCatalogRepository()
+    .then((catalog) => catalog.listSubjectsByName())
+    .then((data) => ({ data, error: false }))
+    .catch(() => ({ data: [], error: true }));
+  const { data: subjects, error } = result;
 
   return (
     <div className="flex flex-col gap-8">

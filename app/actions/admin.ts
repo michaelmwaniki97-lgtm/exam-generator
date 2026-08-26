@@ -11,6 +11,7 @@ import {
   type NamedRow,
 } from "@/lib/admin/validation";
 import { createClient } from "@/lib/supabase/server";
+import { getCatalogRepository } from "@/lib/catalog";
 
 export type AdminActionState =
   | { status: "success"; message: string }
@@ -72,10 +73,8 @@ export async function createSubject(
   if ("error" in name) return error(name.error);
 
   return withAdmin(async (supabase) => {
-    const { data: existing, error: lookupError } = await supabase
-      .from("subjects")
-      .select("id, name");
-    if (lookupError) return error("Could not check existing subjects.");
+    const existing = await (await getCatalogRepository()).listSubjectNames().catch(() => null);
+    if (!existing) return error("Could not check existing subjects.");
     if (hasDuplicate(namedRows(existing), name.value)) {
       return error("A subject with this name already exists.");
     }
@@ -96,10 +95,8 @@ export async function updateSubject(
   if ("error" in name) return error(name.error);
 
   return withAdmin(async (supabase) => {
-    const { data: existing, error: lookupError } = await supabase
-      .from("subjects")
-      .select("id, name");
-    if (lookupError) return error("Could not check existing subjects.");
+    const existing = await (await getCatalogRepository()).listSubjectNames().catch(() => null);
+    if (!existing) return error("Could not check existing subjects.");
     if (!(existing ?? []).some((row) => row.id === id.value)) return error("Subject not found.");
     if (hasDuplicate(namedRows(existing), name.value, id.value)) {
       return error("A subject with this name already exists.");
@@ -163,10 +160,8 @@ export async function createGrade(
   if ("error" in level) return error(level.error);
 
   return withAdmin(async (supabase) => {
-    const { data: existing, error: lookupError } = await supabase
-      .from("grades")
-      .select("id, name");
-    if (lookupError) return error("Could not check existing grades and classes.");
+    const existing = await (await getCatalogRepository()).listGradeNames().catch(() => null);
+    if (!existing) return error("Could not check existing grades and classes.");
     if (hasDuplicate(namedRows(existing), name.value)) {
       return error("A grade or class with this name already exists.");
     }
@@ -191,10 +186,8 @@ export async function updateGrade(
   if ("error" in level) return error(level.error);
 
   return withAdmin(async (supabase) => {
-    const { data: existing, error: lookupError } = await supabase
-      .from("grades")
-      .select("id, name");
-    if (lookupError) return error("Could not check existing grades and classes.");
+    const existing = await (await getCatalogRepository()).listGradeNames().catch(() => null);
+    if (!existing) return error("Could not check existing grades and classes.");
     if (!(existing ?? []).some((row) => row.id === id.value)) {
       return error("Grade or class not found.");
     }

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useTransition } from "react";
 import { ArrowLeft, ArrowRight, Loader2, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { generateExam } from "@/app/actions/exams";
+import { listWizardGrades } from "@/app/actions/catalog";
 import { listReadyTextbooks } from "@/app/actions/database-rpc";
 import {
   inferEducationSystem,
@@ -164,13 +165,9 @@ export function ExamWizard() {
         return;
       }
 
-      const gradesResult = await supabase
-        .from("grades")
-        .select("id, name, level, sort_order")
-        .order("sort_order")
-        .order("created_at");
+      const gradesResult = await listWizardGrades();
       if (cancelled) return;
-      if (gradesResult.error) {
+      if (gradesResult.error || !gradesResult.data) {
         setGrades([]);
         setGradeError("Could not load supported Grades and Forms.");
         setLoadingGrades(false);

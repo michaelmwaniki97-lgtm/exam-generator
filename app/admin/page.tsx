@@ -10,6 +10,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
+import { getCatalogRepository } from "@/lib/catalog";
 
 const managementAreas: {
   label: string;
@@ -55,15 +56,15 @@ function formatKes(amount: number): string {
 
 export default async function AdminPage() {
   const supabase = await createClient();
+  const catalog = await getCatalogRepository();
 
-  // RLS (teachers_admin_select / exams_admin_select / subjects_select_all /
-  // payments_admin_select) already scopes these to what an admin can see -
-  // head:true + count:"exact" gets a row count without fetching rows.
-  const [{ count: teacherCount }, { count: examCount }, { count: subjectCount }, { data: payments }] =
+  // Existing RLS policies scope each read. The unchanged teacher/exam reads use
+  // head:true + count:"exact" to count without fetching rows.
+  const [{ count: teacherCount }, { count: examCount }, subjectCount, { data: payments }] =
     await Promise.all([
       supabase.from("teachers").select("id", { count: "exact", head: true }),
       supabase.from("exams").select("id", { count: "exact", head: true }),
-      supabase.from("subjects").select("id", { count: "exact", head: true }),
+      catalog.countSubjects(),
       supabase.from("payments").select("amount").eq("status", "paid"),
     ]);
 

@@ -1,12 +1,12 @@
 import { CatalogManager } from "@/components/admin/catalog-manager";
-import { createClient } from "@/lib/supabase/server";
+import { getCatalogRepository } from "@/lib/catalog";
 
 export default async function AdminGradesPage() {
-  const supabase = await createClient();
-  const { data: grades, error } = await supabase
-    .from("grades")
-    .select("id, name, level")
-    .order("created_at");
+  const result = await getCatalogRepository()
+    .then((catalog) => catalog.listGradesByCreation())
+    .then((data) => ({ data, error: false }))
+    .catch(() => ({ data: [], error: true }));
+  const { data: grades, error } = result;
 
   return (
     <div className="flex flex-col gap-8">

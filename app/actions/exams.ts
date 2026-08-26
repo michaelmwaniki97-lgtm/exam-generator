@@ -34,6 +34,7 @@ import type { WizardData } from "@/components/exam-wizard/types";
 import { prepareTextbookGrounding, type GroundingProvenance } from "@/lib/textbooks/exam-grounding";
 import { acquiredOrThrow, claimFullGeneration, failAiReservation, persistGeneratedExam } from "@/lib/ai/abuse-controls";
 import { AiAbuseControlError, assertGenerationProviderBudget } from "@/lib/ai/abuse-controls-core";
+import { getCatalogRepository } from "@/lib/catalog";
 
 export type GenerateExamState = { error: string; preserveRequest?: boolean } | undefined;
 
@@ -153,15 +154,11 @@ export async function generateExam(data: WizardData, requestId: string): Promise
     .maybeSingle();
   if (!teacher) return { error: "Only teachers can generate exams." };
 
-  const gradeResult = await supabase
-    .from("grades")
-    .select("id, name, level")
-    .eq("id", data.gradeId)
-    .maybeSingle();
-  if (gradeResult.error || !gradeResult.data) {
+  const catalog = await getCatalogRepository();
+  const grade = await catalog.getGradeById(data.gradeId).catch(() => null);
+  if (!grade) {
     return { error: "The selected Grade or Form does not exist." };
   }
-  const grade = gradeResult.data;
   const educationSystem = inferEducationSystem(grade.name);
   if (
     !educationSystem ||
@@ -172,15 +169,10 @@ export async function generateExam(data: WizardData, requestId: string): Promise
     return { error: "The selected education system, level, and Grade/Form do not match." };
   }
 
-  const subjectResult = await supabase
-    .from("subjects")
-    .select("id, name")
-    .eq("id", data.subjectId)
-    .maybeSingle();
-  if (subjectResult.error || !subjectResult.data) {
+  const subject = await catalog.getSubjectById(data.subjectId).catch(() => null);
+  if (!subject) {
     return { error: "The selected subject does not exist." };
   }
-  const subject = subjectResult.data;
 
   const context: AssessmentContext = {
     educationSystem,
