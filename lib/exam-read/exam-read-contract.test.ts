@@ -47,15 +47,18 @@ test("Supabase adapter preserves projections, ownership, ordering, limits, nulls
 
 test("exam repository boundary is server-only and accepts no browser identity, backend, or role", async () => {
   const root = new URL("../../", import.meta.url);
-  const [factory, postgres, dashboard, history] = await Promise.all([
+  const [factory, postgres, dashboard, history, identityFactory, identitySupabase] = await Promise.all([
     readFile(new URL("lib/exam-read/index.ts", root), "utf8"), readFile(new URL("lib/exam-read/postgres.ts", root), "utf8"),
     readFile(new URL("app/teacher/dashboard/page.tsx", root), "utf8"), readFile(new URL("app/teacher/exams/page.tsx", root), "utf8"),
+    readFile(new URL("lib/identity-read/index.ts", root), "utf8"), readFile(new URL("lib/identity-read/supabase.ts", root), "utf8"),
   ]);
   assert.match(factory, /^import "server-only";/);
   assert.match(factory, /supabase\.auth\.getUser\(\)/);
-  assert.match(factory, /\.eq\("user_id", user\.id\)/);
+  assert.match(factory, /getIdentityReadRepository\(\).*getTeacherIdentity\(\)/s);
+  assert.match(identityFactory, /supabase\.auth\.getUser\(\)/);
+  assert.match(identitySupabase, /\.eq\("user_id", this\.userId\)/);
   assert.match(factory, /new PostgresExamReadRepository\(user\.id, teacher\.id\)/);
-  assert.doesNotMatch(factory + dashboard + history, /headers\(|cookies\(|request\.json|searchParams.*DATABASE_BACKEND|user_id\s*:/);
+  assert.doesNotMatch(factory + identityFactory + dashboard + history, /headers\(|cookies\(|request\.json|searchParams.*DATABASE_BACKEND|user_id\s*:/);
   assert.doesNotMatch(factory + postgres, /service_role|withTrustedTransaction|set role|bypassrls/i);
   assert.doesNotMatch(postgres, /select\s+\*/i);
   assert.match(postgres, /where e\.teacher_id = \$1::uuid/);

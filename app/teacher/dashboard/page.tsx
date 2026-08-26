@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, FileText, Plus } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { getTeacherExamReadRepository } from "@/lib/exam-read";
+import { getIdentityReadRepository } from "@/lib/identity-read";
 
 const STATUS_LABELS: Record<string, string> = {
   draft: "Draft",
@@ -21,13 +21,7 @@ function formatDate(iso: string) {
 
 export default async function TeacherDashboardPage() {
   const user = await getCurrentUser();
-  const supabase = await createClient();
-
-  const { data: teacher } = await supabase
-    .from("teachers")
-    .select("name, school")
-    .eq("user_id", user!.id)
-    .maybeSingle();
+  const teacher = await (await getIdentityReadRepository()).getTeacherHeaderProfile();
 
   const exams = await (await getTeacherExamReadRepository()).listRecentTeacherExams(5);
 

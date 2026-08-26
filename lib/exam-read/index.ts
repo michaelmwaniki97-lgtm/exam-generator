@@ -7,6 +7,7 @@ import { getUserRole, type UserRole } from "../auth/session.ts";
 import type { ExamDocumentReadRepository, ExamReadRepository } from "./contracts.ts";
 import { PostgresExamReadRepository } from "./postgres.ts";
 import { SupabaseExamReadRepository } from "./supabase.ts";
+import { getIdentityReadRepository } from "../identity-read/index.ts";
 
 export type { AuthorizedExamDocumentRow, ExamDocumentAccessMetadata, ExamDocumentReadRepository, ExamReadRepository, RecentTeacherExam, TeacherExamForEditing, TeacherExamListItem } from "./contracts.ts";
 
@@ -16,8 +17,8 @@ export async function getTeacherExamReadContext(): Promise<{ repository: ExamRea
   const supabase = await createClient();
   const { data: { user }, error: userError } = await supabase.auth.getUser();
   if (userError || !user) throw new Error("Authentication required.");
-  const { data: teacher, error: teacherError } = await supabase.from("teachers").select("id").eq("user_id", user.id).maybeSingle();
-  if (teacherError || !teacher) throw new Error("Teacher access required.");
+  const teacher = await (await getIdentityReadRepository()).getTeacherIdentity();
+  if (!teacher) throw new Error("Teacher access required.");
   const repository = getDatabaseBackendName() === "postgres"
     ? new PostgresExamReadRepository(user.id, teacher.id)
     : new SupabaseExamReadRepository(supabase, teacher.id);
@@ -35,8 +36,8 @@ export async function getExamDocumentReadContext(): Promise<{ repository: ExamDo
   const role = await getUserRole();
   let teacherId: string | null = null;
   if (role === "teacher") {
-    const { data: teacher, error: teacherError } = await supabase.from("teachers").select("id").eq("user_id", user.id).maybeSingle();
-    if (teacherError || !teacher) throw new Error("Teacher access required.");
+    const teacher = await (await getIdentityReadRepository()).getTeacherIdentity();
+    if (!teacher) throw new Error("Teacher access required.");
     teacherId = teacher.id;
   }
   const repository = getDatabaseBackendName() === "postgres"

@@ -1,6 +1,28 @@
 # Self-Hosted Database Abstraction — RPC Foundation
 
-Status: RPC foundation and CRUD Phases 1-4 are checkpointed; CRUD Phase 5 (read-only admin reporting and dependency inspection) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+Status: RPC foundation and CRUD Phases 1-5 are checkpointed; CRUD Phase 6 (profile and role-resolution reads) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+
+## CRUD Phase 6: profile and role-resolution reads
+
+Phase 6 adds the narrow, server-only `lib/identity-read` repository for ordinary `teachers` and `admins` reads. Supabase Auth remains authoritative: `getCurrentIdentityContext()` first calls the existing server `supabase.auth.getUser()`, and only its validated `user.id` constructs either adapter. No browser argument can supply an auth user ID, teacher/admin ID, role, backend, or execution mode.
+
+The identity model is unchanged. `auth.users.id` maps through `teachers.user_id` and `admins.user_id`; both columns are independently unique. There is no cross-table exclusion, so a user can have both rows. The existing signup trigger in fact gives the parity admin a teacher row. Role resolution queries both mappings and preserves admin-first precedence: admin row means `admin`, otherwise teacher row means `teacher`, otherwise no application role. No email or user-editable metadata participates in authorization, and no disabled/inactive profile state exists in the schema.
+
+Repository methods are `getTeacherIdentity`, `getAdminIdentity`, `resolveRole`, `getTeacherHeaderProfile`, `getTeacherProfile`, `getAdminDisplayProfile`, `countTeachersForAdmin`, and `listTeachersForAdmin`. Authorization operations return only IDs or a role marker. UI projections contain only currently displayed name/school/phone/joined fields. They never return Auth records, passwords, payment/exam data, Storage paths, or other private domains.
+
+Migrated callers are the central `getUserRole` helper; teacher layout, dashboard, profile, and transaction pages; admin layout, dashboard teacher count, and teacher listing; exam-generation teacher validation; Phase 3/4 exam repository context construction; and payment actor/entitlement teacher resolution. All 12 prior direct teacher reads and both prior direct admin reads moved. The one remaining literal `teachers` call is the existing profile update and remains classified as a write.
+
+The Supabase adapter retains explicit projections, `user_id` filters, `maybeSingle` behavior, the profile page's existing `single` behavior, exact count, and descending teacher-list order. The PostgreSQL adapter uses explicit columns and parameterized UUIDs under the existing transaction-local authenticated identity. RLS therefore limits teacher self-reads and admin-table visibility exactly as before. Admin-only teacher count/list methods additionally verify existing `public.is_admin()`; they use no trusted/service role, superuser, Pool exposure, or RLS bypass.
+
+Cross-role tests cover Teacher A/B isolation, teacher-to-admin denial, unknown identity, raw unauthenticated denial, the current dual-role admin, admin-first precedence, nullable profile fields, uniqueness constraints, admin-only list/count behavior, and parity between application admin resolution and `public.is_admin()`. Admin users retain a teacher mapping where the existing trigger created one, but role-gated teacher routes/actions continue to see the resolved `admin` role and reject or redirect them exactly as before.
+
+Supabase login, signup, logout, password recovery/reset, session cookies, callback exchange, middleware validation, and user creation remain unchanged. The phase migrates no Auth API, teacher/admin mutation, payment table, Storage operation, or production data.
+
+Using the reconciled Phase 5 source-occurrence method, fallback adapter calls increase from 34 to 41 while direct runtime reads fall from 32 to 18; writes remain 31. The seven new fallback calls replace all 14 direct teacher/admin reads, so literal `.from()` totals fall from 97 to 90. Auth API calls remain 19, Storage calls remain four, and dynamic maintenance reads remain four. Remaining direct runtime reads are `app_settings` 1, `exams` 2, `payments` 6, `textbooks` 4, and `textbook_documents` 5.
+
+Rollback remains configuration-first: omit `DATABASE_BACKEND` or set it to `supabase`. Before checkpoint, remove only Phase 6 worktree changes; after checkpoint, revert only its reviewed commit. No Auth, schema, or production rollback is required.
+
+The recommended next database slice is the remaining non-payment textbook and textbook-document read boundary, separating public catalog validation from private ready-document checks while leaving Storage and every ingestion mutation unchanged. Payment and `app_settings` should remain deferred to their own security-critical phase.
 
 ## CRUD Phase 5: admin reporting and dependency reads
 

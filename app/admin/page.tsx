@@ -12,6 +12,7 @@ import {
 import { createClient } from "@/lib/supabase/server";
 import { getCatalogRepository } from "@/lib/catalog";
 import { getAdminReportingRepository } from "@/lib/admin-reporting";
+import { getIdentityReadRepository } from "@/lib/identity-read";
 
 const managementAreas: {
   label: string;
@@ -59,12 +60,13 @@ export default async function AdminPage() {
   const supabase = await createClient();
   const catalog = await getCatalogRepository();
   const reporting = await getAdminReportingRepository();
+  const identity = await getIdentityReadRepository();
 
   // Existing RLS policies scope each read. Teacher/payment reads remain on their
   // current path; reporting counts do not fetch private exam rows.
   const [{ count: teacherCount }, { count: examCount }, subjectCount, { data: payments }] =
     await Promise.all([
-      supabase.from("teachers").select("id", { count: "exact", head: true }),
+      identity.countTeachersForAdmin().then((count) => ({ count })),
       reporting.countDashboardExams().then((count) => ({ count })),
       catalog.countSubjects(),
       supabase.from("payments").select("amount").eq("status", "paid"),

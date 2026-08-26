@@ -4,6 +4,7 @@ import { createAdminClient } from "../supabase/admin";
 import { createClient } from "../supabase/server";
 import { getTrustedRpcDatabase } from "../db";
 import { getCurrentUser, getUserRole } from "../auth/session";
+import { getIdentityReadRepository } from "../identity-read";
 import { mayDownloadExamPackage, PaymentError, PAYMENT_CURRENCY, validateExamPackagePrice, type BeginAttemptResult, type PaymentActor, type PaymentAttempt, type PaymentRepository, type ProviderInitiation } from "./core";
 
 type PaymentRow = {
@@ -21,9 +22,8 @@ function attempt(row: PaymentRow): PaymentAttempt {
 export async function currentPaymentActor(): Promise<PaymentActor | null> {
   const [user, role] = await Promise.all([getCurrentUser(), getUserRole()]);
   if (!user || role !== "teacher") return null;
-  const supabase = await createClient();
-  const { data } = await supabase.from("teachers").select("id").eq("user_id", user.id).maybeSingle();
-  return data ? { userId: user.id, teacherId: data.id, role: "teacher" } : null;
+  const teacher = await (await getIdentityReadRepository()).getTeacherIdentity();
+  return teacher ? { userId: user.id, teacherId: teacher.id, role: "teacher" } : null;
 }
 
 export async function getExamPackagePrice(): Promise<number> {
@@ -37,7 +37,7 @@ export async function getExamDownloadEntitlement(examId: string): Promise<{ allo
   if (!user) throw new PaymentError("UNAUTHENTICATED", "Authentication required.");
   if (mayDownloadExamPackage(role, false, false)) return { allowed: true, admin: true, price: null };
   const supabase = await createClient();
-  const { data: teacher } = await supabase.from("teachers").select("id").eq("user_id", user.id).maybeSingle();
+  const teacher = await (await getIdentityReadRepository()).getTeacherIdentity();
   if (!teacher) throw new PaymentError("FORBIDDEN", "Access denied.");
   const { data: exam } = await supabase.from("exams").select("id, status").eq("id", examId).eq("teacher_id", teacher.id).maybeSingle();
   if (!exam) throw new PaymentError("NOT_FOUND", "Exam not found.");

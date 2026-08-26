@@ -4,6 +4,8 @@ import test from "node:test";
 
 const action = readFileSync(new URL("../../app/actions/exam-editor.ts", import.meta.url), "utf8");
 const examReadFactory = readFileSync(new URL("../exam-read/index.ts", import.meta.url), "utf8");
+const identityFactory = readFileSync(new URL("../identity-read/index.ts", import.meta.url), "utf8");
+const identitySupabase = readFileSync(new URL("../identity-read/supabase.ts", import.meta.url), "utf8");
 const postgresExamRead = readFileSync(new URL("../exam-read/postgres.ts", import.meta.url), "utf8");
 const grounding = readFileSync(new URL("./regeneration-grounding.ts", import.meta.url), "utf8");
 const richRenderer = readFileSync(new URL("../../components/exam-content/rich-stimuli.tsx", import.meta.url), "utf8");
@@ -15,11 +17,13 @@ const documentModel = readFileSync(new URL("../exam-document/model.ts", import.m
 test("server actions authenticate, derive teacher identity, and enforce ownership", () => {
   assert.match(action, /getTeacherExamReadContext\(\)/);
   assert.match(examReadFactory, /supabase\.auth\.getUser\(\)/);
-  assert.match(examReadFactory, /from\("teachers"\).*eq\("user_id", user\.id\)/);
+  assert.match(examReadFactory, /getIdentityReadRepository\(\).*getTeacherIdentity\(\)/s);
+  assert.match(identityFactory, /supabase\.auth\.getUser\(\)/);
+  assert.match(identitySupabase, /from\("teachers"\).*eq\("user_id", this\.userId\)/);
   assert.match(examReadFactory, /new PostgresExamReadRepository\(user\.id, teacher\.id\)/);
   assert.match(postgresExamRead, /where id = \$1::uuid and teacher_id = \$2::uuid/);
   assert.match(postgresExamRead, /ms\.exam_id = \$1::uuid and e\.teacher_id = \$2::uuid/);
-  assert.doesNotMatch(examReadFactory + action, /request\.json|headers\(|cookies\(|userId\s*:/);
+  assert.doesNotMatch(examReadFactory + identityFactory + action, /request\.json|headers\(|cookies\(|userId\s*:/);
   assert.match(action, /status === "paid".*status === "downloaded"/);
   assert.match(action, /saveExamEdits\(examId: string, expectedRevision: number, inputs: EditableSlotInput\[\]\)/);
   assert.match(action, /regenerateExamQuestion\(examId: string, slotId: string, expectedRevision: number, requestId: string\)/);

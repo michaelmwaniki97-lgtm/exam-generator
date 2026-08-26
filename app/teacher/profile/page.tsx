@@ -1,15 +1,10 @@
-import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/auth/session";
+import { getIdentityReadRepository } from "@/lib/identity-read";
 import { ProfileForm } from "@/components/profile/profile-form";
 
 export default async function TeacherProfilePage() {
   const user = await getCurrentUser();
-  const supabase = await createClient();
-  const { data: teacher } = await supabase
-    .from("teachers")
-    .select("name, school, phone")
-    .eq("user_id", user!.id)
-    .single();
+  const teacher = await (await getIdentityReadRepository()).getTeacherProfile();
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-8">

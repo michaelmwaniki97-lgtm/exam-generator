@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { getIdentityReadRepository } from "@/lib/identity-read";
 import { generateExam as callAi, AiProviderTimeoutError, GenerationDeadlineError, type TopicInput } from "@/lib/ai/generate-exam";
 import {
   APPLICATION_EXAM_LIMITS,
@@ -148,11 +149,7 @@ export async function generateExam(data: WizardData, requestId: string): Promise
   } = await supabase.auth.getUser();
   if (!user) return { error: "You must be signed in to generate an exam." };
 
-  const { data: teacher } = await supabase
-    .from("teachers")
-    .select("id")
-    .eq("user_id", user.id)
-    .maybeSingle();
+  const teacher = await (await getIdentityReadRepository()).getTeacherIdentity();
   if (!teacher) return { error: "Only teachers can generate exams." };
 
   const catalog = await getCatalogRepository();

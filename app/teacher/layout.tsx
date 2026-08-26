@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getCurrentUser, getUserRole } from "@/lib/auth/session";
 import { logout } from "@/app/actions/auth";
-import { createClient } from "@/lib/supabase/server";
+import { getIdentityReadRepository } from "@/lib/identity-read";
 import { DashboardLayout, type NavItem } from "@/components/dashboard/dashboard-layout";
 
 export const maxDuration = 300;
@@ -22,12 +22,7 @@ export default async function TeacherLayout({ children }: LayoutProps<"/teacher"
   if (role === "admin") redirect("/admin");
   if (!role) redirect("/login");
 
-  const supabase = await createClient();
-  const { data: teacher } = await supabase
-    .from("teachers")
-    .select("name, school")
-    .eq("user_id", user.id)
-    .maybeSingle();
+  const teacher = await (await getIdentityReadRepository()).getTeacherHeaderProfile();
 
   return (
     <DashboardLayout

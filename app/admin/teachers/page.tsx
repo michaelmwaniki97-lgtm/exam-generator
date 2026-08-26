@@ -1,5 +1,5 @@
 import { Users } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
+import { getIdentityReadRepository } from "@/lib/identity-read";
 
 function formatDate(value: string) {
   return new Date(value).toLocaleDateString("en-KE", {
@@ -10,12 +10,7 @@ function formatDate(value: string) {
 }
 
 export default async function AdminTeachersPage() {
-  const supabase = await createClient();
-  const { data: teachers } = await supabase
-    .from("teachers")
-    .select("id, name, school, phone, created_at")
-    .order("created_at", { ascending: false });
-  const rows = teachers ?? [];
+  const rows = await (await getIdentityReadRepository()).listTeachersForAdmin();
 
   return (
     <div className="flex flex-col gap-8">

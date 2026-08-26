@@ -1,12 +1,9 @@
-import { createClient } from "@/lib/supabase/server";
-import { getCurrentUser } from "@/lib/auth/session";
 import { maskProviderReference } from "@/lib/payments/core";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { getIdentityReadRepository } from "@/lib/identity-read";
 
 export default async function TeacherTransactionsPage() {
-  const user = await getCurrentUser();
-  const supabase = await createClient();
-  const { data: teacher } = await supabase.from("teachers").select("id").eq("user_id", user!.id).maybeSingle();
+  const teacher = await (await getIdentityReadRepository()).getTeacherIdentity();
   const { data: payments } = teacher ? await createAdminClient().from("payments").select("id, amount, currency, status, mpesa_ref, created_at, completed_at, exams(exam_type)").eq("teacher_id", teacher.id).order("created_at", { ascending: false }).limit(100) : { data: [] };
   return (
     <div className="flex flex-col gap-8">
