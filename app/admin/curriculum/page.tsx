@@ -2,8 +2,8 @@ import {
   CurriculumManager,
   type CurriculumStrand,
 } from "@/components/admin/curriculum-manager";
-import { createClient } from "@/lib/supabase/server";
 import { getCatalogRepository } from "@/lib/catalog";
+import { getCurriculumReadRepository } from "@/lib/curriculum-read";
 
 type CurriculumSearchParams = {
   grade?: string;
@@ -16,7 +16,6 @@ export default async function AdminCurriculumPage({
   searchParams: Promise<CurriculumSearchParams>;
 }) {
   const requested = await searchParams;
-  const supabase = await createClient();
   const catalog = await getCatalogRepository();
   const [gradesResult, subjectsResult] = await Promise.all([
     catalog.listGradesByCreation().then((data) => ({ data, error: false })).catch(() => ({ data: [], error: true })),
@@ -36,51 +35,11 @@ export default async function AdminCurriculumPage({
   let curriculumError = false;
 
   if (selectedGrade && selectedSubject) {
-    const modernResult = await supabase
-      .from("strands")
-      .select(
-        "id, name, sort_order, source_code, verification_status, outcome_status, sub_strands(id, name, sort_order, source_code, verification_status, learning_outcomes(id, description, sort_order, verification_status)), strand_objectives(id, description, label, sort_order, verification_status)"
-      )
-      .eq("grade_id", selectedGrade.id)
-      .eq("subject_id", selectedSubject.id)
-      .eq("is_active", true)
-      .order("sort_order");
-
-    let data: unknown[] = modernResult.data ?? [];
-    let error = modernResult.error;
-    if (modernResult.error) {
-      const legacyResult = await supabase
-        .from("strands")
-        .select(
-          "id, name, sub_strands(id, name, learning_outcomes(id, description))"
-        )
-        .eq("grade_id", selectedGrade.id)
-        .eq("subject_id", selectedSubject.id)
-        .order("name");
-      error = legacyResult.error;
-      data = (legacyResult.data ?? []).map((strand) => ({
-        ...strand,
-        sort_order: 0,
-        source_code: null,
-        verification_status: "unverified" as const,
-        outcome_status: "unverified" as const,
-        strand_objectives: [],
-        sub_strands: (strand.sub_strands ?? []).map((subStrand) => ({
-          ...subStrand,
-          sort_order: 0,
-          source_code: null,
-          verification_status: "unverified" as const,
-          learning_outcomes: (subStrand.learning_outcomes ?? []).map((outcome) => ({
-            ...outcome,
-            sort_order: 0,
-            verification_status: "unverified" as const,
-          })),
-        })),
-      }));
-    }
-
-    curriculumError = Boolean(error);
-    strands = ((data ?? []) as unknown as CurriculumStrand[])
+    const data = await getCurriculumReadRepository()
+      .then((repository) => repository.listAdminHierarchy(selectedGrade.id, selectedSubject.id))
+      .catch(() => null);
+    curriculumError = data === null;
+    strands = ((data ?? []) as CurriculumStrand[])
       .map((strand) => ({
         ...strand,
         strand_objectives: [...(strand.strand_objectives ?? [])].sort((a, b) => a.sort_order - b.sort_order),

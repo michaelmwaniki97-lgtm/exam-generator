@@ -2,9 +2,13 @@
 
 import { useEffect, useRef, useState, useTransition } from "react";
 import { ArrowLeft, ArrowRight, Loader2, Sparkles } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
 import { generateExam } from "@/app/actions/exams";
 import { listWizardGrades } from "@/app/actions/catalog";
+import {
+  listActiveCurriculum,
+  listActiveCurriculumGradeIds,
+  listCurriculumSubjects,
+} from "@/app/actions/curriculum";
 import { listReadyTextbooks } from "@/app/actions/database-rpc";
 import {
   inferEducationSystem,
@@ -150,12 +154,7 @@ export function ExamWizard() {
     async function loadGrades() {
       setLoadingGrades(true);
       setGradeError(null);
-      const supabase = createClient();
-
-      const activeRootsResult = await supabase
-        .from("strands")
-        .select("grade_id")
-        .eq("is_active", true);
+      const activeRootsResult = await listActiveCurriculumGradeIds();
       if (activeRootsResult.error) {
         if (!cancelled) {
           setGrades([]);
@@ -175,7 +174,7 @@ export function ExamWizard() {
       }
 
       const activeGradeIds = new Set(
-        (activeRootsResult.data ?? []).map((row) => row.grade_id)
+        activeRootsResult.data ?? []
       );
       const available = (gradesResult.data ?? [])
         .map((grade) => ({
@@ -208,15 +207,7 @@ export function ExamWizard() {
       };
     }
 
-    const supabase = createClient();
-    void supabase
-      .from("strands")
-      .select(
-        "grade_id, subject_id, is_active, verification_status, subjects(id, name)"
-      )
-      .eq("grade_id", data.gradeId)
-      .eq("is_active", true)
-      .order("sort_order")
+    void listCurriculumSubjects(data.gradeId)
       .then((result) => {
         if (cancelled) return;
         if (result.error) {
@@ -230,7 +221,7 @@ export function ExamWizard() {
           subject_id: row.subject_id,
           is_active: row.is_active,
           verification_status: row.verification_status,
-          subject: row.subjects as unknown as { id: string; name: string } | null,
+          subject: row.subject,
         }));
         const available = deriveAvailableSubjects(rows, data.gradeId);
         setSubjects(available);
@@ -263,7 +254,6 @@ export function ExamWizard() {
       };
     }
 
-    const supabase = createClient();
     void listReadyTextbooks(data.subjectId, data.gradeId)
       .then((rows) => {
         if (cancelled) return;
@@ -291,15 +281,7 @@ export function ExamWizard() {
         }
       });
 
-    void supabase
-      .from("strands")
-      .select(
-        "id, name, sort_order, source_code, source_ref, verification_status, is_active, sub_strands(id, name, sort_order, source_code, source_ref, verification_status)"
-      )
-      .eq("subject_id", data.subjectId)
-      .eq("grade_id", data.gradeId)
-      .eq("is_active", true)
-      .order("sort_order")
+    void listActiveCurriculum(data.gradeId, data.subjectId)
       .then((result) => {
         if (cancelled) return;
         if (result.error) {

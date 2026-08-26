@@ -1,6 +1,30 @@
 # Self-Hosted Database Abstraction — RPC Foundation
 
-Status: RPC foundation checkpointed; CRUD Phase 1 (read-only grades and subjects) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+Status: RPC foundation and CRUD Phase 1 are checkpointed; CRUD Phase 2 (read-only curriculum hierarchy) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+
+## CRUD Phase 2: curriculum hierarchy reads
+
+Phase 2 moves runtime reads of `strands`, `sub_strands`, `learning_outcomes`, and `strand_objectives` behind the server-only `lib/curriculum-read` repository. It does not migrate any curriculum mutation, verified-curriculum import execution, import history, legacy preservation table, or source-exception table.
+
+The repository methods are `listActiveGradeIds`, `listSubjectContextsForGrade`, `listActiveHierarchy`, `getSelectionTopics`, `listAdminHierarchy`, the scoped strand/sub-strand/outcome name and parent lookups used by existing admin validation, and the three child/dependency counts. The API exposes no arbitrary table, projection, SQL, database role, Pool, or trusted execution method.
+
+Migrated callers are the wizard's active-grade, available-subject, and active-hierarchy loaders; server-authoritative curriculum selection loading in exam generation; the admin curriculum hierarchy page; and curriculum dependency, parent, and duplicate reads inside existing admin write actions. The browser wizard now calls validated server actions and no longer imports a Supabase browser client. Grade/subject selection, textbook loading, exam persistence, and every neighboring table remain on their previously reviewed paths.
+
+The Supabase adapter retains the original PostgREST projections, nested relationship syntax, filters, and modern-to-legacy admin read fallback. The direct PostgreSQL adapter uses explicit projections and parameterized UUIDs inside the existing authenticated transaction context. Nested results are assembled deterministically in TypeScript from scoped parent and child queries. A sub-strand can only be assembled under a returned strand; learning outcomes only under returned sub-strands; and strand objectives only under returned strands.
+
+Active behavior is unchanged: wizard and admin hierarchy methods return active roots only, while `getSelectionTopics` can resolve an inactive selected parent so the existing generation validator can reject it explicitly. Verification status, outcome status, source code/reference, sort order, UUID, and null values remain distinct. `source_metadata` and `curriculum_import_id` are not returned because no migrated runtime consumer uses them.
+
+CBC and Form semantics remain separate. CBC learning outcomes stay attached to sub-strands. Form topic objectives stay attached to `strand_objectives`; they are never fabricated as learning outcomes. Generation continues to choose the existing objective scope based on which authoritative records are actually present.
+
+All curriculum tables are readable to the existing authenticated role under current policies, while route-level boundaries remain intact: the teacher path checks the user and teacher record before selection loading; admin pages retain their admin layout; and admin actions run `withAdmin` before repository access. Server actions validate UUID inputs and accept no user ID, backend, or PostgreSQL role.
+
+Synthetic contract tests cover two grades, two subjects, active/inactive and verified/unverified strands, multiple ordered children, null sources, CBC outcomes, Form objectives, mismatched scopes, invalid IDs, empty results, hierarchy assembly, and denial of raw unauthenticated reads. The original assessment, blueprint, Security B1, RPC, payment, editor, and RAG suites remain regression gates.
+
+At this checkpoint, `.from()` source occurrences split into 24 fallback-adapter calls (11 catalog and 13 curriculum), 48 runtime database reads outside abstractions, 6 maintenance/tooling calls, 31 retained database writes, and 4 Storage calls. These are source-level occurrences; dynamic maintenance helpers may represent multiple table operations.
+
+Rollback remains configuration-first: omit `DATABASE_BACKEND` or set it to `supabase`. Before checkpoint, remove only the Phase 2 worktree changes; after a reviewed checkpoint, revert only that commit. No schema or production data rollback is required.
+
+The recommended next database slice is a separately audited read-only exam/marking-scheme view layer, beginning with teacher-owned list/detail reads and preserving RLS ownership and paid-content boundaries. Do not combine it with writes, Better Auth, payments, or Storage.
 
 ## CRUD Phase 1: grades and subjects
 

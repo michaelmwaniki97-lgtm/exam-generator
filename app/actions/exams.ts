@@ -35,6 +35,7 @@ import { prepareTextbookGrounding, type GroundingProvenance } from "@/lib/textbo
 import { acquiredOrThrow, claimFullGeneration, failAiReservation, persistGeneratedExam } from "@/lib/ai/abuse-controls";
 import { AiAbuseControlError, assertGenerationProviderBudget } from "@/lib/ai/abuse-controls-core";
 import { getCatalogRepository } from "@/lib/catalog";
+import { getCurriculumReadRepository } from "@/lib/curriculum-read";
 
 export type GenerateExamState = { error: string; preserveRequest?: boolean } | undefined;
 
@@ -240,23 +241,16 @@ export async function generateExam(data: WizardData, requestId: string): Promise
     };
   }
 
-  const topicsResult = await supabase
-    .from("sub_strands")
-    .select(
-      "id, name, sort_order, source_ref, verification_status, strands(id, name, sort_order, subject_id, grade_id, is_active, source_ref, verification_status, strand_objectives(description, sort_order)), learning_outcomes(description, sort_order)"
-    )
-    .in("id", data.topicIds);
-  if (
-    topicsResult.error ||
-    !topicsResult.data ||
-    topicsResult.data.length !== data.topicIds.length
-  ) {
+  const topicRows = await (await getCurriculumReadRepository())
+    .getSelectionTopics(data.topicIds)
+    .catch(() => null);
+  if (!topicRows || topicRows.length !== data.topicIds.length) {
     return {
       error: "Could not load every selected curriculum record. Please review the selection.",
     };
   }
 
-  const rows = topicsResult.data as unknown as TopicRow[];
+  const rows = topicRows as TopicRow[];
   const selectionRows = toSelectionRows(rows);
   const curriculumError = validateNewExamCurriculumSelection({
     gradeId: grade.id,

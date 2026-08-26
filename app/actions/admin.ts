@@ -12,6 +12,7 @@ import {
 } from "@/lib/admin/validation";
 import { createClient } from "@/lib/supabase/server";
 import { getCatalogRepository } from "@/lib/catalog";
+import { getCurriculumReadRepository } from "@/lib/curriculum-read";
 
 export type AdminActionState =
   | { status: "success"; message: string }
@@ -119,16 +120,17 @@ export async function deleteSubject(
   if ("error" in id) return error(id.error);
 
   return withAdmin(async (supabase) => {
+    const curriculum = await getCurriculumReadRepository();
     const [
-      { count: strandCount, error: strandError },
+      strandCount,
       { count: textbookCount, error: textbookError },
       { count: examCount, error: examError },
     ] = await Promise.all([
-      supabase.from("strands").select("id", { count: "exact", head: true }).eq("subject_id", id.value),
+      curriculum.countStrandsBySubject(id.value).catch(() => null),
       supabase.from("textbooks").select("id", { count: "exact", head: true }).eq("subject_id", id.value),
       supabase.from("exams").select("id", { count: "exact", head: true }).eq("subject_id", id.value),
     ]);
-    if (strandError || textbookError || examError) {
+    if (strandCount === null || textbookError || examError) {
       return error("Could not verify whether this subject is in use.");
     }
 
@@ -212,16 +214,17 @@ export async function deleteGrade(
   if ("error" in id) return error(id.error);
 
   return withAdmin(async (supabase) => {
+    const curriculum = await getCurriculumReadRepository();
     const [
-      { count: strandCount, error: strandError },
+      strandCount,
       { count: textbookCount, error: textbookError },
       { count: examCount, error: examError },
     ] = await Promise.all([
-      supabase.from("strands").select("id", { count: "exact", head: true }).eq("grade_id", id.value),
+      curriculum.countStrandsByGrade(id.value).catch(() => null),
       supabase.from("textbooks").select("id", { count: "exact", head: true }).eq("grade_id", id.value),
       supabase.from("exams").select("id", { count: "exact", head: true }).eq("grade_id", id.value),
     ]);
-    if (strandError || textbookError || examError) {
+    if (strandCount === null || textbookError || examError) {
       return error("Could not verify whether this grade or class is in use.");
     }
 
@@ -255,12 +258,9 @@ export async function createStrand(
   if ("error" in name) return error(name.error);
 
   return withAdmin(async (supabase) => {
-    const { data: existing, error: lookupError } = await supabase
-      .from("strands")
-      .select("id, name")
-      .eq("grade_id", gradeId.value)
-      .eq("subject_id", subjectId.value);
-    if (lookupError) return error("Could not check existing strands or topics.");
+    const existing = await (await getCurriculumReadRepository())
+      .listStrandNames(gradeId.value, subjectId.value).catch(() => null);
+    if (!existing) return error("Could not check existing strands or topics.");
     if (hasDuplicate(namedRows(existing), name.value)) {
       return error("A strand or topic with this exact name already exists here.");
     }
@@ -285,19 +285,11 @@ export async function updateStrand(
   if ("error" in name) return error(name.error);
 
   return withAdmin(async (supabase) => {
-    const { data: current, error: currentError } = await supabase
-      .from("strands")
-      .select("id, grade_id, subject_id")
-      .eq("id", id.value)
-      .maybeSingle();
-    if (currentError || !current) return error("Strand or topic not found.");
-
-    const { data: existing, error: lookupError } = await supabase
-      .from("strands")
-      .select("id, name")
-      .eq("grade_id", current.grade_id)
-      .eq("subject_id", current.subject_id);
-    if (lookupError) return error("Could not check existing strands or topics.");
+    const curriculum = await getCurriculumReadRepository();
+    const current = await curriculum.getStrandParent(id.value).catch(() => null);
+    if (!current) return error("Strand or topic not found.");
+    const existing = await curriculum.listStrandNames(current.grade_id, current.subject_id).catch(() => null);
+    if (!existing) return error("Could not check existing strands or topics.");
     if (hasDuplicate(namedRows(existing), name.value, id.value)) {
       return error("A strand or topic with this exact name already exists here.");
     }
@@ -333,11 +325,8 @@ export async function deleteStrand(
   if ("error" in id) return error(id.error);
 
   return withAdmin(async (supabase) => {
-    const { count, error: countError } = await supabase
-      .from("sub_strands")
-      .select("id", { count: "exact", head: true })
-      .eq("strand_id", id.value);
-    if (countError) return error("Could not verify whether this strand or topic is in use.");
+    const count = await (await getCurriculumReadRepository()).countSubStrands(id.value).catch(() => null);
+    if (count === null) return error("Could not verify whether this strand or topic is in use.");
     if ((count ?? 0) > 0) {
       return error(
         "This strand or topic cannot be deleted because it has " +
@@ -367,11 +356,8 @@ export async function createSubStrand(
   if ("error" in name) return error(name.error);
 
   return withAdmin(async (supabase) => {
-    const { data: existing, error: lookupError } = await supabase
-      .from("sub_strands")
-      .select("id, name")
-      .eq("strand_id", strandId.value);
-    if (lookupError) return error("Could not check existing sub-strands or sub-topics.");
+    const existing = await (await getCurriculumReadRepository()).listSubStrandNames(strandId.value).catch(() => null);
+    if (!existing) return error("Could not check existing sub-strands or sub-topics.");
     if (hasDuplicate(namedRows(existing), name.value)) {
       return error("A sub-strand or sub-topic with this exact name already exists here.");
     }
@@ -394,18 +380,11 @@ export async function updateSubStrand(
   if ("error" in name) return error(name.error);
 
   return withAdmin(async (supabase) => {
-    const { data: current, error: currentError } = await supabase
-      .from("sub_strands")
-      .select("id, strand_id")
-      .eq("id", id.value)
-      .maybeSingle();
-    if (currentError || !current) return error("Sub-strand or sub-topic not found.");
-
-    const { data: existing, error: lookupError } = await supabase
-      .from("sub_strands")
-      .select("id, name")
-      .eq("strand_id", current.strand_id);
-    if (lookupError) return error("Could not check existing sub-strands or sub-topics.");
+    const curriculum = await getCurriculumReadRepository();
+    const current = await curriculum.getSubStrandParent(id.value).catch(() => null);
+    if (!current) return error("Sub-strand or sub-topic not found.");
+    const existing = await curriculum.listSubStrandNames(current.parent_id).catch(() => null);
+    if (!existing) return error("Could not check existing sub-strands or sub-topics.");
     if (hasDuplicate(namedRows(existing), name.value, id.value)) {
       return error("A sub-strand or sub-topic with this exact name already exists here.");
     }
@@ -441,11 +420,8 @@ export async function deleteSubStrand(
   if ("error" in id) return error(id.error);
 
   return withAdmin(async (supabase) => {
-    const { count, error: countError } = await supabase
-      .from("learning_outcomes")
-      .select("id", { count: "exact", head: true })
-      .eq("sub_strand_id", id.value);
-    if (countError) return error("Could not verify whether this record is in use.");
+    const count = await (await getCurriculumReadRepository()).countLearningOutcomes(id.value).catch(() => null);
+    if (count === null) return error("Could not verify whether this record is in use.");
     if ((count ?? 0) > 0) {
       return error(
         "This sub-strand or sub-topic cannot be deleted because it has " +
@@ -490,11 +466,9 @@ export async function createLearningOutcome(
   if ("error" in description) return error(description.error);
 
   return withAdmin(async (supabase) => {
-    const { data: existing, error: lookupError } = await supabase
-      .from("learning_outcomes")
-      .select("id, description")
-      .eq("sub_strand_id", subStrandId.value);
-    if (lookupError) return error("Could not check existing learning outcomes or objectives.");
+    const existing = await (await getCurriculumReadRepository())
+      .listLearningOutcomeDescriptions(subStrandId.value).catch(() => null);
+    if (!existing) return error("Could not check existing learning outcomes or objectives.");
     if (hasDuplicate(outcomeRows(existing), description.value)) {
       return error("This learning outcome or objective already exists here.");
     }
@@ -522,18 +496,11 @@ export async function updateLearningOutcome(
   if ("error" in description) return error(description.error);
 
   return withAdmin(async (supabase) => {
-    const { data: current, error: currentError } = await supabase
-      .from("learning_outcomes")
-      .select("id, sub_strand_id")
-      .eq("id", id.value)
-      .maybeSingle();
-    if (currentError || !current) return error("Learning outcome or objective not found.");
-
-    const { data: existing, error: lookupError } = await supabase
-      .from("learning_outcomes")
-      .select("id, description")
-      .eq("sub_strand_id", current.sub_strand_id);
-    if (lookupError) return error("Could not check existing learning outcomes or objectives.");
+    const curriculum = await getCurriculumReadRepository();
+    const current = await curriculum.getLearningOutcomeParent(id.value).catch(() => null);
+    if (!current) return error("Learning outcome or objective not found.");
+    const existing = await curriculum.listLearningOutcomeDescriptions(current.parent_id).catch(() => null);
+    if (!existing) return error("Could not check existing learning outcomes or objectives.");
     if (hasDuplicate(outcomeRows(existing), description.value, id.value)) {
       return error("This learning outcome or objective already exists here.");
     }
