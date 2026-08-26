@@ -12,6 +12,7 @@ import { EMBEDDING_BATCH_SIZE, EMBEDDING_DIMENSION, EMBEDDING_MODEL, TEXTBOOK_BU
 import { hasPdfSignature, isSourceType, safePdfFilename, validateUploadMetadata, type UploadFileLike } from "@/lib/textbooks/validation";
 import { UUID_PATTERN } from "@/lib/admin/validation";
 import { getCatalogRepository } from "@/lib/catalog";
+import { getAdminTextbookReadRepository, hasDuplicateTextbookName } from "@/lib/textbook-read";
 
 export type TextbookActionState = { status: "success" | "error"; message: string } | undefined;
 const result = (status: "success" | "error", message: string): TextbookActionState => ({ status, message });
@@ -44,13 +45,14 @@ export async function createTextbookRecord(_state: TextbookActionState, formData
   if (!UUID_PATTERN.test(subjectId)) return result("error", "Select a valid subject.");
   if (!UUID_PATTERN.test(gradeId)) return result("error", "Select a valid grade or form.");
   const catalog = await getCatalogRepository();
-  const [subject, grade, { data: existing }] = await Promise.all([
+  const textbookReads = await getAdminTextbookReadRepository();
+  const [subject, grade, existing] = await Promise.all([
     catalog.subjectExists(subjectId).catch(() => false),
     catalog.gradeExists(gradeId).catch(() => false),
-    context.supabase.from("textbooks").select("id, name").eq("subject_id", subjectId).eq("grade_id", gradeId),
+    textbookReads.listTextbooksForDuplicateCheck(subjectId, gradeId).catch(() => []),
   ]);
   if (!subject || !grade) return result("error", "The selected subject or grade does not exist.");
-  if ((existing ?? []).some((book) => book.name.trim().toLocaleLowerCase("en") === name.toLocaleLowerCase("en"))) {
+  if (hasDuplicateTextbookName(existing, name)) {
     return result("error", "A textbook with this name already exists for the selected subject and grade.");
   }
   const { error } = await context.supabase.from("textbooks").insert({
@@ -76,8 +78,7 @@ export async function uploadTextbookDocument(_state: TextbookActionState, formDa
   if (metadataError) return result("error", metadataError);
   const bytes = new Uint8Array(await file!.arrayBuffer());
   if (!hasPdfSignature(bytes)) return result("error", "The uploaded file does not have a valid PDF signature.");
-  const { data: textbook } = await context.supabase.from("textbooks").select("id").eq("id", textbookId).maybeSingle();
-  if (!textbook) return result("error", "The selected textbook record does not exist.");
+  if (!await (await getAdminTextbookReadRepository()).textbookExists(textbookId).catch(() => false)) return result("error", "The selected textbook record does not exist.");
   const documentId = randomUUID();
   const storagePath = `textbooks/${textbookId}/${documentId}/${safePdfFilename(file!.name)}`;
   const hash = createHash("sha256").update(bytes).digest("hex");

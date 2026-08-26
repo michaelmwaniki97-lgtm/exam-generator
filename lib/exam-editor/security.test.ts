@@ -8,6 +8,7 @@ const identityFactory = readFileSync(new URL("../identity-read/index.ts", import
 const identitySupabase = readFileSync(new URL("../identity-read/supabase.ts", import.meta.url), "utf8");
 const postgresExamRead = readFileSync(new URL("../exam-read/postgres.ts", import.meta.url), "utf8");
 const grounding = readFileSync(new URL("./regeneration-grounding.ts", import.meta.url), "utf8");
+const textbookReadPostgres = readFileSync(new URL("../textbook-read/postgres.ts", import.meta.url), "utf8");
 const richRenderer = readFileSync(new URL("../../components/exam-content/rich-stimuli.tsx", import.meta.url), "utf8");
 const examView = readFileSync(new URL("../../app/teacher/exams/[id]/page.tsx", import.meta.url), "utf8");
 const markingView = readFileSync(new URL("../../app/teacher/exams/[id]/marking-scheme/page.tsx", import.meta.url), "utf8");
@@ -49,10 +50,12 @@ test("ordinary saves retain their typed atomic operation and regeneration uses i
 
 test("regeneration grounding is pinned to canonical textbook, document, class, and subject", () => {
   assert.match(grounding, /input\.provenance\.textbookId/);
-  assert.match(grounding, /eq\("subject_id", input\.subjectId\)/);
-  assert.match(grounding, /eq\("grade_id", input\.gradeId\)/);
-  assert.match(grounding, /eq\("id", documentId\).*eq\("textbook_id", textbook\.id\).*eq\("processing_status", "ready"\)/);
-  assert.match(grounding, /documentId: document\.id/);
+  assert.match(grounding, /getTextbookForGrounding\(input\.provenance\.textbookId, input\.subjectId, input\.gradeId\)/);
+  assert.match(grounding, /getReadyDocumentId\(textbook\.id, documentId\)/);
+  assert.match(grounding, /documentId: readyDocumentId/);
+  assert.match(textbookReadPostgres, /id = \$1::uuid and subject_id = \$2::uuid and grade_id = \$3::uuid/);
+  assert.match(textbookReadPostgres, /textbook_id = \$1::uuid and processing_status = 'ready'/);
+  assert.match(textbookReadPostgres, /\$2::uuid is null or id = \$2::uuid/);
 });
 
 test("rich content rendering uses only deterministic React and declarative SVG primitives", () => {
