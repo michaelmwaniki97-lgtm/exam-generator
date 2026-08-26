@@ -1,12 +1,14 @@
 import { TextbookManager } from "@/components/admin/textbook-manager";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getCatalogRepository } from "@/lib/catalog";
+import { getAdminReportingRepository } from "@/lib/admin-reporting";
 
 export default async function AdminTextbooksPage() {
   const supabase = createAdminClient();
   const catalog = await getCatalogRepository();
+  const reporting = await getAdminReportingRepository();
   const [{ data: books }, { data: documents }, subjects, grades] = await Promise.all([
-    supabase.from("textbooks").select("id, name, publisher, subject:subjects(name), grade:grades(name)").order("name"),
+    reporting.listTextbookMetadata().then((data) => ({ data })),
     supabase.from("textbook_documents").select("id, textbook_id, original_filename, file_size, processing_status, processing_error, page_count, chunk_count, source_type, created_at").order("created_at", { ascending: false }),
     catalog.listSubjectsByName(),
     catalog.listGradeOptionsByName(),

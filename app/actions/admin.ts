@@ -13,6 +13,7 @@ import {
 import { createClient } from "@/lib/supabase/server";
 import { getCatalogRepository } from "@/lib/catalog";
 import { getCurriculumReadRepository } from "@/lib/curriculum-read";
+import { getAdminReportingRepository } from "@/lib/admin-reporting";
 
 export type AdminActionState =
   | { status: "success"; message: string }
@@ -120,24 +121,17 @@ export async function deleteSubject(
   if ("error" in id) return error(id.error);
 
   return withAdmin(async (supabase) => {
-    const curriculum = await getCurriculumReadRepository();
-    const [
-      strandCount,
-      { count: textbookCount, error: textbookError },
-      { count: examCount, error: examError },
-    ] = await Promise.all([
-      curriculum.countStrandsBySubject(id.value).catch(() => null),
-      supabase.from("textbooks").select("id", { count: "exact", head: true }).eq("subject_id", id.value),
-      supabase.from("exams").select("id", { count: "exact", head: true }).eq("subject_id", id.value),
-    ]);
-    if (strandCount === null || textbookError || examError) {
+    const dependencies = await getAdminReportingRepository()
+      .then((repository) => repository.getSubjectDependencies(id.value))
+      .catch(() => null);
+    if (!dependencies) {
       return error("Could not verify whether this subject is in use.");
     }
 
     const blocked = dependencyMessage("This subject", [
-      { count: strandCount, label: "curriculum strands/topics" },
-      { count: textbookCount, label: "textbooks" },
-      { count: examCount, label: "exams" },
+      { count: dependencies.curriculum, label: "curriculum strands/topics" },
+      { count: dependencies.textbooks, label: "textbooks" },
+      { count: dependencies.exams, label: "exams" },
     ]);
     if (blocked) return error(blocked);
 
@@ -214,24 +208,17 @@ export async function deleteGrade(
   if ("error" in id) return error(id.error);
 
   return withAdmin(async (supabase) => {
-    const curriculum = await getCurriculumReadRepository();
-    const [
-      strandCount,
-      { count: textbookCount, error: textbookError },
-      { count: examCount, error: examError },
-    ] = await Promise.all([
-      curriculum.countStrandsByGrade(id.value).catch(() => null),
-      supabase.from("textbooks").select("id", { count: "exact", head: true }).eq("grade_id", id.value),
-      supabase.from("exams").select("id", { count: "exact", head: true }).eq("grade_id", id.value),
-    ]);
-    if (strandCount === null || textbookError || examError) {
+    const dependencies = await getAdminReportingRepository()
+      .then((repository) => repository.getGradeDependencies(id.value))
+      .catch(() => null);
+    if (!dependencies) {
       return error("Could not verify whether this grade or class is in use.");
     }
 
     const blocked = dependencyMessage("This grade or class", [
-      { count: strandCount, label: "curriculum strands/topics" },
-      { count: textbookCount, label: "textbooks" },
-      { count: examCount, label: "exams" },
+      { count: dependencies.curriculum, label: "curriculum strands/topics" },
+      { count: dependencies.textbooks, label: "textbooks" },
+      { count: dependencies.exams, label: "exams" },
     ]);
     if (blocked) return error(blocked);
 
@@ -430,11 +417,10 @@ export async function deleteSubStrand(
       );
     }
 
-    const { count: examCount, error: examReferenceError } = await supabase
-      .from("exams")
-      .select("id", { count: "exact", head: true })
-      .contains("content", { meta: { topicIds: [id.value] } });
-    if (examReferenceError) return error("Could not check saved exam references.");
+    const examCount = await getAdminReportingRepository()
+      .then((repository) => repository.countExamsReferencingSubStrand(id.value))
+      .catch(() => null);
+    if (examCount === null) return error("Could not check saved exam references.");
     if ((examCount ?? 0) > 0) {
       return error(
         "This sub-strand or sub-topic cannot be deleted because saved exams reference its UUID."

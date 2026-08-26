@@ -1,6 +1,30 @@
 # Self-Hosted Database Abstraction — RPC Foundation
 
-Status: RPC foundation and CRUD Phases 1-3 are checkpointed; CRUD Phase 4 (authorized exam document/detail reads) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+Status: RPC foundation and CRUD Phases 1-4 are checkpointed; CRUD Phase 5 (read-only admin reporting and dependency inspection) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+
+## CRUD Phase 5: admin reporting and dependency reads
+
+Phase 5 adds the narrow, server-only `lib/admin-reporting` repository. Its operations are `countDashboardExams`, `getSubjectDependencies`, `getGradeDependencies`, `countExamsReferencingSubStrand`, and `listTextbookMetadata`. They cover only the existing dashboard exam count, subject/grade deletion dependency inspection, saved-exam references checked before sub-strand deletion, and the textbook catalog metadata shown on the admin textbook page.
+
+The factory independently validates the current Supabase Auth user and current admin role before returning either adapter. It accepts no user ID, admin ID, role, request object, header, cookie, form value, or backend argument. The PostgreSQL adapter uses the server-derived user UUID in the existing authenticated transaction context and adds `public.is_admin()` to every query. Consequently, even direct internal construction with a teacher or unknown UUID produces no reporting rows; the application factory rejects those identities before query execution. No trusted/service-role or raw Pool capability is exposed.
+
+The Supabase adapter retains exact PostgREST counts (`count: "exact", head: true`), filters, JSON containment behavior, textbook relations, and deterministic name ordering. The PostgreSQL adapter uses `count(*)`, explicit textbook/join columns, parameterized UUIDs and JSONB, existing indexed foreign-key filters, and the same null/zero result normalization. Dashboard reporting counts rows without loading exam JSON, marking schemes, payment details, or other private content. Textbook results contain only ID, name, nullable publisher, and subject/grade display names; `storage_path`, document metadata, chunks, and file content are excluded.
+
+The migrated call sites are `app/admin/page.tsx` for the exam count, `deleteSubject` and `deleteGrade` in `app/actions/admin.ts` for their three dependency counts, `deleteSubStrand` for its saved-exam UUID reference count, and `app/admin/textbooks/page.tsx` for textbook catalog metadata. Every protected call still follows Supabase Auth, server-side admin validation, then repository access. The existing delete actions also retain their own `withAdmin` check before dependency inspection and keep the actual Supabase `.delete().select("id")` mutations unchanged.
+
+Deferred admin reads are intentional: dashboard teacher count is a teacher-profile read; dashboard revenue is a payment read; the teacher listing and admin display name are profile reads; textbook document processing/file metadata remains on its existing service-only path; settings remain on their existing admin policy; and all payment, Auth, Storage, import, and maintenance reads remain untouched. Admin marking-scheme access is not added.
+
+Contract tests cover exact/zero count normalization, filters, metadata shape, environment-only backend selection, server-only imports, admin reauthorization, and absence of trusted/browser-selected authority. Disposable PostgreSQL fixtures cover multiple grades, subjects, active/inactive curriculum rows, textbooks, two teachers' exams, JSON topic references, zero dependencies, textbook ordering/null publisher behavior, admin access, teacher denial, unknown-user denial, and denial without transaction identity. No production data is queried.
+
+The dependency inventory uses one reproducible source-occurrence rule: count each literal `.from("table")`/`.from('table')` database-builder call once in non-test `app`, `lib`, and `scripts` sources. Nested relation names inside `.select()` do not add calls. A mutation followed by `.select()` is classified once as a write. Auth API and Storage calls are separate, and dynamic maintenance `.from(table)` calls are excluded from runtime.
+
+Recounting both Git states with that rule corrects the earlier Phase 4 narrative, which mixed narrower subsets: the Phase 4 checkpoint has 28 fallback-adapter calls, 39 runtime reads outside abstractions, and 31 writes (98 literal calls total), not 29 and 25. The Phase 5 worktree has 34 fallback calls, 32 direct runtime reads, and 31 writes (97 total). Phase 5 added six Supabase fallback calls and removed seven direct runtime calls; no unexplained read was introduced. Four dynamic maintenance/tooling database reads exist in both states outside those literal totals.
+
+After Phase 5, remaining direct runtime reads by table are: `teachers` 12, `admins` 2, `app_settings` 1, `exams` 2, `payments` 6, `textbooks` 4, and `textbook_documents` 5. There are no remaining direct runtime reads for grades, subjects, curriculum hierarchy tables, or marking schemes. Auth has 19 explicit API calls and Storage has four explicit bucket calls; neither is part of the `.from()` totals.
+
+Rollback remains configuration-first: omit `DATABASE_BACKEND` or set it to `supabase`. Before checkpoint, remove only the Phase 5 worktree changes; after checkpoint, revert only its reviewed commit. No schema, production-data, payment, Auth, or Storage rollback is required.
+
+The recommended next database slice is a separately reviewed read-only teacher/admin profile and role-resolution layer, keeping Supabase Auth as the session authority and avoiding payment, Storage, and all writes. Because role resolution is security-critical, it should have explicit teacher/admin cross-role and unauthenticated tests before any call-site migration.
 
 ## CRUD Phase 4: authorized exam document and detail reads
 

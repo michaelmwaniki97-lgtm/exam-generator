@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { getCatalogRepository } from "@/lib/catalog";
+import { getAdminReportingRepository } from "@/lib/admin-reporting";
 
 const managementAreas: {
   label: string;
@@ -57,13 +58,14 @@ function formatKes(amount: number): string {
 export default async function AdminPage() {
   const supabase = await createClient();
   const catalog = await getCatalogRepository();
+  const reporting = await getAdminReportingRepository();
 
-  // Existing RLS policies scope each read. The unchanged teacher/exam reads use
-  // head:true + count:"exact" to count without fetching rows.
+  // Existing RLS policies scope each read. Teacher/payment reads remain on their
+  // current path; reporting counts do not fetch private exam rows.
   const [{ count: teacherCount }, { count: examCount }, subjectCount, { data: payments }] =
     await Promise.all([
       supabase.from("teachers").select("id", { count: "exact", head: true }),
-      supabase.from("exams").select("id", { count: "exact", head: true }),
+      reporting.countDashboardExams().then((count) => ({ count })),
       catalog.countSubjects(),
       supabase.from("payments").select("amount").eq("status", "paid"),
     ]);
