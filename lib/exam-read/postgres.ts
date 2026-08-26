@@ -1,8 +1,8 @@
 import "server-only";
 
-import { queryRows, withAuthenticatedTransaction } from "../db/postgres-client.ts";
+import { queryRows, withAuthenticatedTransaction, withTrustedTransaction } from "../db/postgres-client.ts";
 import type { UserRole } from "../auth/session.ts";
-import type { AuthorizedExamDocumentRow, ExamDocumentAccessMetadata, ExamDocumentReadRepository, ExamReadRepository, RecentTeacherExam, TeacherExamForEditing, TeacherExamListItem } from "./contracts.ts";
+import type { AuthorizedExamDocumentRow, ExamDocumentAccessMetadata, ExamDocumentReadRepository, ExamReadRepository, RecentTeacherExam, TeacherExamForEditing, TeacherExamListItem, TeacherExamPaymentMetadata, TrustedExamReadRepository } from "./contracts.ts";
 
 type FlatRecent = Omit<RecentTeacherExam, "subjects" | "grades"> & { subject_name: string | null; grade_name: string | null };
 type FlatList = Omit<TeacherExamListItem, "subjects" | "grades"> & { subject_name: string | null; grade_name: string | null };
@@ -49,6 +49,19 @@ export class PostgresExamReadRepository implements ExamReadRepository, ExamDocum
     });
   }
 
+  async getTeacherExamPaymentMetadata(id: string): Promise<TeacherExamPaymentMetadata | null> {
+    try {
+      return await withAuthenticatedTransaction(this.userId, async (client) => {
+        const rows = await queryRows<TeacherExamPaymentMetadata>(client,
+          "select id, status from public.exams where id = $1::uuid and teacher_id = $2::uuid", [id, this.teacherId]);
+        if (rows.length > 1) throw new Error("Exam payment metadata lookup returned an unexpected row count.");
+        return rows[0] ?? null;
+      });
+    } catch {
+      return null;
+    }
+  }
+
   getDocumentAccessMetadata(id: string): Promise<ExamDocumentAccessMetadata | null> {
     return withAuthenticatedTransaction(this.userId, async (client) => {
       const rows = this.role === "teacher"
@@ -85,5 +98,20 @@ export class PostgresExamReadRepository implements ExamReadRepository, ExamDocum
       }
       return { ...exam, teachers: { school }, marking_schemes };
     });
+  }
+}
+
+export class PostgresTrustedExamReadRepository implements TrustedExamReadRepository {
+  async teacherOwnsExam(id: string, teacherId: string): Promise<boolean> {
+    try {
+      return await withTrustedTransaction(async (client) => {
+        const rows = await queryRows<{ id: string }>(client,
+          "select id from public.exams where id = $1::uuid and teacher_id = $2::uuid", [id, teacherId]);
+        if (rows.length > 1) throw new Error("Exam ownership lookup returned an unexpected row count.");
+        return rows.length === 1;
+      });
+    } catch {
+      return false;
+    }
   }
 }

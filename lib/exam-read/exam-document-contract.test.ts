@@ -60,5 +60,6 @@ test("document loader authorizes metadata, gates paid PDFs, then loads private c
   assert.match(factory, /function getExamDocumentReadContext\(\)/);
   assert.doesNotMatch(factory + loader, /request\.json|headers\(|cookies\(|userId\s*:/);
   assert.doesNotMatch(postgres, /select\s+\*/i);
-  assert.doesNotMatch(postgres, /withTrustedTransaction|service_role|bypassrls|set role/i);
+  const authenticatedPostgres = postgres.slice(postgres.indexOf("export class PostgresExamReadRepository"), postgres.indexOf("export class PostgresTrustedExamReadRepository"));
+  assert.doesNotMatch(authenticatedPostgres, /withTrustedTransaction|service_role|bypassrls|set role/i);
 });

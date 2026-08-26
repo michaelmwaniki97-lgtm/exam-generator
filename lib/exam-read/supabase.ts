@@ -2,7 +2,7 @@ import "server-only";
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { UserRole } from "../auth/session.ts";
-import type { AuthorizedExamDocumentRow, ExamDocumentAccessMetadata, ExamDocumentReadRepository, ExamReadRepository, RecentTeacherExam, TeacherExamForEditing, TeacherExamListItem } from "./contracts.ts";
+import type { AuthorizedExamDocumentRow, ExamDocumentAccessMetadata, ExamDocumentReadRepository, ExamReadRepository, RecentTeacherExam, TeacherExamForEditing, TeacherExamListItem, TeacherExamPaymentMetadata, TrustedExamReadRepository } from "./contracts.ts";
 
 const RECENT_COLUMNS = "id, exam_type, status, created_at, subjects(name), grades(name)";
 const LIST_COLUMNS = "id, exam_type, marks, duration, difficulty, term, year, status, created_at, subjects(name), grades(name)";
@@ -35,6 +35,11 @@ export class SupabaseExamReadRepository implements ExamReadRepository, ExamDocum
     return data as unknown as TeacherExamForEditing | null;
   }
 
+  async getTeacherExamPaymentMetadata(id: string): Promise<TeacherExamPaymentMetadata | null> {
+    const { data } = await this.client.from("exams").select("id, status").eq("id", id).eq("teacher_id", this.teacherId).maybeSingle();
+    return data as TeacherExamPaymentMetadata | null;
+  }
+
   async getDocumentAccessMetadata(id: string): Promise<ExamDocumentAccessMetadata | null> {
     let query = this.client.from("exams").select(ACCESS_COLUMNS).eq("id", id);
     if (this.role === "teacher") query = query.eq("teacher_id", this.teacherId);
@@ -51,5 +56,15 @@ export class SupabaseExamReadRepository implements ExamReadRepository, ExamDocum
     if (!data) return null;
     const row = data as unknown as Omit<AuthorizedExamDocumentRow, "marking_schemes"> & { marking_schemes?: Array<{ content: unknown }> };
     return { ...row, marking_schemes: row.marking_schemes ?? [] };
+  }
+}
+
+export class SupabaseTrustedExamReadRepository implements TrustedExamReadRepository {
+  private readonly client: SupabaseClient;
+  constructor(client: SupabaseClient) { this.client = client; }
+
+  async teacherOwnsExam(id: string, teacherId: string): Promise<boolean> {
+    const { data } = await this.client.from("exams").select("id").eq("id", id).eq("teacher_id", teacherId).maybeSingle();
+    return Boolean(data);
   }
 }

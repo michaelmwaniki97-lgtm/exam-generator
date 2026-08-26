@@ -38,6 +38,11 @@ export type ExamDocumentAccessMetadata = {
   revision: number;
 };
 
+export type TeacherExamPaymentMetadata = {
+  id: string;
+  status: string;
+};
+
 export type AuthorizedExamDocumentRow = {
   id: string;
   exam_type: string;
@@ -54,6 +59,11 @@ export interface ExamReadRepository {
   listRecentTeacherExams(limit: number): Promise<RecentTeacherExam[]>;
   listTeacherExams(): Promise<TeacherExamListItem[]>;
   getTeacherExamForEditing(id: string): Promise<TeacherExamForEditing | null>;
+  getTeacherExamPaymentMetadata(id: string): Promise<TeacherExamPaymentMetadata | null>;
+}
+
+export interface TrustedExamReadRepository {
+  teacherOwnsExam(id: string, teacherId: string): Promise<boolean>;
 }
 
 export interface ExamDocumentReadRepository {

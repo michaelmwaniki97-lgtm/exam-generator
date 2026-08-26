@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import test from "node:test";
 import { closePostgresPool, queryRows, withTrustedTransaction } from "../db/postgres-client.ts";
-import { PostgresExamReadRepository } from "./postgres.ts";
+import { PostgresExamReadRepository, PostgresTrustedExamReadRepository } from "./postgres.ts";
 
 const USER_A = "00000000-0000-4000-8000-000000000001";
 const USER_B = "00000000-0000-4000-8000-000000000002";
@@ -53,8 +53,21 @@ test("direct PostgreSQL exam reads preserve ownership, projections, states, revi
   assert.equal(await b.getTeacherExamForEditing(ids.a2), null);
   assert.equal((await b.getTeacherExamForEditing(ids.b1))?.marking_schemes.length, 1);
   assert.equal(await a.getTeacherExamForEditing(randomUUID()), null);
+  assert.deepEqual(await a.getTeacherExamPaymentMetadata(ids.a2), { id: ids.a2, status: "generated" });
+  assert.equal(await a.getTeacherExamPaymentMetadata(ids.b1), null);
+  assert.equal(await b.getTeacherExamPaymentMetadata(ids.a2), null);
+  assert.equal(await a.getTeacherExamPaymentMetadata(randomUUID()), null);
+  assert.equal(await a.getTeacherExamPaymentMetadata("not-a-uuid"), null);
   const unauthenticated = new PostgresExamReadRepository(NO_USER, teacherA);
   assert.deepEqual(await unauthenticated.listTeacherExams(), []);
   assert.equal(await unauthenticated.getTeacherExamForEditing(ids.a1), null);
+  assert.equal(await unauthenticated.getTeacherExamPaymentMetadata(ids.a1), null);
   await assert.rejects(() => a.getTeacherExamForEditing("not-a-uuid"), /uuid|syntax/i);
+
+  const trusted = new PostgresTrustedExamReadRepository();
+  assert.equal(await trusted.teacherOwnsExam(ids.a1, teacherA), true);
+  assert.equal(await trusted.teacherOwnsExam(ids.b1, teacherA), false);
+  assert.equal(await trusted.teacherOwnsExam(ids.b1, teacherB), true);
+  assert.equal(await trusted.teacherOwnsExam(randomUUID(), teacherA), false);
+  assert.equal(await trusted.teacherOwnsExam("not-a-uuid", teacherA), false);
 });

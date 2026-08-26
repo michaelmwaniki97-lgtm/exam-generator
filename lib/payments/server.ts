@@ -6,6 +6,7 @@ import { getTrustedRpcDatabase } from "../db";
 import { getCurrentUser, getUserRole } from "../auth/session";
 import { getIdentityReadRepository } from "../identity-read";
 import { getAppSettingsReadRepository } from "../app-settings-read";
+import { getTeacherExamReadContext, getTrustedExamReadRepository } from "../exam-read";
 import { mayDownloadExamPackage, PaymentError, PAYMENT_CURRENCY, type BeginAttemptResult, type PaymentActor, type PaymentAttempt, type PaymentRepository, type ProviderInitiation } from "./core";
 
 type PaymentRow = {
@@ -36,11 +37,17 @@ export async function getExamDownloadEntitlement(examId: string): Promise<{ allo
   if (!user) throw new PaymentError("UNAUTHENTICATED", "Authentication required.");
   if (mayDownloadExamPackage(role, false, false)) return { allowed: true, admin: true, price: null };
   const supabase = await createClient();
-  const teacher = await (await getIdentityReadRepository()).getTeacherIdentity();
-  if (!teacher) throw new PaymentError("FORBIDDEN", "Access denied.");
-  const { data: exam } = await supabase.from("exams").select("id, status").eq("id", examId).eq("teacher_id", teacher.id).maybeSingle();
+  let repository: Awaited<ReturnType<typeof getTeacherExamReadContext>>["repository"];
+  let teacherId: string;
+  try {
+    ({ repository, teacherId } = await getTeacherExamReadContext());
+  } catch (error) {
+    if (error instanceof Error && error.message === "Teacher access required.") throw new PaymentError("FORBIDDEN", "Access denied.");
+    throw error;
+  }
+  const exam = await repository.getTeacherExamPaymentMetadata(examId);
   if (!exam) throw new PaymentError("NOT_FOUND", "Exam not found.");
-  const { data: paid } = await supabase.from("payments").select("id").eq("exam_id", examId).eq("teacher_id", teacher.id).eq("status", "paid").limit(1);
+  const { data: paid } = await supabase.from("payments").select("id").eq("exam_id", examId).eq("teacher_id", teacherId).eq("status", "paid").limit(1);
   const allowed = mayDownloadExamPackage(role, true, !!paid?.length || exam.status === "paid" || exam.status === "downloaded");
   return { allowed, admin: false, price: allowed ? null : await getExamPackagePrice() };
 }
@@ -48,8 +55,7 @@ export async function getExamDownloadEntitlement(examId: string): Promise<{ allo
 export class SupabasePaymentRepository implements PaymentRepository {
   private admin = createAdminClient();
   async assertOwnedExam(actor: PaymentActor, examId: string) {
-    const { data } = await this.admin.from("exams").select("id").eq("id", examId).eq("teacher_id", actor.teacherId).maybeSingle();
-    if (!data) throw new PaymentError("FORBIDDEN", "You do not have access to this exam.");
+    if (!await getTrustedExamReadRepository().teacherOwnsExam(examId, actor.teacherId)) throw new PaymentError("FORBIDDEN", "You do not have access to this exam.");
   }
   async beginAttempt(input: { examId: string; teacherId: string; phone: string; provider: string; idempotencyKey: string }): Promise<BeginAttemptResult> {
     let row: PaymentRow;

@@ -2,14 +2,15 @@ import "server-only";
 
 import { UUID_PATTERN } from "../admin/validation.ts";
 import { getDatabaseBackendName } from "../db/config.ts";
+import { createAdminClient } from "../supabase/admin.ts";
 import { createClient } from "../supabase/server";
 import { getUserRole, type UserRole } from "../auth/session.ts";
-import type { ExamDocumentReadRepository, ExamReadRepository } from "./contracts.ts";
-import { PostgresExamReadRepository } from "./postgres.ts";
-import { SupabaseExamReadRepository } from "./supabase.ts";
+import type { ExamDocumentReadRepository, ExamReadRepository, TrustedExamReadRepository } from "./contracts.ts";
+import { PostgresExamReadRepository, PostgresTrustedExamReadRepository } from "./postgres.ts";
+import { SupabaseExamReadRepository, SupabaseTrustedExamReadRepository } from "./supabase.ts";
 import { getIdentityReadRepository } from "../identity-read/index.ts";
 
-export type { AuthorizedExamDocumentRow, ExamDocumentAccessMetadata, ExamDocumentReadRepository, ExamReadRepository, RecentTeacherExam, TeacherExamForEditing, TeacherExamListItem } from "./contracts.ts";
+export type { AuthorizedExamDocumentRow, ExamDocumentAccessMetadata, ExamDocumentReadRepository, ExamReadRepository, RecentTeacherExam, TeacherExamForEditing, TeacherExamListItem, TeacherExamPaymentMetadata, TrustedExamReadRepository } from "./contracts.ts";
 
 export function validExamId(id: string): boolean { return UUID_PATTERN.test(id); }
 
@@ -27,6 +28,12 @@ export async function getTeacherExamReadContext(): Promise<{ repository: ExamRea
 
 export async function getTeacherExamReadRepository(): Promise<ExamReadRepository> {
   return (await getTeacherExamReadContext()).repository;
+}
+
+export function getTrustedExamReadRepository(): TrustedExamReadRepository {
+  return getDatabaseBackendName() === "postgres"
+    ? new PostgresTrustedExamReadRepository()
+    : new SupabaseTrustedExamReadRepository(createAdminClient());
 }
 
 export async function getExamDocumentReadContext(): Promise<{ repository: ExamDocumentReadRepository; role: UserRole | null }> {

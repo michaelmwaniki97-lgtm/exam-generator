@@ -1,6 +1,26 @@
 # Self-Hosted Database Abstraction — RPC Foundation
 
-Status: RPC foundation and CRUD Phases 1-7 are checkpointed; CRUD Phase 8 (the isolated app-settings read) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+Status: RPC foundation and CRUD Phases 1-8 are checkpointed; CRUD Phase 9 (the remaining ordinary exam reads) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+
+## CRUD Phase 9: remaining exam reads
+
+Phase 9 moves the final two ordinary runtime `exams` reads into the existing server-only `lib/exam-read` abstraction. Both are payment-adjacent metadata reads, but neither reads or changes payment state. No new exam repository or generic CRUD layer is introduced.
+
+The first original call site was `getExamDownloadEntitlement` in `lib/payments/server.ts`. It used the ordinary authenticated Supabase client to select only `id, status`, filtered by the browser-supplied lookup ID and the teacher ID derived server-side from Supabase Auth. It is now `getTeacherExamPaymentMetadata(id)` on the existing teacher repository. The PostgreSQL adapter uses the validated Auth user transaction context plus an explicit `id` and `teacher_id` predicate. Existing, foreign-owned, missing, query-error, and malformed-ID behavior remains metadata-or-null, so foreign and nonexistent exams remain indistinguishable. Admin entitlement still returns through its existing admin branch before this teacher operation.
+
+The second original call site was `SupabasePaymentRepository.assertOwnedExam`. It intentionally used `createAdminClient()` to select only `id` with both `exam.id` and the server-derived payment actor's `teacher_id`, returning the existing forbidden error when no row was found. It is now the separate `TrustedExamReadRepository.teacherOwnsExam(id, teacherId)` operation. The Supabase adapter retains the service client; the PostgreSQL adapter retains the fixed trusted transaction. This trusted method is reachable only from the server-side payment repository after `currentPaymentActor` has authenticated the user, required the resolved `teacher` role, and derived the teacher profile. No request can select a teacher ID, backend, role, or execution mode.
+
+Both SQL queries use explicit minimized projections and parameterized UUIDs. They return no exam JSON, marking content, payment row, phone, provider reference, receipt, AI data, or textbook data. The authenticated query has defense-in-depth ownership and RLS identity. The trusted query has the same explicit two-column predicate as the historical service-client check. No RLS policy, grant, role, or schema changes are included.
+
+The surrounding payment behavior is unchanged. The entitlement function still performs its existing authenticated `payments` lookup after exam ownership metadata. Payment initiation still calls `assertOwnedExam` before the existing trusted begin-attempt RPC. Authoritative pricing, KES, phone normalization, limits, cooldowns, STK Push, callbacks, query reconciliation, finalization, correlation, receipt/reference uniqueness, idempotency, leases/backoff, and both PDF gates remain on their existing paths. All exam, marking-scheme, editor, regeneration, status/revision, payment, and entitlement writes are unchanged.
+
+Supabase contract tests cover exact projections, ownership filters, false/null behavior, and the distinct authenticated/trusted boundaries. Disposable PostgreSQL fixtures cover Teacher A/B symmetry, own and foreign rows, missing and malformed IDs, relevant statuses, raw/unknown identity denial, metadata minimization, and trusted ownership parity. Existing payment, Daraja, document/PDF, exam, RPC, Security B1, and RAG suites remain regression gates.
+
+Rollback remains configuration-first: omit `DATABASE_BACKEND` or set it to `supabase`. Before checkpoint, remove only the Phase 9 worktree changes; after checkpoint, revert only its reviewed commit. No database, payment, or production rollback is required.
+
+Using the reconciled source-occurrence method, two new Supabase fallback calls replace the final two direct runtime exam reads. Fallback adapter calls become 49, direct runtime reads become eight, writes remain 31, and the literal `.from()` total remains 88. Auth calls remain 19, Storage calls remain four, and dynamic maintenance reads remain four. Remaining direct runtime reads are the six `payments` reads and the two deliberately deferred Storage/write-coupled `textbook_documents` reads; direct `exams` reads become zero.
+
+The recommended next database slice is a separately audited read-only payment-table phase. Because those six reads participate directly in entitlement, reconciliation, provider state, and transaction history, they must not be combined with payment writes, Daraja redesign, Auth, Storage, or ordinary write migration.
 
 ## CRUD Phase 8: app-settings read
 
