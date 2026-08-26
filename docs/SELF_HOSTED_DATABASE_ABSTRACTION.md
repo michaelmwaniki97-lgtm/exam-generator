@@ -1,6 +1,26 @@
 # Self-Hosted Database Abstraction — RPC Foundation
 
-Status: RPC foundation and CRUD Phases 1-2 are checkpointed; CRUD Phase 3 (read-only teacher-owned exams and marking schemes) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+Status: RPC foundation and CRUD Phases 1-3 are checkpointed; CRUD Phase 4 (authorized exam document/detail reads) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+
+## CRUD Phase 4: authorized exam document and detail reads
+
+Before Phase 4, `loadCanonicalExamDocument` authenticated the user, resolved teacher/admin role, loaded the complete exam JSON plus nested marking JSON, checked ownership/admin access, and only then checked payment entitlement when serving a PDF. Teacher detail and marking pages subsequently checked entitlement to decide whether to show payment controls and download/print controls. Those pages intentionally rendered an unpaid preview; PDFs were paid-only. Admin users were redirected away from teacher pages, while the API loader allowed admin exam access. Existing RLS allowed admins to read exams but did not grant admin marking-scheme access.
+
+Phase 4 preserves those effective contracts while splitting the repository boundary into `getDocumentAccessMetadata(id)` and `getAuthorizedExamDocument(id, includeMarking)`. Metadata contains only `id`, `status`, and `revision`; it contains no exam JSON, marking JSON, payment, provider, phone, AI, textbook, or Storage data. The private query returns only the fields required by `buildExamDocument`, and student document reads do not query marking schemes.
+
+The new sequence is authentication, server-side role/teacher resolution, metadata authorization, optional existing payment entitlement, private content load, canonical content validation, and rendering. Teacher detail and marking pages do not request the paid-only option, preserving their existing unpaid preview behavior. The PDF route still passes `requirePaid: true`, so its sequence is now authorization metadata, the unchanged payment subsystem, then private JSON. Both student and marking PDFs retain Node runtime, dynamic execution, bounded output, and private `no-store` headers.
+
+Teacher access continues to derive `teacher.id` from the authenticated Supabase user and applies both RLS identity and an explicit `exam.teacher_id` predicate to metadata, exam content, and parent-constrained marking queries. Foreign-owned and nonexistent exams both produce the same not-found result. There is no standalone marking-scheme identifier operation. Admin selection remains a separate server-derived role path: it relies on the existing admin RLS policy for exams and does not invent an admin flag or a teacher-method bypass. Because existing RLS has no admin marking-scheme policy, admin marking documents remain unavailable exactly as before.
+
+The Supabase adapter retains explicit PostgREST projections and nested marking syntax only when marking content is requested. The PostgreSQL adapter uses explicit columns, parameterized UUIDs, authenticated transaction identity, and fixed role-derived query branches. It exposes no Pool, SQL, trusted transaction, service role, or browser-selected backend/role.
+
+Synthetic contract and PostgreSQL integration tests cover metadata minimization, student-versus-marking projections, draft/generated/paid states, revision and null-year behavior, Teacher A/B cross-owner denial, missing rows, unauthenticated denial, admin exam behavior, and existing admin marking behavior. The paid fixture is produced through the existing begin/finalize payment RPC path rather than by directly forging entitlement state. Static sequencing tests prove the paid PDF entitlement call precedes private loading. Existing payment and Daraja suites remain the authority for callback, STK acceptance, trusted finalization, amount/currency, receipt/reference uniqueness, idempotency, cooldown, quota, lease, and backoff behavior.
+
+Deferred reads remain the payment subsystem's own exam/payment lookups, payment initiation ownership check, admin dashboard/dependency reads, and transaction-history nested exam label. No write or payment-table migration is included.
+
+Rollback remains configuration-first: omit `DATABASE_BACKEND` or set it to `supabase`. Before checkpoint, remove only Phase 4 worktree changes; after checkpoint, revert only that reviewed commit. No schema, payment, auth, Storage, or production-data rollback is required.
+
+The recommended next database slice is a separately reviewed read-only admin reporting/dependency layer, keeping teacher-owned repositories distinct and leaving payment tables, Auth, and Storage unchanged.
 
 ## CRUD Phase 3: teacher-owned exam and marking-scheme reads
 

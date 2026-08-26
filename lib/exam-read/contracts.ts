@@ -32,8 +32,31 @@ export type TeacherExamForEditing = {
   marking_schemes: Array<{ content: StoredMarkingContent }>;
 };
 
+export type ExamDocumentAccessMetadata = {
+  id: string;
+  status: string;
+  revision: number;
+};
+
+export type AuthorizedExamDocumentRow = {
+  id: string;
+  exam_type: string;
+  marks: number;
+  duration: number;
+  term: string | null;
+  year: number | null;
+  content: unknown;
+  teachers: { school: string | null } | null;
+  marking_schemes: Array<{ content: unknown }>;
+};
+
 export interface ExamReadRepository {
   listRecentTeacherExams(limit: number): Promise<RecentTeacherExam[]>;
   listTeacherExams(): Promise<TeacherExamListItem[]>;
   getTeacherExamForEditing(id: string): Promise<TeacherExamForEditing | null>;
+}
+
+export interface ExamDocumentReadRepository {
+  getDocumentAccessMetadata(id: string): Promise<ExamDocumentAccessMetadata | null>;
+  getAuthorizedExamDocument(id: string, includeMarking: boolean): Promise<AuthorizedExamDocumentRow | null>;
 }

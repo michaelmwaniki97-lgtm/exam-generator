@@ -1,7 +1,8 @@
 import "server-only";
 
 import { queryRows, withAuthenticatedTransaction } from "../db/postgres-client.ts";
-import type { ExamReadRepository, RecentTeacherExam, TeacherExamForEditing, TeacherExamListItem } from "./contracts.ts";
+import type { UserRole } from "../auth/session.ts";
+import type { AuthorizedExamDocumentRow, ExamDocumentAccessMetadata, ExamDocumentReadRepository, ExamReadRepository, RecentTeacherExam, TeacherExamForEditing, TeacherExamListItem } from "./contracts.ts";
 
 type FlatRecent = Omit<RecentTeacherExam, "subjects" | "grades"> & { subject_name: string | null; grade_name: string | null };
 type FlatList = Omit<TeacherExamListItem, "subjects" | "grades"> & { subject_name: string | null; grade_name: string | null };
@@ -12,10 +13,11 @@ function relations<Row extends { subject_name: string | null; grade_name: string
   return { ...exam, subjects: subject_name === null ? null : { name: subject_name }, grades: grade_name === null ? null : { name: grade_name } };
 }
 
-export class PostgresExamReadRepository implements ExamReadRepository {
+export class PostgresExamReadRepository implements ExamReadRepository, ExamDocumentReadRepository {
   private readonly userId: string;
   private readonly teacherId: string;
-  constructor(userId: string, teacherId: string) { this.userId = userId; this.teacherId = teacherId; }
+  private readonly role: UserRole | null;
+  constructor(userId: string, teacherId: string | null, role: UserRole | null = "teacher") { this.userId = userId; this.teacherId = teacherId ?? ""; this.role = role; }
 
   listRecentTeacherExams(limit: number): Promise<RecentTeacherExam[]> {
     if (!Number.isInteger(limit) || limit < 1 || limit > 100) throw new Error("Invalid exam list limit.");
@@ -44,6 +46,44 @@ export class PostgresExamReadRepository implements ExamReadRepository {
         `select ms.content from public.marking_schemes ms join public.exams e on e.id = ms.exam_id
          where ms.exam_id = $1::uuid and e.teacher_id = $2::uuid order by ms.created_at`, [id, this.teacherId]);
       return { ...exams[0], marking_schemes: schemes };
+    });
+  }
+
+  getDocumentAccessMetadata(id: string): Promise<ExamDocumentAccessMetadata | null> {
+    return withAuthenticatedTransaction(this.userId, async (client) => {
+      const rows = this.role === "teacher"
+        ? await queryRows<ExamDocumentAccessMetadata>(client,
+          "select id, status, revision from public.exams where id = $1::uuid and teacher_id = $2::uuid", [id, this.teacherId])
+        : await queryRows<ExamDocumentAccessMetadata>(client,
+          "select id, status, revision from public.exams where id = $1::uuid", [id]);
+      if (rows.length > 1) throw new Error("Exam access lookup returned an unexpected row count.");
+      return rows[0] ?? null;
+    });
+  }
+
+  getAuthorizedExamDocument(id: string, includeMarking: boolean): Promise<AuthorizedExamDocumentRow | null> {
+    return withAuthenticatedTransaction(this.userId, async (client) => {
+      const rows = this.role === "teacher"
+        ? await queryRows<Omit<AuthorizedExamDocumentRow, "teachers" | "marking_schemes"> & { school: string | null }>(client,
+          `select e.id, e.exam_type, e.marks, e.duration, e.term, e.year, e.content, t.school
+           from public.exams e left join public.teachers t on t.id = e.teacher_id
+           where e.id = $1::uuid and e.teacher_id = $2::uuid`, [id, this.teacherId])
+        : await queryRows<Omit<AuthorizedExamDocumentRow, "teachers" | "marking_schemes"> & { school: string | null }>(client,
+          `select e.id, e.exam_type, e.marks, e.duration, e.term, e.year, e.content, t.school
+           from public.exams e left join public.teachers t on t.id = e.teacher_id where e.id = $1::uuid`, [id]);
+      if (rows.length === 0) return null;
+      if (rows.length > 1) throw new Error("Exam document lookup returned an unexpected row count.");
+      const { school, ...exam } = rows[0];
+      let marking_schemes: Array<{ content: unknown }> = [];
+      if (includeMarking) {
+        marking_schemes = this.role === "teacher"
+          ? await queryRows<{ content: unknown }>(client,
+            `select ms.content from public.marking_schemes ms join public.exams e on e.id = ms.exam_id
+             where ms.exam_id = $1::uuid and e.teacher_id = $2::uuid order by ms.created_at`, [id, this.teacherId])
+          : await queryRows<{ content: unknown }>(client,
+            `select ms.content from public.marking_schemes ms where ms.exam_id = $1::uuid order by ms.created_at`, [id]);
+      }
+      return { ...exam, teachers: { school }, marking_schemes };
     });
   }
 }
