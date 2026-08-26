@@ -77,9 +77,11 @@ test("direct PostgreSQL textbook reads preserve scope, readiness, privacy, and r
   assert.equal(await teacher.getReadyDocumentId(ids.bookReady, ids.readyOld), ids.readyOld);
   assert.equal(await teacher.getReadyDocumentId(ids.bookReady, ids.processing), null);
   assert.equal(await teacher.getReadyDocumentId(ids.bookReady, ids.failed), null);
+  assert.equal(await teacher.getReadyDocumentId(ids.bookReady, randomUUID()), null, "missing persisted provenance document remains rejected");
   assert.equal(await teacher.getReadyDocumentId(ids.bookNoDocument), null);
   assert.ok([ids.tieA, ids.tieB].includes((await teacher.getReadyDocumentId(ids.bookTie)) ?? ""), "equal newest timestamps have no historical tie-break winner");
   assert.equal(await teacher.getReadyDocumentId(ids.bookTie, ids.tieA), ids.tieA, "exact provenance remains pinned even when another document has the same timestamp");
+  assert.equal(await teacher.getReadyDocumentId(ids.bookTie, ids.readyOld), null, "a ready document from another textbook cannot satisfy provenance");
 
   await assert.rejects(() => teacher.listAdminTextbookDocuments(), /Administrator access/);
   await assert.rejects(() => admin.getReadyDocumentId(ids.bookReady), /Teacher access/);
