@@ -1,0 +1,35 @@
+name: exam-generator-selfhosted-parity
+
+services:
+  database:
+    image: pgvector/pgvector:0.8.6-pg17-bookworm
+    environment:
+      POSTGRES_DB: ${SELFHOSTED_DB_NAME:-exam_generator_parity}
+      POSTGRES_USER: ${SELFHOSTED_DB_USER:-exam_parity_owner}
+      POSTGRES_PASSWORD: ${SELFHOSTED_DB_PASSWORD:-local-parity-only-not-production}
+    volumes:
+      - selfhosted_postgres_data:/var/lib/postgresql/data
+      - ./infra/self-hosted/bootstrap/00-supabase-compatibility.sql:/docker-entrypoint-initdb.d/00-supabase-compatibility.sql:ro
+      - ./infra/self-hosted/bootstrap/10-apply-current-migrations.sh:/docker-entrypoint-initdb.d/10-apply-current-migrations.sh:ro
+      - ./supabase/migrations:/selfhosted/current-migrations:ro
+      - ./infra/self-hosted/tests:/selfhosted/tests:ro
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}" && psql -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}" -Atqc "select 1 from pg_extension where extname = 'vector'" | grep -qx 1
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 15s
+    networks:
+      - selfhosted_private
+    restart: unless-stopped
+
+networks:
+  selfhosted_private:
+    name: exam-generator-selfhosted-parity-private
+    internal: true
+
+volumes:
+  selfhosted_postgres_data:
+    name: exam-generator-selfhosted-parity-postgres17
