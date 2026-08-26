@@ -7,6 +7,8 @@ services:
       POSTGRES_DB: ${SELFHOSTED_DB_NAME:-exam_generator_parity}
       POSTGRES_USER: ${SELFHOSTED_DB_USER:-exam_parity_owner}
       POSTGRES_PASSWORD: ${SELFHOSTED_DB_PASSWORD:-local-parity-only-not-production}
+    ports:
+      - "127.0.0.1:${SELFHOSTED_DB_PORT:-55432}:5432"
     volumes:
       - selfhosted_postgres_data:/var/lib/postgresql/data
       - ./infra/self-hosted/bootstrap/00-supabase-compatibility.sql:/docker-entrypoint-initdb.d/00-supabase-compatibility.sql:ro

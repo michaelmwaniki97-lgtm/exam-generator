@@ -1,7 +1,7 @@
 import "server-only";
 
 import { UUID_PATTERN } from "../admin/validation";
-import { createAdminClient } from "../supabase/admin";
+import { getTrustedRpcDatabase } from "../db";
 import {
   AiAbuseControlError,
   reservationError,
@@ -41,12 +41,11 @@ function parseClaim(data: unknown, operation: "generation" | "regeneration"): Ai
 }
 
 export async function claimFullGeneration(teacherId: string, requestId: string): Promise<AiReservationClaim> {
-  const { data, error } = await createAdminClient().rpc("claim_ai_generation", {
-    p_teacher_id: teacherId,
-    p_request_key: requestKey(requestId),
-  });
-  if (error) throw new AiAbuseControlError("UNAVAILABLE", "Generation controls are temporarily unavailable.");
-  return parseClaim(data, "generation");
+  try {
+    return parseClaim(await getTrustedRpcDatabase().claimAiGeneration({ teacherId, requestKey: requestKey(requestId) }), "generation");
+  } catch {
+    throw new AiAbuseControlError("UNAVAILABLE", "Generation controls are temporarily unavailable.");
+  }
 }
 
 export async function claimQuestionRegeneration(input: {
@@ -56,15 +55,14 @@ export async function claimQuestionRegeneration(input: {
   requestId: string;
   expectedRevision: number;
 }): Promise<AiReservationClaim> {
-  const { data, error } = await createAdminClient().rpc("claim_ai_regeneration", {
-    p_teacher_id: input.teacherId,
-    p_exam_id: input.examId,
-    p_slot_id: input.slotId,
-    p_request_key: requestKey(input.requestId),
-    p_expected_revision: input.expectedRevision,
-  });
-  if (error) throw new AiAbuseControlError("UNAVAILABLE", "Regeneration controls are temporarily unavailable.");
-  return parseClaim(data, "regeneration");
+  try {
+    return parseClaim(await getTrustedRpcDatabase().claimAiRegeneration({
+      teacherId: input.teacherId, examId: input.examId, slotId: input.slotId,
+      requestKey: requestKey(input.requestId), expectedRevision: input.expectedRevision,
+    }), "regeneration");
+  } catch {
+    throw new AiAbuseControlError("UNAVAILABLE", "Regeneration controls are temporarily unavailable.");
+  }
 }
 
 export async function persistGeneratedExam(input: {
@@ -84,24 +82,18 @@ export async function persistGeneratedExam(input: {
   };
   markingContent: unknown;
 }): Promise<string> {
-  const { data, error } = await createAdminClient().rpc("persist_generated_exam_and_complete_ai_operation", {
-    p_teacher_id: input.teacherId,
-    p_reservation_id: input.reservationId,
-    p_request_key: requestKey(input.requestId),
-    p_subject_id: input.exam.subjectId,
-    p_grade_id: input.exam.gradeId,
-    p_exam_type: input.exam.examType,
-    p_marks: input.exam.marks,
-    p_duration: input.exam.duration,
-    p_difficulty: input.exam.difficulty,
-    p_term: input.exam.term,
-    p_year: input.exam.year,
-    p_exam_content: input.exam.content,
-    p_marking_content: input.markingContent,
-  });
-  if (error || typeof data !== "string" || !UUID_PATTERN.test(data)) {
+  let data: string;
+  try {
+    data = await getTrustedRpcDatabase().persistGeneratedExam({
+      teacherId: input.teacherId, reservationId: input.reservationId, requestKey: requestKey(input.requestId),
+      subjectId: input.exam.subjectId, gradeId: input.exam.gradeId, examType: input.exam.examType,
+      marks: input.exam.marks, duration: input.exam.duration, difficulty: input.exam.difficulty,
+      term: input.exam.term, year: input.exam.year, examContent: input.exam.content, markingContent: input.markingContent,
+    });
+  } catch {
     throw new AiAbuseControlError("UNAVAILABLE", "The generated exam could not be saved safely.");
   }
+  if (typeof data !== "string" || !UUID_PATTERN.test(data)) throw new AiAbuseControlError("UNAVAILABLE", "The generated exam could not be saved safely.");
   return data;
 }
 
@@ -115,29 +107,29 @@ export async function persistRegeneratedQuestion(input: {
   examContent: unknown;
   markingContent: unknown;
 }): Promise<number> {
-  const { data, error } = await createAdminClient().rpc("persist_regenerated_exam_and_complete_ai_operation", {
-    p_teacher_id: input.teacherId,
-    p_reservation_id: input.reservationId,
-    p_request_key: requestKey(input.requestId),
-    p_exam_id: input.examId,
-    p_slot_id: input.slotId,
-    p_expected_revision: input.expectedRevision,
-    p_exam_content: input.examContent,
-    p_marking_content: input.markingContent,
-  });
+  let data: number;
+  try {
+    data = await getTrustedRpcDatabase().persistRegeneratedExam({
+      teacherId: input.teacherId, reservationId: input.reservationId, requestKey: requestKey(input.requestId),
+      examId: input.examId, slotId: input.slotId, expectedRevision: input.expectedRevision,
+      examContent: input.examContent, markingContent: input.markingContent,
+    });
+  } catch {
+    throw new AiAbuseControlError("UNAVAILABLE", "The regenerated question could not be saved safely.");
+  }
   const revision = Number(data);
-  if (error || !Number.isInteger(revision) || revision < 1) {
+  if (!Number.isInteger(revision) || revision < 1) {
     throw new AiAbuseControlError("UNAVAILABLE", "The regenerated question could not be saved safely.");
   }
   return revision;
 }
 
 export async function failAiReservation(teacherId: string, reservationId: string): Promise<void> {
-  const { error } = await createAdminClient().rpc("fail_ai_operation", {
-    p_teacher_id: teacherId,
-    p_reservation_id: reservationId,
-  });
-  if (error) console.error("[AI Abuse Controls] reservation release failed");
+  try {
+    await getTrustedRpcDatabase().failAiOperation({ teacherId, reservationId });
+  } catch {
+    console.error("[AI Abuse Controls] reservation release failed");
+  }
 }
 
 export function acquiredOrThrow(claim: AiReservationClaim, operation: "generation" | "regeneration") {

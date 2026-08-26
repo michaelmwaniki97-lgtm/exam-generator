@@ -124,8 +124,8 @@ test("atomic persistence RPCs are service-role only and ordinary saves retain th
   assert.match(migration, /revoke all on function public\.persist_regenerated_exam_and_complete_ai_operation\([\s\S]*?from public, anon, authenticated/);
   assert.match(migration, /grant execute on function public\.persist_regenerated_exam_and_complete_ai_operation\([\s\S]*?to service_role/);
   const saveBody = editorAction.slice(editorAction.indexOf("export async function saveExamEdits"), editorAction.indexOf("export async function regenerateExamQuestion"));
-  assert.match(saveBody, /return persist\(admin, exam, teacherId, expectedRevision/);
-  assert.match(editorAction, /admin\.rpc\("update_exam_and_scheme_atomic"/);
+  assert.match(saveBody, /return persist\(exam, teacherId, expectedRevision/);
+  assert.match(editorAction, /getTrustedRpcDatabase\(\)\.updateExamAndSchemeAtomic/);
 });
 
 test("question regeneration claims the owned slot before grounding or provider work", () => {

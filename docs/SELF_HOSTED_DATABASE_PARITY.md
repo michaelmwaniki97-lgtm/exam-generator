@@ -4,7 +4,7 @@ Status: local development harness only. This phase does not connect to or modify
 
 ## Architecture
 
-`docker-compose.selfhosted.yml` starts one database container on an internal Docker network with no published host port. PostgreSQL data is held in the explicitly named local development volume `exam-generator-selfhosted-parity-postgres17`. Tests run through `docker compose exec`, so PostgreSQL does not need host exposure.
+`docker-compose.selfhosted.yml` starts one database container on an internal Docker network. The database port is bound only to host loopback (`127.0.0.1`, port `55432` by default) for the Node database-adapter integration suite; it is never published on an external interface. PostgreSQL data is held in the explicitly named local development volume `exam-generator-selfhosted-parity-postgres17`. SQL parity tests continue to run through `docker compose exec`.
 
 The database image is `pgvector/pgvector:0.8.6-pg17-bookworm`, an official pgvector image based on PostgreSQL 17. The tag pins pgvector 0.8.6 rather than tracking a floating tag. The database healthcheck requires both `pg_isready` and an installed `vector` extension.
 
@@ -13,6 +13,7 @@ host command
   -> docker compose exec
        -> PostgreSQL 17 + pgvector 0.8.6 container
             -> internal-only Docker network
+            -> loopback-only integration-test port
             -> persistent local parity volume
             -> temporary compatibility schemas
             -> verbatim current migration replay
@@ -45,6 +46,7 @@ The compatibility bootstrap uses the PostgreSQL keyword/value `current_user` wit
 The migration history cannot run on an empty ordinary PostgreSQL cluster because Supabase normally pre-creates platform objects. The prelude therefore creates only:
 
 - non-login roles `anon`, `authenticated`, and `service_role` (`service_role` has `BYPASSRLS` to reproduce the current local test semantics);
+- a non-superuser, `NOINHERIT` login role `exam_app_runtime`, used only by local adapter integration tests and granted membership in the two fixed compatibility execution roles;
 - schemas `auth`, `storage`, and `extensions`;
 - a minimal `auth.users` table containing only `id`, `email`, `raw_user_meta_data`, and `created_at`;
 - `auth.uid()` and `auth.role()` backed by local `request.jwt.claim.*` settings;

@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { UUID_PATTERN } from "@/lib/admin/validation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { DatabaseRpcError, getTrustedRpcDatabase } from "@/lib/db";
 import { applyEditableChanges, editableExamOrThrow, ExamEditorError, type EditableSlotInput, type StoredExamContent, type StoredMarkingContent } from "@/lib/exam-editor/core";
 import { regenerateQuestion } from "@/lib/exam-editor/regenerate-question";
 import { prepareRegenerationGrounding } from "@/lib/exam-editor/regeneration-grounding";
@@ -53,14 +54,17 @@ async function loadCanonical(examId: string, teacherId: string) {
   return { admin, exam, marking: exam.marking_schemes[0].content };
 }
 
-async function persist(admin: ReturnType<typeof createAdminClient>, exam: CanonicalExam, teacherId: string, expectedRevision: number, content: StoredExamContent, marking: StoredMarkingContent): Promise<ExamEditorActionResult> {
+async function persist(exam: CanonicalExam, teacherId: string, expectedRevision: number, content: StoredExamContent, marking: StoredMarkingContent): Promise<ExamEditorActionResult> {
   if (!Number.isInteger(expectedRevision) || expectedRevision < 1) return { ok: false, error: "The editor revision is invalid. Refresh and try again." };
   diagnostic("rpc_call", `revision=${expectedRevision}`);
-  const { data, error } = await admin.rpc("update_exam_and_scheme_atomic", { p_exam_id: exam.id, p_teacher_id: teacherId, p_expected_revision: expectedRevision, p_exam_content: content, p_marking_content: marking });
-  if (error) {
-    diagnostic("rpc_failure", `code=${error.code || "unknown"} message=${safeRpcFailure(error)}`);
-    if (error.message.includes("stale_exam_revision") || error.code === "40001") return { ok: false, stale: true, error: "This exam changed in another tab or session. Refresh the page before editing again." };
-    if (error.message.includes("exam_locked")) return { ok: false, error: "This exam is locked and can no longer be edited." };
+  let data: number;
+  try {
+    data = await getTrustedRpcDatabase().updateExamAndSchemeAtomic({ examId: exam.id, teacherId, expectedRevision, examContent: content, markingContent: marking });
+  } catch (error) {
+    const rpcError = error instanceof DatabaseRpcError || error instanceof Error ? error : new Error("unexpected_database_error");
+    diagnostic("rpc_failure", `code=${error instanceof DatabaseRpcError ? error.code || "unknown" : "unknown"} message=${safeRpcFailure(rpcError)}`);
+    if (rpcError.message.includes("stale_exam_revision") || (error instanceof DatabaseRpcError && error.code === "40001")) return { ok: false, stale: true, error: "This exam changed in another tab or session. Refresh the page before editing again." };
+    if (rpcError.message.includes("exam_locked")) return { ok: false, error: "This exam is locked and can no longer be edited." };
     return { ok: false, error: "The exam could not be saved. No changes were made." };
   }
   const revision = Number(data);
@@ -75,13 +79,13 @@ export async function saveExamEdits(examId: string, expectedRevision: number, in
   try {
     const teacherId = await authenticatedTeacher();
     stage = "canonical_load";
-    const { admin, exam, marking } = await loadCanonical(examId, teacherId);
+    const { exam, marking } = await loadCanonical(examId, teacherId);
     stage = "validation";
     const next = applyEditableChanges(exam.content, marking, inputs);
     diagnostic("merge", "result=ok");
     diagnostic("validation", "result=ok");
     stage = "rpc_call";
-    return persist(admin, exam, teacherId, expectedRevision, next.exam, next.marking);
+    return persist(exam, teacherId, expectedRevision, next.exam, next.marking);
   } catch (error) {
     const reason = error instanceof ExamEditorError ? error.message : "unexpected_server_error";
     diagnostic(stage, `result=failed reason=${reason}`);

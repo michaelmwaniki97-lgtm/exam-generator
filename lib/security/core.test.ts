@@ -32,10 +32,10 @@ test("browser code exposes only public Supabase configuration", () => {
   for (const file of [...sourceFiles("app"), ...sourceFiles("components")]) {
     const source = read(file);
     if (!/^\s*["']use client["'];/m.test(source)) continue;
-    assert.doesNotMatch(source, /SUPABASE_SERVICE_ROLE_KEY|NVIDIA_API_KEY/, file);
+    assert.doesNotMatch(source, /SUPABASE_SERVICE_ROLE_KEY|NVIDIA_API_KEY|DATABASE_URL/, file);
     assert.doesNotMatch(
       source,
-      /@\/lib\/supabase\/(?:admin|server)|@\/lib\/ai\/(?:client|config)/,
+      /@\/lib\/supabase\/(?:admin|server)|@\/lib\/ai\/(?:client|config)|@\/lib\/db(?:\/|["'])/,
       file
     );
   }
@@ -92,12 +92,32 @@ test("authenticated clients cannot bypass canonical exam persistence", () => {
   );
 
   const action = read("app/actions/exams.ts");
-  assert.ok(action.indexOf("auth.getUser()") < action.indexOf("createAdminClient()"));
-  assert.match(action, /teacher_id: teacher\.id/);
-  assert.match(action, /persistenceClient\s*\n\s*\.from\("exams"\)\s*\n\s*\.insert\(\{/);
+  const generation = action.slice(action.indexOf("export async function generateExam"));
+  assert.ok(generation.indexOf("auth.getUser()") < generation.indexOf("claimFullGeneration"));
+  assert.ok(generation.indexOf("auth.getUser()") < generation.indexOf("persistGeneratedExam"));
+  assert.ok(generation.indexOf('.eq("user_id", user.id)') < generation.indexOf("claimFullGeneration"));
+  assert.match(generation, /claimFullGeneration\(teacher\.id, requestId\)/);
+  assert.match(generation, /persistGeneratedExam\(\{\s*teacherId: teacher\.id/);
+  assert.doesNotMatch(generation, /teacherId:\s*data\.|claimFullGeneration\(data\./);
   assert.match(action, /buildExamBlueprint\(\{/);
   assert.match(action, /validateNewExamCurriculumSelection\(\{/);
-  assert.doesNotMatch(action, /\.insert\(data\)|teacher_id:\s*data\./);
+
+  const abuseControls = read("lib/ai/abuse-controls.ts");
+  const databaseFactory = read("lib/db/index.ts");
+  const databaseConfig = read("lib/db/config.ts");
+  const postgresClient = read("lib/db/postgres-client.ts");
+  for (const source of [abuseControls, databaseFactory, databaseConfig, postgresClient]) {
+    assert.match(source, /^import "server-only";/);
+  }
+  assert.match(abuseControls, /getTrustedRpcDatabase\(\)\.claimAiGeneration/);
+  assert.match(abuseControls, /getTrustedRpcDatabase\(\)\.persistGeneratedExam/);
+  assert.match(databaseFactory, /export function getTrustedRpcDatabase\(\): TrustedRpcDatabase/);
+  assert.doesNotMatch(databaseFactory, /getTrustedRpcDatabase\([^)]/);
+  assert.match(databaseConfig, /process\.env\.DATABASE_BACKEND/);
+  assert.doesNotMatch(databaseConfig, /cookies\(|headers\(|request|searchParams|formData/);
+  assert.match(postgresClient, /set local role service_role/);
+  assert.match(postgresClient, /set local role authenticated/);
+  assert.match(postgresClient, /"request\.jwt\.claim\.sub", userId/);
 });
 
 test("admin actions share the central server-side role gate", () => {
@@ -123,7 +143,7 @@ test("rendered application code has no raw HTML execution sink", () => {
   }
 });
 
-test("runtime database access uses the Supabase query builder", () => {
+test("runtime database access does not use unsafe raw-query APIs", () => {
   const files = [...sourceFiles("app"), ...sourceFiles("lib")].filter(
     (file) => !file.endsWith(".test.ts")
   );

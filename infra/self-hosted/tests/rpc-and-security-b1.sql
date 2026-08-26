@@ -121,6 +121,7 @@ insert into auth.users (id, email, raw_user_meta_data) values
   ('00000000-0000-4000-8000-000000000002', 'teacher-two@example.test', '{"name":"Teacher Two"}'),
   ('00000000-0000-4000-8000-000000000003', 'teacher-three@example.test', '{"name":"Teacher Three"}'),
   ('00000000-0000-4000-8000-000000000004', 'teacher-four@example.test', '{"name":"Teacher Four"}'),
+  ('00000000-0000-4000-8000-000000000006', 'adapter-teacher@example.test', '{"name":"Adapter Teacher"}'),
   ('00000000-0000-4000-8000-000000000005', 'admin@example.test', '{"name":"Parity Admin"}')
 on conflict (id) do nothing;
 

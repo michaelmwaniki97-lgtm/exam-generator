@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useTransition } from "react";
 import { ArrowLeft, ArrowRight, Loader2, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { generateExam } from "@/app/actions/exams";
+import { listReadyTextbooks } from "@/app/actions/database-rpc";
 import {
   inferEducationSystem,
   isSupportedNewExamGrade,
@@ -266,12 +267,10 @@ export function ExamWizard() {
     }
 
     const supabase = createClient();
-    void supabase
-      .rpc("list_ready_textbooks", { p_subject_id: data.subjectId, p_grade_id: data.gradeId })
-      .then((result) => {
-        if (result.error) setSubjectError("Could not load processed textbooks.");
+    void listReadyTextbooks(data.subjectId, data.gradeId)
+      .then((rows) => {
         if (cancelled) return;
-        const available = (result.data ?? []) as Textbook[];
+        const available = rows as Textbook[];
         setTextbooks(available);
         setData((previous) => {
           if (
@@ -287,6 +286,12 @@ export function ExamWizard() {
           };
         });
         setLoadingTextbooks(false);
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setSubjectError("Could not load processed textbooks.");
+          setLoadingTextbooks(false);
+        }
       });
 
     void supabase

@@ -7,6 +7,7 @@ import {
   validateCurriculumDocument,
 } from "./validate-curriculum-data.mjs";
 import { buildCurriculumImportPlan } from "./lib/curriculum-import-plan.mjs";
+import { importVerifiedCurriculum } from "./database-rpc.mjs";
 
 const PAGE_SIZE = 1000;
 const REQUIRED_COUNTS = {
@@ -315,10 +316,7 @@ async function main() {
   }
 
   const beforeTopicIds = historicalTopicIds(exams);
-  const { data, error } = await client.rpc("import_verified_curriculum", {
-    p_payload: plan,
-  });
-  if (error) throw new Error(`Transactional import failed: ${error.message}`);
+  const data = await importVerifiedCurriculum(client, plan);
   const verification = await verifyAfterApply(client, plan, beforeTopicIds);
   console.log(JSON.stringify({ import_result: data, verification }, null, 2));
 }

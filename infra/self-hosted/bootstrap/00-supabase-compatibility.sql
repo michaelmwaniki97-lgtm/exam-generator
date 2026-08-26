@@ -15,8 +15,14 @@ begin
   if not exists (select 1 from pg_roles where rolname = 'service_role') then
     create role service_role nologin noinherit bypassrls;
   end if;
+  if not exists (select 1 from pg_roles where rolname = 'exam_app_runtime') then
+    create role exam_app_runtime login noinherit nosuperuser nocreatedb nocreaterole
+      password 'local-parity-runtime-only';
+  end if;
 end
 $compatibility_roles$;
+
+grant authenticated, service_role to exam_app_runtime;
 
 create schema if not exists auth;
 create schema if not exists storage;

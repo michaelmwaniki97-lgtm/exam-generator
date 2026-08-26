@@ -31,9 +31,9 @@ test("regeneration authorization and reservation claim precede provider work", (
   assert.ok(lease < groundingWork && groundingWork < providerWork);
 });
 
-test("ordinary saves retain their RPC and regeneration uses its reservation-aware atomic RPC", () => {
-  assert.equal((action.match(/update_exam_and_scheme_atomic/g) ?? []).length, 1);
-  assert.match(action, /p_expected_revision: expectedRevision/);
+test("ordinary saves retain their typed atomic operation and regeneration uses its reservation-aware atomic operation", () => {
+  assert.equal((action.match(/updateExamAndSchemeAtomic/g) ?? []).length, 1);
+  assert.match(action, /updateExamAndSchemeAtomic\(\{ examId: exam\.id, teacherId, expectedRevision/);
   assert.match(action, /saveExamEdits[\s\S]*return persist/);
   assert.match(action, /regenerateExamQuestion[\s\S]*await persistRegeneratedQuestion/);
   assert.match(action, /regenerateExamQuestion[\s\S]*return \{ ok: true, revision \}/);

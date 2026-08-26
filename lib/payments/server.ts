@@ -2,6 +2,7 @@ import "server-only";
 import { randomUUID } from "node:crypto";
 import { createAdminClient } from "../supabase/admin";
 import { createClient } from "../supabase/server";
+import { getTrustedRpcDatabase } from "../db";
 import { getCurrentUser, getUserRole } from "../auth/session";
 import { mayDownloadExamPackage, PaymentError, PAYMENT_CURRENCY, validateExamPackagePrice, type BeginAttemptResult, type PaymentActor, type PaymentAttempt, type PaymentRepository, type ProviderInitiation } from "./core";
 
@@ -52,9 +53,9 @@ export class SupabasePaymentRepository implements PaymentRepository {
     if (!data) throw new PaymentError("FORBIDDEN", "You do not have access to this exam.");
   }
   async beginAttempt(input: { examId: string; teacherId: string; phone: string; provider: string; idempotencyKey: string }): Promise<BeginAttemptResult> {
-    const { data, error } = await this.admin.rpc("begin_payment_attempt", { p_exam_id: input.examId, p_teacher_id: input.teacherId, p_phone: input.phone, p_provider: input.provider, p_idempotency_key: input.idempotencyKey });
-    if (error || !data) throw new PaymentError("NOT_CONFIGURED", "Payment request could not be started.");
-    const row = (Array.isArray(data) ? data[0] : data) as PaymentRow;
+    let row: PaymentRow;
+    try { row = await getTrustedRpcDatabase().beginPaymentAttempt(input) as PaymentRow; }
+    catch { throw new PaymentError("NOT_CONFIGURED", "Payment request could not be started."); }
     return { attempt: attempt(row), created: row.idempotency_key === input.idempotencyKey } as BeginAttemptResult;
   }
   async saveInitiation(paymentId: string, result: ProviderInitiation): Promise<PaymentAttempt> {
@@ -73,17 +74,16 @@ export class SupabasePaymentRepository implements PaymentRepository {
   }
   async acquireQueryLease(paymentId: string) {
     const leaseToken = randomUUID();
-    const { data, error } = await this.admin.rpc("acquire_payment_query_lease", { p_payment_id: paymentId, p_lease_token: leaseToken });
-    if (error) throw new PaymentError("VERIFICATION_FAILED", "Payment status could not be checked.");
-    return data === true ? leaseToken : null;
+    try { return await getTrustedRpcDatabase().acquirePaymentQueryLease({ paymentId, leaseToken }) ? leaseToken : null; }
+    catch { throw new PaymentError("VERIFICATION_FAILED", "Payment status could not be checked."); }
   }
   async completeQueryLease(paymentId: string, leaseToken: string) {
-    const { data, error } = await this.admin.rpc("complete_payment_query_lease", { p_payment_id: paymentId, p_lease_token: leaseToken });
-    return !error && data === true;
+    try { return await getTrustedRpcDatabase().completePaymentQueryLease({ paymentId, leaseToken }); }
+    catch { return false; }
   }
   async finalizePaid(input: { paymentId: string; examId: string; teacherId: string; provider: string; amount: number; currency: "KES"; providerReference: string; providerReceipt?: string; resultCode?: string }) {
-    const { data, error } = await this.admin.rpc("finalize_verified_payment", { p_payment_id: input.paymentId, p_exam_id: input.examId, p_teacher_id: input.teacherId, p_provider: input.provider, p_amount: input.amount, p_currency: input.currency, p_provider_reference: input.providerReference, p_mpesa_receipt: input.providerReceipt ?? null, p_result_code: input.resultCode ?? null, p_result_description: null });
-    return !error && data === true;
+    try { return await getTrustedRpcDatabase().finalizeVerifiedPayment(input); }
+    catch { return false; }
   }
   async recordTerminal(paymentId: string, status: "failed" | "cancelled" | "expired", resultCode?: string, safeMessage?: string) { await this.admin.from("payments").update({ status, verification_status: "rejected", result_code: resultCode?.slice(0, 80), result_description: safeMessage?.slice(0, 500), updated_at: new Date().toISOString() }).eq("id", paymentId).in("status", ["initiated", "pending"]); }
 }
