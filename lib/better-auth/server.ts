@@ -26,6 +26,14 @@ export type BetterAuthFoundationInstance = {
       headers?: Headers;
     }): Promise<BetterAuthCredentialResult & { token: string }>;
     signOut(input: { headers: Headers }): Promise<unknown>;
+    requestPasswordReset(input: {
+      body: { email: string; redirectTo: string };
+      headers?: Headers;
+    }): Promise<unknown>;
+    resetPassword(input: {
+      body: { newPassword: string; token: string };
+      headers?: Headers;
+    }): Promise<unknown>;
   };
 };
 

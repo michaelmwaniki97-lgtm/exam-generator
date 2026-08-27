@@ -2,7 +2,9 @@ import "server-only";
 
 import { isAPIError } from "better-auth/api";
 import { headers } from "next/headers";
+import { passwordResetPageUrl } from "../auth/recovery.ts";
 import { getDatabaseBackendName } from "../db/config.ts";
+import { assertPasswordResetEmailConfigured } from "../email/smtp.ts";
 import {
   betterAuthApplicationIdentityWasProvisioned,
   betterAuthEmailAlreadyExists,
@@ -18,6 +20,10 @@ import type {
   CredentialLoginResult,
   CredentialSignupInput,
   CredentialSignupResult,
+  PasswordResetCompletionInput,
+  PasswordResetCompletionResult,
+  PasswordResetRequestInput,
+  PasswordResetRequestResult,
 } from "./contracts.ts";
 import { normalizeAuthenticatedUser } from "./normalize.ts";
 
@@ -176,5 +182,58 @@ export async function logoutWithBetterAuth(sessionToken?: string | null): Promis
     // Match the existing Supabase logout UX: redirect to login even when the
     // server-side revocation call cannot complete. Protected reads still fully
     // validate Better Auth sessions against the database.
+  }
+}
+
+export async function requestPasswordResetWithBetterAuth(
+  input: PasswordResetRequestInput,
+): Promise<PasswordResetRequestResult> {
+  if (getDatabaseBackendName() !== "postgres") {
+    return { status: "error", error: "Better Auth password recovery requires the PostgreSQL backend." };
+  }
+
+  let redirectTo: string;
+  try {
+    assertPasswordResetEmailConfigured();
+    redirectTo = passwordResetPageUrl(process.env);
+  } catch {
+    return { status: "error", error: "Password recovery is temporarily unavailable. Please try again later." };
+  }
+
+  try {
+    const auth = await getBetterAuthFoundation();
+    await auth.api.requestPasswordReset({
+      body: { email: input.email, redirectTo },
+      headers: await headers(),
+    });
+    return { status: "accepted" };
+  } catch {
+    // Do not expose whether an address exists. Configuration errors are caught
+    // above; runtime endpoint errors receive the same generic UX as Supabase.
+    return { status: "accepted" };
+  }
+}
+
+export async function resetPasswordWithBetterAuth(
+  input: PasswordResetCompletionInput,
+): Promise<PasswordResetCompletionResult> {
+  if (getDatabaseBackendName() !== "postgres") {
+    return { status: "error", error: "Better Auth password recovery requires the PostgreSQL backend." };
+  }
+  if (input.newPassword.length < 8) {
+    return { status: "error", error: "Password must be at least 8 characters long." };
+  }
+  const token = input.token?.trim() ?? "";
+  if (!token || token.length > 4096) return { status: "invalid-link" };
+
+  try {
+    const auth = await getBetterAuthFoundation();
+    await auth.api.resetPassword({
+      body: { newPassword: input.newPassword, token },
+      headers: await headers(),
+    });
+    return { status: "updated" };
+  } catch {
+    return { status: "invalid-link" };
   }
 }

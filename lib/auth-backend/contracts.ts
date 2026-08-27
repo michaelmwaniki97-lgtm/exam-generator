@@ -24,3 +24,21 @@ export type CredentialSignupResult =
 export type CredentialLoginResult =
   | { status: "signed-in"; user: AuthenticatedUser; sessionToken: string | null }
   | { status: "error"; error: string };
+
+export type PasswordResetRequestInput = Readonly<{
+  email: string;
+}>;
+
+export type PasswordResetRequestResult =
+  | { status: "accepted" }
+  | { status: "error"; error: string };
+
+export type PasswordResetCompletionInput = Readonly<{
+  newPassword: string;
+  token: string | null;
+}>;
+
+export type PasswordResetCompletionResult =
+  | { status: "updated" }
+  | { status: "invalid-link" }
+  | { status: "error"; error: string };

@@ -88,20 +88,22 @@ test("failed/unknown-profile Better Auth login revokes only its just-created ses
   assert.doesNotMatch(bridge, /delete from better_auth\.sessions(?! where token)/);
 });
 
-test("password recovery, PKCE callback, and middleware remain Supabase-owned in Phase 3", async () => {
-  const [actions, callback, middleware] = await Promise.all([
+test("password recovery is backend-aware while middleware remains Supabase-owned in Phase 4", async () => {
+  const [actions, callback, middleware, authIndex] = await Promise.all([
     source("app/actions/auth.ts"),
     source("app/auth/callback/route.ts"),
     source("lib/supabase/middleware.ts"),
+    source("lib/auth-backend/index.ts"),
   ]);
-  assert.doesNotMatch(actions, /supabase\.auth\.signUp|supabase\.auth\.signInWithPassword/);
-  assert.match(actions, /supabase\.auth\.resetPasswordForEmail/);
-  assert.match(actions, /supabase\.auth\.getUser\(\)/);
-  assert.match(actions, /supabase\.auth\.updateUser\(\{ password \}\)/);
-  assert.match(actions, /supabase\.auth\.signOut\(\)/);
+  assert.doesNotMatch(actions, /supabase\.auth\./);
+  assert.match(actions, /requestPasswordResetWithConfiguredBackend/);
+  assert.match(actions, /resetPasswordWithConfiguredBackend/);
+  assert.match(authIndex, /requestPasswordResetWithConfiguredBackend[\s\S]*getAuthBackendName\(\) === "better-auth"/);
+  assert.match(authIndex, /resetPasswordWithConfiguredBackend[\s\S]*getAuthBackendName\(\) === "better-auth"/);
+  assert.match(callback, /getAuthBackendName\(\) === "better-auth"/);
   assert.match(callback, /exchangeCodeForSession/);
   assert.match(middleware, /supabase\.auth\.getUser\(\)/);
-  assert.doesNotMatch(middleware + callback, /better-auth|Better Auth|auth-backend/);
+  assert.doesNotMatch(middleware, /better-auth|Better Auth|auth-backend/);
 });
 
 test("credential forms never supply an authenticated UUID or authority", async () => {

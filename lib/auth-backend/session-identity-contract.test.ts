@@ -61,7 +61,7 @@ test("protected database identity is backend-aware and Better Auth cannot fall t
   assert.doesNotMatch(identity + compatibility, /service_role|withTrustedTransaction|bypassrls/i);
 });
 
-test("credential actions use the backend boundary while recovery and middleware remain Supabase-owned", async () => {
+test("credential and recovery actions use the backend boundary while middleware remains Supabase-owned", async () => {
   const [actions, middleware, session, generation] = await Promise.all([
     source("app/actions/auth.ts"),
     source("lib/supabase/middleware.ts"),
@@ -71,8 +71,9 @@ test("credential actions use the backend boundary while recovery and middleware 
   assert.match(actions, /signupWithConfiguredBackend/);
   assert.match(actions, /loginWithConfiguredBackend/);
   assert.match(actions, /logoutWithConfiguredBackend/);
-  assert.match(actions, /supabase\.auth\.resetPasswordForEmail/);
-  assert.match(actions, /supabase\.auth\.updateUser/);
+  assert.match(actions, /requestPasswordResetWithConfiguredBackend/);
+  assert.match(actions, /resetPasswordWithConfiguredBackend/);
+  assert.doesNotMatch(actions, /supabase\.auth\./);
   assert.match(middleware, /supabase\.auth\.getUser\(\)/);
   assert.match(session, /getCurrentUser = getCurrentAuthUser/);
   assert.match(generation, /const user = await getCurrentUser\(\)/);

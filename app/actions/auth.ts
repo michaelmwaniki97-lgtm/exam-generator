@@ -1,12 +1,12 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
-import { createClient } from "@/lib/supabase/server";
 import { getUserRoleForAuthenticatedUser } from "@/lib/auth/session";
 import {
   loginWithConfiguredBackend,
   logoutWithConfiguredBackend,
+  requestPasswordResetWithConfiguredBackend,
+  resetPasswordWithConfiguredBackend,
   signupWithConfiguredBackend,
 } from "@/lib/auth-backend";
 import { homeForRole } from "@/lib/auth/access";
@@ -16,7 +16,6 @@ import {
   validateRecoveryEmail,
   validateSignupFields,
 } from "@/lib/auth/validation";
-import { recoveryRedirectUrl } from "@/lib/auth/recovery";
 import { getTeacherProfileWriteContext } from "@/lib/teacher-profile-write";
 
 export type AuthFormState = { error?: string; success?: string } | undefined;
@@ -87,12 +86,8 @@ export async function requestPasswordReset(
   const validationError = validateRecoveryEmail(email);
   if (validationError) return { error: validationError };
 
-  let redirectTo: string;
-  try { redirectTo = recoveryRedirectUrl(process.env); }
-  catch { return { error: "Password recovery is temporarily unavailable. Please try again later." }; }
-
-  const supabase = await createClient();
-  await supabase.auth.resetPasswordForEmail(email, { redirectTo });
+  const result = await requestPasswordResetWithConfiguredBackend({ email });
+  if (result.status === "error") return { error: result.error };
   return { success: "If an account exists for that email, we’ve sent password reset instructions." };
 }
 
@@ -102,18 +97,18 @@ export async function resetPassword(
 ): Promise<AuthFormState> {
   const password = String(formData.get("password") ?? "");
   const confirmation = String(formData.get("confirmPassword") ?? "");
+  const tokenValue = String(formData.get("resetToken") ?? "").trim();
   const validationError = validateNewPassword(password, confirmation);
   if (validationError) return { error: validationError };
 
-  const cookieStore = await cookies();
-  if (cookieStore.get("auth-recovery")?.value !== "active") return { error: "This password reset link is invalid or has expired. Request a new one." };
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return { error: "This password reset link is invalid or has expired. Request a new one." };
-  const { error } = await supabase.auth.updateUser({ password });
-  if (error) return { error: "We could not update your password. The reset link may have expired." };
-  await supabase.auth.signOut();
-  cookieStore.delete("auth-recovery");
+  const result = await resetPasswordWithConfiguredBackend({
+    newPassword: password,
+    token: tokenValue || null,
+  });
+  if (result.status === "invalid-link") {
+    return { error: "This password reset link is invalid or has expired. Request a new one." };
+  }
+  if (result.status === "error") return { error: result.error };
   return { success: "Your password has been updated. You can now log in with your new password." };
 }
 

@@ -1,6 +1,7 @@
 import "server-only";
 
 import { nextCookies } from "better-auth/next-js";
+import { sendPasswordResetEmail } from "../email/smtp.ts";
 import { getBetterAuthPool } from "./pool.ts";
 
 function required(name: "BETTER_AUTH_SECRET" | "BETTER_AUTH_URL"): string {
@@ -22,6 +23,16 @@ export function buildBetterAuthOptions() {
       enabled: true,
       minPasswordLength: 8,
       maxPasswordLength: 128,
+      revokeSessionsOnPasswordReset: true,
+      resetPasswordTokenExpiresIn: 3600,
+      sendResetPassword: async ({ user, url }: { user: { email: string }; url: string }) => {
+        // Better Auth recommends not awaiting delivery here to reduce account-
+        // enumeration timing differences. This app runs as a long-lived VPS
+        // process, so the SMTP send can continue after the API response.
+        void sendPasswordResetEmail({ to: user.email, resetUrl: url }).catch(() => {
+          console.error("Better Auth password-reset email delivery failed.");
+        });
+      },
     },
     user: {
       modelName: "users",

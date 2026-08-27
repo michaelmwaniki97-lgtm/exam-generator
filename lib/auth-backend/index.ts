@@ -6,12 +6,16 @@ import {
   getBetterAuthAuthenticatedUser,
   loginWithBetterAuth,
   logoutWithBetterAuth,
+  requestPasswordResetWithBetterAuth,
+  resetPasswordWithBetterAuth,
   signupWithBetterAuth,
 } from "./better-auth.ts";
 import {
   getSupabaseAuthenticatedUser,
   loginWithSupabase,
   logoutWithSupabase,
+  requestPasswordResetWithSupabase,
+  resetPasswordWithSupabase,
   signupWithSupabase,
 } from "./supabase.ts";
 import type {
@@ -20,6 +24,10 @@ import type {
   CredentialLoginResult,
   CredentialSignupInput,
   CredentialSignupResult,
+  PasswordResetCompletionInput,
+  PasswordResetCompletionResult,
+  PasswordResetRequestInput,
+  PasswordResetRequestResult,
 } from "./contracts.ts";
 
 export type * from "./contracts.ts";
@@ -52,4 +60,20 @@ export function logoutWithConfiguredBackend(sessionToken?: string | null): Promi
   return getAuthBackendName() === "better-auth"
     ? logoutWithBetterAuth(sessionToken)
     : logoutWithSupabase();
+}
+
+export function requestPasswordResetWithConfiguredBackend(
+  input: PasswordResetRequestInput,
+): Promise<PasswordResetRequestResult> {
+  return getAuthBackendName() === "better-auth"
+    ? requestPasswordResetWithBetterAuth(input)
+    : requestPasswordResetWithSupabase(input);
+}
+
+export function resetPasswordWithConfiguredBackend(
+  input: PasswordResetCompletionInput,
+): Promise<PasswordResetCompletionResult> {
+  return getAuthBackendName() === "better-auth"
+    ? resetPasswordWithBetterAuth(input)
+    : resetPasswordWithSupabase(input);
 }

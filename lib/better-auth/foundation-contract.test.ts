@@ -27,7 +27,7 @@ test("AUTH_BACKEND defaults to Supabase and accepts only the reviewed values", (
   }
 });
 
-test("Better Auth credential mutations are opt-in while recovery and middleware remain Supabase-owned", async () => {
+test("Better Auth credential and recovery mutations are opt-in while middleware remains Supabase-owned", async () => {
   const [server, session, actions, middleware] = await Promise.all([
     source("lib/better-auth/server.ts"),
     source("lib/auth/session.ts"),
@@ -40,7 +40,9 @@ test("Better Auth credential mutations are opt-in while recovery and middleware 
   assert.match(actions, /signupWithConfiguredBackend/);
   assert.match(actions, /loginWithConfiguredBackend/);
   assert.match(actions, /logoutWithConfiguredBackend/);
-  assert.match(actions, /supabase\.auth\.resetPasswordForEmail/);
+  assert.match(actions, /requestPasswordResetWithConfiguredBackend/);
+  assert.match(actions, /resetPasswordWithConfiguredBackend/);
+  assert.doesNotMatch(actions, /supabase\.auth\./);
   assert.match(middleware, /supabase\.auth\.getUser\(\)/);
 });
 
