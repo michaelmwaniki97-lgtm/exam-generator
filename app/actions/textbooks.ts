@@ -4,15 +4,16 @@ import { createHash, randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { isAdminRole } from "@/lib/auth/access";
 import { getCurrentUser, getUserRole } from "@/lib/auth/session";
-import { createAdminClient } from "@/lib/supabase/admin";
 import { chunkTextbookPages } from "@/lib/textbooks/chunking";
 import { embedTexts } from "@/lib/textbooks/embeddings";
 import { extractPdfText } from "@/lib/textbooks/pdf";
-import { EMBEDDING_BATCH_SIZE, EMBEDDING_DIMENSION, EMBEDDING_MODEL, TEXTBOOK_BUCKET } from "@/lib/textbooks/constants";
+import { EMBEDDING_BATCH_SIZE, EMBEDDING_DIMENSION, EMBEDDING_MODEL } from "@/lib/textbooks/constants";
 import { hasPdfSignature, isSourceType, safePdfFilename, validateUploadMetadata, type UploadFileLike } from "@/lib/textbooks/validation";
 import { UUID_PATTERN } from "@/lib/admin/validation";
 import { getCatalogRepository } from "@/lib/catalog";
 import { getAdminTextbookReadRepository, hasDuplicateTextbookName } from "@/lib/textbook-read";
+import { getTextbookStorageProvider } from "@/lib/textbook-storage";
+import { getTextbookWorkflowRepository, type TextbookChunkInsert } from "@/lib/textbook-workflow";
 
 export type TextbookActionState = { status: "success" | "error"; message: string } | undefined;
 const result = (status: "success" | "error", message: string): TextbookActionState => ({ status, message });
@@ -20,7 +21,7 @@ const result = (status: "success" | "error", message: string): TextbookActionSta
 async function adminContext() {
   const [user, role] = await Promise.all([getCurrentUser(), getUserRole()]);
   if (!user || !isAdminRole(role)) return null;
-  return { user, supabase: createAdminClient() };
+  return { user };
 }
 
 function safeNote(value: FormDataEntryValue | null): string | null {
@@ -55,13 +56,13 @@ export async function createTextbookRecord(_state: TextbookActionState, formData
   if (hasDuplicateTextbookName(existing, name)) {
     return result("error", "A textbook with this name already exists for the selected subject and grade.");
   }
-  const { error } = await context.supabase.from("textbooks").insert({
+  const created = await (await getTextbookWorkflowRepository()).createTextbook({
     name,
     publisher: publisherValue || null,
     subject_id: subjectId,
     grade_id: gradeId,
   });
-  if (error) return result("error", "Could not create the textbook record.");
+  if (!created) return result("error", "Could not create the textbook record.");
   revalidatePath("/admin/textbooks");
   return result("success", "Textbook record created. It is now available for PDF upload.");
 }
@@ -82,14 +83,18 @@ export async function uploadTextbookDocument(_state: TextbookActionState, formDa
   const documentId = randomUUID();
   const storagePath = `textbooks/${textbookId}/${documentId}/${safePdfFilename(file!.name)}`;
   const hash = createHash("sha256").update(bytes).digest("hex");
-  const { error: storageError } = await context.supabase.storage.from(TEXTBOOK_BUCKET).upload(storagePath, bytes, { contentType: "application/pdf", upsert: false });
-  if (storageError) return result("error", "The private PDF upload failed.");
-  const { error: insertError } = await context.supabase.from("textbook_documents").insert({
+  const storage = getTextbookStorageProvider();
+  try { await storage.put(storagePath, bytes, "application/pdf"); }
+  catch { return result("error", "The private PDF upload failed."); }
+  const insertResult = await (await getTextbookWorkflowRepository()).createDocument({
     id: documentId, textbook_id: textbookId, storage_path: storagePath, original_filename: safePdfFilename(file!.name), mime_type: "application/pdf",
     file_size: file!.size, content_sha256: hash, source_type: sourceType, authorization_note: safeNote(formData.get("authorizationNote")),
     authorization_acknowledged: true, uploaded_by: context.user.id,
   });
-  if (insertError) { await context.supabase.storage.from(TEXTBOOK_BUCKET).remove([storagePath]); return result("error", insertError.code === "23505" ? "This exact PDF is already uploaded for the textbook." : "Could not create the textbook document record."); }
+  if (insertResult !== "created") {
+    await storage.delete(storagePath).catch(() => undefined);
+    return result("error", insertResult === "duplicate" ? "This exact PDF is already uploaded for the textbook." : "Could not create the textbook document record.");
+  }
   revalidatePath("/admin/textbooks");
   return result("success", "PDF uploaded privately. Start processing when ready.");
 }
@@ -99,20 +104,20 @@ export async function processTextbookDocument(_state: TextbookActionState, formD
   if (!context) return result("error", "Administrator access is required.");
   const documentId = String(formData.get("documentId") ?? "");
   if (!UUID_PATTERN.test(documentId)) return result("error", "Invalid textbook document.");
-  const { data: document } = await context.supabase.from("textbook_documents").select("id, textbook_id, storage_path, processing_status").eq("id", documentId).maybeSingle();
+  const repository = await getTextbookWorkflowRepository();
+  const document = await repository.getDocumentForProcessing(documentId).catch(() => null);
   if (!document) return result("error", "Textbook document not found.");
   if (document.processing_status === "processing") return result("error", "This document is already processing.");
-  await context.supabase.from("textbook_documents").update({ processing_status: "processing", processing_error: null, updated_at: new Date().toISOString() }).eq("id", documentId);
+  await repository.markProcessing(documentId, new Date().toISOString()).catch(() => undefined);
   let stage: ProcessingStage = "storage_download";
   try {
-    const { data: blob, error: downloadError } = await context.supabase.storage.from(TEXTBOOK_BUCKET).download(document.storage_path);
-    if (downloadError || !blob) throw new Error("The private PDF could not be read.");
+    const bytes = await getTextbookStorageProvider().get(document.storage_path);
     stage = "pdf_extraction";
-    const extracted = await extractPdfText(new Uint8Array(await blob.arrayBuffer()));
+    const extracted = await extractPdfText(bytes);
     stage = "chunking";
     const chunks = chunkTextbookPages(extracted.pages);
     if (!chunks.length) throw new Error("No usable textbook chunks could be extracted.");
-    const rows: Record<string, unknown>[] = [];
+    const rows: TextbookChunkInsert[] = [];
     stage = "embedding";
     for (let offset = 0; offset < chunks.length; offset += EMBEDDING_BATCH_SIZE) {
       const batch = chunks.slice(offset, offset + EMBEDDING_BATCH_SIZE);
@@ -120,22 +125,17 @@ export async function processTextbookDocument(_state: TextbookActionState, formD
       batch.forEach((chunk, index) => rows.push({ document_id: document.id, textbook_id: document.textbook_id, chunk_index: chunk.chunkIndex, page_start: chunk.pageStart, page_end: chunk.pageEnd, text: chunk.text, character_count: chunk.characterCount, metadata: { pageStart: chunk.pageStart, pageEnd: chunk.pageEnd }, embedding: `[${embeddings[index].join(",")}]` }));
     }
     stage = "chunk_insert";
-    await context.supabase.from("textbook_chunks").delete().eq("document_id", document.id);
-    for (let offset = 0; offset < rows.length; offset += 100) {
-      const { error } = await context.supabase.from("textbook_chunks").insert(rows.slice(offset, offset + 100));
-      if (error) throw new Error("The extracted textbook chunks could not be indexed.");
-    }
-    stage = "finalize";
-    await context.supabase.from("textbook_documents").update({ processing_status: "ready", processing_error: null, page_count: extracted.pageCount, extracted_character_count: extracted.characterCount, chunk_count: chunks.length, embedding_model: EMBEDDING_MODEL, embedding_dimension: EMBEDDING_DIMENSION, processed_at: new Date().toISOString(), updated_at: new Date().toISOString() }).eq("id", document.id);
+    const processedAt = new Date().toISOString();
+    await repository.replaceChunksAndMarkReady(document.id, rows, { page_count: extracted.pageCount, extracted_character_count: extracted.characterCount, chunk_count: chunks.length, embedding_model: EMBEDDING_MODEL, embedding_dimension: EMBEDDING_DIMENSION, processed_at: processedAt, updated_at: processedAt });
     revalidatePath("/admin/textbooks");
     return result("success", `Textbook ready: ${extracted.pageCount} pages and ${chunks.length} chunks indexed.`);
   } catch (error) {
+    if (error instanceof Error && error.message === "Could not finalize textbook processing.") stage = "finalize";
     const safeError = processingFailureMessage(stage, error);
     if (process.env.NODE_ENV === "development") {
       console.error(`[Textbook Processing] stage=${stage} document=${document.id} error=${diagnosticError(error)}`);
     }
-    await context.supabase.from("textbook_chunks").delete().eq("document_id", document.id);
-    await context.supabase.from("textbook_documents").update({ processing_status: "failed", processing_error: safeError.slice(0, 300), updated_at: new Date().toISOString() }).eq("id", document.id);
+    await repository.clearChunksAndMarkFailed(document.id, safeError.slice(0, 300), new Date().toISOString()).catch(() => undefined);
     revalidatePath("/admin/textbooks");
     return result("error", safeError);
   }
@@ -146,12 +146,13 @@ export async function removeTextbookDocument(_state: TextbookActionState, formDa
   if (!context) return result("error", "Administrator access is required.");
   const documentId = String(formData.get("documentId") ?? "");
   if (!UUID_PATTERN.test(documentId)) return result("error", "Invalid textbook document.");
-  const { data: document } = await context.supabase.from("textbook_documents").select("id, storage_path, processing_status").eq("id", documentId).maybeSingle();
+  const repository = await getTextbookWorkflowRepository();
+  const document = await repository.getDocumentForRemoval(documentId).catch(() => null);
   if (!document) return result("error", "Textbook document not found.");
   if (document.processing_status === "ready" || document.processing_status === "processing") return result("error", "Ready or processing documents cannot be removed because generation provenance may depend on them.");
-  await context.supabase.storage.from(TEXTBOOK_BUCKET).remove([document.storage_path]);
-  const { error } = await context.supabase.from("textbook_documents").delete().eq("id", document.id);
-  if (error) return result("error", "Could not remove the textbook document.");
+  try { await getTextbookStorageProvider().delete(document.storage_path); }
+  catch { return result("error", "Could not remove the textbook document."); }
+  if (!await repository.deleteDocument(document.id).catch(() => false)) return result("error", "Could not remove the textbook document.");
   revalidatePath("/admin/textbooks");
   return result("success", "Textbook document removed.");
 }

@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 const actionSource = readFileSync(new URL("../../app/actions/textbooks.ts", import.meta.url), "utf8");
+const postgresWorkflowSource = readFileSync(new URL("../textbook-workflow/postgres.ts", import.meta.url), "utf8");
 const migrationSource = readFileSync(new URL("../../supabase/migrations/20260823120000_add_private_textbook_rag.sql", import.meta.url), "utf8");
 
 test("textbook mutations are protected by the centralized admin role gate", () => {
@@ -21,10 +22,10 @@ test("storage remains private and retrieval is service-role-only", () => {
 });
 
 test("processing cannot publish ready before chunk persistence", () => {
-  const insertPosition = actionSource.indexOf('.from("textbook_chunks").insert');
-  const readyPosition = actionSource.indexOf('status: "ready"');
+  const insertPosition = postgresWorkflowSource.indexOf("insert into public.textbook_chunks");
+  const readyPosition = postgresWorkflowSource.indexOf("processing_status='ready'");
   assert.ok(insertPosition >= 0 && readyPosition > insertPosition);
-  assert.match(actionSource, /catch \(error\)[\s\S]*?status: "failed"/);
+  assert.match(actionSource, /catch \(error\)[\s\S]*?clearChunksAndMarkFailed/);
   assert.match(actionSource, /process\.env\.NODE_ENV === "development"/);
   assert.match(actionSource, /\[Textbook Processing\] stage=\$\{stage\} document=\$\{document\.id\} error=\$\{diagnosticError\(error\)\}/);
   assert.doesNotMatch(actionSource, /console\.error\([^\n]*(?:apiKey|storage_path|storagePath|Authorization)/);

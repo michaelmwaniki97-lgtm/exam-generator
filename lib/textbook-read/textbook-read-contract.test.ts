@@ -85,6 +85,7 @@ test("textbook boundary authenticates server-side and exposes no browser identit
   assert.doesNotMatch(postgres, /order by processed_at desc[^\n]*(?:,|nulls)/);
   assert.ok(postgres.indexOf('await this.authorize("admin")') < postgres.indexOf("return withTrustedTransaction(work)"));
   assert.ok(postgres.indexOf('await this.authorize("teacher")') < postgres.lastIndexOf("return withTrustedTransaction(work)"));
-  assert.match(actions, /\.from\("textbook_documents"\)\.update/);
-  assert.match(actions, /storage\.from\(TEXTBOOK_BUCKET\)/);
+  assert.doesNotMatch(actions, /\.from\("textbook_documents"\)|storage\.from\(/);
+  assert.match(actions, /getTextbookWorkflowRepository\(\)/);
+  assert.match(actions, /getTextbookStorageProvider\(\)/);
 });
