@@ -50,3 +50,6 @@ _wait2.cjs
 __pycache__/
 *.py[cod]
 supabase/.temp/
+
+# Privileged auth migration exports (contain password hashes)
+*.auth-export.jsonl

@@ -547,3 +547,31 @@ Rollback remains configuration-first: keep `AUTH_BACKEND=supabase`. No applicati
 - Authorization remains server-side in the admin/teacher layouts and protected repositories. The Proxy proves authentication only; it does not derive roles from cookies, headers, query parameters, or browser input.
 - Admin-first dual-role behavior remains unchanged in identity role resolution and the existing layouts.
 - This phase does not migrate user rows, repoint `auth.users` foreign keys, remove Supabase Auth, deploy to production, or change password/credential flows introduced in earlier auth phases.
+
+### Auth Phase 6 — UUID-preserving Supabase user import rehearsal
+
+Auth Phase 6 adds **offline/staging import tooling only**. It does not connect to production Supabase, does not repoint application foreign keys, and does not enable Better Auth for production traffic. The import input is an operator-created JSONL export containing only the required Supabase Auth fields: `id`, `email`, `encrypted_password`, confirmation timestamps, created/updated timestamps, and optional `raw_user_meta_data`. That file contains password hashes and is treated as a privileged secret; `*.auth-export.jsonl` is ignored by Git and the import script never logs rows, emails, hashes, metadata, or connection strings.
+
+The importer requires the target self-hosted `auth.users` compatibility row to already exist with the **same UUID and normalized email**. It never inserts, updates, or deletes `auth.users`. This prevents the import rehearsal from accidentally firing the legacy signup trigger or rewriting application ownership. Each Better Auth user is inserted with the exact preserved UUID, and its credential account uses Better Auth's expected `issuer='local:credential'`, `account_id=<same UUID>`, and `provider_id='credential'`. Unsupported/non-bcrypt password material blocks the import rather than silently creating an account that cannot log in.
+
+The import is dry-run by default and `--apply` is explicit. A run is transactional, rejects duplicate UUID/email input, rejects target UUID/email collisions, and is safe to rerun. If an imported bcrypt credential has already been upgraded to Better Auth scrypt by a successful staging login, rerunning the old export preserves the newer scrypt credential instead of overwriting it with stale bcrypt material.
+
+Better Auth's password configuration is migration-compatible without downgrading new passwords: recognized Supabase bcrypt hashes are verified with `bcrypt`, while Better Auth's native scrypt verifier handles Better Auth hashes. New signups and password resets continue hashing with Better Auth scrypt. After a successful imported login, the adapter performs a best-effort compare-and-swap upgrade of that exact bcrypt account hash to scrypt. A concurrent password reset/change wins because the update includes the old hash in its predicate. Upgrade failure does not invalidate an already-successful login; the bcrypt credential remains usable and the upgrade can retry on a later login.
+
+Before any future FK cutover, readiness checks require zero UUID gaps between `auth.users` and `better_auth.users`, zero email mismatches, and zero `teachers.user_id`, `admins.user_id`, or `textbook_documents.uploaded_by` references missing from Better Auth. Phase 6 adds normalized-email uniqueness in `better_auth.users` but intentionally leaves all three application foreign keys on `auth.users`.
+
+Staging rehearsal commands use a privileged offline export and the disposable/self-hosted PostgreSQL target only:
+
+```bash
+# Dry run is the default; the export file itself must remain outside source control.
+DATABASE_URL='postgresql://...' \
+  node --conditions=react-server --experimental-strip-types \
+  scripts/import-supabase-auth-export.ts /secure/path/users.auth-export.jsonl
+
+# Apply only after the dry-run counts/collisions are reviewed.
+DATABASE_URL='postgresql://...' \
+  node --conditions=react-server --experimental-strip-types \
+  scripts/import-supabase-auth-export.ts /secure/path/users.auth-export.jsonl --apply
+```
+
+The production export itself remains a later controlled cutover operation. When that window arrives, the read-only Supabase export must preserve the exact `auth.users.id`, normalized email, `encrypted_password`, verification state, and timestamps. Active Supabase sessions are not migrated; users must reauthenticate through Better Auth after cutover.

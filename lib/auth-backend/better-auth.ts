@@ -13,6 +13,7 @@ import {
   removeBetterAuthSession,
   removeBetterAuthUserAfterFailedSignup,
 } from "../better-auth/application-bridge.ts";
+import { upgradeImportedCredentialHashIfNeeded } from "../better-auth/credential-upgrade.ts";
 import { getBetterAuthFoundation } from "../better-auth/server.ts";
 import type {
   AuthenticatedUser,
@@ -162,6 +163,12 @@ export async function loginWithBetterAuth(
     const user = normalizeAuthenticatedUser(result.user);
     if (!user || typeof result.token !== "string" || !result.token) {
       return { status: "error", error: "We could not verify your account. Please try again." };
+    }
+    try {
+      await upgradeImportedCredentialHashIfNeeded(user.id, input.password);
+    } catch {
+      // Authentication already succeeded. Keep the imported bcrypt credential
+      // usable and retry the non-destructive upgrade on a later login.
     }
     return { status: "signed-in", user, sessionToken: result.token };
   } catch (error) {
