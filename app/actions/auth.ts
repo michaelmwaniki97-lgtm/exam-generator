@@ -12,6 +12,7 @@ import {
   validateSignupFields,
 } from "@/lib/auth/validation";
 import { recoveryRedirectUrl } from "@/lib/auth/recovery";
+import { getTeacherProfileWriteContext } from "@/lib/teacher-profile-write";
 
 export type AuthFormState = { error?: string; success?: string } | undefined;
 export type ProfileFormState = { error?: string; success?: string } | undefined;
@@ -136,20 +137,20 @@ export async function updateTeacherProfile(
     return { error: "One or more fields are too long." };
   }
 
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return { error: "Your session has expired. Please log in again." };
+  const context = await getTeacherProfileWriteContext();
+  if (context.status === "unauthenticated") {
+    return { error: "Your session has expired. Please log in again." };
+  }
+  if (context.status === "forbidden") {
+    return { error: "Only teacher profiles can be updated here." };
+  }
 
-  const role = await getUserRole();
-  if (role !== "teacher") return { error: "Only teacher profiles can be updated here." };
-
-  const { error } = await supabase
-    .from("teachers")
-    .update({ name, school: school || null, phone: phone || null })
-    .eq("user_id", user.id);
-
-  if (error) return { error: "Could not update your profile. Please try again." };
+  try {
+    await context.repository.updateProfile({
+      name,
+      school: school || null,
+      phone: phone || null,
+    });
+  } catch { return { error: "Could not update your profile. Please try again." }; }
   return { success: "Profile updated successfully." };
 }

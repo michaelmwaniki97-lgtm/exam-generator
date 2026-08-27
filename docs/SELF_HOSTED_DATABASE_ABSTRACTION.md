@@ -1,6 +1,16 @@
 # Self-Hosted Database Abstraction — RPC Foundation
 
-Status: RPC foundation, CRUD Phases 1-10C, and Write Phase 1 are checkpointed; Write Phase 2 (curriculum hierarchy admin writes) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+Status: RPC foundation, CRUD Phases 1-10C, and Write Phases 1-2 are checkpointed; Write Phase 3 (teacher profile update) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+
+## Write Phase 3: teacher profile update
+
+Write Phase 3 moves only `updateTeacherProfile`'s direct `teachers` update into the narrow server-only `lib/teacher-profile-write` repository. The historical action trimmed `name`, `school`, and `phone`; required a name of 2-100 characters; limited school to 160 and phone to 30; called Supabase Auth `getUser()`; required the admin-first effective role to equal `teacher`; and updated `{ name, school: school || null, phone: phone || null }` where `user_id` equaled the validated Auth user ID. Its exact session, role, database-failure, and success messages remain unchanged, and it historically performed no cache revalidation.
+
+The factory obtains identity only through the existing central Supabase Auth context and resolves the existing admin-first application role before backend selection. A dual-role admin, teacherless authenticated user, or unauthenticated request cannot obtain the repository through the application boundary. The Supabase adapter retains the ordinary authenticated client and explicit `user_id` predicate. PostgreSQL uses transaction-local authenticated identity, the same explicit predicate, and existing self-update RLS. The existing column grant continues to limit authenticated updates to `name`, `school`, and `phone`; no trusted/service role, superuser, policy, grant, Auth, or identity-schema change is introduced.
+
+The repository fetches no row and preserves historical no-match success semantics. It cannot change `id`, `user_id`, or `created_at`. Contract tests cover the exact Supabase payload/predicate, null normalization, sanitized failures, environment-only backend, central Auth/role architecture, validation, messages, and absence of revalidation. Disposable PostgreSQL integration covers self-only updates, nullable school/phone, Teacher A/B isolation, unknown-user no-op behavior, raw runtime denial, restoration of fixtures, and read-after-write parity through the identity-read abstraction.
+
+Rollback remains configuration-first: omit `DATABASE_BACKEND` or set it to `supabase`. Direct runtime writes fall from 13 to 12: app settings 1, payments 2, and textbook/document/chunk writes 9. The two direct Storage-coupled textbook-document reads and all four Storage calls remain untouched.
 
 ## Write Phase 2: curriculum hierarchy admin writes
 
