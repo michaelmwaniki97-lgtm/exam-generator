@@ -6,12 +6,15 @@ const ROOT = new URL("../../", import.meta.url);
 const source = (path: string) => readFile(new URL(path, ROOT), "utf8");
 
 test("Better Auth HTTP handler is mounted only when Better Auth is the configured authority", async () => {
-  const route = await source("app/api/auth/[...all]/route.ts");
+  const [route, gate] = await Promise.all([
+    source("app/api/auth/[...all]/route.ts"),
+    source("lib/better-auth/http-gate.ts"),
+  ]);
 
-  assert.match(route, /getAuthBackendName\(\) !== "better-auth"/);
-  assert.match(route, /return new Response\("Not Found", \{ status: 404 \}\)/);
+  assert.match(gate, /getAuthBackendName\(\) !== "better-auth"/);
+  assert.match(gate, /return new Response\("Not Found", \{ status: 404 \}\)/);
   assert.match(route, /getBetterAuthFoundation\(\)/);
-  assert.match(route, /return auth\.handler\(request\)/);
+  assert.match(route, /handleConfiguredBetterAuthHttpRequest/);
   assert.match(route, /export const GET = handleBetterAuthRequest/);
   assert.match(route, /export const POST = handleBetterAuthRequest/);
   assert.doesNotMatch(route, /createClient|supabase\.auth|SUPABASE_SERVICE_ROLE_KEY|NEXT_PUBLIC_/i);
