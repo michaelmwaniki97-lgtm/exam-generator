@@ -1,6 +1,22 @@
 # Self-Hosted Database Abstraction — RPC Foundation
 
-Status: RPC foundation, CRUD Phases 1-10C, and Write Phases 1-3 are checkpointed; Write Phase 4 (exam-package price upsert) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+Status: RPC foundation, CRUD Phases 1-10C, and Write Phases 1-4 are checkpointed; Write Phase 5 (direct payment state writes) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+
+## Write Phase 5: direct payment state writes
+
+Write Phase 5 moves only the two remaining direct `payments` mutations in `SupabasePaymentRepository` behind the narrow server-only `lib/payment-state-write` repository. `saveInitiation` records the result of provider initiation, and `recordTerminal` records a failed, cancelled, or expired attempt. Payment reporting, entitlement, attempt reads, begin-attempt/finalization RPCs, callbacks, reconciliation decisions, textbook Storage, Auth, and every other write remain unchanged.
+
+Both historical mutations used `createAdminClient()` inside the trusted payment state-machine boundary. The dual-backend adapters preserve that execution model: Supabase continues to use the admin client, while PostgreSQL uses the existing trusted transaction helper. Neither repository operation is browser-facing or accepts a role, backend, table, SQL fragment, teacher identity, amount, currency, or provider choice. SQL is static and parameterized, predicates by payment ID and the exact eligible prior status, and returns only the bounded normalized attempt fields required by the existing caller.
+
+For an accepted initiation, the existing transition remains `initiated` to `pending`, with `verification_status = 'pending'`, the generic `external_request_id` and `provider_request_id`, the provider-safe description truncated to 500 characters, `query_next_at` set 30 seconds ahead, and `updated_at`. For a rejected initiation, the transition remains `initiated` to `failed`, with `verification_status = 'rejected'`, the same description/default behavior, and `updated_at`. A missing/ineligible row or database failure retains the existing sanitized `VERIFICATION_FAILED` application error. Although the historical mutation selected the full row, recursive caller review shows the state machine consumes only the normalized `PaymentAttempt` fields, so the new adapters use an explicit minimized projection.
+
+`recordTerminal` remains best-effort. It updates only attempts currently in `initiated` or `pending`, sets the supplied canonical terminal status plus `verification_status = 'rejected'`, truncates result code/description to their historical limits, and updates the timestamp. Undefined optional values remain omitted/preserved exactly as in the Supabase client serialization. Errors remain intentionally ignored. This method neither creates paid state nor changes amount, currency, ownership, provider correlation, receipts, lease acquisition, retry counts, idempotency, uniqueness, cooldowns, limits, or entitlement.
+
+The abstraction is provider-neutral: it uses canonical status and generic external/provider request identifiers and contains no M-Pesa, CheckoutRequestID, MerchantRequestID, or receipt contract. Daraja continues to map its identifiers in the unchanged provider adapter and payment core. Future providers can use the same state-write contract without being modeled as M-Pesa, but no card provider or payment-state redesign is included.
+
+Supabase contract tests cover exact payloads, predicates, projections, terminal best-effort behavior, default backend selection, minimized contracts, and separation from reporting, entitlement, and attempt reads. Disposable PostgreSQL integration covers accepted/rejected transitions, ineligible-state protection, terminal behavior, generic future-provider fixtures, provider-correlation uniqueness, and preservation of amount/currency/ownership. Existing payment-core and Daraja suites remain the regression authority for initiation, callbacks, STK Query, trusted finalization, leases/backoff, and canonical paid state.
+
+Rollback remains configuration-first: omit `DATABASE_BACKEND` or set it to `supabase`. Direct runtime writes fall from 11 to 9, all remaining in the parked textbook/document/chunk Storage and ingestion domain. The two direct Storage-coupled textbook-document reads and all four Storage calls remain unchanged. No schema, policy, Auth, provider, production-data, or deployment change is included.
 
 ## Write Phase 4: app-settings price upsert
 

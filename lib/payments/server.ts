@@ -1,6 +1,5 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
-import { createAdminClient } from "../supabase/admin";
 import { getTrustedRpcDatabase } from "../db";
 import { getCurrentUser, getUserRole } from "../auth/session";
 import { getIdentityReadRepository } from "../identity-read";
@@ -8,6 +7,7 @@ import { getAppSettingsReadRepository } from "../app-settings-read";
 import { getPaymentEntitlementReadRepository } from "../payment-entitlement";
 import { getPaymentAttemptReadRepository, normalizePaymentAttempt, type PaymentAttemptRow } from "../payment-attempt-read";
 import { getTeacherExamReadContext, getTrustedExamReadRepository } from "../exam-read";
+import { getPaymentStateWriteRepository, type InitiationStateChanges } from "../payment-state-write";
 import { mayDownloadExamPackage, PaymentError, type BeginAttemptResult, type PaymentActor, type PaymentAttempt, type PaymentRepository, type ProviderInitiation } from "./core";
 
 type PaymentRow = PaymentAttemptRow & {
@@ -46,7 +46,6 @@ export async function getExamDownloadEntitlement(examId: string): Promise<{ allo
 }
 
 export class SupabasePaymentRepository implements PaymentRepository {
-  private admin = createAdminClient();
   async assertOwnedExam(actor: PaymentActor, examId: string) {
     if (!await getTrustedExamReadRepository().teacherOwnsExam(examId, actor.teacherId)) throw new PaymentError("FORBIDDEN", "You do not have access to this exam.");
   }
@@ -58,10 +57,10 @@ export class SupabasePaymentRepository implements PaymentRepository {
   }
   async saveInitiation(paymentId: string, result: ProviderInitiation): Promise<PaymentAttempt> {
     const now = Date.now();
-    const changes = result.accepted && result.externalRequestId && result.providerRequestId ? { status: "pending", verification_status: "pending", external_request_id: result.externalRequestId, provider_request_id: result.providerRequestId, result_description: result.safeMessage?.slice(0, 500) ?? null, query_next_at: new Date(now + 30_000).toISOString(), updated_at: new Date(now).toISOString() } : { status: "failed", verification_status: "rejected", result_description: result.safeMessage?.slice(0, 500) ?? "Payment request failed.", updated_at: new Date(now).toISOString() };
-    const { data, error } = await this.admin.from("payments").update(changes).eq("id", paymentId).eq("status", "initiated").select("*").single();
-    if (error || !data) throw new PaymentError("VERIFICATION_FAILED", "Payment request could not be recorded.");
-    return attempt(data as PaymentRow);
+    const changes: InitiationStateChanges = result.accepted && result.externalRequestId && result.providerRequestId ? { status: "pending", verification_status: "pending", external_request_id: result.externalRequestId, provider_request_id: result.providerRequestId, result_description: result.safeMessage?.slice(0, 500) ?? null, query_next_at: new Date(now + 30_000).toISOString(), updated_at: new Date(now).toISOString() } : { status: "failed", verification_status: "rejected", result_description: result.safeMessage?.slice(0, 500) ?? "Payment request failed.", updated_at: new Date(now).toISOString() };
+    const data = await getPaymentStateWriteRepository().saveInitiation(paymentId, changes);
+    if (!data) throw new PaymentError("VERIFICATION_FAILED", "Payment request could not be recorded.");
+    return attempt(data);
   }
   async getAttempt(paymentId: string) { return getPaymentAttemptReadRepository().getAttempt(paymentId); }
   async getAttemptByExternalRequest(externalRequestId: string) { return getPaymentAttemptReadRepository().getAttemptByExternalRequest("daraja", externalRequestId); }
@@ -82,5 +81,9 @@ export class SupabasePaymentRepository implements PaymentRepository {
     try { return await getTrustedRpcDatabase().finalizeVerifiedPayment(input); }
     catch { return false; }
   }
-  async recordTerminal(paymentId: string, status: "failed" | "cancelled" | "expired", resultCode?: string, safeMessage?: string) { await this.admin.from("payments").update({ status, verification_status: "rejected", result_code: resultCode?.slice(0, 80), result_description: safeMessage?.slice(0, 500), updated_at: new Date().toISOString() }).eq("id", paymentId).in("status", ["initiated", "pending"]); }
+  async recordTerminal(paymentId: string, status: "failed" | "cancelled" | "expired", resultCode?: string, safeMessage?: string) {
+    await getPaymentStateWriteRepository().recordTerminal(
+      paymentId, status, resultCode?.slice(0, 80), safeMessage?.slice(0, 500), new Date().toISOString()
+    );
+  }
 }
