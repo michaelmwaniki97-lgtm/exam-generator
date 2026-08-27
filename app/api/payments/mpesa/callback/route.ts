@@ -1,7 +1,7 @@
 import { parseDarajaCallback } from "@/lib/payments/daraja";
 import { processDarajaCallback } from "@/lib/payments/daraja-service";
 import { configuredPaymentProvider } from "@/lib/payments/provider-config";
-import { SupabasePaymentRepository } from "@/lib/payments/server";
+import { ServerPaymentRepository } from "@/lib/payments/server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
   try { callback = parseDarajaCallback(await readBody(request)); }
   catch { return Response.json({ received: false }, { status: 400, headers: { "Cache-Control": "no-store" } }); }
   try {
-    await processDarajaCallback({ callback, repository: new SupabasePaymentRepository(), provider: configuredPaymentProvider() });
+    await processDarajaCallback({ callback, repository: new ServerPaymentRepository(), provider: configuredPaymentProvider() });
     return Response.json({ received: true }, { headers: { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" } });
   } catch {
     return Response.json({ received: false }, { status: 503, headers: { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" } });

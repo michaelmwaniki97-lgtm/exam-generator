@@ -10,7 +10,6 @@ import {
   hasDuplicate,
   type NamedRow,
 } from "@/lib/admin/validation";
-import { createClient } from "@/lib/supabase/server";
 import { getCatalogRepository } from "@/lib/catalog";
 import { getCurriculumReadRepository } from "@/lib/curriculum-read";
 import { getAdminReportingRepository } from "@/lib/admin-reporting";
@@ -22,8 +21,7 @@ export type AdminActionState =
   | { status: "error"; message: string }
   | undefined;
 
-type AdminClient = Awaited<ReturnType<typeof createClient>>;
-type Operation = (supabase: AdminClient) => Promise<AdminActionState>;
+type Operation = () => Promise<AdminActionState>;
 type NameRow = { id: string; name: string };
 type OutcomeRow = { id: string; description: string };
 
@@ -51,7 +49,7 @@ async function withAdmin(operation: Operation): Promise<AdminActionState> {
   }
 
   try {
-    return await operation(await createClient());
+    return await operation();
   } catch {
     return error("The request could not be completed. Please try again.");
   }

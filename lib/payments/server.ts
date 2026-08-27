@@ -45,7 +45,7 @@ export async function getExamDownloadEntitlement(examId: string): Promise<{ allo
   return { allowed, admin: false, price: allowed ? null : await getExamPackagePrice() };
 }
 
-export class SupabasePaymentRepository implements PaymentRepository {
+export class ServerPaymentRepository implements PaymentRepository {
   async assertOwnedExam(actor: PaymentActor, examId: string) {
     if (!await getTrustedExamReadRepository().teacherOwnsExam(examId, actor.teacherId)) throw new PaymentError("FORBIDDEN", "You do not have access to this exam.");
   }

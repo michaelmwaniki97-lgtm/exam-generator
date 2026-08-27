@@ -27,12 +27,15 @@ services:
       start_period: 15s
     networks:
       - selfhosted_private
+      - selfhosted_host_access
     restart: unless-stopped
 
 networks:
   selfhosted_private:
     name: exam-generator-selfhosted-parity-private
     internal: true
+  selfhosted_host_access:
+    name: exam-generator-selfhosted-parity-host-access
 
 volumes:
   selfhosted_postgres_data:
