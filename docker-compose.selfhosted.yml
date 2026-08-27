@@ -15,6 +15,7 @@ services:
       - ./infra/self-hosted/bootstrap/10-apply-current-migrations.sh:/docker-entrypoint-initdb.d/10-apply-current-migrations.sh:ro
       - ./supabase/migrations:/selfhosted/current-migrations:ro
       - ./infra/self-hosted/auth:/selfhosted/auth:ro
+      - ./infra/self-hosted/auth-cutover:/selfhosted/auth-cutover:ro
       - ./infra/self-hosted/tests:/selfhosted/tests:ro
     healthcheck:
       test:

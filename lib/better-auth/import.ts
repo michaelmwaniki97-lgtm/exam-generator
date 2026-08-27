@@ -27,6 +27,7 @@ export type AuthImportSummary = {
 
 export type AuthCutoverReadiness = {
   authUsersMissingBetterAuth: number;
+  betterAuthUsersMissingAuth: number;
   emailMismatches: number;
   teachersMissingBetterAuth: number;
   adminsMissingBetterAuth: number;
@@ -223,6 +224,7 @@ export async function getAuthCutoverReadiness(pool: Pool): Promise<AuthCutoverRe
   const result = (await pool.query<AuthCutoverReadiness>(
     `select
        (select count(*)::int from auth.users a left join better_auth.users b on b.id = a.id where b.id is null) as "authUsersMissingBetterAuth",
+       (select count(*)::int from better_auth.users b left join auth.users a on a.id = b.id where a.id is null) as "betterAuthUsersMissingAuth",
        (select count(*)::int from auth.users a join better_auth.users b on b.id = a.id where lower(coalesce(a.email, '')) <> lower(b.email)) as "emailMismatches",
        (select count(*)::int from teachers t left join better_auth.users b on b.id = t.user_id where b.id is null) as "teachersMissingBetterAuth",
        (select count(*)::int from admins a left join better_auth.users b on b.id = a.user_id where b.id is null) as "adminsMissingBetterAuth",

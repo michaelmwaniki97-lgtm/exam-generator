@@ -54,11 +54,12 @@ test("Better Auth credential adapter uses validated server APIs and requires Pos
   assert.doesNotMatch(adapter, /createAdminClient|SUPABASE_SERVICE_ROLE_KEY|NEXT_PUBLIC_/);
 });
 
-test("Better Auth signup preserves UUID through the temporary application identity bridge", async () => {
-  const [adapter, bridge, sql] = await Promise.all([
+test("Better Auth signup preserves UUID through migration-aware application identity provisioning", async () => {
+  const [adapter, bridge, sql, cutover] = await Promise.all([
     source("lib/auth-backend/better-auth.ts"),
     source("lib/better-auth/application-bridge.ts"),
     source("infra/self-hosted/auth/20-better-auth-application-bridge.sql"),
+    source("infra/self-hosted/auth-cutover/40-better-auth-identity-cutover.sql"),
   ]);
   assert.match(adapter, /betterAuthEmailAlreadyExists\(input\.email\)/);
   assert.match(adapter, /betterAuthUserWasPersisted\(user\.id, input\.email\)/);
@@ -67,12 +68,15 @@ test("Better Auth signup preserves UUID through the temporary application identi
   assert.match(adapter, /betterAuthApplicationIdentityWasProvisioned\(user\.id, applicationEmail\)/);
   assert.match(adapter, /removeBetterAuthUserAfterFailedSignup\(userId\)/);
   assert.match(bridge, /insert into auth\.users \(id, email, raw_user_meta_data\)/);
+  assert.match(bridge, /insert into public\.teachers \(user_id, name, school, phone\)/);
   assert.match(bridge, /profile\.userId/);
   assert.match(bridge, /JSON\.stringify\(\{ name: profile\.name, school: profile\.school, phone: profile\.phone \}\)/);
   assert.match(sql, /grant select, insert on table auth\.users to service_role/);
   assert.match(sql, /revoke update, delete on table auth\.users from service_role/);
   assert.doesNotMatch(bridge, /randomUUID|gen_random_uuid|crypto\.randomUUID/);
   assert.doesNotMatch(sql, /alter table public\.(teachers|admins|textbook_documents).*references better_auth\.users/is);
+  assert.match(cutover, /references better_auth\.users\(id\)/);
+  assert.match(cutover, /revoke select, insert on table auth\.users from service_role/);
 });
 
 test("failed/unknown-profile Better Auth login revokes only its just-created session token", async () => {

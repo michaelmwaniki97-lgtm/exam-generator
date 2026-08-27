@@ -6,13 +6,22 @@ import { Pool } from "pg";
 const url = process.env.DATABASE_URL;
 const enabled = Boolean(url);
 
-test("temporary Better Auth application bridge preserves UUID/profile metadata with narrow service-role grants", { skip: !enabled }, async () => {
+test("Better Auth application provisioning preserves UUID/profile metadata before and after identity cutover", { skip: !enabled }, async () => {
   const previousBackend = process.env.DATABASE_BACKEND;
   process.env.DATABASE_BACKEND = "postgres";
   const pool = new Pool({ connectionString: url! });
   const userId = randomUUID();
   const email = `better-auth-bridge-${userId}@example.test`;
   try {
+    const anchor = (await pool.query<{ target: string }>(
+      `select n.nspname || '.' || t.relname as target
+         from pg_constraint c
+         join pg_class t on t.oid = c.confrelid
+         join pg_namespace n on n.oid = t.relnamespace
+        where c.conname = 'teachers_user_id_fkey'`,
+    )).rows[0]?.target;
+    assert.ok(anchor === "auth.users" || anchor === "better_auth.users");
+
     const grants = (await pool.query<{ runtime_can_assume_service: boolean; can_select: boolean; can_insert: boolean; can_update: boolean; can_delete: boolean }>(
       `select
          pg_has_role('exam_app_runtime', 'service_role', 'MEMBER') as runtime_can_assume_service,
@@ -21,21 +30,17 @@ test("temporary Better Auth application bridge preserves UUID/profile metadata w
          has_table_privilege('service_role', 'auth.users', 'UPDATE') as can_update,
          has_table_privilege('service_role', 'auth.users', 'DELETE') as can_delete`,
     )).rows[0];
-    assert.deepEqual(grants, {
-      runtime_can_assume_service: true,
-      can_select: true,
-      can_insert: true,
-      can_update: false,
-      can_delete: false,
-    });
+    assert.equal(grants?.runtime_can_assume_service, true);
+    assert.equal(grants?.can_update, false);
+    assert.equal(grants?.can_delete, false);
+    assert.equal(grants?.can_select, anchor === "auth.users");
+    assert.equal(grants?.can_insert, anchor === "auth.users");
 
     await pool.query(
       "insert into better_auth.users (id, name, email, email_verified) values ($1::uuid, $2, $3, false)",
       [userId, "Bridge Teacher", email],
     );
 
-    // Import under Node's react-server condition so the real server-only helper
-    // is exercised rather than duplicating its SQL in the test.
     const { provisionBetterAuthApplicationIdentity } = await import("./application-bridge.ts");
     await provisionBetterAuthApplicationIdentity({
       userId,
@@ -49,8 +54,12 @@ test("temporary Better Auth application bridge preserves UUID/profile metadata w
       "select id, email from auth.users where id = $1::uuid",
       [userId],
     )).rows[0];
-    assert.equal(authUser?.id, userId);
-    assert.equal(authUser?.email, email);
+    if (anchor === "auth.users") {
+      assert.equal(authUser?.id, userId);
+      assert.equal(authUser?.email, email);
+    } else {
+      assert.equal(authUser, undefined);
+    }
 
     const teacher = (await pool.query<{ user_id: string; name: string; school: string | null; phone: string | null }>(
       "select user_id, name, school, phone from public.teachers where user_id = $1::uuid",
@@ -63,6 +72,7 @@ test("temporary Better Auth application bridge preserves UUID/profile metadata w
       phone: "+254700000000",
     });
   } finally {
+    try { await pool.query("delete from public.teachers where user_id = $1::uuid", [userId]); } catch { /* disposable cleanup */ }
     try { await pool.query("delete from auth.users where id = $1::uuid", [userId]); } catch { /* disposable cleanup */ }
     try { await pool.query("delete from better_auth.users where id = $1::uuid", [userId]); } catch { /* disposable cleanup */ }
     await pool.end();

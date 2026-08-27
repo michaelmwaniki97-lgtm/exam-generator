@@ -28,7 +28,7 @@ create schema if not exists auth;
 create schema if not exists storage;
 create schema if not exists extensions;
 
-grant usage on schema public, extensions to anon, authenticated, service_role;
+grant usage on schema public, extensions, auth to anon, authenticated, service_role;
 alter default privileges in schema public
   grant all on tables to anon, authenticated, service_role;
 alter default privileges in schema public
@@ -63,6 +63,12 @@ as $function$
     current_user
   )
 $function$;
+
+-- Keep the Supabase compatibility helpers callable by the emulated API roles
+-- without granting any table privileges in the auth schema.
+revoke all on function auth.uid() from public;
+revoke all on function auth.role() from public;
+grant execute on function auth.uid(), auth.role() to anon, authenticated, service_role;
 
 create table storage.buckets (
   id text primary key,
