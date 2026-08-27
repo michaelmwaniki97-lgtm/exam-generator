@@ -15,6 +15,7 @@ import { getCatalogRepository } from "@/lib/catalog";
 import { getCurriculumReadRepository } from "@/lib/curriculum-read";
 import { getAdminReportingRepository } from "@/lib/admin-reporting";
 import { getCatalogWriteRepository } from "@/lib/catalog-write";
+import { getCurriculumWriteRepository } from "@/lib/curriculum-write";
 
 export type AdminActionState =
   | { status: "success"; message: string }
@@ -231,7 +232,7 @@ export async function createStrand(
   if ("error" in subjectId) return error(subjectId.error);
   if ("error" in name) return error(name.error);
 
-  return withAdmin(async (supabase) => {
+  return withAdmin(async () => {
     const existing = await (await getCurriculumReadRepository())
       .listStrandNames(gradeId.value, subjectId.value).catch(() => null);
     if (!existing) return error("Could not check existing strands or topics.");
@@ -239,12 +240,13 @@ export async function createStrand(
       return error("A strand or topic with this exact name already exists here.");
     }
 
-    const { error: insertError } = await supabase.from("strands").insert({
-      grade_id: gradeId.value,
-      subject_id: subjectId.value,
-      name: name.value,
-    });
-    if (insertError) return error("Could not add the strand or topic.");
+    try {
+      await (await getCurriculumWriteRepository()).createStrand(
+        gradeId.value,
+        subjectId.value,
+        name.value
+      );
+    } catch { return error("Could not add the strand or topic."); }
     return success("Strand or topic added as unverified.", "/admin/curriculum");
   });
 }
@@ -258,7 +260,7 @@ export async function updateStrand(
   if ("error" in id) return error(id.error);
   if ("error" in name) return error(name.error);
 
-  return withAdmin(async (supabase) => {
+  return withAdmin(async () => {
     const curriculum = await getCurriculumReadRepository();
     const current = await curriculum.getStrandParent(id.value).catch(() => null);
     if (!current) return error("Strand or topic not found.");
@@ -268,25 +270,8 @@ export async function updateStrand(
       return error("A strand or topic with this exact name already exists here.");
     }
 
-    let { error: updateError } = await supabase
-      .from("strands")
-      .update({
-        name: name.value,
-        source_code: null,
-        verification_status: "unverified",
-        outcome_status: "unverified",
-        source_ref: null,
-        source_metadata: {},
-      })
-      .eq("id", id.value);
-    if (updateError?.code === "PGRST204") {
-      const legacyResult = await supabase
-        .from("strands")
-        .update({ name: name.value })
-        .eq("id", id.value);
-      updateError = legacyResult.error;
-    }
-    if (updateError) return error("Could not update the strand or topic.");
+    try { await (await getCurriculumWriteRepository()).updateStrand(id.value, name.value); }
+    catch { return error("Could not update the strand or topic."); }
     return success("Strand or topic updated; verification is still required.", "/admin/curriculum");
   });
 }
@@ -298,7 +283,7 @@ export async function deleteStrand(
   const id = cleanId(formData.get("id"), "strand or topic");
   if ("error" in id) return error(id.error);
 
-  return withAdmin(async (supabase) => {
+  return withAdmin(async () => {
     const count = await (await getCurriculumReadRepository()).countSubStrands(id.value).catch(() => null);
     if (count === null) return error("Could not verify whether this strand or topic is in use.");
     if ((count ?? 0) > 0) {
@@ -309,13 +294,10 @@ export async function deleteStrand(
       );
     }
 
-    const { data: deleted, error: deleteError } = await supabase
-      .from("strands")
-      .delete()
-      .eq("id", id.value)
-      .select("id");
-    if (deleteError) return error("Could not delete the strand or topic.");
-    if (!deleted?.length) return error("Strand or topic not found.");
+    let deleted = false;
+    try { deleted = await (await getCurriculumWriteRepository()).deleteStrand(id.value); }
+    catch { return error("Could not delete the strand or topic."); }
+    if (!deleted) return error("Strand or topic not found.");
     return success("Strand or topic deleted.", "/admin/curriculum");
   });
 }
@@ -329,17 +311,15 @@ export async function createSubStrand(
   if ("error" in strandId) return error(strandId.error);
   if ("error" in name) return error(name.error);
 
-  return withAdmin(async (supabase) => {
+  return withAdmin(async () => {
     const existing = await (await getCurriculumReadRepository()).listSubStrandNames(strandId.value).catch(() => null);
     if (!existing) return error("Could not check existing sub-strands or sub-topics.");
     if (hasDuplicate(namedRows(existing), name.value)) {
       return error("A sub-strand or sub-topic with this exact name already exists here.");
     }
 
-    const { error: insertError } = await supabase
-      .from("sub_strands")
-      .insert({ strand_id: strandId.value, name: name.value });
-    if (insertError) return error("Could not add the sub-strand or sub-topic.");
+    try { await (await getCurriculumWriteRepository()).createSubStrand(strandId.value, name.value); }
+    catch { return error("Could not add the sub-strand or sub-topic."); }
     return success("Sub-strand or sub-topic added as unverified.", "/admin/curriculum");
   });
 }
@@ -353,7 +333,7 @@ export async function updateSubStrand(
   if ("error" in id) return error(id.error);
   if ("error" in name) return error(name.error);
 
-  return withAdmin(async (supabase) => {
+  return withAdmin(async () => {
     const curriculum = await getCurriculumReadRepository();
     const current = await curriculum.getSubStrandParent(id.value).catch(() => null);
     if (!current) return error("Sub-strand or sub-topic not found.");
@@ -363,25 +343,8 @@ export async function updateSubStrand(
       return error("A sub-strand or sub-topic with this exact name already exists here.");
     }
 
-    let { error: updateError } = await supabase
-      .from("sub_strands")
-      .update({
-        name: name.value,
-        source_code: null,
-        verification_status: "unverified",
-        outcome_status: "unverified",
-        source_ref: null,
-        source_metadata: {},
-      })
-      .eq("id", id.value);
-    if (updateError?.code === "PGRST204") {
-      const legacyResult = await supabase
-        .from("sub_strands")
-        .update({ name: name.value })
-        .eq("id", id.value);
-      updateError = legacyResult.error;
-    }
-    if (updateError) return error("Could not update the sub-strand or sub-topic.");
+    try { await (await getCurriculumWriteRepository()).updateSubStrand(id.value, name.value); }
+    catch { return error("Could not update the sub-strand or sub-topic."); }
     return success("Sub-strand or sub-topic updated; verification is still required.", "/admin/curriculum");
   });
 }
@@ -393,7 +356,7 @@ export async function deleteSubStrand(
   const id = cleanId(formData.get("id"), "sub-strand or sub-topic");
   if ("error" in id) return error(id.error);
 
-  return withAdmin(async (supabase) => {
+  return withAdmin(async () => {
     const count = await (await getCurriculumReadRepository()).countLearningOutcomes(id.value).catch(() => null);
     if (count === null) return error("Could not verify whether this record is in use.");
     if ((count ?? 0) > 0) {
@@ -414,13 +377,10 @@ export async function deleteSubStrand(
       );
     }
 
-    const { data: deleted, error: deleteError } = await supabase
-      .from("sub_strands")
-      .delete()
-      .eq("id", id.value)
-      .select("id");
-    if (deleteError) return error("Could not delete the sub-strand or sub-topic.");
-    if (!deleted?.length) return error("Sub-strand or sub-topic not found.");
+    let deleted = false;
+    try { deleted = await (await getCurriculumWriteRepository()).deleteSubStrand(id.value); }
+    catch { return error("Could not delete the sub-strand or sub-topic."); }
+    if (!deleted) return error("Sub-strand or sub-topic not found.");
     return success("Sub-strand or sub-topic deleted.", "/admin/curriculum");
   });
 }
@@ -438,7 +398,7 @@ export async function createLearningOutcome(
   if ("error" in subStrandId) return error(subStrandId.error);
   if ("error" in description) return error(description.error);
 
-  return withAdmin(async (supabase) => {
+  return withAdmin(async () => {
     const existing = await (await getCurriculumReadRepository())
       .listLearningOutcomeDescriptions(subStrandId.value).catch(() => null);
     if (!existing) return error("Could not check existing learning outcomes or objectives.");
@@ -446,11 +406,12 @@ export async function createLearningOutcome(
       return error("This learning outcome or objective already exists here.");
     }
 
-    const { error: insertError } = await supabase.from("learning_outcomes").insert({
-      sub_strand_id: subStrandId.value,
-      description: description.value,
-    });
-    if (insertError) return error("Could not add the learning outcome or objective.");
+    try {
+      await (await getCurriculumWriteRepository()).createLearningOutcome(
+        subStrandId.value,
+        description.value
+      );
+    } catch { return error("Could not add the learning outcome or objective."); }
     return success("Learning outcome or objective added as unverified.", "/admin/curriculum");
   });
 }
@@ -468,7 +429,7 @@ export async function updateLearningOutcome(
   if ("error" in id) return error(id.error);
   if ("error" in description) return error(description.error);
 
-  return withAdmin(async (supabase) => {
+  return withAdmin(async () => {
     const curriculum = await getCurriculumReadRepository();
     const current = await curriculum.getLearningOutcomeParent(id.value).catch(() => null);
     if (!current) return error("Learning outcome or objective not found.");
@@ -478,23 +439,12 @@ export async function updateLearningOutcome(
       return error("This learning outcome or objective already exists here.");
     }
 
-    let { error: updateError } = await supabase
-      .from("learning_outcomes")
-      .update({
-        description: description.value,
-        verification_status: "unverified",
-        source_ref: null,
-        source_metadata: {},
-      })
-      .eq("id", id.value);
-    if (updateError?.code === "PGRST204") {
-      const legacyResult = await supabase
-        .from("learning_outcomes")
-        .update({ description: description.value })
-        .eq("id", id.value);
-      updateError = legacyResult.error;
-    }
-    if (updateError) return error("Could not update the learning outcome or objective.");
+    try {
+      await (await getCurriculumWriteRepository()).updateLearningOutcome(
+        id.value,
+        description.value
+      );
+    } catch { return error("Could not update the learning outcome or objective."); }
     return success(
       "Learning outcome or objective updated; verification is still required.",
       "/admin/curriculum"
@@ -509,14 +459,11 @@ export async function deleteLearningOutcome(
   const id = cleanId(formData.get("id"), "learning outcome or objective");
   if ("error" in id) return error(id.error);
 
-  return withAdmin(async (supabase) => {
-    const { data: deleted, error: deleteError } = await supabase
-      .from("learning_outcomes")
-      .delete()
-      .eq("id", id.value)
-      .select("id");
-    if (deleteError) return error("Could not delete the learning outcome or objective.");
-    if (!deleted?.length) return error("Learning outcome or objective not found.");
+  return withAdmin(async () => {
+    let deleted = false;
+    try { deleted = await (await getCurriculumWriteRepository()).deleteLearningOutcome(id.value); }
+    catch { return error("Could not delete the learning outcome or objective."); }
+    if (!deleted) return error("Learning outcome or objective not found.");
     return success("Learning outcome or objective deleted.", "/admin/curriculum");
   });
 }
