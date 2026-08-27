@@ -14,6 +14,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getCatalogRepository } from "@/lib/catalog";
 import { getCurriculumReadRepository } from "@/lib/curriculum-read";
 import { getAdminReportingRepository } from "@/lib/admin-reporting";
+import { getCatalogWriteRepository } from "@/lib/catalog-write";
 
 export type AdminActionState =
   | { status: "success"; message: string }
@@ -74,15 +75,15 @@ export async function createSubject(
   const name = cleanRequiredText(formData.get("name"), "Subject name", 120);
   if ("error" in name) return error(name.error);
 
-  return withAdmin(async (supabase) => {
+  return withAdmin(async () => {
     const existing = await (await getCatalogRepository()).listSubjectNames().catch(() => null);
     if (!existing) return error("Could not check existing subjects.");
     if (hasDuplicate(namedRows(existing), name.value)) {
       return error("A subject with this name already exists.");
     }
 
-    const { error: insertError } = await supabase.from("subjects").insert({ name: name.value });
-    if (insertError) return error("Could not add the subject.");
+    try { await (await getCatalogWriteRepository()).createSubject(name.value); }
+    catch { return error("Could not add the subject."); }
     return success("Subject added.", "/admin/subjects");
   });
 }
@@ -96,7 +97,7 @@ export async function updateSubject(
   if ("error" in id) return error(id.error);
   if ("error" in name) return error(name.error);
 
-  return withAdmin(async (supabase) => {
+  return withAdmin(async () => {
     const existing = await (await getCatalogRepository()).listSubjectNames().catch(() => null);
     if (!existing) return error("Could not check existing subjects.");
     if (!(existing ?? []).some((row) => row.id === id.value)) return error("Subject not found.");
@@ -104,11 +105,8 @@ export async function updateSubject(
       return error("A subject with this name already exists.");
     }
 
-    const { error: updateError } = await supabase
-      .from("subjects")
-      .update({ name: name.value })
-      .eq("id", id.value);
-    if (updateError) return error("Could not update the subject.");
+    try { await (await getCatalogWriteRepository()).updateSubject(id.value, name.value); }
+    catch { return error("Could not update the subject."); }
     return success("Subject updated.", "/admin/subjects");
   });
 }
@@ -120,7 +118,7 @@ export async function deleteSubject(
   const id = cleanId(formData.get("id"), "subject");
   if ("error" in id) return error(id.error);
 
-  return withAdmin(async (supabase) => {
+  return withAdmin(async () => {
     const dependencies = await getAdminReportingRepository()
       .then((repository) => repository.getSubjectDependencies(id.value))
       .catch(() => null);
@@ -135,13 +133,10 @@ export async function deleteSubject(
     ]);
     if (blocked) return error(blocked);
 
-    const { data: deleted, error: deleteError } = await supabase
-      .from("subjects")
-      .delete()
-      .eq("id", id.value)
-      .select("id");
-    if (deleteError) return error("Could not delete the subject.");
-    if (!deleted?.length) return error("Subject not found.");
+    let deleted = false;
+    try { deleted = await (await getCatalogWriteRepository()).deleteSubject(id.value); }
+    catch { return error("Could not delete the subject."); }
+    if (!deleted) return error("Subject not found.");
     return success("Subject deleted.", "/admin/subjects");
   });
 }
@@ -155,17 +150,15 @@ export async function createGrade(
   if ("error" in name) return error(name.error);
   if ("error" in level) return error(level.error);
 
-  return withAdmin(async (supabase) => {
+  return withAdmin(async () => {
     const existing = await (await getCatalogRepository()).listGradeNames().catch(() => null);
     if (!existing) return error("Could not check existing grades and classes.");
     if (hasDuplicate(namedRows(existing), name.value)) {
       return error("A grade or class with this name already exists.");
     }
 
-    const { error: insertError } = await supabase
-      .from("grades")
-      .insert({ name: name.value, level: level.value });
-    if (insertError) return error("Could not add the grade or class.");
+    try { await (await getCatalogWriteRepository()).createGrade(name.value, level.value); }
+    catch { return error("Could not add the grade or class."); }
     return success("Grade or class added.", "/admin/grades");
   });
 }
@@ -181,7 +174,7 @@ export async function updateGrade(
   if ("error" in name) return error(name.error);
   if ("error" in level) return error(level.error);
 
-  return withAdmin(async (supabase) => {
+  return withAdmin(async () => {
     const existing = await (await getCatalogRepository()).listGradeNames().catch(() => null);
     if (!existing) return error("Could not check existing grades and classes.");
     if (!(existing ?? []).some((row) => row.id === id.value)) {
@@ -191,11 +184,8 @@ export async function updateGrade(
       return error("A grade or class with this name already exists.");
     }
 
-    const { error: updateError } = await supabase
-      .from("grades")
-      .update({ name: name.value, level: level.value })
-      .eq("id", id.value);
-    if (updateError) return error("Could not update the grade or class.");
+    try { await (await getCatalogWriteRepository()).updateGrade(id.value, name.value, level.value); }
+    catch { return error("Could not update the grade or class."); }
     return success("Grade or class updated.", "/admin/grades");
   });
 }
@@ -207,7 +197,7 @@ export async function deleteGrade(
   const id = cleanId(formData.get("id"), "grade or class");
   if ("error" in id) return error(id.error);
 
-  return withAdmin(async (supabase) => {
+  return withAdmin(async () => {
     const dependencies = await getAdminReportingRepository()
       .then((repository) => repository.getGradeDependencies(id.value))
       .catch(() => null);
@@ -222,13 +212,10 @@ export async function deleteGrade(
     ]);
     if (blocked) return error(blocked);
 
-    const { data: deleted, error: deleteError } = await supabase
-      .from("grades")
-      .delete()
-      .eq("id", id.value)
-      .select("id");
-    if (deleteError) return error("Could not delete the grade or class.");
-    if (!deleted?.length) return error("Grade or class not found.");
+    let deleted = false;
+    try { deleted = await (await getCatalogWriteRepository()).deleteGrade(id.value); }
+    catch { return error("Could not delete the grade or class."); }
+    if (!deleted) return error("Grade or class not found.");
     return success("Grade or class deleted.", "/admin/grades");
   });
 }
