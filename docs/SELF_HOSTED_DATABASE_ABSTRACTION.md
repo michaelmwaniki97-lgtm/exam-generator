@@ -1,6 +1,18 @@
 # Self-Hosted Database Abstraction — RPC Foundation
 
-Status: RPC foundation, CRUD Phases 1-10C, and Write Phases 1-2 are checkpointed; Write Phase 3 (teacher profile update) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+Status: RPC foundation, CRUD Phases 1-10C, and Write Phases 1-3 are checkpointed; Write Phase 4 (exam-package price upsert) is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, storage, production data, Daraja, and deployment are unchanged.
+
+## Write Phase 4: app-settings price upsert
+
+Write Phase 4 moves only `updateExamPackagePrice`'s direct `app_settings` upsert into the fixed-purpose server-only `lib/app-settings-write` repository. Historically the action resolved the current Supabase Auth user and admin-first role, required `admin`, validated the submitted amount with `validateExamPackagePrice`, and used the ordinary authenticated Supabase client plus existing `public.is_admin()` RLS. It upserted the fixed key `exam_package_price`, exact JSON value `{ amount, currency: "KES" }`, and an action-generated ISO `updated_at`, with `onConflict: "key"`. The same error/success messages and `/admin/settings` revalidation remain unchanged.
+
+Validation remains the existing whole-KES safe-integer contract: digit-only strings or integers from 1 through 100,000 are accepted; zero, negative, fractional, malformed, whitespace-padded, or out-of-range values receive the existing `Price must be a whole KES amount between 1 and 100000.` message. No fallback price, unit conversion, pricing rule, payment initiation behavior, or currency semantics changed.
+
+The repository factory repeats server-side Supabase Auth/admin authorization and accepts no caller-selected key, value shape, currency, backend, identity, role, table, or execution mode. PostgreSQL uses `withAuthenticatedTransaction(user.id)` and the existing authenticated app-settings RLS; it does not use trusted/service execution, superuser access, new policies, or new grants. Its parameterized `INSERT ... ON CONFLICT (key) DO UPDATE` writes only the fixed key, canonical JSON, and timestamp, and fetches no row.
+
+Supabase contract tests cover the exact upsert payload/options, default backend, validation bounds/message, sanitized failures, authorization architecture, and UI revalidation. Disposable PostgreSQL integration covers insert/update conflict behavior, exact JSON/timestamp storage, dual-role admin authorization, teacher/unknown/raw-runtime denial, and restoration of the prior synthetic setting. Existing app-settings reads and payment-core tests remain authoritative for unchanged server-side price consumption.
+
+Rollback remains configuration-first: omit `DATABASE_BACKEND` or set it to `supabase`. Direct runtime writes fall from 12 to 11: payments 2 and textbook/document/chunk writes 9. Auth, payment writes/RPCs, textbooks, Storage, and production data remain unchanged.
 
 ## Write Phase 3: teacher profile update
 

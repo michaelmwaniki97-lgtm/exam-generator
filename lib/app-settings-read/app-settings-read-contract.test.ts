@@ -82,5 +82,6 @@ test("settings boundary is server-only, fixed-key, trusted-parity, and cannot ac
   assert.doesNotMatch(postgres, /withAuthenticatedTransaction|set role|service_role/i);
   assert.match(payments, /getAppSettingsReadRepository\(\)\.getExamPackagePrice\(\)/);
   assert.doesNotMatch(action, /formData\.get\(["']amount|input\.amount|amount\s*:/);
-  assert.match(settingsWrite, /\.from\("app_settings"\)\.upsert/);
+  assert.match(settingsWrite, /getAppSettingsWriteRepository/);
+  assert.match(settingsWrite, /upsertExamPackagePrice/);
 });
