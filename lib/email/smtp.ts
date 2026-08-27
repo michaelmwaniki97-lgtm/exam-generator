@@ -13,16 +13,21 @@ type SmtpConfig = Readonly<{
   requireTls: boolean;
 }>;
 
-function requiredEnvironment(name: "SMTP_URL" | "AUTH_EMAIL_FROM"): string {
-  const value = process.env[name]?.trim();
+function requiredEnvironment(
+  environment: Record<string, string | undefined>,
+  name: "SMTP_URL" | "AUTH_EMAIL_FROM",
+): string {
+  const value = environment[name]?.trim();
   if (!value) throw new Error(`${name} is required when Better Auth password recovery is enabled.`);
   if (/\r|\n/.test(value)) throw new Error(`${name} contains an invalid line break.`);
   return value;
 }
 
-export function getSmtpConfig(): SmtpConfig {
-  const rawUrl = requiredEnvironment("SMTP_URL");
-  const from = requiredEnvironment("AUTH_EMAIL_FROM");
+export function getSmtpConfigForEnvironment(
+  environment: Record<string, string | undefined>,
+): SmtpConfig {
+  const rawUrl = requiredEnvironment(environment, "SMTP_URL");
+  const from = requiredEnvironment(environment, "AUTH_EMAIL_FROM");
   let parsed: URL;
   try {
     parsed = new URL(rawUrl);
@@ -32,7 +37,7 @@ export function getSmtpConfig(): SmtpConfig {
   if (parsed.protocol !== "smtp:" && parsed.protocol !== "smtps:") {
     throw new Error("SMTP_URL must use smtp:// or smtps://.");
   }
-  if (process.env.NODE_ENV === "production") {
+  if (environment.NODE_ENV === "production") {
     const ignoreTls = parsed.searchParams.get("ignoreTLS")?.toLowerCase() === "true";
     const rejectUnauthorized = parsed.searchParams.get("tls.rejectUnauthorized")?.toLowerCase();
     if (ignoreTls || rejectUnauthorized === "false") {
@@ -42,8 +47,12 @@ export function getSmtpConfig(): SmtpConfig {
   return {
     url: rawUrl,
     from,
-    requireTls: process.env.NODE_ENV === "production" && parsed.protocol === "smtp:",
+    requireTls: environment.NODE_ENV === "production" && parsed.protocol === "smtp:",
   };
+}
+
+export function getSmtpConfig(): SmtpConfig {
+  return getSmtpConfigForEnvironment(process.env);
 }
 
 export function assertPasswordResetEmailConfigured(): void {
