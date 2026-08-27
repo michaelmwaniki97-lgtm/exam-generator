@@ -66,7 +66,8 @@ test("entitlement is a server-only authorization boundary separate from reportin
   assert.doesNotMatch(postgres + supabase, /provider\s*=|mpesa_ref|provider_reference|verification_status|external_request|receipt/i);
   assert.match(paymentServer, /hasSuccessfulPaymentForExam\(examId\)/);
   assert.match(paymentServer, /hasSuccessfulPayment \|\| exam\.status === "paid" \|\| exam\.status === "downloaded"/);
-  assert.equal((paymentServer.match(/\.from\("payments"\)\.select\("\*"\)/g) ?? []).length, 3);
+  assert.equal((paymentServer.match(/\.from\("payments"\)\.select/g) ?? []).length, 0);
+  assert.match(paymentServer, /getPaymentAttemptReadRepository\(\)/);
   assert.doesNotMatch(reporting, /payment-entitlement/);
   assert.ok(loader.indexOf("getDocumentAccessMetadata(id)") < loader.indexOf("getExamDownloadEntitlement(id)"));
   assert.ok(loader.indexOf("getExamDownloadEntitlement(id)") < loader.indexOf("getAuthorizedExamDocument(id"));

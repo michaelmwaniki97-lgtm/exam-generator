@@ -6,20 +6,15 @@ import { getCurrentUser, getUserRole } from "../auth/session";
 import { getIdentityReadRepository } from "../identity-read";
 import { getAppSettingsReadRepository } from "../app-settings-read";
 import { getPaymentEntitlementReadRepository } from "../payment-entitlement";
+import { getPaymentAttemptReadRepository, normalizePaymentAttempt, type PaymentAttemptRow } from "../payment-attempt-read";
 import { getTeacherExamReadContext, getTrustedExamReadRepository } from "../exam-read";
-import { mayDownloadExamPackage, PaymentError, PAYMENT_CURRENCY, type BeginAttemptResult, type PaymentActor, type PaymentAttempt, type PaymentRepository, type ProviderInitiation } from "./core";
+import { mayDownloadExamPackage, PaymentError, type BeginAttemptResult, type PaymentActor, type PaymentAttempt, type PaymentRepository, type ProviderInitiation } from "./core";
 
-type PaymentRow = {
-  id: string; exam_id: string; teacher_id: string; amount: number; currency: string; phone: string;
-  provider: string; status: string; external_request_id: string | null; provider_reference: string | null;
-  provider_request_id: string | null;
-  idempotency_key: string; created_at: string; completed_at: string | null;
+type PaymentRow = PaymentAttemptRow & {
+  idempotency_key: string;
 };
 
-function attempt(row: PaymentRow): PaymentAttempt {
-  if (!Number.isSafeInteger(row.amount) || row.currency !== PAYMENT_CURRENCY || !["initiated", "pending", "paid", "failed", "cancelled", "expired"].includes(row.status)) throw new PaymentError("VERIFICATION_FAILED", "Stored payment data is invalid.");
-  return { id: row.id, examId: row.exam_id, teacherId: row.teacher_id, amount: row.amount, currency: PAYMENT_CURRENCY, phone: row.phone, provider: row.provider, status: row.status as PaymentAttempt["status"], externalRequestId: row.external_request_id, providerRequestId: row.provider_request_id, providerReference: row.provider_reference, createdAt: row.created_at, completedAt: row.completed_at };
-}
+const attempt = normalizePaymentAttempt;
 
 export async function currentPaymentActor(): Promise<PaymentActor | null> {
   const [user, role] = await Promise.all([getCurrentUser(), getUserRole()]);
@@ -68,12 +63,11 @@ export class SupabasePaymentRepository implements PaymentRepository {
     if (error || !data) throw new PaymentError("VERIFICATION_FAILED", "Payment request could not be recorded.");
     return attempt(data as PaymentRow);
   }
-  async getAttempt(paymentId: string) { const { data } = await this.admin.from("payments").select("*").eq("id", paymentId).maybeSingle(); return data ? attempt(data as PaymentRow) : null; }
-  async getAttemptByExternalRequest(externalRequestId: string) { const { data } = await this.admin.from("payments").select("*").eq("provider", "daraja").eq("external_request_id", externalRequestId).maybeSingle(); return data ? attempt(data as PaymentRow) : null; }
+  async getAttempt(paymentId: string) { return getPaymentAttemptReadRepository().getAttempt(paymentId); }
+  async getAttemptByExternalRequest(externalRequestId: string) { return getPaymentAttemptReadRepository().getAttemptByExternalRequest("daraja", externalRequestId); }
   async getLatestAttemptForExam(actor: PaymentActor, examId: string) {
     await this.assertOwnedExam(actor, examId);
-    const { data } = await this.admin.from("payments").select("*").eq("exam_id", examId).eq("teacher_id", actor.teacherId).in("status", ["initiated", "pending", "paid"]).order("created_at", { ascending: false }).limit(1).maybeSingle();
-    return data ? attempt(data as PaymentRow) : null;
+    return getPaymentAttemptReadRepository().getLatestAttemptForExam(actor.teacherId, examId);
   }
   async acquireQueryLease(paymentId: string) {
     const leaseToken = randomUUID();
