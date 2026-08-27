@@ -7,6 +7,12 @@ for migration in /selfhosted/current-migrations/*.sql; do
     --set ON_ERROR_STOP=1 --file "$migration"
 done
 
+for migration in /selfhosted/auth/*.sql; do
+  echo "Applying self-hosted auth migration: $(basename "$migration")"
+  psql --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" \
+    --set ON_ERROR_STOP=1 --file "$migration"
+done
+
 psql --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" \
   --set ON_ERROR_STOP=1 <<'SQL'
 select current_setting('server_version') as postgres_version;

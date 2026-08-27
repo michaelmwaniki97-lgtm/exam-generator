@@ -14,6 +14,7 @@ services:
       - ./infra/self-hosted/bootstrap/00-supabase-compatibility.sql:/docker-entrypoint-initdb.d/00-supabase-compatibility.sql:ro
       - ./infra/self-hosted/bootstrap/10-apply-current-migrations.sh:/docker-entrypoint-initdb.d/10-apply-current-migrations.sh:ro
       - ./supabase/migrations:/selfhosted/current-migrations:ro
+      - ./infra/self-hosted/auth:/selfhosted/auth:ro
       - ./infra/self-hosted/tests:/selfhosted/tests:ro
     healthcheck:
       test:
