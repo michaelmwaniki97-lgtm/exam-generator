@@ -1,9 +1,14 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getAuthBackendName } from "@/lib/auth-backend/config";
+import { assertAuthCutoverConfiguration, isAuthCutoverAccepted } from "@/lib/auth-backend/cutover-state";
 import { createClient } from "@/lib/supabase/server";
 import { recoveryRedirectUrl } from "@/lib/auth/recovery";
 
 export async function GET(request: NextRequest) {
+  assertAuthCutoverConfiguration();
+  if (isAuthCutoverAccepted()) {
+    return new NextResponse("Supabase Auth recovery callback retired.", { status: 410 });
+  }
   let origin: string;
   try { origin = new URL(recoveryRedirectUrl(process.env)).origin; }
   catch { return NextResponse.redirect(new URL("/forgot-password?error=configuration", request.url)); }

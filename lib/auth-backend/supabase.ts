@@ -15,8 +15,10 @@ import type {
   PasswordResetRequestResult,
 } from "./contracts.ts";
 import { normalizeAuthenticatedUser } from "./normalize.ts";
+import { assertLegacySupabaseAuthAllowed } from "./cutover-state.ts";
 
 export async function getSupabaseAuthenticatedUser(): Promise<AuthenticatedUser | null> {
+  assertLegacySupabaseAuthAllowed();
   const supabase = await createClient();
   const { data: { user }, error } = await supabase.auth.getUser();
   if (error || !user) return null;
@@ -26,6 +28,7 @@ export async function getSupabaseAuthenticatedUser(): Promise<AuthenticatedUser 
 export async function signupWithSupabase(
   input: CredentialSignupInput,
 ): Promise<CredentialSignupResult> {
+  assertLegacySupabaseAuthAllowed();
   const supabase = await createClient();
   const { data, error } = await supabase.auth.signUp({
     email: input.email,
@@ -46,6 +49,7 @@ export async function signupWithSupabase(
 export async function loginWithSupabase(
   input: CredentialLoginInput,
 ): Promise<CredentialLoginResult> {
+  assertLegacySupabaseAuthAllowed();
   const supabase = await createClient();
   const { data, error } = await supabase.auth.signInWithPassword(input);
   if (error) return { status: "error", error: error.message };
@@ -56,6 +60,7 @@ export async function loginWithSupabase(
 }
 
 export async function logoutWithSupabase(): Promise<void> {
+  assertLegacySupabaseAuthAllowed();
   const supabase = await createClient();
   await supabase.auth.signOut();
 }
@@ -63,6 +68,7 @@ export async function logoutWithSupabase(): Promise<void> {
 export async function requestPasswordResetWithSupabase(
   input: PasswordResetRequestInput,
 ): Promise<PasswordResetRequestResult> {
+  assertLegacySupabaseAuthAllowed();
   let redirectTo: string;
   try {
     redirectTo = recoveryRedirectUrl(process.env);
@@ -78,6 +84,7 @@ export async function requestPasswordResetWithSupabase(
 export async function resetPasswordWithSupabase(
   input: PasswordResetCompletionInput,
 ): Promise<PasswordResetCompletionResult> {
+  assertLegacySupabaseAuthAllowed();
   const cookieStore = await cookies();
   if (cookieStore.get("auth-recovery")?.value !== "active") return { status: "invalid-link" };
 

@@ -1,6 +1,7 @@
 import "server-only";
 
 import { assertAuthRollbackWindowFrozen } from "../lib/auth-backend/cutover-mode.ts";
+import { assertAuthCutoverConfiguration, getAuthCutoverState } from "../lib/auth-backend/cutover-state.ts";
 import { getBetterAuthPool } from "../lib/better-auth/pool.ts";
 import {
   assertBetterAuthTrafficEnvironment,
@@ -9,6 +10,10 @@ import {
 } from "../lib/better-auth/cutover-readiness.ts";
 
 async function main() {
+  assertAuthCutoverConfiguration(process.env);
+  if (getAuthCutoverState(process.env) !== "rollback-window") {
+    throw new Error("AUTH_CUTOVER_STATE=rollback-window is required for the rollback acceptance check.");
+  }
   assertAuthRollbackWindowFrozen(process.env);
   assertBetterAuthTrafficEnvironment(process.env);
 

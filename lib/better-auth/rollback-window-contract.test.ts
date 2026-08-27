@@ -51,8 +51,8 @@ test("Better Auth HTTP gate freezes direct mutations without initializing auth",
   const gate = await source("lib/better-auth/http-gate.ts");
   const route = await source("app/api/auth/[...all]/route.ts");
   assert.match(gate, /getAuthBackendName\(\) !== "better-auth"/);
-  assert.match(gate, /isAuthMutationFrozen\(\)/);
   assert.match(gate, /isBetterAuthHttpRequestAllowedDuringFreeze\(request\)/);
+  assert.match(gate, /isAuthMutationFrozen\(\)/);
   assert.match(gate, /status: 503/);
   assert.match(gate, /"retry-after": "60"/);
   assert.match(gate, /const handler = await getHandler\(\)/);
@@ -63,6 +63,8 @@ test("Better Auth HTTP gate freezes direct mutations without initializing auth",
 
 test("rollback-window operator check is read-only and requires both freeze and Phase 8 readiness", async () => {
   const script = await source("scripts/check-better-auth-rollback-window.ts");
+  assert.match(script, /assertAuthCutoverConfiguration\(process\.env\)/);
+  assert.match(script, /AUTH_CUTOVER_STATE=rollback-window/);
   assert.match(script, /assertAuthRollbackWindowFrozen\(process\.env\)/);
   assert.match(script, /assertBetterAuthTrafficEnvironment\(process\.env\)/);
   assert.match(script, /readBetterAuthTrafficReadiness/);

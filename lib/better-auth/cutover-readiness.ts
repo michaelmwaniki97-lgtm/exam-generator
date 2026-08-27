@@ -145,3 +145,23 @@ export function isBetterAuthTrafficReady(readiness: BetterAuthTrafficReadiness):
     && readiness.authenticatedCanUseAuthSchema
     && readiness.authenticatedCanExecuteAuthUid;
 }
+
+/**
+ * Post-acceptance readiness no longer requires every Better Auth user to have a
+ * historical auth.users mirror. New users created after acceptance are
+ * intentionally Better-Auth-only. Historical coverage, application FK anchors,
+ * retired bridge privileges, and RLS compatibility must remain intact.
+ */
+export function isBetterAuthAcceptedReady(readiness: BetterAuthTrafficReadiness): boolean {
+  return readiness.historicalUsersMissingBetterAuth === 0
+    && readiness.normalizedEmailMismatches === 0
+    && readiness.missingTeacherUsers === 0
+    && readiness.missingAdminUsers === 0
+    && readiness.missingUploaderUsers === 0
+    && readiness.reviewedForeignKeys === 3
+    && !readiness.legacySignupTriggerPresent
+    && !readiness.serviceRoleCanReadHistoricalUsers
+    && !readiness.serviceRoleCanInsertHistoricalUsers
+    && readiness.authenticatedCanUseAuthSchema
+    && readiness.authenticatedCanExecuteAuthUid;
+}

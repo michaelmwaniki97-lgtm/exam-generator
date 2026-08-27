@@ -3,6 +3,7 @@ import "server-only";
 import { cache } from "react";
 import { getAuthBackendName } from "./config.ts";
 import { AUTH_CUTOVER_FROZEN_MESSAGE, isAuthMutationFrozen } from "./cutover-mode.ts";
+import { assertAuthCutoverConfiguration } from "./cutover-state.ts";
 import {
   getBetterAuthAuthenticatedUser,
   loginWithBetterAuth,
@@ -34,17 +35,20 @@ import type {
 export type * from "./contracts.ts";
 export { getAuthBackendName } from "./config.ts";
 export { getAuthMutationMode, isAuthMutationFrozen } from "./cutover-mode.ts";
+export { assertAuthCutoverConfiguration, getAuthCutoverState, isAuthCutoverAccepted } from "./cutover-state.ts";
 export { requireSupabaseAuthForSupabaseDataApi } from "./compatibility.ts";
 
-export const getCurrentAuthUser = cache(async (): Promise<AuthenticatedUser | null> => (
-  getAuthBackendName() === "better-auth"
+export const getCurrentAuthUser = cache(async (): Promise<AuthenticatedUser | null> => {
+  assertAuthCutoverConfiguration();
+  return getAuthBackendName() === "better-auth"
     ? getBetterAuthAuthenticatedUser()
-    : getSupabaseAuthenticatedUser()
-));
+    : getSupabaseAuthenticatedUser();
+});
 
 export function signupWithConfiguredBackend(
   input: CredentialSignupInput,
 ): Promise<CredentialSignupResult> {
+  assertAuthCutoverConfiguration();
   if (isAuthMutationFrozen()) {
     return Promise.resolve({ status: "error", error: AUTH_CUTOVER_FROZEN_MESSAGE });
   }
@@ -56,12 +60,14 @@ export function signupWithConfiguredBackend(
 export function loginWithConfiguredBackend(
   input: CredentialLoginInput,
 ): Promise<CredentialLoginResult> {
+  assertAuthCutoverConfiguration();
   return getAuthBackendName() === "better-auth"
     ? loginWithBetterAuth(input)
     : loginWithSupabase(input);
 }
 
 export function logoutWithConfiguredBackend(sessionToken?: string | null): Promise<void> {
+  assertAuthCutoverConfiguration();
   return getAuthBackendName() === "better-auth"
     ? logoutWithBetterAuth(sessionToken)
     : logoutWithSupabase();
@@ -70,6 +76,7 @@ export function logoutWithConfiguredBackend(sessionToken?: string | null): Promi
 export function requestPasswordResetWithConfiguredBackend(
   input: PasswordResetRequestInput,
 ): Promise<PasswordResetRequestResult> {
+  assertAuthCutoverConfiguration();
   if (isAuthMutationFrozen()) {
     return Promise.resolve({ status: "error", error: AUTH_CUTOVER_FROZEN_MESSAGE });
   }
@@ -81,6 +88,7 @@ export function requestPasswordResetWithConfiguredBackend(
 export function resetPasswordWithConfiguredBackend(
   input: PasswordResetCompletionInput,
 ): Promise<PasswordResetCompletionResult> {
+  assertAuthCutoverConfiguration();
   if (isAuthMutationFrozen()) {
     return Promise.resolve({ status: "error", error: AUTH_CUTOVER_FROZEN_MESSAGE });
   }

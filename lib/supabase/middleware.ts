@@ -1,9 +1,11 @@
+import { assertLegacySupabaseAuthAllowed } from "../auth-backend/cutover-state.ts";
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 const PROTECTED_PREFIXES = ["/teacher", "/admin"];
 
 export async function updateSession(request: NextRequest) {
+  assertLegacySupabaseAuthAllowed();
   let supabaseResponse = NextResponse.next({ request });
 
   const supabase = createServerClient(

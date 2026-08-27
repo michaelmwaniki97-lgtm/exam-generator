@@ -4,6 +4,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { updateSession as updateSupabaseSession } from "../supabase/middleware.ts";
 import { getBetterAuthAuthenticatedUserFromHeaders } from "./better-auth.ts";
 import { getAuthBackendName } from "./config.ts";
+import { assertAuthCutoverConfiguration } from "./cutover-state.ts";
 import { decideAuthProxyAccess, isProtectedAuthPath } from "./proxy-policy.ts";
 
 function redirectToLogin(request: NextRequest) {
@@ -35,6 +36,7 @@ async function updateBetterAuthProxy(request: NextRequest) {
 }
 
 export async function updateConfiguredAuthProxy(request: NextRequest) {
+  assertAuthCutoverConfiguration();
   return getAuthBackendName() === "better-auth"
     ? updateBetterAuthProxy(request)
     : updateSupabaseSession(request);

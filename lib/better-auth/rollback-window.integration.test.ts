@@ -19,6 +19,7 @@ test("cutover freeze preserves login/RLS/sign-out while blocking rollback-breaki
     authBackend: process.env.AUTH_BACKEND,
     databaseBackend: process.env.DATABASE_BACKEND,
     mutationMode: process.env.AUTH_MUTATION_MODE,
+    cutoverState: process.env.AUTH_CUTOVER_STATE,
     baseUrl: process.env.BETTER_AUTH_URL,
     publicAppUrl: process.env.PUBLIC_APP_URL,
     secret: process.env.BETTER_AUTH_SECRET,
@@ -29,6 +30,7 @@ test("cutover freeze preserves login/RLS/sign-out while blocking rollback-breaki
   process.env.AUTH_BACKEND = "better-auth";
   process.env.DATABASE_BACKEND = "postgres";
   process.env.AUTH_MUTATION_MODE = "normal";
+  process.env.AUTH_CUTOVER_STATE = "compatibility";
   process.env.BETTER_AUTH_URL = "http://localhost:3000";
   process.env.PUBLIC_APP_URL = "http://localhost:3000";
   process.env.BETTER_AUTH_SECRET = "phase-9-disposable-rollback-window-secret-000000000000000";
@@ -67,6 +69,7 @@ test("cutover freeze preserves login/RLS/sign-out while blocking rollback-breaki
     });
 
     process.env.AUTH_MUTATION_MODE = "cutover-freeze";
+    process.env.AUTH_CUTOVER_STATE = "rollback-window";
 
     const [
       { assertAuthRollbackWindowFrozen },
@@ -170,6 +173,7 @@ test("cutover freeze preserves login/RLS/sign-out while blocking rollback-breaki
     restore("authBackend", "AUTH_BACKEND");
     restore("databaseBackend", "DATABASE_BACKEND");
     restore("mutationMode", "AUTH_MUTATION_MODE");
+    restore("cutoverState", "AUTH_CUTOVER_STATE");
     restore("baseUrl", "BETTER_AUTH_URL");
     restore("publicAppUrl", "PUBLIC_APP_URL");
     restore("secret", "BETTER_AUTH_SECRET");

@@ -2,6 +2,7 @@ import "server-only";
 
 import type { PoolClient } from "pg";
 import { getDatabaseBackendName } from "../db/config.ts";
+import { isAuthCutoverAccepted } from "../auth-backend/cutover-state.ts";
 import { withTrustedTransaction } from "../db/postgres-client.ts";
 import { getBetterAuthPool } from "./pool.ts";
 
@@ -86,6 +87,9 @@ export async function betterAuthApplicationIdentityWasProvisioned(
   if (getDatabaseBackendName() !== "postgres") return false;
   return withTrustedTransaction(async (client) => {
     const anchor = await applicationIdentityAnchor(client);
+    if (isAuthCutoverAccepted() && anchor !== "better_auth.users") {
+      throw new Error("Accepted Better Auth cutover requires application FKs to better_auth.users.");
+    }
     if (anchor === "auth.users") {
       const result = await client.query<{ exists: boolean }>(
         `select exists(
@@ -121,6 +125,9 @@ export async function provisionBetterAuthApplicationIdentity(
 
   await withTrustedTransaction(async (client) => {
     const anchor = await applicationIdentityAnchor(client);
+    if (isAuthCutoverAccepted() && anchor !== "better_auth.users") {
+      throw new Error("Accepted Better Auth cutover requires application FKs to better_auth.users.");
+    }
     if (anchor === "auth.users") {
       await client.query(
         `insert into auth.users (id, email, raw_user_meta_data)

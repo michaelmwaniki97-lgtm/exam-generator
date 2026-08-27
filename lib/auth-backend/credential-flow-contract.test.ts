@@ -92,7 +92,7 @@ test("failed/unknown-profile Better Auth login revokes only its just-created ses
   assert.doesNotMatch(bridge, /delete from better_auth\.sessions(?! where token)/);
 });
 
-test("password recovery stays backend-aware while Phase 5 proxy preserves Supabase default behavior", async () => {
+test("password recovery stays backend-aware while retained Supabase proxy is accepted-state guarded", async () => {
   const [actions, callback, middleware, proxyAdapter, authIndex] = await Promise.all([
     source("app/actions/auth.ts"),
     source("app/auth/callback/route.ts"),
@@ -108,7 +108,8 @@ test("password recovery stays backend-aware while Phase 5 proxy preserves Supaba
   assert.match(callback, /getAuthBackendName\(\) === "better-auth"/);
   assert.match(callback, /exchangeCodeForSession/);
   assert.match(middleware, /supabase\.auth\.getUser\(\)/);
-  assert.doesNotMatch(middleware, /better-auth|Better Auth|auth-backend/);
+  assert.match(middleware, /assertLegacySupabaseAuthAllowed\(\)/);
+  assert.doesNotMatch(middleware, /getBetterAuth|better-auth\.ts/);
   assert.match(proxyAdapter, /getAuthBackendName\(\) === "better-auth"/);
   assert.match(proxyAdapter, /updateSupabaseSession\(request\)/);
 });
