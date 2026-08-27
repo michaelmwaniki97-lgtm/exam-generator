@@ -27,7 +27,7 @@ test("AUTH_BACKEND defaults to Supabase and accepts only the reviewed values", (
   }
 });
 
-test("Better Auth foundation is isolated from existing Supabase auth flows", async () => {
+test("Better Auth credential mutations are opt-in while recovery and middleware remain Supabase-owned", async () => {
   const [server, session, actions, middleware] = await Promise.all([
     source("lib/better-auth/server.ts"),
     source("lib/auth/session.ts"),
@@ -37,8 +37,9 @@ test("Better Auth foundation is isolated from existing Supabase auth flows", asy
   assert.match(server, /getAuthBackendName\(\) !== "better-auth"/);
   assert.match(server, /buildBetterAuthOptions/);
   assert.match(session, /getCurrentUser = getCurrentAuthUser/);
-  assert.match(actions, /supabase\.auth\.signUp/);
-  assert.match(actions, /supabase\.auth\.signInWithPassword/);
+  assert.match(actions, /signupWithConfiguredBackend/);
+  assert.match(actions, /loginWithConfiguredBackend/);
+  assert.match(actions, /logoutWithConfiguredBackend/);
   assert.match(actions, /supabase\.auth\.resetPasswordForEmail/);
   assert.match(middleware, /supabase\.auth\.getUser\(\)/);
 });
@@ -50,6 +51,7 @@ test("Better Auth config uses PostgreSQL, UUIDs, database sessions, and snake-ca
   ]);
   assert.match(options, /database: getBetterAuthPool\(\)/);
   assert.match(options, /emailAndPassword:[\s\S]*enabled: true/);
+  assert.match(options, /plugins: \[nextCookies\(\)\]/);
   assert.match(options, /generateId: "uuid"/);
   assert.match(options, /modelName: "users"/);
   assert.match(options, /modelName: "sessions"/);

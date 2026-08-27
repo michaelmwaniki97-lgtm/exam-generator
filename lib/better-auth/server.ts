@@ -3,6 +3,11 @@ import "server-only";
 import { getAuthBackendName } from "../auth-backend/config.ts";
 import { buildBetterAuthOptions } from "./options.ts";
 
+export type BetterAuthCredentialResult = {
+  token: string | null;
+  user: { id: string; email?: string | null };
+};
+
 export type BetterAuthSessionResult = {
   user: { id: string; email?: string | null };
   session: { id: string; expiresAt: Date | string };
@@ -12,6 +17,15 @@ export type BetterAuthFoundationInstance = {
   handler(request: Request): Promise<Response> | Response;
   api: {
     getSession(input: { headers: Headers }): Promise<BetterAuthSessionResult>;
+    signUpEmail(input: {
+      body: { name: string; email: string; password: string };
+      headers?: Headers;
+    }): Promise<BetterAuthCredentialResult>;
+    signInEmail(input: {
+      body: { email: string; password: string; rememberMe?: boolean };
+      headers?: Headers;
+    }): Promise<BetterAuthCredentialResult & { token: string }>;
+    signOut(input: { headers: Headers }): Promise<unknown>;
   };
 };
 
@@ -22,8 +36,8 @@ type BetterAuthModule = {
 let instancePromise: Promise<BetterAuthFoundationInstance> | undefined;
 
 async function loadBetterAuthModule(): Promise<BetterAuthModule> {
-  // Keep the Phase-1 foundation inert under the Supabase default. The package
-  // is loaded only when AUTH_BACKEND=better-auth is explicitly selected.
+  // Keep configuration/database initialization inert under the Supabase default.
+  // The package is loaded only when AUTH_BACKEND=better-auth is explicitly selected.
   try {
     return await import("better-auth") as BetterAuthModule;
   } catch {

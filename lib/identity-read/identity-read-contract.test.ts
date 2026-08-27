@@ -76,8 +76,8 @@ test("identity boundary is server-only and accepts no browser identity, role, or
   assert.match(session, /repository\.resolveRole\(\)/);
   assert.doesNotMatch(factory + postgres, /request\.json|formData|searchParams|service_role|withTrustedTransaction|getPostgresPool|bypassrls/i);
   assert.doesNotMatch(factory, /userId\s*:/);
-  assert.match(authAction, /auth\.signUp/); assert.match(authAction, /auth\.signInWithPassword/);
-  assert.match(authAction, /auth\.signOut/); assert.match(authAction, /auth\.resetPasswordForEmail/);
+  assert.match(authAction, /signupWithConfiguredBackend/); assert.match(authAction, /loginWithConfiguredBackend/);
+  assert.match(authAction, /logoutWithConfiguredBackend/); assert.match(authAction, /auth\.resetPasswordForEmail/);
 });
 
 test("teacher and admin user_id uniqueness and admin-first precedence remain documented in schema/code", async () => {

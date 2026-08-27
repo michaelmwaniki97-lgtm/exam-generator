@@ -9,16 +9,12 @@ import { SupabaseIdentityReadRepository } from "./supabase.ts";
 
 export type * from "./contracts.ts";
 
-export async function getCurrentIdentityContext(): Promise<{
-  user: AuthenticatedUser;
-  repository: IdentityReadRepository;
-} | null> {
-  const user = await getCurrentAuthUser();
-  if (!user) return null;
-
+export async function getIdentityReadRepositoryForAuthenticatedUser(
+  user: AuthenticatedUser,
+): Promise<IdentityReadRepository> {
   const databaseBackend = getDatabaseBackendName();
   if (databaseBackend === "postgres") {
-    return { user, repository: new PostgresIdentityReadRepository(user.id) };
+    return new PostgresIdentityReadRepository(user.id);
   }
 
   requireSupabaseAuthForSupabaseDataApi(databaseBackend);
@@ -26,7 +22,16 @@ export async function getCurrentIdentityContext(): Promise<{
     throw new Error("Supabase Data API access requires a Supabase-authenticated session.");
   }
   const supabase = await createClient();
-  return { user, repository: new SupabaseIdentityReadRepository(supabase, user.id) };
+  return new SupabaseIdentityReadRepository(supabase, user.id);
+}
+
+export async function getCurrentIdentityContext(): Promise<{
+  user: AuthenticatedUser;
+  repository: IdentityReadRepository;
+} | null> {
+  const user = await getCurrentAuthUser();
+  if (!user) return null;
+  return { user, repository: await getIdentityReadRepositoryForAuthenticatedUser(user) };
 }
 
 export async function getIdentityReadRepository(): Promise<IdentityReadRepository> {

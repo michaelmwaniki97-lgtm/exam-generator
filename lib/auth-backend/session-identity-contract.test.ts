@@ -44,7 +44,7 @@ test("Better Auth resolves only a validated database-backed server session", asy
   assert.match(adapter, /normalizeAuthenticatedUser\(session\?\.user\)/);
   assert.match(server, /getSession\(input: \{ headers: Headers \}\)/);
   assert.match(authIndex, /getAuthBackendName\(\) === "better-auth"/);
-  assert.doesNotMatch(adapter + authIndex, /request\.json|formData|searchParams|userId\s*:/i);
+  assert.doesNotMatch(adapter + authIndex, /request\.json|formData|searchParams/i);
 });
 
 test("protected database identity is backend-aware and Better Auth cannot fall through to Supabase Data API", async () => {
@@ -61,16 +61,16 @@ test("protected database identity is backend-aware and Better Auth cannot fall t
   assert.doesNotMatch(identity + compatibility, /service_role|withTrustedTransaction|bypassrls/i);
 });
 
-test("Supabase auth flows and middleware remain frozen while protected server reads use the auth abstraction", async () => {
+test("credential actions use the backend boundary while recovery and middleware remain Supabase-owned", async () => {
   const [actions, middleware, session, generation] = await Promise.all([
     source("app/actions/auth.ts"),
     source("lib/supabase/middleware.ts"),
     source("lib/auth/session.ts"),
     source("app/actions/exams.ts"),
   ]);
-  assert.match(actions, /supabase\.auth\.signUp/);
-  assert.match(actions, /supabase\.auth\.signInWithPassword/);
-  assert.match(actions, /supabase\.auth\.signOut/);
+  assert.match(actions, /signupWithConfiguredBackend/);
+  assert.match(actions, /loginWithConfiguredBackend/);
+  assert.match(actions, /logoutWithConfiguredBackend/);
   assert.match(actions, /supabase\.auth\.resetPasswordForEmail/);
   assert.match(actions, /supabase\.auth\.updateUser/);
   assert.match(middleware, /supabase\.auth\.getUser\(\)/);

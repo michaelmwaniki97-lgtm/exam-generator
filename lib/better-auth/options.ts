@@ -1,5 +1,6 @@
 import "server-only";
 
+import { nextCookies } from "better-auth/next-js";
 import { getBetterAuthPool } from "./pool.ts";
 
 function required(name: "BETTER_AUTH_SECRET" | "BETTER_AUTH_URL"): string {
@@ -64,6 +65,7 @@ export function buildBetterAuthOptions() {
         updatedAt: "updated_at",
       },
     },
+    plugins: [nextCookies()],
     advanced: {
       database: {
         generateId: "uuid" as const,

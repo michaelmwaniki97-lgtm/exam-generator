@@ -3,7 +3,12 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
-import { getUserRole } from "@/lib/auth/session";
+import { getUserRoleForAuthenticatedUser } from "@/lib/auth/session";
+import {
+  loginWithConfiguredBackend,
+  logoutWithConfiguredBackend,
+  signupWithConfiguredBackend,
+} from "@/lib/auth-backend";
 import { homeForRole } from "@/lib/auth/access";
 import {
   validateLoginFields,
@@ -32,20 +37,11 @@ export async function signup(
     return { error: validationError };
   }
 
-  const supabase = await createClient();
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: { name, school, phone },
-    },
-  });
-
-  if (error) {
-    return { error: error.message };
+  const result = await signupWithConfiguredBackend({ name, email, password, school, phone });
+  if (result.status === "error") {
+    return { error: result.error };
   }
-
-  if (!data.session) {
+  if (result.status === "confirmation-required") {
     return { success: "Account created. Check your email to confirm your address, then log in." };
   }
 
@@ -64,16 +60,14 @@ export async function login(
     return { error: validationError };
   }
 
-  const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-
-  if (error) {
-    return { error: error.message };
+  const result = await loginWithConfiguredBackend({ email, password });
+  if (result.status === "error") {
+    return { error: result.error };
   }
 
-  const role = await getUserRole();
+  const role = await getUserRoleForAuthenticatedUser(result.user);
   if (!role) {
-    await supabase.auth.signOut();
+    await logoutWithConfiguredBackend(result.sessionToken);
     return { error: "Your account does not have an application profile. Contact an administrator." };
   }
 
@@ -81,8 +75,7 @@ export async function login(
 }
 
 export async function logout() {
-  const supabase = await createClient();
-  await supabase.auth.signOut();
+  await logoutWithConfiguredBackend();
   redirect("/login");
 }
 
