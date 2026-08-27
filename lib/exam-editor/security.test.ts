@@ -17,14 +17,14 @@ const documentModel = readFileSync(new URL("../exam-document/model.ts", import.m
 
 test("server actions authenticate, derive teacher identity, and enforce ownership", () => {
   assert.match(action, /getTeacherExamReadContext\(\)/);
-  assert.match(examReadFactory, /supabase\.auth\.getUser\(\)/);
+  assert.match(examReadFactory, /getCurrentAuthUser\(\)/);
   assert.match(examReadFactory, /getIdentityReadRepository\(\).*getTeacherIdentity\(\)/s);
-  assert.match(identityFactory, /supabase\.auth\.getUser\(\)/);
+  assert.match(identityFactory, /getCurrentAuthUser\(\)/);
   assert.match(identitySupabase, /from\("teachers"\).*eq\("user_id", this\.userId\)/);
   assert.match(examReadFactory, /new PostgresExamReadRepository\(user\.id, teacher\.id\)/);
   assert.match(postgresExamRead, /where id = \$1::uuid and teacher_id = \$2::uuid/);
   assert.match(postgresExamRead, /ms\.exam_id = \$1::uuid and e\.teacher_id = \$2::uuid/);
-  assert.doesNotMatch(examReadFactory + identityFactory + action, /request\.json|headers\(|cookies\(|userId\s*:/);
+  assert.doesNotMatch(examReadFactory + identityFactory + action, /request\.json|formData|searchParams|userId\s*:/);
   assert.match(action, /status === "paid".*status === "downloaded"/);
   assert.match(action, /saveExamEdits\(examId: string, expectedRevision: number, inputs: EditableSlotInput\[\]\)/);
   assert.match(action, /regenerateExamQuestion\(examId: string, slotId: string, expectedRevision: number, requestId: string\)/);

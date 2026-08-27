@@ -1,7 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { getCurrentUser } from "@/lib/auth/session";
 import { getIdentityReadRepository } from "@/lib/identity-read";
 import { generateExam as callAi, AiProviderTimeoutError, GenerationDeadlineError, type TopicInput } from "@/lib/ai/generate-exam";
 import {
@@ -143,10 +143,7 @@ export async function generateExam(data: WizardData, requestId: string): Promise
   const validationError = validateBasicExamInput(data, APPLICATION_EXAM_LIMITS);
   if (validationError) return { error: validationError };
 
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = await getCurrentUser();
   if (!user) return { error: "You must be signed in to generate an exam." };
 
   const teacher = await (await getIdentityReadRepository()).getTeacherIdentity();

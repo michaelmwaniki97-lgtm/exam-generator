@@ -93,9 +93,10 @@ test("authenticated clients cannot bypass canonical exam persistence", () => {
 
   const action = read("app/actions/exams.ts");
   const generation = action.slice(action.indexOf("export async function generateExam"));
-  assert.ok(generation.indexOf("auth.getUser()") < generation.indexOf("claimFullGeneration"));
-  assert.ok(generation.indexOf("auth.getUser()") < generation.indexOf("persistGeneratedExam"));
-  assert.ok(generation.indexOf('.eq("user_id", user.id)') < generation.indexOf("claimFullGeneration"));
+  assert.ok(generation.indexOf("getCurrentUser()") < generation.indexOf("claimFullGeneration"));
+  assert.ok(generation.indexOf("getCurrentUser()") < generation.indexOf("persistGeneratedExam"));
+  const identityLookup = generation.indexOf("getIdentityReadRepository()");
+  assert.ok(identityLookup >= 0 && identityLookup < generation.indexOf("claimFullGeneration"));
   assert.match(generation, /claimFullGeneration\(teacher\.id, requestId\)/);
   assert.match(generation, /persistGeneratedExam\(\{\s*teacherId: teacher\.id/);
   assert.doesNotMatch(generation, /teacherId:\s*data\.|claimFullGeneration\(data\./);

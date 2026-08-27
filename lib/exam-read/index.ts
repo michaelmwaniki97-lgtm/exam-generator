@@ -1,6 +1,7 @@
 import "server-only";
 
 import { UUID_PATTERN } from "../admin/validation.ts";
+import { getCurrentAuthUser, requireSupabaseAuthForSupabaseDataApi } from "../auth-backend/index.ts";
 import { getDatabaseBackendName } from "../db/config.ts";
 import { createAdminClient } from "../supabase/admin.ts";
 import { createClient } from "../supabase/server";
@@ -14,15 +15,20 @@ export type { AuthorizedExamDocumentRow, ExamDocumentAccessMetadata, ExamDocumen
 
 export function validExamId(id: string): boolean { return UUID_PATTERN.test(id); }
 
+async function authenticatedSupabaseFallback() {
+  const databaseBackend = getDatabaseBackendName();
+  requireSupabaseAuthForSupabaseDataApi(databaseBackend);
+  return createClient();
+}
+
 export async function getTeacherExamReadContext(): Promise<{ repository: ExamReadRepository; teacherId: string }> {
-  const supabase = await createClient();
-  const { data: { user }, error: userError } = await supabase.auth.getUser();
-  if (userError || !user) throw new Error("Authentication required.");
+  const user = await getCurrentAuthUser();
+  if (!user) throw new Error("Authentication required.");
   const teacher = await (await getIdentityReadRepository()).getTeacherIdentity();
   if (!teacher) throw new Error("Teacher access required.");
   const repository = getDatabaseBackendName() === "postgres"
     ? new PostgresExamReadRepository(user.id, teacher.id)
-    : new SupabaseExamReadRepository(supabase, teacher.id);
+    : new SupabaseExamReadRepository(await authenticatedSupabaseFallback(), teacher.id);
   return { repository, teacherId: teacher.id };
 }
 
@@ -37,9 +43,8 @@ export function getTrustedExamReadRepository(): TrustedExamReadRepository {
 }
 
 export async function getExamDocumentReadContext(): Promise<{ repository: ExamDocumentReadRepository; role: UserRole | null }> {
-  const supabase = await createClient();
-  const { data: { user }, error: userError } = await supabase.auth.getUser();
-  if (userError || !user) throw new Error("Authentication required.");
+  const user = await getCurrentAuthUser();
+  if (!user) throw new Error("Authentication required.");
   const role = await getUserRole();
   let teacherId: string | null = null;
   if (role === "teacher") {
@@ -49,6 +54,6 @@ export async function getExamDocumentReadContext(): Promise<{ repository: ExamDo
   }
   const repository = getDatabaseBackendName() === "postgres"
     ? new PostgresExamReadRepository(user.id, teacherId, role)
-    : new SupabaseExamReadRepository(supabase, teacherId, role);
+    : new SupabaseExamReadRepository(await authenticatedSupabaseFallback(), teacherId, role);
   return { repository, role };
 }

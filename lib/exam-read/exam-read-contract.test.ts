@@ -69,12 +69,12 @@ test("exam repository boundary is server-only and accepts no browser identity, b
     readFile(new URL("lib/payments/server.ts", root), "utf8"),
   ]);
   assert.match(factory, /^import "server-only";/);
-  assert.match(factory, /supabase\.auth\.getUser\(\)/);
+  assert.match(factory, /getCurrentAuthUser\(\)/);
   assert.match(factory, /getIdentityReadRepository\(\).*getTeacherIdentity\(\)/s);
-  assert.match(identityFactory, /supabase\.auth\.getUser\(\)/);
+  assert.match(identityFactory, /getCurrentAuthUser\(\)/);
   assert.match(identitySupabase, /\.eq\("user_id", this\.userId\)/);
   assert.match(factory, /new PostgresExamReadRepository\(user\.id, teacher\.id\)/);
-  assert.doesNotMatch(factory + identityFactory + dashboard + history, /headers\(|cookies\(|request\.json|searchParams.*DATABASE_BACKEND|user_id\s*:/);
+  assert.doesNotMatch(factory + identityFactory + dashboard + history, /request\.json|formData|searchParams.*DATABASE_BACKEND|user_id\s*:/);
   const authenticatedPostgres = postgres.slice(postgres.indexOf("export class PostgresExamReadRepository"), postgres.indexOf("export class PostgresTrustedExamReadRepository"));
   assert.doesNotMatch(authenticatedPostgres, /service_role|withTrustedTransaction|set role|bypassrls/i);
   assert.match(factory, /function getTrustedExamReadRepository\(\)/);

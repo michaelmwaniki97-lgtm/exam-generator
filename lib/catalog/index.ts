@@ -1,5 +1,6 @@
 import "server-only";
 
+import { getCurrentAuthUser, requireSupabaseAuthForSupabaseDataApi } from "../auth-backend/index.ts";
 import { getDatabaseBackendName } from "../db/config.ts";
 import { createClient } from "../supabase/server";
 import type { CatalogRepository } from "./contracts.ts";
@@ -9,9 +10,10 @@ import { SupabaseCatalogRepository } from "./supabase.ts";
 export type { CatalogOptionRow, CatalogRepository, GradeRow, WizardGradeRow } from "./contracts.ts";
 
 export async function getCatalogRepository(): Promise<CatalogRepository> {
-  const supabase = await createClient();
-  const { data: { user }, error } = await supabase.auth.getUser();
-  if (error || !user) throw new Error("Authentication required.");
-  if (getDatabaseBackendName() === "postgres") return new PostgresCatalogRepository(user.id);
-  return new SupabaseCatalogRepository(supabase);
+  const user = await getCurrentAuthUser();
+  if (!user) throw new Error("Authentication required.");
+  const databaseBackend = getDatabaseBackendName();
+  if (databaseBackend === "postgres") return new PostgresCatalogRepository(user.id);
+  requireSupabaseAuthForSupabaseDataApi(databaseBackend);
+  return new SupabaseCatalogRepository(await createClient());
 }

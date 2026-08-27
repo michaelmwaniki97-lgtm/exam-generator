@@ -36,7 +36,7 @@ test("Better Auth foundation is isolated from existing Supabase auth flows", asy
   ]);
   assert.match(server, /getAuthBackendName\(\) !== "better-auth"/);
   assert.match(server, /buildBetterAuthOptions/);
-  assert.match(session, /supabase\.auth\.getUser\(\)/);
+  assert.match(session, /getCurrentUser = getCurrentAuthUser/);
   assert.match(actions, /supabase\.auth\.signUp/);
   assert.match(actions, /supabase\.auth\.signInWithPassword/);
   assert.match(actions, /supabase\.auth\.resetPasswordForEmail/);

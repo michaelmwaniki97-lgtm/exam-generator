@@ -1,5 +1,6 @@
 import "server-only";
 
+import { getCurrentAuthUser, requireSupabaseAuthForSupabaseDataApi } from "../auth-backend/index.ts";
 import { createAdminClient } from "../supabase/admin";
 import { createClient } from "../supabase/server";
 import { getDatabaseBackendName } from "./config.ts";
@@ -12,11 +13,12 @@ export { getDatabaseBackendName } from "./config.ts";
 export type { AuthenticatedRpcDatabase, TrustedRpcDatabase } from "./contracts.ts";
 
 export async function getAuthenticatedRpcDatabase(): Promise<AuthenticatedRpcDatabase> {
-  const supabase = await createClient();
-  const { data: { user }, error } = await supabase.auth.getUser();
-  if (error || !user) throw new Error("Authentication required.");
-  if (getDatabaseBackendName() === "postgres") return new PostgresAuthenticatedRpcDatabase(user.id);
-  return new SupabaseAuthenticatedRpcDatabase(supabase);
+  const user = await getCurrentAuthUser();
+  if (!user) throw new Error("Authentication required.");
+  const databaseBackend = getDatabaseBackendName();
+  if (databaseBackend === "postgres") return new PostgresAuthenticatedRpcDatabase(user.id);
+  requireSupabaseAuthForSupabaseDataApi(databaseBackend);
+  return new SupabaseAuthenticatedRpcDatabase(await createClient());
 }
 
 export function getTrustedRpcDatabase(): TrustedRpcDatabase {

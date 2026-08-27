@@ -1,16 +1,10 @@
 import "server-only";
 
 import { cache } from "react";
-import { createClient } from "@/lib/supabase/server";
+import { getCurrentAuthUser } from "@/lib/auth-backend";
 import { getCurrentIdentityContext } from "@/lib/identity-read";
 
-export const getCurrentUser = cache(async () => {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  return user;
-});
+export const getCurrentUser = getCurrentAuthUser;
 
 export type UserRole = "admin" | "teacher";
 

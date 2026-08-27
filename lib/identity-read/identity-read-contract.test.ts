@@ -71,10 +71,10 @@ test("identity boundary is server-only and accepts no browser identity, role, or
     readFile(new URL("app/actions/auth.ts", root), "utf8"),
   ]);
   assert.match(factory, /^import "server-only";/);
-  assert.match(factory, /supabase\.auth\.getUser\(\)/);
+  assert.match(factory, /getCurrentAuthUser\(\)/);
   assert.match(factory, /PostgresIdentityReadRepository\(user\.id\)/);
   assert.match(session, /repository\.resolveRole\(\)/);
-  assert.doesNotMatch(factory + postgres, /headers\(|cookies\(|service_role|withTrustedTransaction|getPostgresPool|bypassrls/i);
+  assert.doesNotMatch(factory + postgres, /request\.json|formData|searchParams|service_role|withTrustedTransaction|getPostgresPool|bypassrls/i);
   assert.doesNotMatch(factory, /userId\s*:/);
   assert.match(authAction, /auth\.signUp/); assert.match(authAction, /auth\.signInWithPassword/);
   assert.match(authAction, /auth\.signOut/); assert.match(authAction, /auth\.resetPasswordForEmail/);

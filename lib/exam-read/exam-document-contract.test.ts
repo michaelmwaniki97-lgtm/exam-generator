@@ -56,7 +56,7 @@ test("document loader authorizes metadata, gates paid PDFs, then loads private c
   assert.match(route, /loadCanonicalExamDocument\(id, kind, \{ requirePaid: true \}\)/);
   assert.match(route, /private, no-store, max-age=0/);
   assert.match(factory, /^import "server-only";/);
-  assert.match(factory, /supabase\.auth\.getUser\(\)/);
+  assert.match(factory, /getCurrentAuthUser\(\)/);
   assert.match(factory, /function getExamDocumentReadContext\(\)/);
   assert.doesNotMatch(factory + loader, /request\.json|headers\(|cookies\(|userId\s*:/);
   assert.doesNotMatch(postgres, /select\s+\*/i);

@@ -207,9 +207,9 @@ test("regeneration timeout is capped and the overall deadline fails closed", () 
 test("teacher identity is server-derived and reservation RPCs are service-role only", () => {
   assert.match(examAction, /getIdentityReadRepository\(\).*getTeacherIdentity\(\)/s);
   assert.match(editorAction, /getTeacherExamReadContext\(\)/);
-  assert.match(examReadFactory, /supabase\.auth\.getUser\(\)/);
+  assert.match(examReadFactory, /getCurrentAuthUser\(\)/);
   assert.match(examReadFactory, /getIdentityReadRepository\(\).*getTeacherIdentity\(\)/s);
-  assert.match(identityFactory, /supabase\.auth\.getUser\(\)/);
+  assert.match(identityFactory, /getCurrentAuthUser\(\)/);
   assert.match(identityFactory, /SupabaseIdentityReadRepository\(supabase, user\.id\)/);
   assert.match(identitySupabase, /\.eq\("user_id", this\.userId\)/);
   assert.match(examReadFactory, /new PostgresExamReadRepository\(user\.id, teacher\.id\)/);

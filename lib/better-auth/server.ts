@@ -3,8 +3,16 @@ import "server-only";
 import { getAuthBackendName } from "../auth-backend/config.ts";
 import { buildBetterAuthOptions } from "./options.ts";
 
+export type BetterAuthSessionResult = {
+  user: { id: string; email?: string | null };
+  session: { id: string; expiresAt: Date | string };
+} | null;
+
 export type BetterAuthFoundationInstance = {
   handler(request: Request): Promise<Response> | Response;
+  api: {
+    getSession(input: { headers: Headers }): Promise<BetterAuthSessionResult>;
+  };
 };
 
 type BetterAuthModule = {
@@ -16,9 +24,8 @@ let instancePromise: Promise<BetterAuthFoundationInstance> | undefined;
 async function loadBetterAuthModule(): Promise<BetterAuthModule> {
   // Keep the Phase-1 foundation inert under the Supabase default. The package
   // is loaded only when AUTH_BACKEND=better-auth is explicitly selected.
-  const packageName = "better-auth";
   try {
-    return await import(packageName) as BetterAuthModule;
+    return await import("better-auth") as BetterAuthModule;
   } catch {
     throw new Error(
       "Better Auth runtime is not installed. Install the reviewed better-auth dependency before enabling AUTH_BACKEND=better-auth.",

@@ -86,7 +86,7 @@ test("catalog boundary is authenticated, server-only, and accepts no browser ide
     readFile(new URL("lib/catalog/postgres.ts", root), "utf8"),
   ]);
   assert.match(factory, /^import "server-only";/);
-  assert.match(factory, /supabase\.auth\.getUser\(\)/);
+  assert.match(factory, /getCurrentAuthUser\(\)/);
   assert.match(factory, /new PostgresCatalogRepository\(user\.id\)/);
   assert.match(factory, /function getCatalogRepository\(\)/);
   assert.doesNotMatch(factory + action, /request|headers\(|cookies\(|userId\s*:/);
