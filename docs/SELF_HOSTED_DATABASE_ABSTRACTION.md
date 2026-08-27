@@ -538,3 +538,12 @@ The legacy `/auth/callback` route is backend-aware. Under Better Auth it refuses
 Phase 4 adds a disposable PostgreSQL runtime test that creates a Better Auth credential user, captures the generated one-time reset token without sending external email, resets the password, verifies prior sessions are revoked, confirms the old password no longer works, confirms the new password works, and rejects token replay. SMTP network delivery itself requires client-owned staging SMTP credentials and is intentionally not exercised against production infrastructure by the automated test.
 
 Rollback remains configuration-first: keep `AUTH_BACKEND=supabase`. No application identity FK is repointed, no existing Supabase user is imported, no legacy bcrypt verifier is activated, and no production database/Auth/SMTP endpoint is changed in this phase. The next phase should migrate middleware/route protection and Better Auth handler exposure in staging, then rehearse real UUID/password import before final cutover.
+
+### Auth Phase 5 — backend-aware Proxy protection
+
+- Root `proxy.ts` now dispatches through the configured auth backend; missing/default `AUTH_BACKEND` still uses the existing Supabase middleware/session-refresh path unchanged.
+- When `AUTH_BACKEND=better-auth`, the existing `/teacher` and `/admin` prefix semantics trigger Proxy authentication. The Proxy performs a full Better Auth database-backed `getSession` validation using the incoming request headers; it does not trust session-cookie existence.
+- Better Auth Proxy validation failures fail closed by redirecting protected requests to `/login`. Public routes do not incur a Better Auth database lookup.
+- Authorization remains server-side in the admin/teacher layouts and protected repositories. The Proxy proves authentication only; it does not derive roles from cookies, headers, query parameters, or browser input.
+- Admin-first dual-role behavior remains unchanged in identity role resolution and the existing layouts.
+- This phase does not migrate user rows, repoint `auth.users` foreign keys, remove Supabase Auth, deploy to production, or change password/credential flows introduced in earlier auth phases.

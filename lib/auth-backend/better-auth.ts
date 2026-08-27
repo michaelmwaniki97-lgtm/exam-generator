@@ -44,10 +44,16 @@ async function compensateFailedSignup(userId: string | null): Promise<void> {
   }
 }
 
-export async function getBetterAuthAuthenticatedUser(): Promise<AuthenticatedUser | null> {
+export async function getBetterAuthAuthenticatedUserFromHeaders(
+  requestHeaders: Headers,
+): Promise<AuthenticatedUser | null> {
   const auth = await getBetterAuthFoundation();
-  const session = await auth.api.getSession({ headers: await headers() });
+  const session = await auth.api.getSession({ headers: requestHeaders });
   return normalizeAuthenticatedUser(session?.user);
+}
+
+export async function getBetterAuthAuthenticatedUser(): Promise<AuthenticatedUser | null> {
+  return getBetterAuthAuthenticatedUserFromHeaders(await headers());
 }
 
 export async function signupWithBetterAuth(

@@ -27,12 +27,13 @@ test("AUTH_BACKEND defaults to Supabase and accepts only the reviewed values", (
   }
 });
 
-test("Better Auth credential and recovery mutations are opt-in while middleware remains Supabase-owned", async () => {
-  const [server, session, actions, middleware] = await Promise.all([
+test("Better Auth runtime stays opt-in while Proxy dispatches by configured backend", async () => {
+  const [server, session, actions, middleware, proxyAdapter] = await Promise.all([
     source("lib/better-auth/server.ts"),
     source("lib/auth/session.ts"),
     source("app/actions/auth.ts"),
     source("lib/supabase/middleware.ts"),
+    source("lib/auth-backend/proxy.ts"),
   ]);
   assert.match(server, /getAuthBackendName\(\) !== "better-auth"/);
   assert.match(server, /buildBetterAuthOptions/);
@@ -44,6 +45,8 @@ test("Better Auth credential and recovery mutations are opt-in while middleware 
   assert.match(actions, /resetPasswordWithConfiguredBackend/);
   assert.doesNotMatch(actions, /supabase\.auth\./);
   assert.match(middleware, /supabase\.auth\.getUser\(\)/);
+  assert.match(proxyAdapter, /getAuthBackendName\(\) === "better-auth"/);
+  assert.match(proxyAdapter, /updateSupabaseSession\(request\)/);
 });
 
 test("Better Auth config uses PostgreSQL, UUIDs, database sessions, and snake-case mappings", async () => {

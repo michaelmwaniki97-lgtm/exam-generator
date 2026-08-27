@@ -88,11 +88,12 @@ test("failed/unknown-profile Better Auth login revokes only its just-created ses
   assert.doesNotMatch(bridge, /delete from better_auth\.sessions(?! where token)/);
 });
 
-test("password recovery is backend-aware while middleware remains Supabase-owned in Phase 4", async () => {
-  const [actions, callback, middleware, authIndex] = await Promise.all([
+test("password recovery stays backend-aware while Phase 5 proxy preserves Supabase default behavior", async () => {
+  const [actions, callback, middleware, proxyAdapter, authIndex] = await Promise.all([
     source("app/actions/auth.ts"),
     source("app/auth/callback/route.ts"),
     source("lib/supabase/middleware.ts"),
+    source("lib/auth-backend/proxy.ts"),
     source("lib/auth-backend/index.ts"),
   ]);
   assert.doesNotMatch(actions, /supabase\.auth\./);
@@ -104,6 +105,8 @@ test("password recovery is backend-aware while middleware remains Supabase-owned
   assert.match(callback, /exchangeCodeForSession/);
   assert.match(middleware, /supabase\.auth\.getUser\(\)/);
   assert.doesNotMatch(middleware, /better-auth|Better Auth|auth-backend/);
+  assert.match(proxyAdapter, /getAuthBackendName\(\) === "better-auth"/);
+  assert.match(proxyAdapter, /updateSupabaseSession\(request\)/);
 });
 
 test("credential forms never supply an authenticated UUID or authority", async () => {

@@ -40,7 +40,8 @@ test("Better Auth resolves only a validated database-backed server session", asy
     source("lib/auth-backend/index.ts"),
   ]);
   assert.match(adapter, /^import "server-only";/);
-  assert.match(adapter, /auth\.api\.getSession\(\{ headers: await headers\(\) \}\)/);
+  assert.match(adapter, /auth\.api\.getSession\(\{ headers: requestHeaders \}\)/);
+  assert.match(adapter, /getBetterAuthAuthenticatedUserFromHeaders\(await headers\(\)\)/);
   assert.match(adapter, /normalizeAuthenticatedUser\(session\?\.user\)/);
   assert.match(server, /getSession\(input: \{ headers: Headers \}\)/);
   assert.match(authIndex, /getAuthBackendName\(\) === "better-auth"/);
@@ -61,10 +62,11 @@ test("protected database identity is backend-aware and Better Auth cannot fall t
   assert.doesNotMatch(identity + compatibility, /service_role|withTrustedTransaction|bypassrls/i);
 });
 
-test("credential and recovery actions use the backend boundary while middleware remains Supabase-owned", async () => {
-  const [actions, middleware, session, generation] = await Promise.all([
+test("credential, recovery, and proxy authentication use the backend boundary", async () => {
+  const [actions, middleware, proxyAdapter, session, generation] = await Promise.all([
     source("app/actions/auth.ts"),
     source("lib/supabase/middleware.ts"),
+    source("lib/auth-backend/proxy.ts"),
     source("lib/auth/session.ts"),
     source("app/actions/exams.ts"),
   ]);
@@ -75,6 +77,9 @@ test("credential and recovery actions use the backend boundary while middleware 
   assert.match(actions, /resetPasswordWithConfiguredBackend/);
   assert.doesNotMatch(actions, /supabase\.auth\./);
   assert.match(middleware, /supabase\.auth\.getUser\(\)/);
+  assert.match(proxyAdapter, /getAuthBackendName\(\) === "better-auth"/);
+  assert.match(proxyAdapter, /updateSupabaseSession\(request\)/);
+  assert.match(proxyAdapter, /getBetterAuthAuthenticatedUserFromHeaders\(request\.headers\)/);
   assert.match(session, /getCurrentUser = getCurrentAuthUser/);
   assert.match(generation, /const user = await getCurrentUser\(\)/);
   assert.doesNotMatch(generation, /supabase\.auth\.getUser\(\)/);
