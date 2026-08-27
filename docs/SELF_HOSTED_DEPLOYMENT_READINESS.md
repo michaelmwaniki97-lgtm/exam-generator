@@ -63,3 +63,9 @@ Phase 11 intentionally does not create production infrastructure. The next deplo
 7. final data/auth/storage export-import and production cutover runbook.
 
 Supabase/Vercel must remain untouched until the staging stack and restore drill pass.
+
+## Phase 12 production-shaped stack
+
+Phase 12 adds `Dockerfile.selfhosted`, `docker-compose.production.yml`, `deploy/Caddyfile`, an explicit ledgered schema-bootstrap job, Docker-secret-backed runtime configuration, and a minimal PostgreSQL-aware `/api/health` endpoint. The production Compose file does not publish PostgreSQL or the Next.js service; only Caddy binds host ports 80/443. See `docs/SELF_HOSTED_VPS_STACK.md` for operator steps.
+
+The local parity Compose file remains a separate developer/integration harness. Its loopback PostgreSQL port and hardcoded parity-only runtime credential must never be copied into the VPS stack.

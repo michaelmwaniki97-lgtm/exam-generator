@@ -1,0 +1,125 @@
+name: exam-generator-selfhosted
+
+services:
+  database:
+    image: pgvector/pgvector:0.8.6-pg17-bookworm
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_owner_password
+    secrets:
+      - postgres_owner_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}" && psql -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}" -Atqc "select 1" | grep -qx 1
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 15s
+    networks:
+      - backend
+    restart: unless-stopped
+
+  schema-bootstrap:
+    image: pgvector/pgvector:0.8.6-pg17-bookworm
+    profiles: ["ops"]
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_HOST: database
+      POSTGRES_PORT: 5432
+      POSTGRES_OWNER_PASSWORD_FILE: /run/secrets/postgres_owner_password
+      RUNTIME_ENV_FILE: /run/secrets/runtime_env
+    secrets:
+      - postgres_owner_password
+      - runtime_env
+    volumes:
+      - ./infra/self-hosted/deploy:/selfhosted/deploy:ro
+      - ./supabase/migrations:/selfhosted/current-migrations:ro
+      - ./infra/self-hosted/auth:/selfhosted/auth:ro
+    entrypoint: ["/bin/bash", "/selfhosted/deploy/bootstrap-schema.sh"]
+    networks:
+      - backend
+    restart: "no"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.selfhosted
+    env_file:
+      - ./deploy/selfhosted.env
+    environment:
+      NODE_ENV: production
+      HOSTNAME: 0.0.0.0
+      PORT: 3000
+      RUNTIME_ENV_FILE: /run/secrets/runtime_env
+    secrets:
+      - runtime_env
+    volumes:
+      - textbook_files:/data/textbooks
+      - next_cache:/app/.next/cache
+    tmpfs:
+      - /tmp:size=256m,mode=1777
+    depends_on:
+      database:
+        condition: service_healthy
+    expose:
+      - "3000"
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - fetch('http://127.0.0.1:3000/api/health',{signal:AbortSignal.timeout(4000)}).then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - backend
+      - edge
+    restart: unless-stopped
+    init: true
+
+  caddy:
+    image: caddy:2.11.4-alpine
+    env_file:
+      - ./deploy/selfhosted.env
+    depends_on:
+      app:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - edge
+    restart: unless-stopped
+
+secrets:
+  postgres_owner_password:
+    file: ${POSTGRES_OWNER_PASSWORD_FILE}
+  runtime_env:
+    file: ${RUNTIME_ENV_FILE}
+
+networks:
+  backend:
+    internal: true
+  edge:
+
+volumes:
+  postgres_data:
+  textbook_files:
+  next_cache:
+  caddy_data:
+  caddy_config:

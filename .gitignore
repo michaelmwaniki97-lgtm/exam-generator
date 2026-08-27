@@ -53,3 +53,8 @@ supabase/.temp/
 
 # Privileged auth migration exports (contain password hashes)
 *.auth-export.jsonl
+
+# Self-hosted deployment secrets/config copies
+deploy/selfhosted.env
+deploy/secrets/*
+!deploy/secrets/*.example

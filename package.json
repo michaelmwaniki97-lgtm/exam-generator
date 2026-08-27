@@ -21,6 +21,7 @@
     "test:textbooks": "node --test --experimental-strip-types lib/textbooks/ingestion.test.ts lib/textbooks/retrieval.test.ts lib/textbooks/security.test.ts",
     "test": "node --test --experimental-strip-types lib/auth/access.test.ts lib/admin/validation.test.ts",
     "test:selfhosted-readiness": "node --test --experimental-strip-types lib/self-hosted/readiness-contract.test.ts",
+    "test:selfhosted-deployment": "node --test --experimental-strip-types lib/self-hosted/deployment-contract.test.ts",
     "selfhosted:check": "node --experimental-strip-types scripts/check-selfhosted-readiness.ts"
   },
   "dependencies": {
@@ -52,5 +53,11 @@
     "tailwindcss": "^4",
     "tsx": "^4.23.12",
     "typescript": "^5"
+  },
+  "allowScripts": {
+    "bcrypt@6.0.0": true,
+    "esbuild@0.28.2": true,
+    "unrs-resolver@1.12.2": true,
+    "fsevents": false
   }
 }
