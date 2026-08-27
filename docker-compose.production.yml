@@ -48,6 +48,28 @@ services:
       - backend
     restart: "no"
 
+  ops:
+    build:
+      context: .
+      dockerfile: Dockerfile.selfhosted
+      target: ops
+    profiles: ["ops"]
+    depends_on:
+      database:
+        condition: service_healthy
+    env_file:
+      - ./deploy/selfhosted.env
+    environment:
+      RUNTIME_ENV_FILE: /run/secrets/runtime_env
+    secrets:
+      - runtime_env
+    volumes:
+      - ${CUTOVER_ARTIFACTS_DIR:-/tmp/exam-generator-cutover}:/cutover
+    networks:
+      - backend
+      - edge
+    restart: "no"
+
   app:
     build:
       context: .

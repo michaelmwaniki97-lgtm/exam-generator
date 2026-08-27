@@ -113,3 +113,49 @@ Phase 12 makes the repository deployable but deliberately does not perform the r
 4. textbook file export/import + hash reconciliation;
 5. staging smoke tests including Daraja sandbox and paid PDF download;
 6. DNS/traffic cutover, acceptance window, and only then Supabase/Vercel decommission.
+
+## Production cutover operator tooling
+
+The deployment stack intentionally keeps source Supabase credentials out of committed files and out of the application runtime secret. The final migration uses short-lived operator environment variables and writes sensitive cutover artifacts outside the repository by default (`/tmp/exam-generator-cutover`, mode `0700`).
+
+Required source variables during the export window:
+
+```bash
+export SOURCE_DATABASE_URL='<Supabase direct or session-pooler PostgreSQL URL with sslmode=require>'
+export SOURCE_SUPABASE_URL='https://<project-ref>.supabase.co'
+export SOURCE_SUPABASE_SERVICE_ROLE_KEY='<temporary privileged server-side key>'
+```
+
+Do not put these values in Git, `deploy/selfhosted.env`, browser code, screenshots, or shell scripts. The service-role key is used only by the operator export container for private Storage downloads and should be rotated/revoked when Supabase is retired.
+
+### Cutover order
+
+1. Put the old production application into the agreed maintenance/freeze window so source writes stop.
+2. Export a final source snapshot:
+   `npm run selfhosted:export-source`
+3. Bootstrap the fresh target database with the reviewed production schema job.
+4. Dry-run then apply the temporary `auth.users` identity bridge:
+   `npm run selfhosted:seed-auth-bridge`
+   then `npm run selfhosted:seed-auth-bridge -- --apply`
+5. Dry-run then apply public application data:
+   `npm run selfhosted:import-data`
+   then `npm run selfhosted:import-data -- --apply`
+6. Dry-run then apply the existing Better Auth UUID/password importer:
+   `npm run selfhosted:import-auth`
+   then `npm run selfhosted:import-auth -- --apply`
+7. Dry-run then apply private textbook files:
+   `npm run selfhosted:import-textbooks`
+   then `npm run selfhosted:import-textbooks -- --apply`
+8. Reconcile every public source/target table by exact row count and a deterministic SHA-256 over canonical JSON rows:
+   `npm run selfhosted:reconcile`
+9. Run Better Auth cutover readiness. Only zero orphan/mismatch counts permit the one-way identity FK cutover.
+10. Run the reviewed `40-better-auth-identity-cutover.sql` exactly once, then perform staging smoke tests.
+11. Take a coordinated PostgreSQL + textbook backup immediately before public traffic cutover:
+    `npm run selfhosted:backup`
+12. Verify the backup and periodically prove a fresh restore:
+    `npm run selfhosted:verify-backup -- <backup-dir>`
+    `npm run selfhosted:restore-rehearsal -- <backup-dir>`
+
+The public-data importer is destructive only when `--apply` is provided. It refuses to import while the target `auth.users` bridge is empty, verifies the dump SHA-256 first, truncates only `public` application tables, restores in a single transaction, and leaves Supabase-managed schemas out of the data dump. Auth and Storage are migrated by their dedicated paths instead.
+
+The textbook exporter treats `public.textbook_documents` as the authoritative inventory and requires an exact match against the source `storage.objects` inventory for the configured private bucket. Every downloaded object must match both `file_size` and `content_sha256` before it can be imported into the VPS filesystem volume.

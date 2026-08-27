@@ -22,7 +22,17 @@
     "test": "node --test --experimental-strip-types lib/auth/access.test.ts lib/admin/validation.test.ts",
     "test:selfhosted-readiness": "node --test --experimental-strip-types lib/self-hosted/readiness-contract.test.ts",
     "test:selfhosted-deployment": "node --test --experimental-strip-types lib/self-hosted/deployment-contract.test.ts",
-    "selfhosted:check": "node --experimental-strip-types scripts/check-selfhosted-readiness.ts"
+    "test:selfhosted-cutover-ops": "node --test scripts/selfhosted/cutover-ops.contract.test.mjs",
+    "selfhosted:check": "node --experimental-strip-types scripts/check-selfhosted-readiness.ts",
+    "selfhosted:export-source": "bash scripts/selfhosted/export-source.sh",
+    "selfhosted:seed-auth-bridge": "bash scripts/selfhosted/run-auth-step.sh bridge",
+    "selfhosted:import-auth": "bash scripts/selfhosted/run-auth-step.sh better-auth",
+    "selfhosted:import-data": "bash scripts/selfhosted/import-public-data.sh",
+    "selfhosted:import-textbooks": "bash scripts/selfhosted/import-textbooks.sh",
+    "selfhosted:reconcile": "bash scripts/selfhosted/reconcile-public-data.sh",
+    "selfhosted:backup": "bash scripts/selfhosted/backup-runtime.sh",
+    "selfhosted:verify-backup": "bash scripts/selfhosted/verify-backup.sh",
+    "selfhosted:restore-rehearsal": "bash scripts/selfhosted/restore-rehearsal.sh"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.7.0",

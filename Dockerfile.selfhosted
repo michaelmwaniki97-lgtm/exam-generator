@@ -11,6 +11,16 @@ RUN apt-get update \
 COPY package.json package-lock.json .npmrc ./
 RUN npm ci
 
+FROM base AS ops
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+ENV NODE_ENV=production \
+    RUNTIME_ENV_FILE=/run/secrets/runtime_env
+COPY infra/self-hosted/runtime/entrypoint.sh /usr/local/bin/exam-generator-ops-entrypoint
+RUN chmod 0555 /usr/local/bin/exam-generator-ops-entrypoint
+ENTRYPOINT ["/usr/local/bin/exam-generator-ops-entrypoint"]
+CMD ["node", "--version"]
+
 FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
