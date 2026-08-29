@@ -13,7 +13,7 @@ export default function SignupPage() {
     <div>
       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Get started</p>
       <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground">Create a teacher account</h1>
-      <p className="mt-2 text-sm leading-6 text-foreground/60">Set up your workspace for curriculum-aware assessment creation.</p>
+      <p className="mt-2 text-sm leading-6 text-foreground/65">Set up your workspace for curriculum-aware assessment creation.</p>
       <form action={formAction} className="mt-6 flex flex-col gap-4">
         <div>
           <label htmlFor="name" className={labelClass}>
@@ -76,7 +76,7 @@ export default function SignupPage() {
         </div>
 
         {state?.error && (
-          <p className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+          <p role="alert" className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
             {state.error}
           </p>
         )}
@@ -92,9 +92,9 @@ export default function SignupPage() {
         </button>
       </form>
 
-      <p className="mt-6 text-sm font-normal text-foreground/60">
+      <p className="mt-6 text-sm font-normal text-foreground/65">
         Already have an account?{" "}
-        <Link href="/login" className="font-semibold text-accent hover:text-accent-hover">
+        <Link href="/login" className="inline-flex min-h-11 items-center rounded-sm font-semibold text-accent hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:min-h-0">
           Log in
         </Link>
       </p>

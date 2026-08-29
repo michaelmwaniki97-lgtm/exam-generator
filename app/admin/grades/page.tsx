@@ -12,7 +12,7 @@ export default async function AdminGradesPage() {
     <div className="flex flex-col gap-8">
       <div>
         <h2 className="text-2xl font-bold text-foreground">Grades &amp; Classes</h2>
-        <p className="mt-1 text-sm text-foreground/60">
+        <p className="mt-1 text-sm text-foreground/65">
           Manage the existing CBC grade and 8-4-4 form structure without changing its hierarchy.
         </p>
       </div>

@@ -31,7 +31,7 @@ export function StepSubject({
     <div className="flex flex-col gap-5">
       <div>
         <h2 className="text-lg font-semibold text-foreground">Subject &amp; textbook</h2>
-        <p className="mt-1 text-sm font-normal text-foreground/60">
+        <p className="mt-1 text-sm font-normal text-foreground/65">
           Subjects are limited to active curriculum available for {data.gradeName}.
           A reference textbook is optional.
         </p>

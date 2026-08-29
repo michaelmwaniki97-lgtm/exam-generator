@@ -127,7 +127,7 @@ function CatalogRow({ item, mode }: { item: CatalogItem; mode: CatalogMode }) {
         <div>
           <h3 className="font-semibold text-foreground">{item.name}</h3>
           {item.level && (
-            <p className="mt-1 text-sm text-foreground/60">{item.level}</p>
+            <p className="mt-1 text-sm text-foreground/65">{item.level}</p>
           )}
         </div>
       </div>
@@ -240,7 +240,7 @@ export function CatalogManager({
       <CreateCatalogItem mode={mode} levels={levels} />
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-foreground/60">
+        <p className="text-sm text-foreground/65">
           {filteredItems.length} of {items.length} records
         </p>
         <label className="relative block w-full sm:max-w-sm">
@@ -267,7 +267,7 @@ export function CatalogManager({
       {filteredItems.length === 0 ? (
         <div className="rounded-lg border border-dashed border-border bg-card px-6 py-12 text-center">
           <p className="font-semibold text-foreground">No matching records</p>
-          <p className="mt-1 text-sm text-foreground/60">
+          <p className="mt-1 text-sm text-foreground/65">
             Try a different search or add a new record above.
           </p>
         </div>

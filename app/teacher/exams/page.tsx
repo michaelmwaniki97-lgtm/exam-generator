@@ -40,7 +40,7 @@ export default async function TeacherExamsPage() {
           </div>
           <div>
             <p className="font-semibold text-foreground">No exams yet</p>
-            <p className="mt-1 text-sm font-normal text-foreground/60">
+            <p className="mt-1 text-sm font-normal text-foreground/65">
               Exams you create will show up here.
             </p>
           </div>
@@ -91,7 +91,7 @@ export default async function TeacherExamsPage() {
                       {STATUS_LABELS[exam.status] ?? exam.status}
                     </span>
                   </td>
-                  <td className="px-5 py-3 whitespace-nowrap text-foreground/60">
+                  <td className="px-5 py-3 whitespace-nowrap text-foreground/65">
                     {formatDate(exam.created_at)}
                   </td>
                 </tr>

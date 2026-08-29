@@ -17,7 +17,7 @@ export default async function AdminTeachersPage() {
       <div className="flex items-end justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold text-foreground">Teachers</h2>
-          <p className="mt-1 text-sm text-foreground/60">
+          <p className="mt-1 text-sm text-foreground/65">
             Registered teacher profiles visible to administrators.
           </p>
         </div>
@@ -30,7 +30,7 @@ export default async function AdminTeachersPage() {
       {rows.length === 0 ? (
         <div className="rounded-lg border border-border bg-card px-6 py-14 text-center shadow-sm">
           <p className="font-semibold text-foreground">No teachers registered yet</p>
-          <p className="mt-1 text-sm text-foreground/60">
+          <p className="mt-1 text-sm text-foreground/65">
             New teacher accounts will appear here after signup.
           </p>
         </div>
@@ -51,7 +51,7 @@ export default async function AdminTeachersPage() {
                   <td className="px-5 py-3 font-semibold text-foreground">{teacher.name}</td>
                   <td className="px-5 py-3 text-foreground/70">{teacher.school || "—"}</td>
                   <td className="px-5 py-3 text-foreground/70">{teacher.phone || "—"}</td>
-                  <td className="whitespace-nowrap px-5 py-3 text-foreground/60">{formatDate(teacher.created_at)}</td>
+                  <td className="whitespace-nowrap px-5 py-3 text-foreground/65">{formatDate(teacher.created_at)}</td>
                 </tr>
               ))}
             </tbody>

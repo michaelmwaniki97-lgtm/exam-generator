@@ -91,7 +91,7 @@ export default async function AdminPage() {
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10">
                 <stat.icon size={20} strokeWidth={1.75} className="text-accent" />
               </div>
-              <span className="text-sm font-normal text-foreground/60">{stat.label}</span>
+              <span className="text-sm font-normal text-foreground/65">{stat.label}</span>
             </div>
             <p className="mt-4 text-2xl font-bold text-foreground">{stat.value}</p>
           </div>
@@ -111,7 +111,7 @@ export default async function AdminPage() {
                 <area.icon size={20} strokeWidth={1.75} className="text-accent" />
               </div>
               <p className="mt-4 font-semibold text-foreground">{area.label}</p>
-              <p className="mt-1 text-sm font-normal text-foreground/60">{area.description}</p>
+              <p className="mt-1 text-sm font-normal text-foreground/65">{area.description}</p>
             </Link>
           ))}
         </div>

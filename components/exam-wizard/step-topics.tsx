@@ -89,7 +89,7 @@ export function StepTopics({
           <h2 className="text-lg font-semibold text-foreground">
             {isForm ? "Topics & sub-topics" : "Strands & sub-strands"}
           </h2>
-          <p className="mt-1 text-sm font-normal text-foreground/60">
+          <p className="mt-1 text-sm font-normal text-foreground/65">
             Select one, several, or all active curriculum areas covered for{" "}
             {data.subjectName} in {data.gradeName}.
           </p>
@@ -116,14 +116,14 @@ export function StepTopics({
       </div>
 
       {loading && (
-        <p className="text-sm font-normal text-foreground/60">
+        <p className="text-sm font-normal text-foreground/65">
           Loading active curriculum...
         </p>
       )}
 
       {!loading && strands.length === 0 && (
         <div className="rounded-lg border border-border bg-card p-6 text-center shadow-sm">
-          <p className="text-sm font-normal text-foreground/60">
+          <p className="text-sm font-normal text-foreground/65">
             No active {parentLabel} were found for this subject and class.
           </p>
         </div>

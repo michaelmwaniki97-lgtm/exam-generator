@@ -98,13 +98,15 @@ export function DashboardLayout({
                 )}
                 <Link
                   href={item.href}
-                  className={`flex items-center justify-center gap-3 rounded-lg px-3 py-2.5 text-sm font-normal transition-colors md:justify-start ${
+                  aria-label={item.label}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`flex min-h-11 min-w-11 items-center justify-center gap-3 rounded-lg px-3 py-2.5 text-sm font-normal transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar md:min-h-0 md:min-w-0 md:justify-start ${
                     isActive
                       ? "bg-white/5 text-sidebar-foreground-active"
                       : "text-sidebar-foreground hover:bg-white/5 hover:text-sidebar-foreground-active"
                   }`}
                 >
-                  <Icon size={18} strokeWidth={2} />
+                  <Icon size={18} strokeWidth={2} aria-hidden="true" />
                   <span className="hidden md:inline">{item.label}</span>
                 </Link>
               </div>
@@ -116,9 +118,10 @@ export function DashboardLayout({
           <form action={logoutAction}>
             <button
               type="submit"
-              className="flex w-full items-center justify-center gap-3 rounded-lg px-3 py-2.5 text-sm font-normal text-sidebar-foreground transition-colors hover:bg-white/5 hover:text-sidebar-foreground-active md:justify-start"
+              aria-label="Log out"
+              className="flex min-h-11 min-w-11 w-full items-center justify-center gap-3 rounded-lg px-3 py-2.5 text-sm font-normal text-sidebar-foreground transition-colors hover:bg-white/5 hover:text-sidebar-foreground-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar md:min-h-0 md:min-w-0 md:justify-start"
             >
-              <LogOut size={18} strokeWidth={2} />
+              <LogOut size={18} strokeWidth={2} aria-hidden="true" />
               <span className="hidden md:inline">Logout</span>
             </button>
           </form>
@@ -133,7 +136,7 @@ export function DashboardLayout({
             <div className="text-right leading-tight">
               <p className="hidden text-sm font-semibold text-foreground sm:block">{userName}</p>
               {userSubtitle && (
-                <p className="hidden text-xs font-normal text-foreground/60 sm:block">{userSubtitle}</p>
+                <p className="hidden text-xs font-normal text-foreground/65 sm:block">{userSubtitle}</p>
               )}
             </div>
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-sm font-semibold tracking-tight text-white">

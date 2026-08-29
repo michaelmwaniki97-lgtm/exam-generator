@@ -305,7 +305,7 @@ function SubStrandItem({
 
         <div className="mt-4 space-y-3">
           {subStrand.learning_outcomes.length === 0 ? (
-            <p className="rounded-lg bg-background px-4 py-5 text-center text-sm text-foreground/60">
+            <p className="rounded-lg bg-background px-4 py-5 text-center text-sm text-foreground/65">
               No {terms.outcome.toLocaleLowerCase("en")} records yet.
             </p>
           ) : (
@@ -471,7 +471,7 @@ function StrandItem({
 
         <div className="mt-5 space-y-4">
           {strand.sub_strands.length === 0 ? (
-            <p className="rounded-lg bg-card px-4 py-6 text-center text-sm text-foreground/60">
+            <p className="rounded-lg bg-card px-4 py-6 text-center text-sm text-foreground/65">
               No {terms.subStrand.toLocaleLowerCase("en")} records yet.
             </p>
           ) : (
@@ -632,7 +632,7 @@ export function CurriculumManager({
         <div className="rounded-lg border border-dashed border-border bg-card px-6 py-14 text-center">
           <BookOpen size={28} className="mx-auto text-foreground/30" aria-hidden="true" />
           <p className="mt-3 font-semibold text-foreground">Select a grade and subject</p>
-          <p className="mt-1 text-sm text-foreground/60">
+          <p className="mt-1 text-sm text-foreground/65">
             The matching curriculum hierarchy will load here.
           </p>
         </div>
@@ -655,7 +655,7 @@ export function CurriculumManager({
             {strands.length === 0 ? (
               <div className="rounded-lg border border-dashed border-border bg-card px-6 py-12 text-center">
                 <p className="font-semibold text-foreground">No {terms.strand.toLocaleLowerCase("en")} records</p>
-                <p className="mt-1 text-sm text-foreground/60">
+                <p className="mt-1 text-sm text-foreground/65">
                   Add one only when you have the exact source wording.
                 </p>
               </div>

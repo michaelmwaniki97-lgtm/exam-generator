@@ -10,7 +10,7 @@ export default async function TeacherProfilePage() {
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-8">
       <div>
         <h2 className="text-2xl font-bold text-foreground">Profile</h2>
-        <p className="mt-1 text-sm text-foreground/60">
+        <p className="mt-1 text-sm text-foreground/65">
           Keep the details used on your dashboard and examination papers up to date.
         </p>
       </div>

@@ -141,7 +141,7 @@ export function BlueprintSummary({
           >
             Blueprint summary
           </h3>
-          <p className="mt-1 text-xs leading-relaxed text-foreground/60">
+          <p className="mt-1 text-xs leading-relaxed text-foreground/65">
             Mark splits, question groups, cognitive targets and timing are
             application estimates, not official KNEC specifications.
           </p>
@@ -158,26 +158,26 @@ export function BlueprintSummary({
 
       <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-lg border border-border bg-card p-3">
-          <p className="text-xs text-foreground/60">Planned groups</p>
+          <p className="text-xs text-foreground/65">Planned groups</p>
           <p className="mt-1 text-lg font-semibold text-foreground">
             {blueprint.sections.length}
           </p>
         </div>
         <div className="rounded-lg border border-border bg-card p-3">
-          <p className="text-xs text-foreground/60">Question slots</p>
+          <p className="text-xs text-foreground/65">Question slots</p>
           <p className="mt-1 text-lg font-semibold text-foreground">
             {blueprint.questionSlots.length}
           </p>
         </div>
         <div className="rounded-lg border border-border bg-card p-3">
-          <p className="text-xs text-foreground/60">Curriculum coverage</p>
+          <p className="text-xs text-foreground/65">Curriculum coverage</p>
           <p className="mt-1 text-sm font-semibold text-foreground">
             {blueprint.curriculumScope.selectedCount} selected across{" "}
             {blueprint.curriculumScope.parentCount} parent areas
           </p>
         </div>
         <div className="rounded-lg border border-border bg-card p-3">
-          <p className="text-xs text-foreground/60">Estimated completion</p>
+          <p className="text-xs text-foreground/65">Estimated completion</p>
           <p className="mt-1 text-lg font-semibold text-foreground">
             {blueprint.estimatedCompletionMinutes} min
           </p>
@@ -189,7 +189,7 @@ export function BlueprintSummary({
 
       <div className="mt-5 grid gap-5 lg:grid-cols-2">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-foreground/60">
+          <p className="text-xs font-semibold uppercase tracking-wide text-foreground/65">
             Marks by group
           </p>
           <div className="mt-2 flex flex-col gap-2">
@@ -207,7 +207,7 @@ export function BlueprintSummary({
           </div>
         </div>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-foreground/60">
+          <p className="text-xs font-semibold uppercase tracking-wide text-foreground/65">
             Cognitive target
           </p>
           <div className="mt-2 flex flex-wrap gap-2">
@@ -220,7 +220,7 @@ export function BlueprintSummary({
               </span>
             ))}
           </div>
-          <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-foreground/60">
+          <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-foreground/65">
             Broad question types
           </p>
           <p className="mt-2 text-sm leading-relaxed text-foreground/75">
@@ -263,12 +263,12 @@ export function BlueprintSummary({
                   <p className="text-sm font-semibold text-foreground">
                     {section.label}
                   </p>
-                  <p className="text-xs text-foreground/60">
+                  <p className="text-xs text-foreground/65">
                     {section.targetMarks} marks{section.markAuthority === "GENERATION_FLEXIBLE" && blueprint.assessmentProfile.ruleStatus === "OFFICIAL_VERIFIED" ? " (generation allocation; official split unknown)" : ""} · about{" "}
                     {section.estimatedMinutes} minutes
                   </p>
                 </div>
-                <p className="mt-1 text-xs leading-relaxed text-foreground/60">
+                <p className="mt-1 text-xs leading-relaxed text-foreground/65">
                   {section.purpose}
                 </p>
                 <div className="mt-3 flex flex-col gap-2">
@@ -304,7 +304,7 @@ export function BlueprintSummary({
             ))}
           </div>
           <div className="mt-5 border-t border-border pt-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-foreground/60">
+            <p className="text-xs font-semibold uppercase tracking-wide text-foreground/65">
               Curriculum allocation
             </p>
             <div className="mt-2 flex flex-col gap-2">

@@ -63,7 +63,7 @@ export default async function AdminCurriculumPage({
     <div className="flex flex-col gap-8">
       <div>
         <h2 className="text-2xl font-bold text-foreground">Curriculum</h2>
-        <p className="mt-1 text-sm text-foreground/60">
+        <p className="mt-1 text-sm text-foreground/65">
           Manage the stored hierarchy while preserving exact source wording and
           parent-child relationships.
         </p>

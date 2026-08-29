@@ -20,7 +20,7 @@ export default async function EditExamPage({ params }: { params: Promise<{ id: s
     try { editableExamOrThrow(content, schemes[0].content); } catch (error) { unsupported = error instanceof Error ? error.message : "This historical exam cannot be edited safely."; }
   }
   return <div className="flex flex-col gap-6">
-    <div><Link href={`/teacher/exams/${id}`} className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground/60 hover:text-foreground"><ArrowLeft size={16} />Back to exam paper</Link><h2 className="mt-4 text-2xl font-bold text-foreground">Edit {exam.exam_type}</h2><p className="mt-1 text-sm text-foreground/60">Edit content only. Marks, order, curriculum, question type, and blueprint structure remain locked.</p></div>
+    <div><Link href={`/teacher/exams/${id}`} className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-foreground/65 hover:text-foreground md:min-h-0"><ArrowLeft size={16} aria-hidden="true" />Back to exam paper</Link><h2 className="mt-4 text-2xl font-bold text-foreground">Edit {exam.exam_type}</h2><p className="mt-1 text-sm text-foreground/65">Edit content only. Marks, order, curriculum, question type, and blueprint structure remain locked.</p></div>
     {unsupported ? <div className="rounded-lg border border-amber-300 bg-amber-50 p-5 text-sm text-amber-900">{unsupported}</div> : <ExamEditor key={exam.revision} examId={exam.id} initialRevision={exam.revision} exam={content} marking={schemes[0].content} />}
   </div>;
 }

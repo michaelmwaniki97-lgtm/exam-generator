@@ -13,7 +13,7 @@ export function StepSettings({
     <div className="flex flex-col gap-5">
       <div>
         <h2 className="text-lg font-semibold text-foreground">Paper settings</h2>
-        <p className="mt-1 text-sm font-normal text-foreground/60">
+        <p className="mt-1 text-sm font-normal text-foreground/65">
           Review the editable application defaults, then set the required difficulty.
           These values are not presented as KNEC or KICD rules.
         </p>

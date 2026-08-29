@@ -27,7 +27,7 @@ export default function AuthLayout({ children }: LayoutProps<"/">) {
         <div className="flex min-w-0 flex-col px-5 py-5 sm:px-10 sm:py-8 lg:px-14 lg:py-11">
           <div className="mb-7 flex items-center justify-between lg:justify-end">
             <Link href="/" className="inline-flex min-h-11 items-center gap-2 rounded-lg text-sm font-semibold text-foreground/65 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:hidden"><Home size={16} aria-hidden="true" />Home</Link>
-            <Link href="/" className="hidden min-h-11 items-center gap-2 rounded-lg px-2 text-sm font-semibold text-foreground/60 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:inline-flex"><Home size={16} aria-hidden="true" />Back to homepage</Link>
+            <Link href="/" className="hidden min-h-11 items-center gap-2 rounded-lg px-2 text-sm font-semibold text-foreground/65 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:inline-flex"><Home size={16} aria-hidden="true" />Back to homepage</Link>
           </div>
           <div className="mx-auto flex w-full max-w-md items-start lg:flex-1 lg:items-center">
             <div className="w-full">{children}</div>

@@ -12,7 +12,7 @@ import type { Strand, WizardData } from "./types";
 function ReviewRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-1 border-b border-border py-3 last:border-b-0 sm:flex-row sm:items-center sm:justify-between">
-      <span className="text-sm font-normal text-foreground/60">{label}</span>
+      <span className="text-sm font-normal text-foreground/65">{label}</span>
       <span className="text-sm font-semibold text-foreground sm:text-right">
         {value}
       </span>
@@ -60,7 +60,7 @@ export function StepReview({ data, strands }: { data: WizardData; strands: Stran
     <div className="flex flex-col gap-5">
       <div>
         <h2 className="text-lg font-semibold text-foreground">Review</h2>
-        <p className="mt-1 text-sm font-normal text-foreground/60">
+        <p className="mt-1 text-sm font-normal text-foreground/65">
           Check every setting before generating the teacher-review draft.
         </p>
       </div>

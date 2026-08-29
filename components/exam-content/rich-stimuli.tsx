@@ -31,7 +31,7 @@ function Graph({ stimulus }: { stimulus: GraphStimulus }) {
         </g>;
       })}
     </svg>
-    <figcaption className="text-xs text-foreground/60">{stimulus.series.map((series) => series.name).join(" · ")}</figcaption>
+    <figcaption className="text-xs text-foreground/65">{stimulus.series.map((series) => series.name).join(" · ")}</figcaption>
   </figure>;
 }
 
@@ -51,7 +51,7 @@ function Diagram({ stimulus }: { stimulus: DiagramStimulus }) {
       <defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="currentColor" /></marker></defs>
       {stimulus.primitives.map(primitive)}
     </svg>
-    {stimulus.caption && <figcaption className="text-xs text-foreground/60">{stimulus.caption}</figcaption>}
+    {stimulus.caption && <figcaption className="text-xs text-foreground/65">{stimulus.caption}</figcaption>}
   </figure>;
 }
 
@@ -60,9 +60,9 @@ export function RichStimuli({ stimuli = [] }: { stimuli?: RichStimulus[] }) {
   return <div className="mt-3 grid gap-3">
     {stimuli.map((stimulus) => <div key={stimulus.id} className="rounded-lg border border-border bg-background/50 p-4">
       {stimulus.title && <h4 className="text-sm font-bold text-foreground">{stimulus.title}</h4>}
-      {stimulus.instructions && <p className="mt-1 text-xs text-foreground/60">{stimulus.instructions}</p>}
+      {stimulus.instructions && <p className="mt-1 text-xs text-foreground/65">{stimulus.instructions}</p>}
       {(stimulus.type === "passage" || stimulus.type === "extract") && <div className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-foreground">{stimulus.content}</div>}
-      {stimulus.type === "table" && <div className="mt-2 overflow-x-auto"><table className="w-full border-collapse text-sm"><caption className="mb-2 text-left text-xs text-foreground/60">{stimulus.caption}</caption><thead><tr>{stimulus.columns.map((column, index) => <th key={index} scope="col" className="border border-border px-3 py-2 text-left">{column}</th>)}</tr></thead><tbody>{stimulus.rows.map((row, rowIndex) => <tr key={rowIndex}>{row.map((cell, cellIndex) => <td key={cellIndex} className="border border-border px-3 py-2">{cell}</td>)}</tr>)}</tbody></table></div>}
+      {stimulus.type === "table" && <div className="mt-2 overflow-x-auto"><table className="w-full border-collapse text-sm"><caption className="mb-2 text-left text-xs text-foreground/65">{stimulus.caption}</caption><thead><tr>{stimulus.columns.map((column, index) => <th key={index} scope="col" className="border border-border px-3 py-2 text-left">{column}</th>)}</tr></thead><tbody>{stimulus.rows.map((row, rowIndex) => <tr key={rowIndex}>{row.map((cell, cellIndex) => <td key={cellIndex} className="border border-border px-3 py-2">{cell}</td>)}</tr>)}</tbody></table></div>}
       {stimulus.type === "dataset" && <div className="mt-2 overflow-x-auto"><table className="w-full border-collapse text-sm"><thead><tr><th className="border border-border px-3 py-2 text-left" scope="col">Label</th>{stimulus.series.map((series) => <th key={series.name} scope="col" className="border border-border px-3 py-2 text-left">{series.name} ({series.unit})</th>)}</tr></thead><tbody>{stimulus.labels.map((label, index) => <tr key={index}><th scope="row" className="border border-border px-3 py-2 text-left">{label}</th>{stimulus.series.map((series) => <td key={series.name} className="border border-border px-3 py-2 tabular-nums">{series.values[index]}</td>)}</tr>)}</tbody></table></div>}
       {stimulus.type === "graph" && <Graph stimulus={stimulus} />}
       {stimulus.type === "diagram" && <Diagram stimulus={stimulus} />}

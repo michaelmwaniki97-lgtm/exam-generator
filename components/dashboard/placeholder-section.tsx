@@ -16,7 +16,7 @@ export function PlaceholderSection({
       </div>
       <div>
         <p className="font-semibold text-foreground">{title}</p>
-        <p className="mt-1 text-sm font-normal text-foreground/60">{description}</p>
+        <p className="mt-1 text-sm font-normal text-foreground/65">{description}</p>
       </div>
     </div>
   );

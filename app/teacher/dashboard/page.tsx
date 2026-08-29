@@ -32,7 +32,7 @@ export default async function TeacherDashboardPage() {
           Welcome back, {teacher?.name ?? user?.email}
         </h2>
         {teacher?.school && (
-          <p className="mt-1 text-foreground/60">{teacher.school}</p>
+          <p className="mt-1 text-foreground/65">{teacher.school}</p>
         )}
       </div>
 
@@ -57,7 +57,7 @@ export default async function TeacherDashboardPage() {
             </div>
             <div>
               <p className="font-semibold text-foreground">No exams yet</p>
-              <p className="mt-1 text-sm font-normal text-foreground/60">
+              <p className="mt-1 text-sm font-normal text-foreground/65">
                 Exams you create will show up here.
               </p>
             </div>
@@ -81,7 +81,7 @@ export default async function TeacherDashboardPage() {
                   <p className="text-sm font-semibold text-foreground">
                     {exam.subjects?.name ?? "—"} &middot; {exam.grades?.name ?? "—"}
                   </p>
-                  <p className="mt-0.5 text-xs font-normal text-foreground/60">
+                  <p className="mt-0.5 text-xs font-normal text-foreground/65">
                     {exam.exam_type} &middot; {formatDate(exam.created_at)}
                   </p>
                 </div>

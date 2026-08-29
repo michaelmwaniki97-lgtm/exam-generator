@@ -13,5 +13,5 @@ export default async function AdminTextbooksPage() {
     catalog.listSubjectsByName(),
     catalog.listGradeOptionsByName(),
   ]);
-  return <div className="flex flex-col gap-6"><div><h2 className="text-2xl font-bold">Textbook grounding</h2><p className="mt-1 text-sm text-foreground/60">Private authorized PDFs for curriculum-scoped exam generation.</p></div><TextbookManager books={(books ?? []) as never[]} documents={documents as never[]} subjects={subjects} grades={grades} /></div>;
+  return <div className="flex flex-col gap-6"><div><h2 className="text-2xl font-bold">Textbook grounding</h2><p className="mt-1 text-sm text-foreground/65">Private authorized PDFs for curriculum-scoped exam generation.</p></div><TextbookManager books={(books ?? []) as never[]} documents={documents as never[]} subjects={subjects} grades={grades} /></div>;
 }

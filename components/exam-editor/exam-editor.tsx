@@ -55,8 +55,8 @@ export function ExamEditor({ examId, initialRevision, exam, marking }: { examId:
       const entry = entries.get(question.slotId)!;
       return <section key={question.slotId} className="rounded-lg border border-border bg-card p-5 shadow-sm">
         <div className="flex flex-wrap items-start justify-between gap-3 border-b border-border pb-4">
-          <div><h3 className="font-bold text-foreground">Question {question.number}</h3><p className="mt-1 text-xs text-foreground/60">{section.title} · {question.marks} marks · {question.questionFamily.replaceAll("_", " ")} · Topic: {question.topic}</p></div>
-          <button type="button" disabled={pending} onClick={() => regenerate(question.slotId)} className="inline-flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm font-semibold disabled:opacity-50"><RefreshCw size={15} className={activeSlot === question.slotId ? "animate-spin" : ""} />{activeSlot === question.slotId ? "Regenerating…" : "Regenerate this question"}</button>
+          <div><h3 className="font-bold text-foreground">Question {question.number}</h3><p className="mt-1 text-xs text-foreground/65">{section.title} · {question.marks} marks · {question.questionFamily.replaceAll("_", " ")} · Topic: {question.topic}</p></div>
+          <button type="button" disabled={pending} onClick={() => regenerate(question.slotId)} className="inline-flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm font-semibold disabled:opacity-50"><RefreshCw size={15} aria-hidden="true" className={activeSlot === question.slotId ? "animate-spin" : ""} />{activeSlot === question.slotId ? "Regenerating…" : "Regenerate this question"}</button>
         </div>
         <div className="mt-4 grid gap-4">
           <label className="text-sm font-semibold">Question text<textarea value={input.questionText} maxLength={8000} onChange={(event) => update(question.slotId, { questionText: event.target.value })} className="mt-1 min-h-28 w-full rounded-lg border border-border bg-background p-3 font-normal" /></label>
@@ -70,6 +70,6 @@ export function ExamEditor({ examId, initialRevision, exam, marking }: { examId:
         </div>
       </section>;
     })}
-    <div className="sticky bottom-4 flex flex-wrap items-center justify-end gap-3"><>{message && <p role="status" className={`rounded-lg border px-4 py-3 text-sm ${message.kind === "error" ? "border-red-300 bg-red-50 text-red-800" : "border-green-300 bg-green-50 text-green-800"}`}>{message.text}</p>}</><button type="button" disabled={pending || !dirty} onClick={save} className="inline-flex items-center gap-2 rounded-lg bg-foreground px-5 py-3 text-sm font-bold text-background shadow-lg disabled:opacity-50"><Save size={16} />{pending ? "Saving…" : "Save exam edits"}</button></div>
+    <div className="sticky bottom-4 flex flex-wrap items-center justify-end gap-3"><>{message && <p role={message.kind === "error" ? "alert" : "status"} className={`rounded-lg border px-4 py-3 text-sm ${message.kind === "error" ? "border-red-300 bg-red-50 text-red-800" : "border-green-300 bg-green-50 text-green-800"}`}>{message.text}</p>}</><button type="button" disabled={pending || !dirty} onClick={save} className="inline-flex items-center gap-2 rounded-lg bg-foreground px-5 py-3 text-sm font-bold text-background shadow-lg disabled:opacity-50"><Save size={16} aria-hidden="true" />{pending ? "Saving…" : "Save exam edits"}</button></div>
   </div>;
 }

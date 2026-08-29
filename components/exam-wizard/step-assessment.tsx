@@ -99,7 +99,7 @@ export function StepAssessment({
         <h2 className="text-lg font-semibold text-foreground">
           Assessment type &amp; term
         </h2>
-        <p className="mt-1 text-sm font-normal text-foreground/60">
+        <p className="mt-1 text-sm font-normal text-foreground/65">
           These are school/application formats. They are not described as universal
           KICD assessment categories.
         </p>

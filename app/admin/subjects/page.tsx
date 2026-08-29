@@ -12,7 +12,7 @@ export default async function AdminSubjectsPage() {
     <div className="flex flex-col gap-8">
       <div>
         <h2 className="text-2xl font-bold text-foreground">Subjects</h2>
-        <p className="mt-1 text-sm text-foreground/60">
+        <p className="mt-1 text-sm text-foreground/65">
           Add and maintain the subjects available to curriculum and examination records.
         </p>
       </div>

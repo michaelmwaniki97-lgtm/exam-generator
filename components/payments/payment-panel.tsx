@@ -16,9 +16,9 @@ export function PaymentPanel({ examId, price, configured }: { examId: string; pr
       <label className="text-sm"><span className="block font-medium">M-Pesa phone</span><input name="phone" inputMode="tel" autoComplete="tel" placeholder="07XXXXXXXX" required disabled={!configured} className="mt-1 rounded-md border border-amber-400 bg-white px-3 py-2 disabled:opacity-60"/></label>
       <button disabled={pending || !configured} className="rounded-md bg-green-700 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50">{pending ? "Starting…" : "Pay with M-Pesa"}</button>
     </form>
-    {state && <p role="status" className="mt-3 text-sm">{state.message}</p>}
+    {state && <p role={state.status === "error" ? "alert" : "status"} className="mt-3 text-sm">{state.message}</p>}
     {(state?.status === "pending" || checkState?.status === "pending") && <form action={checkAction} className="mt-3"><button disabled={checking} className="rounded-md border border-amber-500 bg-white px-4 py-2 text-sm font-semibold disabled:opacity-50">{checking ? "Checking…" : "Check payment status"}</button></form>}
-    {checkState && <p role="status" className="mt-3 text-sm">{checkState.message}</p>}
+    {checkState && <p role={checkState.status === "error" ? "alert" : "status"} className="mt-3 text-sm">{checkState.message}</p>}
     <p className="mt-3 text-xs text-amber-800">The preview remains available for review. Screenshots cannot be technically prevented.</p>
   </section>;
 }

@@ -16,7 +16,7 @@ export function ProfileForm({ email, name, school, phone }: { email: string; nam
         </div>
         <div>
           <h3 className="font-semibold text-foreground">Teacher details</h3>
-          <p className="text-sm text-foreground/60">Your email is managed by your login account.</p>
+          <p className="text-sm text-foreground/65">Your email is managed by your login account.</p>
         </div>
       </div>
 
@@ -25,7 +25,7 @@ export function ProfileForm({ email, name, school, phone }: { email: string; nam
           <label htmlFor="email" className={labelClass}>Email address</label>
           <div className="relative">
             <Mail className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-foreground/40" size={17} aria-hidden="true" />
-            <input id="email" value={email} disabled className={`${inputClass} pl-10 disabled:cursor-not-allowed disabled:bg-background disabled:text-foreground/60`} />
+            <input id="email" value={email} disabled className={`${inputClass} pl-10 disabled:cursor-not-allowed disabled:bg-background disabled:text-foreground/65`} />
           </div>
         </div>
         <div>
