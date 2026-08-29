@@ -4,22 +4,42 @@ import path from "node:path";
 import test from "node:test";
 
 const root = process.cwd();
-const read = (file: string) => readFile(path.join(root, file), "utf8");
+const read = async (file: string) => (await readFile(path.join(root, file), "utf8")).replace(/\r\n?/g, "\n");
 
 test("production image uses Next standalone output, exact Node line, and a non-root runtime", async () => {
-  const [dockerfile, nextConfig, npmrc] = await Promise.all([read("Dockerfile.selfhosted"), read("next.config.ts"), read(".npmrc")]);
+  const [dockerfile, nextConfig, npmrc, packageSource, lockSource] = await Promise.all([
+    read("Dockerfile.selfhosted"),
+    read("next.config.ts"),
+    read(".npmrc"),
+    read("package.json"),
+    read("package-lock.json"),
+  ]);
+  const packageJson = JSON.parse(packageSource) as { scripts?: Record<string, string>; allowScripts?: unknown };
+  const packageLock = JSON.parse(lockSource) as { packages?: Record<string, { hasInstallScript?: boolean }> };
+  const lifecyclePackages = Object.entries(packageLock.packages ?? {})
+    .filter(([, metadata]) => metadata.hasInstallScript)
+    .map(([name]) => name)
+    .sort();
   assert.match(nextConfig, /output:\s*["']standalone["']/);
   assert.match(nextConfig, /node_modules\/pdfjs-dist\/\*\*\/\*/);
   assert.match(dockerfile, /FROM node:24\.19\.0-bookworm-slim AS base/);
   assert.match(dockerfile, /FROM base AS deps/);
   assert.match(dockerfile, /FROM node:24\.19\.0-bookworm-slim AS runner/);
   assert.match(dockerfile, /COPY package\.json package-lock\.json \.npmrc \.\//);
-  assert.match(dockerfile, /RUN npm ci/);
-  assert.match(npmrc, /^strict-allow-scripts=true$/m);
-  assert.match(npmrc, /bcrypt@6\.0\.0/);
-  assert.match(npmrc, /esbuild@0\.28\.2/);
-  assert.match(npmrc, /unrs-resolver@1\.12\.2/);
-  assert.doesNotMatch(npmrc, /dangerously-allow-all-scripts/);
+  assert.match(dockerfile, /RUN npm ci && npm run deps:build-trusted/);
+  assert.match(npmrc, /^ignore-scripts=true$/m);
+  assert.doesNotMatch(npmrc, /strict-allow-scripts|allow-scripts|ignore-scripts=false/);
+  assert.equal(packageJson.allowScripts, undefined);
+  assert.equal(
+    packageJson.scripts?.["deps:build-trusted"],
+    "npm rebuild bcrypt@6.0.0 esbuild@0.28.2 unrs-resolver@1.12.2 --ignore-scripts=false",
+  );
+  assert.deepEqual(lifecyclePackages, [
+    "node_modules/bcrypt",
+    "node_modules/esbuild",
+    "node_modules/fsevents",
+    "node_modules/unrs-resolver",
+  ]);
   assert.match(dockerfile, /npx next build --webpack/);
   assert.match(dockerfile, /\.next\/standalone/);
   assert.match(dockerfile, /USER 10001:10001/);

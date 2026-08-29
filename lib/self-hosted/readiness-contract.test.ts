@@ -66,6 +66,7 @@ test("runtime source has no direct Supabase application/data/auth/storage bypass
   assert.deepEqual(audit.maintenanceSupabaseScripts, [
     "scripts/audit-live-curriculum.mjs",
     "scripts/import-verified-curriculum.mjs",
+    "scripts/selfhosted/export-textbooks.mjs",
   ]);
   assert.equal(audit.fallbackAdapterFiles.length, 18);
 });
@@ -87,7 +88,7 @@ test("admin actions no longer initialize Supabase on the PostgreSQL path and pay
 });
 
 test("parity compose exposes its loopback test port through a non-internal host-access network", async () => {
-  const compose = await readFile(path.join(root, "docker-compose.selfhosted.yml"), "utf8");
+  const compose = (await readFile(path.join(root, "docker-compose.selfhosted.yml"), "utf8")).replace(/\r\n?/g, "\n");
   assert.match(compose, /127\.0\.0\.1:\$\{SELFHOSTED_DB_PORT:-55432\}:5432/);
   assert.match(compose, /- selfhosted_private\n\s+- selfhosted_host_access/);
   assert.match(compose, /selfhosted_private:[\s\S]*internal: true/);

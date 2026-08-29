@@ -15,7 +15,15 @@ test("filesystem storage is private, contained, atomic/no-overwrite, and idempot
   const bytes = new TextEncoder().encode("%PDF-synthetic");
   await provider.put(key, bytes, "application/pdf");
   assert.deepEqual(await provider.get(key), bytes);
-  assert.equal((await stat(path.join(root, key))).mode & 0o777, 0o600);
+  const metadata = await stat(path.join(root, key));
+  assert.equal(metadata.isFile(), true);
+  if (process.platform === "win32") {
+    const implementation = await readFile(new URL("./filesystem.ts", import.meta.url), "utf8");
+    assert.match(implementation, /open\(temporary, "wx", 0o600\)/);
+    assert.match(implementation, /chmod\(this\.root, 0o700\)/);
+  } else {
+    assert.equal(metadata.mode & 0o777, 0o600);
+  }
   await assert.rejects(() => provider.put(key, bytes, "application/pdf"));
   await assert.rejects(() => provider.get("textbooks/../../secret.pdf"));
   assert.deepEqual(new Uint8Array(await readFile(path.join(root, key))), bytes);

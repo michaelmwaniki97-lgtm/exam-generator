@@ -1,0 +1,10 @@
+# Files executed or parsed by Unix production tooling must stay LF-only.
+.gitattributes text eol=lf
+*.sh text eol=lf
+Dockerfile* text eol=lf
+docker-compose*.yml text eol=lf
+deploy/Caddyfile text eol=lf
+deploy/*.env.example text eol=lf
+deploy/secrets/*.example text eol=lf
+infra/self-hosted/.env*.example text eol=lf
+infra/self-hosted/**/*.sql text eol=lf

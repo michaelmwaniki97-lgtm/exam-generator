@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "deps:build-trusted": "npm rebuild bcrypt@6.0.0 esbuild@0.28.2 unrs-resolver@1.12.2 --ignore-scripts=false",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit --incremental false",
+    "test:nonintegration": "node scripts/run-nonintegration-tests.mjs",
     "test:structures": "node --test --experimental-strip-types lib/assessment/structure-rules.test.ts components/exam-wizard/state.test.ts",
     "test:components": "node --test --experimental-strip-types lib/assessment/component-rules.test.ts",
     "test:blueprint": "node --test --experimental-strip-types lib/blueprint/engine.test.ts",
@@ -63,11 +66,5 @@
     "tailwindcss": "^4",
     "tsx": "^4.23.12",
     "typescript": "^5"
-  },
-  "allowScripts": {
-    "bcrypt@6.0.0": true,
-    "esbuild@0.28.2": true,
-    "unrs-resolver@1.12.2": true,
-    "fsevents": false
   }
 }

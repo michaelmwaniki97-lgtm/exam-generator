@@ -91,7 +91,9 @@ test("curriculum boundary is server-only and accepts no caller identity, role, o
     readFile(new URL("components/exam-wizard/exam-wizard.tsx", root), "utf8"),
   ]);
   assert.match(factory, /^import "server-only";/);
-  assert.match(factory, /auth\.getUser\(\)/);
+  assert.match(factory, /getCurrentAuthUser\(\)/);
+  assert.match(factory, /requireSupabaseAuthForSupabaseDataApi\(databaseBackend\)/);
+  assert.doesNotMatch(factory, /\.auth\.getUser\(\)/);
   assert.match(factory, /PostgresCurriculumReadRepository\(user\.id\)/);
   assert.match(actions, /^"use server";/);
   assert.match(actions, /UUID_PATTERN\.test\(gradeId\)/);
