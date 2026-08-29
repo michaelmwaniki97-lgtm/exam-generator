@@ -40,6 +40,22 @@ import { getCurriculumReadRepository } from "@/lib/curriculum-read";
 
 export type GenerateExamState = { error: string; preserveRequest?: boolean } | undefined;
 
+function publicGenerationFailure(error: unknown): string {
+  let current: unknown = error;
+  let validationFailure = false;
+  for (let depth = 0; depth < 6 && current instanceof Error; depth += 1) {
+    if (current instanceof AiProviderTimeoutError || current instanceof GenerationDeadlineError) {
+      return current.message;
+    }
+    validationFailure ||= current.message.startsWith("The AI could not produce")
+      || current.message.startsWith("Staged exam validation failed");
+    current = current.cause;
+  }
+  return validationFailure
+    ? "The generated exam failed validation. Please try again."
+    : "Exam generation failed. Please try again.";
+}
+
 type TopicRow = {
   id: string;
   name: string;
@@ -351,15 +367,7 @@ export async function generateExam(data: WizardData, requestId: string): Promise
       blueprint,
     });
   } catch (error) {
-    return {
-      error: error instanceof AiProviderTimeoutError || error instanceof GenerationDeadlineError
-        ? error.message
-        : error instanceof Error && (error.message.startsWith("The AI could not produce") || error.message.includes("generation stage failed") || error.message.startsWith("Staged exam validation failed"))
-          ? error.message
-          : error instanceof Error && error.message.startsWith("The AI could not produce")
-          ? "The generated exam failed validation. Please try again."
-          : "Exam generation failed. Please try again.",
-    };
+    return { error: publicGenerationFailure(error) };
   }
 
   let examId: string;

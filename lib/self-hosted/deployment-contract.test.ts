@@ -111,6 +111,8 @@ test("Caddy is the only public edge and protects the Next request boundary", asy
   assert.match(caddy, /reverse_proxy app:3000/);
   assert.match(caddy, /health_uri \/api\/health/);
   assert.match(caddy, /X-Content-Type-Options "nosniff"/);
+  assert.match(caddy, /Strict-Transport-Security "max-age=31536000"/);
+  assert.doesNotMatch(caddy, /includeSubDomains|preload/);
   assert.doesNotMatch(caddy, /tls_insecure_skip_verify/);
 });
 

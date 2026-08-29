@@ -153,3 +153,14 @@ test("runtime database access does not use unsafe raw-query APIs", () => {
     assert.doesNotMatch(source, /\$queryRawUnsafe|\$executeRawUnsafe|\bsql`/, file);
   }
 });
+
+test("browser-facing generation failures do not echo raw provider or configuration errors", () => {
+  const action = read("app/actions/exams.ts");
+  const generationFailure = action.slice(
+    action.indexOf("generated = await callAi"),
+    action.indexOf("let examId"),
+  );
+  assert.match(action, /function publicGenerationFailure\(error: unknown\)/);
+  assert.match(generationFailure, /publicGenerationFailure\(error\)/);
+  assert.doesNotMatch(generationFailure, /error\.message/);
+});
