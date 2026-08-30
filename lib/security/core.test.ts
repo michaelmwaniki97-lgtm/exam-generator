@@ -114,7 +114,8 @@ test("authenticated clients cannot bypass canonical exam persistence", () => {
   assert.match(abuseControls, /getTrustedRpcDatabase\(\)\.persistGeneratedExam/);
   assert.match(databaseFactory, /export function getTrustedRpcDatabase\(\): TrustedRpcDatabase/);
   assert.doesNotMatch(databaseFactory, /getTrustedRpcDatabase\([^)]/);
-  assert.match(databaseConfig, /process\.env\.DATABASE_BACKEND/);
+  assert.match(databaseConfig, /environment: Environment = process\.env/);
+  assert.match(databaseConfig, /environment\.DATABASE_BACKEND/);
   assert.doesNotMatch(databaseConfig, /cookies\(|headers\(|request|searchParams|formData/);
   assert.match(postgresClient, /set local role service_role/);
   assert.match(postgresClient, /set local role authenticated/);

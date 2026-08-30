@@ -59,14 +59,16 @@ test("operator cutover check is read-only and reports counts without credentials
   assert.doesNotMatch(script, /email|password|encrypted_password|BETTER_AUTH_SECRET[^\n]*console|DATABASE_URL[^\n]*console/i);
 });
 
-test("Supabase remains the configuration-first rollback path during the acceptance window", async () => {
+test("Supabase remains an explicit configuration-first rollback path during the acceptance window", async () => {
   const [config, index, supabase] = await Promise.all([
     source("lib/auth-backend/config.ts"),
     source("lib/auth-backend/index.ts"),
     source("lib/auth-backend/supabase.ts"),
   ]);
 
-  assert.match(config, /if \(!configured \|\| configured === "supabase"\) return "supabase"/);
+  assert.match(config, /if \(configured === "supabase"\) return "supabase"/);
+  assert.match(config, /NODE_ENV === "development"[\s\S]*return "better-auth"/);
+  assert.match(config, /AUTH_BACKEND is required in production/);
   assert.match(index, /getAuthBackendName\(\) === "better-auth"/);
   assert.match(index, /getSupabaseAuthenticatedUser/);
   assert.match(supabase, /supabase\.auth\.getUser\(\)/);

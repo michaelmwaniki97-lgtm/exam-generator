@@ -2,6 +2,12 @@
 
 Status: production-shaped Docker/Caddy stack, still **not deployed to production**.
 
+> This is the Phase 12 implementation record. Use
+> [`PRODUCTION_DEPLOYMENT_RUNBOOK.md`](PRODUCTION_DEPLOYMENT_RUNBOOK.md) as the
+> authoritative final deployment, migration, acceptance, rollback, and
+> troubleshooting procedure. In particular, the final runbook corrects the
+> ordering of pre-FK Auth import readiness versus post-FK traffic readiness.
+
 ## Architecture
 
 Only Caddy publishes host ports. Caddy terminates TLS on 80/443 and proxies to the Next.js app on an internal Docker service port. The app has outbound access for SMTP, AI providers, and Daraja, plus a separate internal-only network to PostgreSQL. PostgreSQL has no host port in the production Compose file.

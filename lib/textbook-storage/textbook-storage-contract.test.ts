@@ -3,10 +3,34 @@ import { mkdtemp, readFile, stat } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
+import { getTextbookStorageProvider } from "./index.ts";
 import { FilesystemTextbookStorageProvider } from "./filesystem.ts";
 import { SupabaseTextbookStorageProvider } from "./supabase.ts";
 
 const key = "textbooks/10000000-0000-4000-8000-000000000001/20000000-0000-4000-8000-000000000002/book.pdf";
+
+test("development/build storage defaults to a private local filesystem and production runtime is explicit", () => {
+  const names = ["NODE_ENV", "NEXT_PHASE", "TEXTBOOK_STORAGE_BACKEND", "TEXTBOOK_STORAGE_ROOT"] as const;
+  const previous = Object.fromEntries(names.map((name) => [name, process.env[name]]));
+  try {
+    process.env.NODE_ENV = "development";
+    delete process.env.TEXTBOOK_STORAGE_BACKEND;
+    delete process.env.TEXTBOOK_STORAGE_ROOT;
+    assert.ok(getTextbookStorageProvider() instanceof FilesystemTextbookStorageProvider);
+
+    process.env.NODE_ENV = "production";
+    process.env.NEXT_PHASE = "phase-production-build";
+    assert.ok(getTextbookStorageProvider() instanceof FilesystemTextbookStorageProvider);
+    delete process.env.NEXT_PHASE;
+    assert.throws(() => getTextbookStorageProvider(), /TEXTBOOK_STORAGE_BACKEND is required in production/);
+  } finally {
+    for (const name of names) {
+      const value = previous[name];
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
+  }
+});
 
 test("filesystem storage is private, contained, atomic/no-overwrite, and idempotently deletable", async (context) => {
   const root = await mkdtemp(path.join(tmpdir(), "textbook-storage-"));

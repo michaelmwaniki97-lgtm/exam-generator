@@ -1,6 +1,6 @@
 # Self-Hosted Database Abstraction — RPC Foundation
 
-Status: RPC foundation, CRUD Phases 1-10C, and Write Phases 1-5 are checkpointed; the textbook Storage/ingestion boundary migration is under review and uncommitted. Production behavior still defaults to Supabase. Authentication, production data, Daraja, and deployment are unchanged.
+Status: historical phased implementation record. Statements below that a missing selector defaulted to Supabase describe the compatibility behavior at that phase. The current runtime defaults development to PostgreSQL + Better Auth + filesystem storage, requires explicit selectors in production, and retains Supabase only when explicitly selected for migration/compatibility/rollback. Use `PRODUCTION_DEPLOYMENT_RUNBOOK.md` for current operator guidance.
 
 ## Textbook Storage and ingestion boundary
 

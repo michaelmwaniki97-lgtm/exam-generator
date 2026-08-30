@@ -10,24 +10,20 @@ async function source(path: string) {
   return readFile(new URL(path, ROOT), "utf8");
 }
 
-test("AUTH_BACKEND defaults to Supabase and accepts only the reviewed values", () => {
-  const previous = process.env.AUTH_BACKEND;
-  try {
-    delete process.env.AUTH_BACKEND;
-    assert.equal(getAuthBackendName(), "supabase");
-    process.env.AUTH_BACKEND = "supabase";
-    assert.equal(getAuthBackendName(), "supabase");
-    process.env.AUTH_BACKEND = "better-auth";
-    assert.equal(getAuthBackendName(), "better-auth");
-    process.env.AUTH_BACKEND = "browser";
-    assert.throws(() => getAuthBackendName(), /supabase or better-auth/);
-  } finally {
-    if (previous === undefined) delete process.env.AUTH_BACKEND;
-    else process.env.AUTH_BACKEND = previous;
-  }
+test("AUTH_BACKEND is self-hosted by default in development and explicit in production", () => {
+  assert.equal(getAuthBackendName({ NODE_ENV: "development" }), "better-auth");
+  assert.equal(getAuthBackendName({ NODE_ENV: "production", NEXT_PHASE: "phase-production-build" }), "better-auth");
+  assert.throws(
+    () => getAuthBackendName({ NODE_ENV: "production" }),
+    /AUTH_BACKEND is required in production/,
+  );
+  assert.equal(getAuthBackendName({ NODE_ENV: "production", AUTH_BACKEND: "better-auth" }), "better-auth");
+  assert.equal(getAuthBackendName({ NODE_ENV: "production", AUTH_BACKEND: "supabase" }), "supabase");
+  assert.equal(getAuthBackendName({ NODE_ENV: "test" }), "supabase");
+  assert.throws(() => getAuthBackendName({ AUTH_BACKEND: "browser" }), /supabase or better-auth/);
 });
 
-test("Better Auth runtime stays opt-in while Proxy dispatches by configured backend", async () => {
+test("Better Auth runtime stays isolated from the explicit legacy path while Proxy dispatches by backend", async () => {
   const [server, session, actions, middleware, proxyAdapter] = await Promise.all([
     source("lib/better-auth/server.ts"),
     source("lib/auth/session.ts"),

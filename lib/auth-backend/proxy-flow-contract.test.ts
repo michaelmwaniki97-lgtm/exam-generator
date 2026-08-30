@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import { NextRequest } from "next/server";
+import { updateConfiguredAuthProxy } from "./proxy.ts";
 import { decideAuthProxyAccess, isProtectedAuthPath } from "./proxy-policy.ts";
 
 function source(path: string): string {
@@ -30,6 +32,32 @@ test("root Next.js proxy delegates to the configured auth backend", () => {
   assert.match(adapter, /updateSupabaseSession\(request\)/);
 });
 
+test("development public proxy uses Better Auth without any Supabase credentials", async () => {
+  const names = [
+    "NODE_ENV",
+    "AUTH_BACKEND",
+    "DATABASE_BACKEND",
+    "NEXT_PUBLIC_SUPABASE_URL",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+  ] as const;
+  const previous = Object.fromEntries(names.map((name) => [name, process.env[name]]));
+  try {
+    process.env.NODE_ENV = "development";
+    for (const name of names.slice(1)) delete process.env[name];
+
+    const publicResponse = await updateConfiguredAuthProxy(
+      new NextRequest("http://localhost:3000/login"),
+    );
+    assert.equal(publicResponse.status, 200);
+  } finally {
+    for (const name of names) {
+      const value = previous[name];
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
+  }
+});
+
 test("Better Auth proxy performs database-backed validation, never cookie-existence auth", () => {
   const adapter = source("./proxy.ts");
   const betterAuth = source("./better-auth.ts");
@@ -56,7 +84,7 @@ test("authorization remains in server layouts with admin-first role semantics", 
   assert.doesNotMatch(adminLayout + teacherLayout, /cookies\(|searchParams|request\.headers/);
 });
 
-test("Supabase proxy/session refresh implementation stays intact for the default backend", () => {
+test("Supabase proxy/session refresh implementation stays intact for the explicit legacy backend", () => {
   const supabaseMiddleware = source("../supabase/middleware.ts");
 
   assert.match(supabaseMiddleware, /createServerClient/);

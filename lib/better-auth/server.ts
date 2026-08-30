@@ -44,8 +44,9 @@ type BetterAuthModule = {
 let instancePromise: Promise<BetterAuthFoundationInstance> | undefined;
 
 async function loadBetterAuthModule(): Promise<BetterAuthModule> {
-  // Keep configuration/database initialization inert under the Supabase default.
-  // The package is loaded only when AUTH_BACKEND=better-auth is explicitly selected.
+  // Keep configuration/database initialization inert on the explicit legacy
+  // Supabase path. Development selects Better Auth by default; production must
+  // always declare its backend explicitly.
   try {
     return await import("better-auth") as BetterAuthModule;
   } catch {

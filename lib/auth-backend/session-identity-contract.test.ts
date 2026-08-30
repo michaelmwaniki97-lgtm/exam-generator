@@ -20,17 +20,9 @@ test("authenticated-user normalization preserves UUID/email and rejects untruste
   assert.equal(normalizeAuthenticatedUser(null), null);
 });
 
-test("auth backend remains environment-only and defaults to Supabase", () => {
-  const previous = process.env.AUTH_BACKEND;
-  try {
-    delete process.env.AUTH_BACKEND;
-    assert.equal(getAuthBackendName(), "supabase");
-    process.env.AUTH_BACKEND = "better-auth";
-    assert.equal(getAuthBackendName(), "better-auth");
-  } finally {
-    if (previous === undefined) delete process.env.AUTH_BACKEND;
-    else process.env.AUTH_BACKEND = previous;
-  }
+test("auth backend remains environment-only and development defaults to Better Auth", () => {
+  assert.equal(getAuthBackendName({ NODE_ENV: "development" }), "better-auth");
+  assert.equal(getAuthBackendName({ NODE_ENV: "development", AUTH_BACKEND: "supabase" }), "supabase");
 });
 
 test("Better Auth resolves only a validated database-backed server session", async () => {

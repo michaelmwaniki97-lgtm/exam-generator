@@ -119,7 +119,7 @@ test("Caddy is the only public edge and protects the Next request boundary", asy
 test("health endpoint is data-minimal and checks PostgreSQL on the self-hosted path", async () => {
   const health = await read("app/api/health/route.ts");
   assert.match(health, /runtime = "nodejs"/);
-  assert.match(health, /DATABASE_BACKEND/);
+  assert.match(health, /getDatabaseBackendName\(\) === "postgres"/);
   assert.match(health, /getPostgresPool\(\)\.query\("select 1"\)/);
   assert.match(health, /status: "ok"/);
   assert.match(health, /status: "unavailable"/);

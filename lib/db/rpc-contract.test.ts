@@ -4,18 +4,17 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { getDatabaseBackendName } from "./config.ts";
 import { SupabaseAuthenticatedRpcDatabase, SupabaseTrustedRpcDatabase } from "./supabase-rpc.ts";
 
-test("backend defaults to Supabase and rejects arbitrary selectors", () => {
-  const previous = process.env.DATABASE_BACKEND;
-  delete process.env.DATABASE_BACKEND;
-  assert.equal(getDatabaseBackendName(), "supabase");
-  process.env.DATABASE_BACKEND = "supabase";
-  assert.equal(getDatabaseBackendName(), "supabase");
-  process.env.DATABASE_BACKEND = "postgres";
-  assert.equal(getDatabaseBackendName(), "postgres");
-  process.env.DATABASE_BACKEND = "browser-choice";
-  assert.throws(() => getDatabaseBackendName(), /supabase or postgres/);
-  if (previous === undefined) delete process.env.DATABASE_BACKEND;
-  else process.env.DATABASE_BACKEND = previous;
+test("database backend is self-hosted by default in development and explicit in production", () => {
+  assert.equal(getDatabaseBackendName({ NODE_ENV: "development" }), "postgres");
+  assert.equal(getDatabaseBackendName({ NODE_ENV: "production", NEXT_PHASE: "phase-production-build" }), "postgres");
+  assert.throws(
+    () => getDatabaseBackendName({ NODE_ENV: "production" }),
+    /DATABASE_BACKEND is required in production/,
+  );
+  assert.equal(getDatabaseBackendName({ NODE_ENV: "production", DATABASE_BACKEND: "postgres" }), "postgres");
+  assert.equal(getDatabaseBackendName({ NODE_ENV: "production", DATABASE_BACKEND: "supabase" }), "supabase");
+  assert.equal(getDatabaseBackendName({ NODE_ENV: "test" }), "supabase");
+  assert.throws(() => getDatabaseBackendName({ DATABASE_BACKEND: "browser-choice" }), /supabase or postgres/);
 });
 
 test("Supabase adapters map all 13 typed operations to exact RPC names", async () => {
