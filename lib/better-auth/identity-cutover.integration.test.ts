@@ -4,12 +4,13 @@ import test from "node:test";
 import { Pool } from "pg";
 
 const url = process.env.DATABASE_URL;
+const operatorUrl = process.env.LOCAL_DATABASE_ADMIN_URL ?? url;
 const enabled = Boolean(url);
 
 test("manual identity cutover anchors application FKs to Better Auth and preserves authenticated RLS", { skip: !enabled }, async () => {
   const previousBackend = process.env.DATABASE_BACKEND;
   process.env.DATABASE_BACKEND = "postgres";
-  const pool = new Pool({ connectionString: url! });
+  const pool = new Pool({ connectionString: operatorUrl! });
   const userId = randomUUID();
   const email = `better-auth-cutover-${userId}@example.test`;
 

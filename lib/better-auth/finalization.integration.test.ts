@@ -4,6 +4,7 @@ import test from "node:test";
 import { Pool } from "pg";
 
 const url = process.env.DATABASE_URL;
+const operatorUrl = process.env.LOCAL_DATABASE_ADMIN_URL ?? url;
 const enabled = Boolean(url);
 
 function sessionCookieFrom(response: Response): string {
@@ -37,7 +38,7 @@ test("accepted Better Auth state provisions canonical identity, keeps app-owned 
   process.env.SMTP_URL = "smtp://localhost:2525";
   process.env.AUTH_EMAIL_FROM = "Exam Generator <no-reply@example.test>";
 
-  const pool = new Pool({ connectionString: url! });
+  const pool = new Pool({ connectionString: operatorUrl! });
   const email = `accepted-${randomUUID()}@example.test`;
   const blockedEmail = `direct-http-blocked-${randomUUID()}@example.test`;
   const password = "synthetic-phase10-password";

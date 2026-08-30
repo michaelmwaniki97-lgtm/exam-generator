@@ -84,6 +84,8 @@ test("generic Better Auth HTTP mutations cannot bypass application-managed ident
 
 test("accepted provisioning requires Better Auth FK anchors and does not rely on auth.users", async () => {
   const bridge = await source("lib/better-auth/application-bridge.ts");
+  assert.match(bridge, /to_regclass\('public\.textbook_documents'\)/);
+  assert.match(bridge, /isAuthCutoverAccepted\(\) && !textbookDocumentsExists/);
   assert.match(bridge, /isAuthCutoverAccepted\(\) && anchor !== "better_auth\.users"/);
   assert.match(bridge, /Accepted Better Auth cutover requires application FKs to better_auth\.users/);
   assert.match(bridge, /insert into public\.teachers/);

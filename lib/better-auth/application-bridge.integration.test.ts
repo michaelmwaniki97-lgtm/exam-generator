@@ -4,12 +4,13 @@ import test from "node:test";
 import { Pool } from "pg";
 
 const url = process.env.DATABASE_URL;
+const operatorUrl = process.env.LOCAL_DATABASE_ADMIN_URL ?? url;
 const enabled = Boolean(url);
 
 test("Better Auth application provisioning preserves UUID/profile metadata before and after identity cutover", { skip: !enabled }, async () => {
   const previousBackend = process.env.DATABASE_BACKEND;
   process.env.DATABASE_BACKEND = "postgres";
-  const pool = new Pool({ connectionString: url! });
+  const pool = new Pool({ connectionString: operatorUrl! });
   const userId = randomUUID();
   const email = `better-auth-bridge-${userId}@example.test`;
   try {

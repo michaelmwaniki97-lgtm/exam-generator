@@ -4,6 +4,7 @@ import test from "node:test";
 import { Pool } from "pg";
 
 const url = process.env.DATABASE_URL;
+const operatorUrl = process.env.LOCAL_DATABASE_ADMIN_URL ?? url;
 const enabled = Boolean(url);
 
 function sessionCookieFrom(response: Response): string {
@@ -33,7 +34,7 @@ test("post-cutover Better Auth HTTP handler authenticates a teacher and revokes 
   process.env.SMTP_URL = "smtp://localhost:2525";
   process.env.AUTH_EMAIL_FROM = "Exam Generator <no-reply@example.test>";
 
-  const pool = new Pool({ connectionString: url! });
+  const pool = new Pool({ connectionString: operatorUrl! });
   const email = `traffic-cutover-${randomUUID()}@example.test`;
   const password = "synthetic-phase8-password";
   let userId: string | undefined;

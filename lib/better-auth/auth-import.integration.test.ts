@@ -10,6 +10,7 @@ import { isSupabaseBcryptHash } from "./password-migration.ts";
 import { buildBetterAuthOptions } from "./options.ts";
 
 const url = process.env.DATABASE_URL;
+const operatorUrl = process.env.LOCAL_DATABASE_ADMIN_URL ?? url;
 const enabled = Boolean(url);
 
 test("Supabase bcrypt import preserves UUID, authenticates, upgrades to scrypt, and is rerunnable", { skip: !enabled }, async () => {
@@ -26,7 +27,7 @@ test("Supabase bcrypt import preserves UUID, authenticates, upgrades to scrypt, 
   const email = `import-${id}@example.test`;
   const password = "synthetic-import-password";
   const legacyHash = await bcrypt.hash(password, 10);
-  const pool = new Pool({ connectionString: url!, options: "-c search_path=better_auth,public" });
+  const pool = new Pool({ connectionString: operatorUrl!, options: "-c search_path=better_auth,public" });
 
   try {
     const readinessIndex = (await pool.query<{ name: string | null }>(

@@ -17,6 +17,9 @@ export type BetterAuthSignupProfile = Readonly<{
 type ApplicationIdentityAnchor = "auth.users" | "better_auth.users";
 
 async function applicationIdentityAnchor(client: PoolClient): Promise<ApplicationIdentityAnchor> {
+  const textbookDocumentsExists = (await client.query<{ exists: boolean }>(
+    "select to_regclass('public.textbook_documents') is not null as exists",
+  )).rows[0]?.exists === true;
   const rows = (await client.query<{ constraint_name: string; target: string }>(
     `select c.conname as constraint_name,
             target_ns.nspname || '.' || target.relname as target
@@ -35,7 +38,16 @@ async function applicationIdentityAnchor(client: PoolClient): Promise<Applicatio
       order by c.conname`,
   )).rows;
 
-  if (rows.length !== 3) {
+  const requiredConstraints = new Set([
+    "teachers_user_id_fkey",
+    "admins_user_id_fkey",
+    ...(textbookDocumentsExists ? ["textbook_documents_uploaded_by_fkey"] : []),
+  ]);
+  if (
+    rows.length !== requiredConstraints.size
+    || rows.some((row) => !requiredConstraints.has(row.constraint_name))
+    || (isAuthCutoverAccepted() && !textbookDocumentsExists)
+  ) {
     throw new Error("Application identity schema is incomplete; refusing Auth provisioning.");
   }
   const targets = new Set(rows.map((row) => row.target));

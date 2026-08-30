@@ -4,6 +4,7 @@ import test from "node:test";
 import { Pool } from "pg";
 
 const url = process.env.DATABASE_URL;
+const operatorUrl = process.env.LOCAL_DATABASE_ADMIN_URL ?? url;
 const enabled = Boolean(url);
 
 function sessionCookieFrom(response: Response): string {
@@ -37,7 +38,7 @@ test("cutover freeze preserves login/RLS/sign-out while blocking rollback-breaki
   process.env.SMTP_URL = "smtp://localhost:2525";
   process.env.AUTH_EMAIL_FROM = "Exam Generator <no-reply@example.test>";
 
-  const pool = new Pool({ connectionString: url! });
+  const pool = new Pool({ connectionString: operatorUrl! });
   const email = `rollback-window-${randomUUID()}@example.test`;
   const blockedEmail = `blocked-signup-${randomUUID()}@example.test`;
   const password = "synthetic-phase9-password";
@@ -51,15 +52,11 @@ test("cutover freeze preserves login/RLS/sign-out while blocking rollback-breaki
     ]);
     const auth = betterAuth({ ...buildBetterAuthOptions(), plugins: [] });
 
-    // Seed one rollback-compatible account before the freeze: Better Auth and
-    // the retained historical auth.users snapshot carry the same UUID/email.
+    // Seed one rollback-compatible account before the freeze. In compatibility
+    // mode the application bridge owns the retained auth.users mirror.
     const signup = await auth.api.signUpEmail({ body: { name: "Rollback Window Teacher", email, password } });
     assert.ok(signup.user?.id);
     userId = signup.user.id;
-    await pool.query(
-      "insert into auth.users (id, email, raw_user_meta_data) values ($1::uuid, $2, $3::jsonb)",
-      [userId, email, JSON.stringify({ name: "Rollback Window Teacher" })],
-    );
     await provisionBetterAuthApplicationIdentity({
       userId,
       email,
