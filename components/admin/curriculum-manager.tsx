@@ -243,7 +243,7 @@ function SubStrandItem({
           <span className="truncate text-sm font-semibold text-foreground">{subStrand.name}</span>
         </span>
         <span className="flex items-center gap-2">
-          <span className="text-xs text-foreground/50">
+          <span className="text-xs text-foreground/65">
             {subStrand.learning_outcomes.length} {terms.outcome.toLocaleLowerCase("en")}
             {subStrand.learning_outcomes.length === 1 ? "" : "s"}
           </span>
@@ -377,7 +377,7 @@ function StrandItem({
           <span className="truncate font-semibold text-foreground">{strand.name}</span>
         </span>
         <span className="flex items-center gap-2">
-          <span className="text-xs text-foreground/50">
+          <span className="text-xs text-foreground/65">
             {strand.sub_strands.length} {terms.subStrand.toLocaleLowerCase("en")}
             {strand.sub_strands.length === 1 ? "" : "s"}
           </span>
@@ -386,7 +386,7 @@ function StrandItem({
       </summary>
       <div className="border-t border-border p-5">
         {strand.source_code && (
-          <p className="mb-3 text-xs font-semibold text-foreground/55">
+          <p className="mb-3 text-xs font-semibold text-foreground/65">
             Official code: {strand.source_code}
           </p>
         )}
@@ -411,7 +411,7 @@ function StrandItem({
                 </li>
               ))}
             </ol>
-            <p className="mt-3 text-xs text-foreground/55">
+            <p className="mt-3 text-xs text-foreground/65">
               These objectives apply to the official topic as a whole; no one-to-one sub-topic mapping is claimed.
             </p>
           </section>
@@ -648,7 +648,7 @@ export function CurriculumManager({
               <h3 className="font-semibold text-foreground">
                 {terms.strand}s for {selectedGrade.name} · {selectedSubject.name}
               </h3>
-              <span className="text-sm text-foreground/50">
+              <span className="text-sm text-foreground/65">
                 {strands.length} record{strands.length === 1 ? "" : "s"}
               </span>
             </div>

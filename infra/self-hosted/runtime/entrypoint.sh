@@ -16,7 +16,7 @@ while IFS= read -r line || [ -n "$line" ]; do
   key=${line%%=*}
   value=${line#*=}
   case "$key" in
-    ''|*[!A-Za-z0-9_]*)
+    ''|[0-9]*|*[!A-Za-z0-9_]*)
       echo "Invalid key in runtime secret file." >&2
       exit 1
       ;;

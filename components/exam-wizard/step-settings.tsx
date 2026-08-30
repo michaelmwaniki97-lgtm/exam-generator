@@ -60,7 +60,7 @@ export function StepSettings({
               })
             }
           />
-          <p className="mt-1.5 text-xs text-foreground/55">
+          <p className="mt-1.5 text-xs text-foreground/65">
             Application limit: {APPLICATION_EXAM_LIMITS.marks.min}–
             {APPLICATION_EXAM_LIMITS.marks.max} marks.
           </p>
@@ -85,7 +85,7 @@ export function StepSettings({
               })
             }
           />
-          <p className="mt-1.5 text-xs text-foreground/55">
+          <p className="mt-1.5 text-xs text-foreground/65">
             {data.examStructure !== "standard"
               ? "Verified national-practice duration is fixed by the selected component."
               : `Application limit: ${APPLICATION_EXAM_LIMITS.durationMinutes.min}–${APPLICATION_EXAM_LIMITS.durationMinutes.max} minutes.`}

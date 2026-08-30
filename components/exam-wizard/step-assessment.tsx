@@ -124,7 +124,7 @@ export function StepAssessment({
             ))}
           </select>
           {selectedType && (
-            <p className="mt-1.5 text-xs text-foreground/55">
+            <p className="mt-1.5 text-xs text-foreground/65">
               {selectedType.description}
             </p>
           )}
@@ -147,7 +147,7 @@ export function StepAssessment({
                 </option>
               ))}
             </select>
-            <p className="mt-1.5 text-xs text-foreground/55">
+            <p className="mt-1.5 text-xs text-foreground/65">
               KCSE-style uses a verified KCSE component identity and duration for
               school practice. Exact marks and paper structure remain unknown unless
               separately verified; this is not an official KNEC examination.
@@ -172,7 +172,7 @@ export function StepAssessment({
             <option value="Term 2">Term 2</option>
             <option value="Term 3">Term 3</option>
           </select>
-          <p className="mt-1.5 text-xs text-foreground/55">
+          <p className="mt-1.5 text-xs text-foreground/65">
             Term records the school period; it does not determine curriculum coverage.
           </p>
         </div>
@@ -218,7 +218,7 @@ export function StepAssessment({
               ))}
             </select>
             {selectedComponent && (
-              <p className="mt-1.5 text-xs text-foreground/55">
+              <p className="mt-1.5 text-xs text-foreground/65">
                 {selectedComponent.paperCode} · {selectedComponent.componentType} ·
                 verified duration {selectedComponent.durationMinutes} minutes
               </p>
@@ -261,7 +261,7 @@ export function StepAssessment({
       )}
 
       {selectedType && (
-        <p className="text-xs text-foreground/55">
+        <p className="text-xs text-foreground/65">
           {data.examStructure === "kcse_style"
             ? "Total marks remain teacher-configurable where the exact official total is unknown. The verified component duration is fixed."
             : data.examStructure === "kjsea_style"

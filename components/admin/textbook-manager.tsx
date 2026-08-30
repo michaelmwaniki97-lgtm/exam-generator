@@ -5,7 +5,7 @@ import { createTextbookRecord, processTextbookDocument, removeTextbookDocument, 
 type Book = { id: string; name: string; publisher: string | null; subject: { name: string } | null; grade: { name: string } | null };
 type Document = { id: string; textbook_id: string; original_filename: string; file_size: number; processing_status: string; processing_error: string | null; page_count: number | null; chunk_count: number | null; source_type: string; created_at: string };
 type Option = { id: string; name: string };
-function Message({ state }: { state: TextbookActionState }) { return state ? <p role="status" className={`rounded-lg border px-3 py-2 text-sm ${state.status === "error" ? "border-red-200 bg-red-50 text-red-700" : "border-green-200 bg-green-50 text-green-700"}`}>{state.message}</p> : null; }
+function Message({ state }: { state: TextbookActionState }) { return state ? <p role={state.status === "error" ? "alert" : "status"} className={`rounded-lg border px-3 py-2 text-sm ${state.status === "error" ? "border-red-200 bg-red-50 text-red-700" : "border-green-200 bg-green-50 text-green-700"}`}>{state.message}</p> : null; }
 
 export function TextbookManager({ books, documents, subjects, grades }: { books: Book[]; documents: Document[]; subjects: Option[]; grades: Option[] }) {
   const [createState, createAction, creating] = useActionState(createTextbookRecord, undefined);

@@ -24,7 +24,7 @@ export function ProgressBar({ currentStep }: { currentStep: number }) {
                       ? "bg-accent text-white ring-4 ring-accent/15"
                       : isComplete
                         ? "bg-accent text-white"
-                        : "border border-border bg-card text-foreground/40"
+                        : "border border-border bg-card text-foreground/65"
                   }`}
                 >
                   {isComplete ? (
@@ -40,7 +40,7 @@ export function ProgressBar({ currentStep }: { currentStep: number }) {
                   className={`whitespace-nowrap text-xs transition-colors ${
                     isActive
                       ? "font-semibold text-foreground"
-                      : "font-normal text-foreground/50"
+                      : "font-normal text-foreground/65"
                   }`}
                 >
                   {label}

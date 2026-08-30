@@ -6,6 +6,8 @@ export const AUTH_INPUT_LIMITS = {
   phone: 30,
 } as const;
 
+export const SIGNUP_MIN_PASSWORD_LENGTH = 8;
+
 export type SignupFields = {
   name: string;
   email: string;
@@ -23,8 +25,8 @@ export function validateSignupFields(fields: SignupFields): string | null {
   if (fields.email.length > AUTH_INPUT_LIMITS.email) {
     return "Email address is too long.";
   }
-  if (fields.password.length < 6) {
-    return "Password must be at least 6 characters long.";
+  if (fields.password.length < SIGNUP_MIN_PASSWORD_LENGTH) {
+    return `Password must be at least ${SIGNUP_MIN_PASSWORD_LENGTH} characters long.`;
   }
   if (fields.password.length > AUTH_INPUT_LIMITS.password) {
     return `Password must be ${AUTH_INPUT_LIMITS.password} characters or fewer.`;

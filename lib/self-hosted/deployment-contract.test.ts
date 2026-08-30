@@ -93,6 +93,7 @@ test("runtime secrets are mounted from files and real deployment copies are igno
   assert.match(compose, /file: \$\{RUNTIME_ENV_FILE\}/);
   assert.match(entrypoint, /\/run\/secrets\/runtime_env/);
   assert.match(entrypoint, /export "\$key=\$value"/);
+  assert.match(entrypoint, /\[0-9\]\*/);
   assert.match(gitignore, /deploy\/selfhosted\.env/);
   assert.match(gitignore, /deploy\/secrets\/\*/);
   assert.match(dockerignore, /deploy\/secrets\/\*/);
@@ -111,6 +112,7 @@ test("Caddy is the only public edge and protects the Next request boundary", asy
   assert.match(caddy, /reverse_proxy app:3000/);
   assert.match(caddy, /health_uri \/api\/health/);
   assert.match(caddy, /X-Content-Type-Options "nosniff"/);
+  assert.match(caddy, /-X-Powered-By/);
   assert.match(caddy, /Strict-Transport-Security "max-age=31536000"/);
   assert.doesNotMatch(caddy, /includeSubDomains|preload/);
   assert.doesNotMatch(caddy, /tls_insecure_skip_verify/);

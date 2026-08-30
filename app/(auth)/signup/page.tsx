@@ -5,6 +5,7 @@ import { useActionState } from "react";
 import { signup } from "@/app/actions/auth";
 import { inputClass, labelClass, primaryButtonClass } from "@/components/ui/field-styles";
 import { PasswordInput } from "@/components/auth/password-input";
+import { SIGNUP_MIN_PASSWORD_LENGTH } from "@/lib/auth/validation";
 
 export default function SignupPage() {
   const [state, formAction, pending] = useActionState(signup, undefined);
@@ -47,7 +48,7 @@ export default function SignupPage() {
           <label htmlFor="password" className={labelClass}>
             Password
           </label>
-          <PasswordInput id="password" name="password" autoComplete="new-password" minLength={6} />
+          <PasswordInput id="password" name="password" autoComplete="new-password" minLength={SIGNUP_MIN_PASSWORD_LENGTH} />
         </div>
         <div>
           <label htmlFor="school" className={labelClass}>

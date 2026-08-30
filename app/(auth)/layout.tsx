@@ -32,7 +32,7 @@ export default function AuthLayout({ children }: LayoutProps<"/">) {
           <div className="mx-auto flex w-full max-w-md items-start lg:flex-1 lg:items-center">
             <div className="w-full">{children}</div>
           </div>
-          <p className="mx-auto mt-8 max-w-md text-center text-xs leading-5 text-foreground/45 lg:mt-10">AI-assisted assessment creation for Kenyan teachers. School-generated materials require teacher review.</p>
+          <p className="mx-auto mt-8 max-w-md text-center text-xs leading-5 text-foreground/65 lg:mt-10">AI-assisted assessment creation for Kenyan teachers. School-generated materials require teacher review.</p>
         </div>
       </div>
     </div>

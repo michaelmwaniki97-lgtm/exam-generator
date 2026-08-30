@@ -154,7 +154,7 @@ export function StepTopics({
                 />
                 <span className="text-sm font-semibold text-foreground">
                   {strand.source_code && (
-                    <span className="mr-1.5 font-mono text-xs text-foreground/55">
+                    <span className="mr-1.5 font-mono text-xs text-foreground/65">
                       {strand.source_code}
                     </span>
                   )}
@@ -185,7 +185,7 @@ export function StepTopics({
                     />
                     <span className="text-sm font-normal text-foreground">
                       {subStrand.source_code && (
-                        <span className="mr-1.5 font-mono text-xs text-foreground/55">
+                        <span className="mr-1.5 font-mono text-xs text-foreground/65">
                           {subStrand.source_code}
                         </span>
                       )}
@@ -194,7 +194,7 @@ export function StepTopics({
                   </label>
                 ))}
                 {strand.sub_strands.length === 0 && (
-                  <p className="py-2 text-xs text-foreground/55">
+                  <p className="py-2 text-xs text-foreground/65">
                     No active {childLabel} are available under this {parentLabel.slice(0, -1)}.
                   </p>
                 )}

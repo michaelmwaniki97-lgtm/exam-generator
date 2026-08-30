@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   AUTH_INPUT_LIMITS,
+  SIGNUP_MIN_PASSWORD_LENGTH,
   validateLoginFields,
   validateNewPassword,
   validateRecoveryEmail,
@@ -27,7 +28,7 @@ test("normal signup and login fields pass server-side bounds", () => {
   );
 });
 
-test("password recovery fields preserve signup password rules", () => {
+test("password recovery fields retain the compatibility reset minimum", () => {
   assert.equal(validateRecoveryEmail(validSignup.email), null);
   assert.match(validateRecoveryEmail("") ?? "", /enter your email/);
   assert.match(validateRecoveryEmail("e".repeat(AUTH_INPUT_LIMITS.email + 1)) ?? "", /too long/);
@@ -49,8 +50,8 @@ test("signup rejects missing, undersized and oversized fields", () => {
     /too long/
   );
   assert.match(
-    validateSignupFields({ ...validSignup, password: "short" }) ?? "",
-    /at least 6/
+    validateSignupFields({ ...validSignup, password: "1234567" }) ?? "",
+    new RegExp(`at least ${SIGNUP_MIN_PASSWORD_LENGTH}`)
   );
   assert.match(
     validateSignupFields({

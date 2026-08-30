@@ -78,7 +78,7 @@ export function StepSubject({
             </p>
           )}
           {!loadingSubjects && subjects.length === 0 && (
-            <p className="mt-1.5 text-xs font-normal text-foreground/55">
+            <p className="mt-1.5 text-xs font-normal text-foreground/65">
               No active curriculum is available for {data.gradeName}.
             </p>
           )}

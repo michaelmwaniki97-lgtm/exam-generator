@@ -181,7 +181,7 @@ export function BlueprintSummary({
           <p className="mt-1 text-lg font-semibold text-foreground">
             {blueprint.estimatedCompletionMinutes} min
           </p>
-          <p className="text-xs text-foreground/50">
+          <p className="text-xs text-foreground/65">
             Selected: {blueprint.durationMinutes} min
           </p>
         </div>

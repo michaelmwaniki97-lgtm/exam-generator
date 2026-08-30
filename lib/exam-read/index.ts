@@ -46,6 +46,7 @@ export async function getExamDocumentReadContext(): Promise<{ repository: ExamDo
   const user = await getCurrentAuthUser();
   if (!user) throw new Error("Authentication required.");
   const role = await getUserRole();
+  if (role !== "teacher" && role !== "admin") throw new Error("Access denied.");
   let teacherId: string | null = null;
   if (role === "teacher") {
     const teacher = await (await getIdentityReadRepository()).getTeacherIdentity();

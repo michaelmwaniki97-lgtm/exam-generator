@@ -104,7 +104,7 @@ export function StepClassDetails({
               </option>
             ))}
           </select>
-          <p className="mt-1.5 text-xs font-normal text-foreground/55">
+          <p className="mt-1.5 text-xs font-normal text-foreground/65">
             Only Grades 1–9 and Forms 1–4 with active curriculum are available for
             new exams.
           </p>

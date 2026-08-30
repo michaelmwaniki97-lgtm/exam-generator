@@ -58,6 +58,7 @@ test("document loader authorizes metadata, gates paid PDFs, then loads private c
   assert.match(factory, /^import "server-only";/);
   assert.match(factory, /getCurrentAuthUser\(\)/);
   assert.match(factory, /function getExamDocumentReadContext\(\)/);
+  assert.match(factory, /role !== "teacher" && role !== "admin"/);
   assert.doesNotMatch(factory + loader, /request\.json|headers\(|cookies\(|userId\s*:/);
   assert.doesNotMatch(postgres, /select\s+\*/i);
   const authenticatedPostgres = postgres.slice(postgres.indexOf("export class PostgresExamReadRepository"), postgres.indexOf("export class PostgresTrustedExamReadRepository"));
