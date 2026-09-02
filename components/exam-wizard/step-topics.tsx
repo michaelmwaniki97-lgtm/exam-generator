@@ -1,16 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import type { CurriculumVerificationStatus } from "@/lib/curriculum/exam-selection";
 import type { Strand, WizardData } from "./types";
-
-function verificationLabel(status: CurriculumVerificationStatus): string {
-  if (status === "verified_official") return "Official";
-  if (status === "textbook_verified_kicd_pending") {
-    return "Textbook / KICD pending";
-  }
-  return "Unverified";
-}
 
 function StrandToggle({
   checked,
@@ -35,7 +26,7 @@ function StrandToggle({
     <input
       ref={ref}
       type="checkbox"
-      className="h-4 w-4 rounded border-border text-accent accent-accent"
+      className="h-5 w-5 shrink-0 rounded border-border text-accent accent-accent"
       checked={checked}
       disabled={disabled}
       aria-label={`Select all sub-areas in ${label}`}
@@ -93,6 +84,11 @@ export function StepTopics({
             Select one, several, or all active curriculum areas covered for{" "}
             {data.subjectName} in {data.gradeName}.
           </p>
+          {!loading && allIds.length > 0 && (
+            <p className="mt-2 text-xs font-semibold text-accent" aria-live="polite">
+              {data.topicIds.length} of {allIds.length} {childLabel} selected
+            </p>
+          )}
         </div>
         {!loading && allIds.length > 0 && (
           <div className="flex shrink-0 gap-2">
@@ -122,7 +118,7 @@ export function StepTopics({
       )}
 
       {!loading && strands.length === 0 && (
-        <div className="rounded-lg border border-border bg-card p-6 text-center shadow-sm">
+        <div className="rounded-lg border border-border bg-card p-6 text-center">
           <p className="text-sm font-normal text-foreground/65">
             No active {parentLabel} were found for this subject and class.
           </p>
@@ -142,9 +138,9 @@ export function StepTopics({
           return (
             <section
               key={strand.id}
-              className="rounded-lg border border-border bg-card p-4 shadow-sm"
+              className="rounded-lg border border-border bg-card p-4"
             >
-              <label className="flex min-h-11 cursor-pointer items-center gap-2.5 rounded-md px-1">
+              <label className="flex min-h-11 cursor-pointer items-center gap-2.5 border-b border-border pb-3">
                 <StrandToggle
                   checked={allSelected}
                   partiallyChecked={partiallyChecked}
@@ -160,26 +156,20 @@ export function StepTopics({
                   )}
                   {strand.name}
                 </span>
-                <span
-                  className={
-                    strand.verification_status === "verified_official"
-                      ? "ml-auto rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold uppercase text-emerald-800"
-                      : "ml-auto rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-semibold uppercase text-amber-800"
-                  }
-                >
-                  {verificationLabel(strand.verification_status)}
+                <span className="ml-auto shrink-0 text-xs font-medium text-foreground/55">
+                  {selectedCount}/{subIds.length}
                 </span>
               </label>
 
-              <div className="mt-2 ml-6 flex flex-col gap-1">
+              <div className="mt-3 ml-2 flex flex-col gap-1 border-l border-border pl-4">
                 {strand.sub_strands.map((subStrand) => (
                   <label
                     key={subStrand.id}
-                    className="flex min-h-11 cursor-pointer items-center gap-2.5 rounded-md px-1 hover:bg-background/50"
+                    className={`flex min-h-11 cursor-pointer items-center gap-2.5 rounded-md px-2 transition-colors hover:bg-background/60 ${data.topicIds.includes(subStrand.id) ? "bg-accent/5" : ""}`}
                   >
                     <input
                       type="checkbox"
-                      className="h-4 w-4 rounded border-border text-accent accent-accent"
+                      className="h-5 w-5 shrink-0 rounded border-border text-accent accent-accent"
                       checked={data.topicIds.includes(subStrand.id)}
                       onChange={() => toggleTopic(subStrand.id)}
                     />

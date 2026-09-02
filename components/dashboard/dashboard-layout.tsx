@@ -3,25 +3,23 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  LayoutDashboard,
+  BookOpen,
   FileText,
+  GraduationCap,
+  LayoutDashboard,
+  Library,
+  LogOut,
+  Menu,
   PlusCircle,
   Receipt,
+  Settings,
   User,
   Users,
-  BookOpen,
-  GraduationCap,
-  Library,
-  Settings,
-  LogOut,
+  X,
   type LucideIcon,
 } from "lucide-react";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 
-// Icons are referenced by name, not passed as component props: Server
-// Components (the teacher/admin layouts) can't pass function references
-// like a Lucide component across the server/client boundary to this
-// Client Component — only plain serializable data survives that boundary.
 const ICONS = {
   "layout-dashboard": LayoutDashboard,
   "file-text": FileText,
@@ -59,9 +57,8 @@ export function DashboardLayout({
   children: ReactNode;
 }) {
   const pathname = usePathname();
+  const [mobileNavigationOpen, setMobileNavigationOpen] = useState(false);
 
-  // Longest matching href wins, so e.g. "/admin/teachers" is active rather
-  // than "/admin" just because it's a path prefix of every admin route.
   const activeItem = navItems.reduce<NavItem | undefined>((best, item) => {
     const matches = pathname === item.href || pathname.startsWith(`${item.href}/`);
     if (!matches) return best;
@@ -80,34 +77,54 @@ export function DashboardLayout({
 
   return (
     <div className="min-h-screen">
-      <aside className="fixed inset-y-0 left-0 flex w-16 flex-col bg-sidebar md:w-64 print:hidden">
-        <div className="px-3 py-6 text-center md:px-6 md:text-left">
-          <span className="hidden text-lg font-bold tracking-tight text-sidebar-foreground-active md:inline">
+      {mobileNavigationOpen && (
+        <button
+          type="button"
+          aria-label="Close navigation"
+          className="fixed inset-0 z-30 bg-sidebar/35 md:hidden print:hidden"
+          onClick={() => setMobileNavigationOpen(false)}
+        />
+      )}
+
+      <aside
+        id="application-navigation"
+        className={`fixed inset-y-0 left-0 z-40 flex w-64 flex-col bg-sidebar transition-transform duration-200 motion-reduce:transition-none md:translate-x-0 print:hidden ${
+          mobileNavigationOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex min-h-16 items-center justify-between px-5 md:px-6">
+          <span className="text-lg font-bold tracking-tight text-sidebar-foreground-active">
             {appName}
           </span>
+          <button
+            type="button"
+            aria-label="Close navigation"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-sidebar-foreground transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white md:hidden"
+            onClick={() => setMobileNavigationOpen(false)}
+          >
+            <X size={19} aria-hidden="true" />
+          </button>
         </div>
 
-        <nav className="flex-1 space-y-1 py-1">
+        <nav aria-label="Application navigation" className="flex-1 space-y-1 overflow-y-auto px-3 py-3">
           {navItems.map((item) => {
             const isActive = item.href === activeItem?.href;
             const Icon = ICONS[item.icon];
             return (
-              <div key={item.href} className="relative px-1 md:px-3">
-                {isActive && (
-                  <span className="absolute left-0 top-1/2 h-6 w-[3px] -translate-y-1/2 rounded-r bg-accent" />
-                )}
+              <div key={item.href} className="relative">
+                {isActive && <span className="absolute left-0 top-1/2 h-6 w-[3px] -translate-y-1/2 rounded-r bg-accent" />}
                 <Link
                   href={item.href}
-                  aria-label={item.label}
                   aria-current={isActive ? "page" : undefined}
-                  className={`flex min-h-11 min-w-11 items-center justify-center gap-3 rounded-lg px-3 py-2.5 text-sm font-normal transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar md:min-h-0 md:min-w-0 md:justify-start ${
+                  onClick={() => setMobileNavigationOpen(false)}
+                  className={`flex min-h-11 items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar ${
                     isActive
-                      ? "bg-white/5 text-sidebar-foreground-active"
+                      ? "bg-white/[0.08] font-semibold text-sidebar-foreground-active"
                       : "text-sidebar-foreground hover:bg-white/5 hover:text-sidebar-foreground-active"
                   }`}
                 >
                   <Icon size={18} strokeWidth={2} aria-hidden="true" />
-                  <span className="hidden md:inline">{item.label}</span>
+                  <span>{item.label}</span>
                 </Link>
               </div>
             );
@@ -118,34 +135,45 @@ export function DashboardLayout({
           <form action={logoutAction}>
             <button
               type="submit"
-              aria-label="Log out"
-              className="flex min-h-11 min-w-11 w-full items-center justify-center gap-3 rounded-lg px-3 py-2.5 text-sm font-normal text-sidebar-foreground transition-colors hover:bg-white/5 hover:text-sidebar-foreground-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar md:min-h-0 md:min-w-0 md:justify-start"
+              className="flex min-h-11 w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-normal text-sidebar-foreground transition-colors hover:bg-white/5 hover:text-sidebar-foreground-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar"
             >
               <LogOut size={18} strokeWidth={2} aria-hidden="true" />
-              <span className="hidden md:inline">Logout</span>
+              <span>Log out</span>
             </button>
           </form>
         </div>
       </aside>
 
-      <div className="flex min-h-screen min-w-0 flex-col pl-16 md:pl-64 print:pl-0">
-        <header className="flex h-16 shrink-0 items-center justify-between border-b border-border bg-card px-4 print:hidden md:px-8">
-          <h1 className="text-lg font-semibold text-foreground">{pageTitle}</h1>
+      <div className="flex min-h-screen min-w-0 flex-col md:pl-64 print:pl-0">
+        <header className="sticky top-0 z-20 flex h-16 shrink-0 items-center justify-between border-b border-border bg-card/95 px-4 backdrop-blur-sm print:hidden md:px-8">
+          <div className="flex min-w-0 items-center gap-2.5">
+            <button
+              type="button"
+              aria-label="Open navigation"
+              aria-controls="application-navigation"
+              aria-expanded={mobileNavigationOpen}
+              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-foreground/70 transition-colors hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden"
+              onClick={() => setMobileNavigationOpen(true)}
+            >
+              <Menu size={20} aria-hidden="true" />
+            </button>
+            <h1 className="truncate text-base font-semibold tracking-tight text-foreground md:text-lg">{pageTitle}</h1>
+          </div>
 
-          <div className="flex items-center gap-3">
-            <div className="text-right leading-tight">
-              <p className="hidden text-sm font-semibold text-foreground sm:block">{userName}</p>
-              {userSubtitle && (
-                <p className="hidden text-xs font-normal text-foreground/65 sm:block">{userSubtitle}</p>
-              )}
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="min-w-0 text-right leading-tight">
+              <p className="hidden truncate text-sm font-semibold text-foreground sm:block">{userName}</p>
+              {userSubtitle && <p className="hidden truncate text-xs font-normal text-foreground/65 sm:block">{userSubtitle}</p>}
             </div>
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-sm font-semibold tracking-tight text-white">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent text-sm font-semibold tracking-tight text-white">
               {initials || "?"}
             </div>
           </div>
         </header>
 
-        <main className="min-w-0 flex-1 bg-background px-4 py-5 print:bg-white print:p-0 md:px-8 md:py-8">{children}</main>
+        <main id="main-content" className="min-w-0 flex-1 bg-background px-4 py-6 print:bg-white print:p-0 md:px-8 md:py-8">
+          <div className="mx-auto w-full max-w-[90rem]">{children}</div>
+        </main>
       </div>
     </div>
   );

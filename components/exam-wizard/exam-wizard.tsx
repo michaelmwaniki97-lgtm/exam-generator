@@ -60,7 +60,7 @@ function assessmentContext(data: WizardData): AssessmentContext | null {
 
 function canProceed(step: number, data: WizardData): boolean {
   if (!canProceedWizardStep(step, data)) return false;
-  if (step !== 3) return true;
+  if (step !== 4) return true;
 
   const context = assessmentContext(data);
   if (!context) return false;
@@ -276,7 +276,12 @@ export function ExamWizard() {
       })
       .catch(() => {
         if (!cancelled) {
-          setSubjectError("Could not load processed textbooks.");
+          setTextbooks([]);
+          setData((previous) => ({
+            ...previous,
+            textbookId: "",
+            textbookName: "",
+          }));
           setLoadingTextbooks(false);
         }
       });
@@ -318,9 +323,12 @@ export function ExamWizard() {
       ? gradeError
       : step === 2
         ? subjectError
-        : step === 4
+        : step === 3
           ? curriculumError
           : null;
+  const hasMappedCurriculum = strands.some(
+    (strand) => strand.sub_strands.length > 0
+  );
 
   const goNext = () =>
     setStep((current) => Math.min(current + 1, STEP_LABELS.length));
@@ -344,10 +352,10 @@ export function ExamWizard() {
   };
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6">
       <ProgressBar currentStep={step} />
 
-      <div className="rounded-lg border border-border bg-card p-6 shadow-sm sm:p-8">
+      <div className="rounded-xl border border-border bg-card p-5 sm:p-7">
         {loadError && (
           <p
             role="alert"
@@ -375,8 +383,7 @@ export function ExamWizard() {
             loadingTextbooks={loadingTextbooks}
           />
         )}
-        {step === 3 && <StepAssessment data={data} onChange={onChange} />}
-        {step === 4 && (
+        {step === 3 && (
           <StepTopics
             data={data}
             onChange={onChange}
@@ -384,20 +391,36 @@ export function ExamWizard() {
             loading={loadingStrands}
           />
         )}
+        {step === 4 && <StepAssessment data={data} onChange={onChange} />}
         {step === 5 && <StepSettings data={data} onChange={onChange} />}
         {step === 6 && <StepReview data={data} strands={strands} />}
       </div>
 
-      {generateError && (
-        <p
-          role="alert"
-          className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700"
+      {generating && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="rounded-xl border border-accent/20 bg-accent/5 px-4 py-3"
         >
-          {generateError}
-        </p>
+          <p className="text-sm font-semibold text-foreground">Preparing your exam</p>
+          <p className="mt-1 text-xs leading-relaxed text-foreground/65">
+            Creating the paper and marking scheme from your saved selections. Keep
+            this page open.
+          </p>
+        </div>
       )}
 
-      <div className="flex items-center justify-between gap-4">
+      {generateError && (
+        <div
+          role="alert"
+          className="rounded-xl border border-red-200 bg-red-50 px-4 py-3"
+        >
+          <p className="text-sm font-semibold text-red-800">Generation interrupted</p>
+          <p className="mt-1 text-sm text-red-700">{generateError}</p>
+        </div>
+      )}
+
+      <div className="sticky bottom-0 z-10 -mx-4 flex items-center justify-between gap-3 border-t border-border bg-background/95 px-4 py-3 backdrop-blur-sm sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
         <button
           type="button"
           onClick={goBack}
@@ -412,10 +435,14 @@ export function ExamWizard() {
           <button
             type="button"
             onClick={goNext}
-            disabled={!canProceed(step, data) || Boolean(loadError)}
+            disabled={
+              step === 2
+                ? !data.subjectId || loadingStrands || !hasMappedCurriculum
+                : !canProceed(step, data) || Boolean(loadError)
+            }
             className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-hover active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:active:scale-100 motion-reduce:transform-none"
           >
-            Next
+            Continue
             <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
           </button>
         ) : (
@@ -438,7 +465,7 @@ export function ExamWizard() {
             ) : (
               <>
                 <Sparkles size={16} strokeWidth={2} aria-hidden="true" />
-                Generate draft exam
+                {generateError ? "Try generating again" : "Generate exam"}
               </>
             )}
           </button>

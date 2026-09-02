@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  ArrowRight,
   Users,
   FileText,
   BookOpen,
@@ -80,40 +81,74 @@ export default async function AdminPage() {
   ];
 
   return (
-    <div className="flex flex-col gap-8">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="rounded-lg border border-border bg-card p-5 shadow-sm"
-          >
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10">
-                <stat.icon size={20} strokeWidth={1.75} className="text-accent" />
-              </div>
-              <span className="text-sm font-normal text-foreground/65">{stat.label}</span>
-            </div>
-            <p className="mt-4 text-2xl font-bold text-foreground">{stat.value}</p>
-          </div>
-        ))}
+    <div className="flex flex-col gap-7">
+      <div>
+        <h2 className="text-2xl font-bold tracking-tight text-foreground">Administration</h2>
+        <p className="mt-1 text-sm text-foreground/65">
+          Current system totals and management areas.
+        </p>
       </div>
 
-      <section>
-        <h3 className="mb-4 text-base font-semibold text-foreground">Manage</h3>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {managementAreas.map((area) => (
-            <Link
-              key={area.href}
-              href={area.href}
-              className="rounded-lg border border-border bg-card p-5 shadow-sm transition-colors hover:border-accent/40"
+      <section aria-labelledby="overview-heading">
+        <h3 id="overview-heading" className="mb-3 text-sm font-semibold text-foreground">
+          Overview
+        </h3>
+        <dl className="grid grid-cols-2 overflow-hidden rounded-lg border border-border bg-card lg:grid-cols-4">
+          {stats.map((stat, index) => (
+            <div
+              key={stat.label}
+              className={`p-4 sm:p-5 ${
+                index % 2 === 0 ? "border-r border-border" : ""
+              } ${index < 2 ? "border-b border-border lg:border-b-0" : ""} ${
+                index > 0 ? "lg:border-l lg:border-border" : ""
+              } lg:border-r-0`}
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10">
-                <area.icon size={20} strokeWidth={1.75} className="text-accent" />
-              </div>
-              <p className="mt-4 font-semibold text-foreground">{area.label}</p>
-              <p className="mt-1 text-sm font-normal text-foreground/65">{area.description}</p>
-            </Link>
+              <dt className="flex items-center gap-2 text-xs font-medium text-foreground/60">
+                <stat.icon size={15} strokeWidth={1.75} className="text-accent" aria-hidden="true" />
+                {stat.label}
+              </dt>
+              <dd className="mt-2 font-mono text-xl font-bold tabular-nums text-foreground sm:text-2xl">
+                {stat.value}
+              </dd>
+            </div>
           ))}
+        </dl>
+      </section>
+
+      <section aria-labelledby="manage-heading">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <h3 id="manage-heading" className="text-sm font-semibold text-foreground">
+            Manage
+          </h3>
+          <span className="text-xs text-foreground/50">{managementAreas.length} areas</span>
+        </div>
+        <div className="overflow-hidden rounded-lg border border-border bg-card">
+          <div className="grid md:grid-cols-2">
+            {managementAreas.map((area, index) => (
+              <Link
+                key={area.href}
+                href={area.href}
+                className={`group flex min-h-20 items-center gap-3 border-border px-4 py-3 transition-colors hover:bg-background/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/40 ${
+                  index < managementAreas.length - 1 ? "border-b" : ""
+                } ${index % 2 === 0 ? "md:border-r" : ""} ${
+                  index === managementAreas.length - 2 ? "md:border-b-0" : ""
+                }`}
+              >
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-accent/10 text-accent">
+                  <area.icon size={18} strokeWidth={1.75} aria-hidden="true" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold text-foreground">{area.label}</p>
+                  <p className="mt-0.5 text-sm leading-5 text-foreground/60">{area.description}</p>
+                </div>
+                <ArrowRight
+                  size={17}
+                  className="shrink-0 text-foreground/35 transition-colors group-hover:text-accent"
+                  aria-hidden="true"
+                />
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </div>

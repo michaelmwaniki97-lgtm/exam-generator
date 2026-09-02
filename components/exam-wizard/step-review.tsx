@@ -5,7 +5,6 @@ import {
   resolveAssessmentRules,
   type AssessmentContext,
 } from "@/lib/assessment/rules";
-import type { CurriculumVerificationStatus } from "@/lib/curriculum/exam-selection";
 import { BlueprintSummary } from "./blueprint-summary";
 import type { Strand, WizardData } from "./types";
 
@@ -18,14 +17,6 @@ function ReviewRow({ label, value }: { label: string; value: string }) {
       </span>
     </div>
   );
-}
-
-function verificationLabel(status: CurriculumVerificationStatus): string {
-  if (status === "verified_official") return "Official curriculum";
-  if (status === "textbook_verified_kicd_pending") {
-    return "Textbook verified / KICD source pending";
-  }
-  return "Legacy / unverified curriculum";
 }
 
 export function StepReview({ data, strands }: { data: WizardData; strands: Strand[] }) {
@@ -54,18 +45,20 @@ export function StepReview({ data, strands }: { data: WizardData; strands: Stran
       ),
     }))
     .filter((strand) => strand.selectedSubStrands.length > 0);
-  const selectedSubject = strands[0]?.verification_status ?? "unverified";
-
+  const selectedTopicCount = selectedStrands.reduce(
+    (total, strand) => total + strand.selectedSubStrands.length,
+    0
+  );
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h2 className="text-lg font-semibold text-foreground">Review</h2>
+        <h2 className="text-lg font-semibold text-foreground">Review your exam plan</h2>
         <p className="mt-1 text-sm font-normal text-foreground/65">
           Check every setting before generating the teacher-review draft.
         </p>
       </div>
 
-      <div className="rounded-lg border border-border bg-card p-5 shadow-sm">
+      <div className="rounded-lg border border-border bg-card p-5">
         <h3 className="mb-1 text-sm font-semibold text-foreground">Class details</h3>
         <ReviewRow
           label="Education system"
@@ -75,19 +68,15 @@ export function StepReview({ data, strands }: { data: WizardData; strands: Stran
         <ReviewRow label="Grade / Form" value={data.gradeName} />
       </div>
 
-      <div className="rounded-lg border border-border bg-card p-5 shadow-sm">
+      <div className="rounded-lg border border-border bg-card p-5">
         <h3 className="mb-1 text-sm font-semibold text-foreground">Subject</h3>
         <ReviewRow label="Subject" value={data.subjectName} />
-        <ReviewRow
-          label="Curriculum status"
-          value={verificationLabel(selectedSubject)}
-        />
         {data.textbookName && (
           <ReviewRow label="Reference textbook" value={data.textbookName} />
         )}
       </div>
 
-      <div className="rounded-lg border border-border bg-card p-5 shadow-sm">
+      <div className="rounded-lg border border-border bg-card p-5">
         <h3 className="mb-1 text-sm font-semibold text-foreground">Assessment</h3>
         <ReviewRow
           label="Assessment type"
@@ -143,10 +132,9 @@ export function StepReview({ data, strands }: { data: WizardData; strands: Stran
         {data.year && <ReviewRow label="Year" value={String(data.year)} />}
       </div>
 
-      <div className="rounded-lg border border-border bg-card p-5 shadow-sm">
+      <div className="rounded-lg border border-border bg-card p-5">
         <h3 className="mb-3 text-sm font-semibold text-foreground">
-          {data.educationSystem === "8-4-4" ? "Topics" : "Strands"} (
-          {selectedStrands.length})
+          Curriculum coverage ({selectedTopicCount} selected)
         </h3>
         <div className="flex flex-col gap-4">
           {selectedStrands.map((strand) => (
@@ -156,7 +144,7 @@ export function StepReview({ data, strands }: { data: WizardData; strands: Stran
                 {strand.selectedSubStrands.map((subStrand) => (
                   <span
                     key={subStrand.id}
-                    className="rounded-lg bg-accent/10 px-3 py-1 text-xs font-semibold text-accent"
+                    className="rounded-md border border-accent/20 bg-accent/5 px-2.5 py-1 text-xs font-medium text-foreground/75"
                   >
                     {subStrand.name}
                   </span>
@@ -167,7 +155,7 @@ export function StepReview({ data, strands }: { data: WizardData; strands: Stran
         </div>
       </div>
 
-      <div className="rounded-lg border border-border bg-card p-5 shadow-sm">
+      <div className="rounded-lg border border-border bg-card p-5">
         <h3 className="mb-1 text-sm font-semibold text-foreground">Paper settings</h3>
         <ReviewRow label="Difficulty" value={data.difficulty} />
         <ReviewRow label="Total marks" value={data.marks ? String(data.marks) : "—"} />
