@@ -42,6 +42,12 @@ export class PostgresTrustedRpcDatabase implements TrustedRpcDatabase {
     ));
   }
 
+  async resetDevelopmentGenerationQuota(input: { teacherId: string }) {
+    return withTrustedTransaction(async (client) => scalar(await queryRows<{ result: boolean }>(client,
+      "select public.reset_development_generation_quota($1::uuid) as result", [input.teacherId]
+    ), "result"));
+  }
+
   claimAiRegeneration(input: { teacherId: string; examId: string; slotId: string; requestKey: string; expectedRevision: number }) {
     return withTrustedTransaction((client) => queryRows<AiClaimRow>(client,
       "select outcome, reservation_id, result_exam_id, result_revision from public.claim_ai_regeneration($1::uuid, $2::uuid, $3::text, $4::uuid, $5::integer)",

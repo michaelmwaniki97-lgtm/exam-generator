@@ -1,3 +1,4 @@
+import { RichStimuli } from "@/components/exam-content/rich-stimuli";
 import type { ExamDocument } from "@/lib/exam-document/model";
 import { formatDuration } from "@/lib/exam-document/model";
 
@@ -8,6 +9,7 @@ export function MarkingDocumentView({ document }: { document: ExamDocument }) {
     <div className="exam-sections">{document.sections.map((section) => <section key={section.id} className="exam-section"><header className="section-heading"><h3>{section.title}</h3></header>{section.questions.map((question) => {
       const entry = bySlot.get(question.slotId || `number-${question.number}`);
       return <article key={question.slotId || question.number} className="marking-entry"><div className="question-row"><strong>{question.number}. {entry?.markingModel?.replaceAll("_", " ") ?? "point based"}</strong><span className="question-marks">[{question.marks}]</span></div>
+        {question.visual && <RichStimuli visual={question.visual}/>}
         {entry?.answer && <p><strong>Answer:</strong> {entry.answer}</p>}
         {!!entry?.allocations?.length && <ul>{entry.allocations.map((allocation, index) => <li key={index}>{allocation.label} — {allocation.marks} mark{allocation.marks === 1 ? "" : "s"}</li>)}</ul>}
         {entry?.numericalMethod && <div><p><strong>Expected answer:</strong> {entry.numericalMethod.finalAnswer}{entry.numericalMethod.units ? ` ${entry.numericalMethod.units}` : ""}</p><ol>{entry.numericalMethod.methodSteps.map((step, index) => <li key={index}>{step.step} — {step.marks}</li>)}</ol>{entry.numericalMethod.accuracyMarks > 0 && <p>Accuracy marks: {entry.numericalMethod.accuracyMarks}</p>}{entry.numericalMethod.tolerance && <p>Tolerance: {entry.numericalMethod.tolerance}</p>}{entry.numericalMethod.alternativeMethod && <p>Alternative method: {entry.numericalMethod.alternativeMethod}</p>}</div>}

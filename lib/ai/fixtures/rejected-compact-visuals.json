@@ -1,0 +1,42 @@
+[
+  {
+    "artifact": "rejected-visual-2026-09-21T14-24-16-909Z.json",
+    "slotId": "slot-02-01",
+    "visual": {
+      "type": "diagram",
+      "required": true,
+      "altText": "Two concentric circles representing a circular flower garden surrounded by a gravel path, with the garden radius and path width labelled.",
+      "specificationJson": "{\"elements\":[{\"type\":\"circle\",\"cx\":300,\"cy\":180,\"r\":60},{\"type\":\"circle\",\"cx\":300,\"cy\":180,\"r\":90},{\"type\":\"line\",\"x1\":300,\"y1\":180,\"x2\":360,\"y2\":180},{\"type\":\"label\",\"text\":\"7 m\",\"x\":315,\"y\":170},{\"type\":\"line\",\"x1\":360,\"y1\":180,\"x2\":390,\"y2\":180},{\"type\":\"label\",\"text\":\"3.5 m\",\"x\":360,\"y\":165},{\"type\":\"label\",\"text\":\"Garden\",\"x\":280,\"y\":180},{\"type\":\"label\",\"text\":\"Path\",\"x\":330,\"y\":95}]}"
+    }
+  },
+  {
+    "artifact": "rejected-visual-2026-09-21T14-25-18-594Z.json",
+    "slotId": "slot-02-01",
+    "visual": {
+      "type": "diagram",
+      "required": true,
+      "altText": "Two concentric circles representing a circular flower garden of radius 7 m surrounded by a path of width 7 m, with the radius and path width marked by arrows and labels.",
+      "specificationJson": "{\"shapes\":[{\"type\":\"circle\",\"cx\":150,\"cy\":100,\"r\":70},{\"type\":\"circle\",\"cx\":150,\"cy\":100,\"r\":35},{\"type\":\"arrow\",\"x1\":150,\"y1\":100,\"x2\":185,\"y2\":100},{\"type\":\"label\",\"x\":165,\"y\":90,\"text\":\"7 m\"},{\"type\":\"arrow\",\"x1\":185,\"y1\":100,\"x2\":220,\"y2\":100},{\"type\":\"label\",\"x\":200,\"y\":90,\"text\":\"7 m\"}],\"width\":300,\"height\":200}"
+    }
+  },
+  {
+    "artifact": "rejected-visual-2026-09-21T14-50-51-870Z.json",
+    "slotId": "slot-02-02",
+    "visual": {
+      "type": "diagram",
+      "required": true,
+      "altText": "An L-shaped plot of land formed from a large rectangle with a smaller rectangular section removed from the top right corner, with some outer side lengths labelled in metres and two side lengths left unlabelled for the learner to determine.",
+      "specificationJson": "{\"primitives\":[{\"type\":\"polygon\",\"points\":[[40,260],[280,260],[280,180],[190,180],[190,60],[40,60]]},{\"type\":\"label\",\"x\":160,\"y\":275,\"text\":\"24 m\"},{\"type\":\"label\",\"x\":20,\"y\":160,\"text\":\"16 m\"},{\"type\":\"label\",\"x\":115,\"y\":45,\"text\":\"14 m\"},{\"type\":\"label\",\"x\":295,\"y\":220,\"text\":\"10 m\"}]}"
+    }
+  },
+  {
+    "artifact": "rejected-visual-2026-09-21T14-51-52-965Z.json",
+    "slotId": "slot-02-02",
+    "visual": {
+      "type": "diagram",
+      "required": true,
+      "altText": "An L-shaped floor plan formed from a large rectangle with a smaller rectangular section removed from the top-right corner. The outer left side is labelled 12 m, the outer top-left segment is labelled 10 m, the small vertical cut is labelled 5 m, the small horizontal cut is labelled 8 m, the outer right side below the cut is labelled 7 m, and the bottom side is labelled 18 m.",
+      "specificationJson": "{\"shapes\":[{\"type\":\"polygon\",\"points\":[[60,40],[180,40],[180,100],[276,100],[276,184],[60,184]]},{\"type\":\"label\",\"text\":\"10 m\",\"x\":120,\"y\":28},{\"type\":\"label\",\"text\":\"5 m\",\"x\":190,\"y\":70},{\"type\":\"label\",\"text\":\"8 m\",\"x\":228,\"y\":92},{\"type\":\"label\",\"text\":\"7 m\",\"x\":292,\"y\":142},{\"type\":\"label\",\"text\":\"18 m\",\"x\":168,\"y\":196},{\"type\":\"label\",\"text\":\"12 m\",\"x\":36,\"y\":112}]}"
+    }
+  }
+]

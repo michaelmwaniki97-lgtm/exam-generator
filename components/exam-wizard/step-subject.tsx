@@ -1,14 +1,5 @@
-import type { CurriculumVerificationStatus } from "@/lib/curriculum/exam-selection";
 import type { Subject, Textbook, WizardData } from "./types";
 import { labelClass, selectClass } from "@/components/ui/field-styles";
-
-function verificationLabel(status: CurriculumVerificationStatus): string {
-  if (status === "verified_official") return "Official curriculum";
-  if (status === "textbook_verified_kicd_pending") {
-    return "Textbook verified / KICD source pending";
-  }
-  return "Legacy / unverified curriculum";
-}
 
 export function StepSubject({
   data,
@@ -25,15 +16,13 @@ export function StepSubject({
   loadingSubjects: boolean;
   loadingTextbooks: boolean;
 }) {
-  const selectedSubject = subjects.find((subject) => subject.id === data.subjectId);
-
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h2 className="text-lg font-semibold text-foreground">Subject &amp; textbook</h2>
+        <h2 className="text-lg font-semibold text-foreground">Subject</h2>
         <p className="mt-1 text-sm font-normal text-foreground/65">
-          Subjects are limited to active curriculum available for {data.gradeName}.
-          A reference textbook is optional.
+          Choose a subject with mapped curriculum for {data.gradeName}. You will
+          select its topics and sub-topics next; a textbook is optional extra grounding.
         </p>
       </div>
 
@@ -62,21 +51,10 @@ export function StepSubject({
             </option>
             {subjects.map((subject) => (
               <option key={subject.id} value={subject.id}>
-                {subject.name} — {verificationLabel(subject.verification_status)}
+                {subject.name}
               </option>
             ))}
           </select>
-          {selectedSubject && (
-            <p
-              className={
-                selectedSubject.verification_status === "verified_official"
-                  ? "mt-2 text-xs font-semibold text-emerald-800"
-                  : "mt-2 text-xs font-semibold text-amber-800"
-              }
-            >
-              {verificationLabel(selectedSubject.verification_status)}
-            </p>
-          )}
           {!loadingSubjects && subjects.length === 0 && (
             <p className="mt-1.5 text-xs font-normal text-foreground/65">
               No active curriculum is available for {data.gradeName}.
@@ -86,7 +64,7 @@ export function StepSubject({
 
         <div>
           <label htmlFor="textbook" className={labelClass}>
-            Reference textbook
+            Reference textbook (optional)
           </label>
           <select
             id="textbook"

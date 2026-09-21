@@ -117,6 +117,86 @@ export async function seedPostgresIntegrationFixtures(environment = process.env)
       values ('10000000-0000-4000-8000-000000000002', 'Parity Synthetic Grade', 'Junior School')
       on conflict (id) do update set name = excluded.name, level = excluded.level
     `);
+    await client.query(`
+      insert into public.textbooks (id, subject_id, grade_id, name, publisher)
+      values (
+        '20000000-0000-4000-8000-000000000001',
+        '10000000-0000-4000-8000-000000000001',
+        '10000000-0000-4000-8000-000000000002',
+        'Synthetic Parity Textbook',
+        'Synthetic Publisher'
+      )
+      on conflict (id) do update set
+        subject_id = excluded.subject_id,
+        grade_id = excluded.grade_id,
+        name = excluded.name,
+        publisher = excluded.publisher
+    `);
+    await client.query(`
+      insert into public.textbook_documents (
+        id, textbook_id, storage_path, original_filename, mime_type, file_size,
+        content_sha256, processing_status, processing_error, page_count,
+        extracted_character_count, chunk_count, embedding_model,
+        embedding_dimension, source_type, authorization_note,
+        authorization_acknowledged, uploaded_by, processed_at, updated_at
+      ) values (
+        '20000000-0000-4000-8000-000000000002',
+        '20000000-0000-4000-8000-000000000001',
+        'textbooks/20000000-0000-4000-8000-000000000001/20000000-0000-4000-8000-000000000002/synthetic.pdf',
+        'synthetic.pdf', 'application/pdf', 128, repeat('a', 64), 'ready', null,
+        3, 180, 3, 'synthetic-local', 2048, 'oer',
+        'Disposable PostgreSQL integration fixture', true,
+        '00000000-0000-4000-8000-000000000005', now(), now()
+      )
+      on conflict (id) do update set
+        textbook_id = excluded.textbook_id,
+        storage_path = excluded.storage_path,
+        original_filename = excluded.original_filename,
+        mime_type = excluded.mime_type,
+        file_size = excluded.file_size,
+        content_sha256 = excluded.content_sha256,
+        processing_status = excluded.processing_status,
+        processing_error = excluded.processing_error,
+        page_count = excluded.page_count,
+        extracted_character_count = excluded.extracted_character_count,
+        chunk_count = excluded.chunk_count,
+        embedding_model = excluded.embedding_model,
+        embedding_dimension = excluded.embedding_dimension,
+        source_type = excluded.source_type,
+        authorization_note = excluded.authorization_note,
+        authorization_acknowledged = excluded.authorization_acknowledged,
+        uploaded_by = excluded.uploaded_by,
+        processed_at = excluded.processed_at,
+        updated_at = excluded.updated_at
+    `);
+    await client.query(`
+      delete from public.textbook_chunks
+       where document_id = '20000000-0000-4000-8000-000000000002'
+    `);
+    await client.query(`
+      do $vector_fixtures$
+      declare
+        first_vector real[] := array_fill(0::real, array[2048]);
+        second_vector real[] := array_fill(0::real, array[2048]);
+        opposite_vector real[] := array_fill(0::real, array[2048]);
+      begin
+        first_vector[1] := 1;
+        second_vector[2] := 1;
+        opposite_vector[1] := -1;
+
+        insert into public.textbook_chunks (
+          id, document_id, textbook_id, chunk_index, page_start, page_end,
+          text, character_count, embedding
+        ) values
+          ('20000000-0000-4000-8000-000000000011', '20000000-0000-4000-8000-000000000002', '20000000-0000-4000-8000-000000000001', 0, 1, 1,
+           repeat('nearest synthetic vector content ', 2), char_length(repeat('nearest synthetic vector content ', 2)), ('[' || array_to_string(first_vector, ',') || ']')::extensions.vector),
+          ('20000000-0000-4000-8000-000000000012', '20000000-0000-4000-8000-000000000002', '20000000-0000-4000-8000-000000000001', 1, 2, 2,
+           repeat('orthogonal synthetic vector content ', 2), char_length(repeat('orthogonal synthetic vector content ', 2)), ('[' || array_to_string(second_vector, ',') || ']')::extensions.vector),
+          ('20000000-0000-4000-8000-000000000013', '20000000-0000-4000-8000-000000000002', '20000000-0000-4000-8000-000000000001', 2, 3, 3,
+           repeat('opposite synthetic vector content ', 2), char_length(repeat('opposite synthetic vector content ', 2)), ('[' || array_to_string(opposite_vector, ',') || ']')::extensions.vector);
+      end
+      $vector_fixtures$;
+    `);
     await client.query("commit");
     const counts = (await client.query(`
       select
@@ -125,9 +205,22 @@ export async function seedPostgresIntegrationFixtures(environment = process.env)
           '00000000-0000-4000-8000-000000000003', '00000000-0000-4000-8000-000000000004',
           '00000000-0000-4000-8000-000000000005', '00000000-0000-4000-8000-000000000006'
         )) as teachers,
-        (select count(*)::int from public.admins where user_id = '00000000-0000-4000-8000-000000000005') as admins
+        (select count(*)::int from public.admins where user_id = '00000000-0000-4000-8000-000000000005') as admins,
+        (select count(*)::int from public.textbook_documents
+          where id = '20000000-0000-4000-8000-000000000002'
+            and processing_status = 'ready'
+            and embedding_dimension = 2048
+            and chunk_count = 3) as ready_textbooks,
+        (select count(*)::int from public.textbook_chunks
+          where document_id = '20000000-0000-4000-8000-000000000002') as textbook_chunks
     `)).rows[0];
-    return { database: admin.database, teachers: counts.teachers, admins: counts.admins };
+    return {
+      database: admin.database,
+      teachers: counts.teachers,
+      admins: counts.admins,
+      readyTextbooks: counts.ready_textbooks,
+      textbookChunks: counts.textbook_chunks,
+    };
   } catch (error) {
     try { await client.query("rollback"); } catch { /* preserve fixture error */ }
     throw error;
@@ -146,6 +239,25 @@ export async function clearPostgresIntegrationIdentityFixtures(environment = pro
   });
   await client.connect();
   try {
+    await client.query("begin");
+    await client.query(`
+      delete from public.payments
+       where teacher_id in (
+         select id from public.teachers where user_id in (
+           '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000002',
+           '00000000-0000-4000-8000-000000000003', '00000000-0000-4000-8000-000000000004',
+           '00000000-0000-4000-8000-000000000005', '00000000-0000-4000-8000-000000000006'
+         )
+       )
+    `);
+    await client.query(`
+      delete from public.textbook_chunks
+       where document_id = '20000000-0000-4000-8000-000000000002';
+      delete from public.textbook_documents
+       where id = '20000000-0000-4000-8000-000000000002';
+      delete from public.textbooks
+       where id = '20000000-0000-4000-8000-000000000001';
+    `);
     const result = await client.query(`
       delete from auth.users where id in (
         '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000002',
@@ -153,7 +265,11 @@ export async function clearPostgresIntegrationIdentityFixtures(environment = pro
         '00000000-0000-4000-8000-000000000005', '00000000-0000-4000-8000-000000000006'
       )
     `);
+    await client.query("commit");
     return { database: admin.database, removed: result.rowCount ?? 0 };
+  } catch (error) {
+    try { await client.query("rollback"); } catch { /* preserve the cleanup error */ }
+    throw error;
   } finally {
     await client.end();
   }
@@ -163,7 +279,8 @@ export async function preparePostgresIntegrationDatabase(environment = process.e
   const prepared = await ensureIntegrationDatabase(environment);
   const migration = await migrateLocalDatabase(prepared);
   const fixtures = await seedPostgresIntegrationFixtures(prepared);
-  if (fixtures.teachers !== 6 || fixtures.admins !== 1) {
+  if (fixtures.teachers !== 6 || fixtures.admins !== 1
+    || fixtures.readyTextbooks !== 1 || fixtures.textbookChunks !== 3) {
     throw new Error("PostgreSQL integration fixture verification failed.");
   }
   return { environment: prepared, migration, fixtures };

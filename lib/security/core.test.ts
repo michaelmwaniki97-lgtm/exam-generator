@@ -110,7 +110,7 @@ test("authenticated clients cannot bypass canonical exam persistence", () => {
   for (const source of [abuseControls, databaseFactory, databaseConfig, postgresClient]) {
     assert.match(source, /^import "server-only";/);
   }
-  assert.match(abuseControls, /getTrustedRpcDatabase\(\)\.claimAiGeneration/);
+  assert.match(abuseControls, /const database = getTrustedRpcDatabase\(\);[\s\S]*?database\.claimAiGeneration/);
   assert.match(abuseControls, /getTrustedRpcDatabase\(\)\.persistGeneratedExam/);
   assert.match(databaseFactory, /export function getTrustedRpcDatabase\(\): TrustedRpcDatabase/);
   assert.doesNotMatch(databaseFactory, /getTrustedRpcDatabase\([^)]/);

@@ -27,7 +27,7 @@ test("server actions authenticate, derive teacher identity, and enforce ownershi
   assert.doesNotMatch(examReadFactory + identityFactory + action, /request\.json|formData|searchParams|userId\s*:/);
   assert.match(action, /status === "paid".*status === "downloaded"/);
   assert.match(action, /saveExamEdits\(examId: string, expectedRevision: number, inputs: EditableSlotInput\[\]\)/);
-  assert.match(action, /regenerateExamQuestion\(examId: string, slotId: string, expectedRevision: number, requestId: string\)/);
+  assert.match(action, /regenerateExamQuestion\(examId: string, slotId: string, expectedRevision: number, requestId: string, mode: "question" \| "visual" = "question"\)/);
 });
 
 test("regeneration authorization and reservation claim precede provider work", () => {

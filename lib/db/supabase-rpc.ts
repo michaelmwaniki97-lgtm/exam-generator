@@ -38,6 +38,10 @@ export class SupabaseTrustedRpcDatabase implements TrustedRpcDatabase {
     return rpc<AiClaimRow[]>(this.client, "claim_ai_generation", { p_teacher_id: input.teacherId, p_request_key: input.requestKey });
   }
 
+  resetDevelopmentGenerationQuota(input: { teacherId: string }) {
+    return rpc<boolean>(this.client, "reset_development_generation_quota", { p_teacher_id: input.teacherId });
+  }
+
   claimAiRegeneration(input: { teacherId: string; examId: string; slotId: string; requestKey: string; expectedRevision: number }) {
     return rpc<AiClaimRow[]>(this.client, "claim_ai_regeneration", { p_teacher_id: input.teacherId, p_exam_id: input.examId, p_slot_id: input.slotId, p_request_key: input.requestKey, p_expected_revision: input.expectedRevision });
   }

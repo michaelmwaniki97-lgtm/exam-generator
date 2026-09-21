@@ -40,6 +40,22 @@ import { getCurriculumReadRepository } from "@/lib/curriculum-read";
 
 export type GenerateExamState = { error: string; preserveRequest?: boolean } | undefined;
 
+/** Development-only preflight telemetry. Values are fixed reason codes, never request data. */
+function preGenerationDiagnostic(stage: string, reason: string) {
+  if (process.env.NODE_ENV !== "development") return;
+  console.info("[Exam Generation]", JSON.stringify({ event: "pre_generation_failed", stage, reason }));
+}
+
+function preGenerationFailure(
+  stage: string,
+  reason: string,
+  error: string,
+  preserveRequest?: boolean
+): Exclude<GenerateExamState, undefined> {
+  preGenerationDiagnostic(stage, reason);
+  return preserveRequest === undefined ? { error } : { error, preserveRequest };
+}
+
 function publicGenerationFailure(error: unknown): string {
   let current: unknown = error;
   let validationFailure = false;
@@ -157,18 +173,38 @@ function toBlueprintCurriculum(
 
 export async function generateExam(data: WizardData, requestId: string): Promise<GenerateExamState> {
   const validationError = validateBasicExamInput(data, APPLICATION_EXAM_LIMITS);
-  if (validationError) return { error: validationError };
+  if (validationError) return preGenerationFailure("request_validation", "basic_input_invalid", validationError);
 
-  const user = await getCurrentUser();
-  if (!user) return { error: "You must be signed in to generate an exam." };
+  let user;
+  try {
+    user = await getCurrentUser();
+  } catch {
+    return preGenerationFailure("authentication", "session_lookup_failed", "Your session could not be verified. Please try again.");
+  }
+  if (!user) return preGenerationFailure("authentication", "not_signed_in", "You must be signed in to generate an exam.");
 
-  const teacher = await (await getIdentityReadRepository()).getTeacherIdentity();
-  if (!teacher) return { error: "Only teachers can generate exams." };
+  let teacher;
+  try {
+    teacher = await (await getIdentityReadRepository()).getTeacherIdentity();
+  } catch {
+    return preGenerationFailure("authorization", "teacher_identity_lookup_failed", "Teacher access could not be verified. Please try again.");
+  }
+  if (!teacher) return preGenerationFailure("authorization", "teacher_identity_missing", "Only teachers can generate exams.");
 
-  const catalog = await getCatalogRepository();
-  const grade = await catalog.getGradeById(data.gradeId).catch(() => null);
+  let catalog;
+  try {
+    catalog = await getCatalogRepository();
+  } catch {
+    return preGenerationFailure("catalog", "catalog_repository_unavailable", "Exam setup data is temporarily unavailable. Please try again.");
+  }
+  let grade;
+  try {
+    grade = await catalog.getGradeById(data.gradeId);
+  } catch {
+    return preGenerationFailure("catalog", "grade_lookup_failed", "The selected Grade or Form could not be loaded. Please try again.");
+  }
   if (!grade) {
-    return { error: "The selected Grade or Form does not exist." };
+    return preGenerationFailure("catalog", "grade_not_found", "The selected Grade or Form does not exist.");
   }
   const educationSystem = inferEducationSystem(grade.name);
   if (
@@ -177,12 +213,17 @@ export async function generateExam(data: WizardData, requestId: string): Promise
     educationSystem !== data.educationSystem ||
     grade.level !== data.level
   ) {
-    return { error: "The selected education system, level, and Grade/Form do not match." };
+    return preGenerationFailure("catalog", "grade_context_mismatch", "The selected education system, level, and Grade/Form do not match.");
   }
 
-  const subject = await catalog.getSubjectById(data.subjectId).catch(() => null);
+  let subject;
+  try {
+    subject = await catalog.getSubjectById(data.subjectId);
+  } catch {
+    return preGenerationFailure("catalog", "subject_lookup_failed", "The selected subject could not be loaded. Please try again.");
+  }
   if (!subject) {
-    return { error: "The selected subject does not exist." };
+    return preGenerationFailure("catalog", "subject_not_found", "The selected subject does not exist.");
   }
 
   const context: AssessmentContext = {
@@ -206,11 +247,11 @@ export async function generateExam(data: WizardData, requestId: string): Promise
     allowedExamStructureIds: assessmentRules.allowedExamStructures,
     componentRule: assessmentRules.officialComponentRule,
   });
-  if (assessmentError) return { error: assessmentError };
+  if (assessmentError) return preGenerationFailure("assessment_validation", "assessment_selection_invalid", assessmentError);
 
   const assessmentType = getSchoolAssessmentType(data.examType);
   if (!assessmentType) {
-    return { error: "The selected assessment type is invalid." };
+    return preGenerationFailure("assessment_validation", "assessment_type_invalid", "The selected assessment type is invalid.");
   }
 
   const componentRule = assessmentRules.officialComponentRule;
@@ -241,23 +282,20 @@ export async function generateExam(data: WizardData, requestId: string): Promise
     assessmentProfile.ruleStatus === "OFFICIAL_VERIFIED" &&
     data.marks !== assessmentProfile.paper.totalMarks
   ) {
-    return {
-      error: `This verified ${assessmentProfile.paper.paperCode} practice profile requires exactly ${assessmentProfile.paper.totalMarks} marks and ${assessmentProfile.paper.durationMinutes} minutes.`,
-    };
+    return preGenerationFailure("assessment_profile", "verified_profile_marks_mismatch", `This verified ${assessmentProfile.paper.paperCode} practice profile requires exactly ${assessmentProfile.paper.totalMarks} marks and ${assessmentProfile.paper.durationMinutes} minutes.`);
   }
   if (component && data.duration !== assessmentProfile.paper.durationMinutes) {
-    return {
-      error: `The verified ${assessmentProfile.paper.paperCode} component duration is ${assessmentProfile.paper.durationMinutes} minutes and cannot be silently overridden.`,
-    };
+    return preGenerationFailure("assessment_profile", "verified_component_duration_mismatch", `The verified ${assessmentProfile.paper.paperCode} component duration is ${assessmentProfile.paper.durationMinutes} minutes and cannot be silently overridden.`);
   }
 
-  const topicRows = await (await getCurriculumReadRepository())
-    .getSelectionTopics(data.topicIds)
-    .catch(() => null);
+  let topicRows: TopicRow[] | null;
+  try {
+    topicRows = await (await getCurriculumReadRepository()).getSelectionTopics(data.topicIds) as TopicRow[];
+  } catch {
+    return preGenerationFailure("curriculum_lookup", "selected_topics_lookup_failed", "Could not load every selected curriculum record. Please review the selection.");
+  }
   if (!topicRows || topicRows.length !== data.topicIds.length) {
-    return {
-      error: "Could not load every selected curriculum record. Please review the selection.",
-    };
+    return preGenerationFailure("curriculum_lookup", "selected_topics_incomplete", "Could not load every selected curriculum record. Please review the selection.");
   }
 
   const rows = topicRows as TopicRow[];
@@ -268,11 +306,11 @@ export async function generateExam(data: WizardData, requestId: string): Promise
     selectedIds: data.topicIds,
     rows: selectionRows,
   });
-  if (curriculumError) return { error: curriculumError };
+  if (curriculumError) return preGenerationFailure("curriculum_validation", "curriculum_selection_invalid", curriculumError);
 
   const curriculumSelection = buildCurriculumSelectionSnapshot(selectionRows);
   if (curriculumSelection.length === 0) {
-    return { error: "Please select at least one active curriculum area." };
+    return preGenerationFailure("curriculum_validation", "curriculum_selection_empty", "Please select at least one active curriculum area.");
   }
 
   let blueprint;
@@ -299,30 +337,25 @@ export async function generateExam(data: WizardData, requestId: string): Promise
       curriculum: toBlueprintCurriculum(rows, educationSystem),
     });
   } catch (error) {
-    return {
-      error:
-        error instanceof BlueprintBuildError
-          ? error.message
-          : "Could not build a valid exam plan. Please review the configuration.",
-    };
+    return preGenerationFailure("blueprint", error instanceof BlueprintBuildError ? "blueprint_build_invalid" : "blueprint_build_failed", error instanceof BlueprintBuildError ? error.message : "Could not build a valid exam plan. Please review the configuration.");
   }
 
   try {
     assertGenerationProviderBudget(blueprint);
   } catch (error) {
-    return { error: error instanceof AiAbuseControlError ? error.message : "This exam exceeds the supported generation budget." };
+    return preGenerationFailure("generation_budget", error instanceof AiAbuseControlError ? "provider_budget_exceeded" : "provider_budget_validation_failed", error instanceof AiAbuseControlError ? error.message : "This exam exceeds the supported generation budget.");
   }
 
   let claim;
   try {
     claim = acquiredOrThrow(await claimFullGeneration(teacher.id, requestId), "generation");
   } catch (error) {
-    return {
-      error: error instanceof AiAbuseControlError ? error.message : "Generation controls are temporarily unavailable.",
-      preserveRequest: error instanceof AiAbuseControlError && (error.code === "BUSY" || error.code === "UNAVAILABLE"),
-    };
+    return preGenerationFailure("generation_claim", error instanceof AiAbuseControlError ? `claim_${error.code.toLowerCase()}` : "claim_unavailable", error instanceof AiAbuseControlError ? error.message : "Generation controls are temporarily unavailable.", error instanceof AiAbuseControlError && (error.code === "BUSY" || error.code === "UNAVAILABLE"));
   }
-  if (claim.outcome === "completed" && claim.operation === "generation") redirect(`/teacher/exams/${claim.examId}`);
+  if (claim.outcome === "completed" && claim.operation === "generation") {
+    if (process.env.NODE_ENV === "development") console.info("[Exam Generation]", JSON.stringify({ event: "pre_generation_completed_request", stage: "generation_claim", reason: "existing_completed_generation" }));
+    redirect(`/teacher/exams/${claim.examId}`);
+  }
   const reservationId = claim.reservationId;
   let reservationClosed = false;
 
@@ -347,7 +380,7 @@ export async function generateExam(data: WizardData, requestId: string): Promise
       textbookContext = grounding.context;
       textbookGrounding = grounding.provenance;
     } catch (error) {
-      return { error: error instanceof Error ? error.message : "Textbook grounding failed. Please try again." };
+      return preGenerationFailure("textbook_grounding", error instanceof Error ? "grounding_preparation_failed" : "grounding_preparation_unknown_failure", error instanceof Error ? error.message : "Textbook grounding failed. Please try again.");
     }
   }
 

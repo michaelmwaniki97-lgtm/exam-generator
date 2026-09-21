@@ -1,3 +1,4 @@
+import { validateQuestionVisual } from "../assessment/question-visual.ts";
 import type { ExamBlueprint } from "../blueprint/types.ts";
 import {
   describeViolations,
@@ -27,6 +28,7 @@ export type StoredExamContent = {
 export type StoredMarkingContent = { entries: MarkingSchemeEntry[] };
 export type EditableSlotInput = {
   slotId: string;
+  removeVisual?: boolean;
   questionText: string;
   options?: string[];
   answer: string;
@@ -67,6 +69,7 @@ export function storedContentForDisplayOrThrow(
       if (question.options !== undefined) {
         if (!safeStringArray(question.options, 4, EDITOR_LIMITS.optionText) || question.options.length < 1) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
       }
+      if (validateQuestionVisual(question.visual).length) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
       if (validateQuestionStimuli(question.stimuli, ["passage", "extract", "table", "dataset", "graph", "diagram"]).length) throw new ExamEditorError(INVALID_STORED_CONTENT_MESSAGE);
     }
   }
@@ -178,7 +181,16 @@ export function applyEditableChanges(
       } else if (input.options !== undefined) {
         throw new ExamEditorError(`Question ${question.number} does not accept options.`);
       }
-      const changed = text !== question.text || !sameStrings(options ?? [], question.options ?? []);
+      if (input.removeVisual !== undefined && typeof input.removeVisual !== "boolean") throw new ExamEditorError("Invalid visual removal request.");
+      if (input.removeVisual && question.visual?.required) {
+        const entry = marking.entries.find(e => e.slotId === question.slotId);
+        const markingRewritten = entry?.rubric
+          ? input.markingNotes !== entry.marking_notes || JSON.stringify(input.rubricDescriptors) !== JSON.stringify(entry.rubric.map(r => r.descriptor))
+          : input.answer !== (entry?.answer ?? entry?.numericalMethod?.finalAnswer ?? "");
+        if (text === question.text || !markingRewritten) throw new ExamEditorError(`Question ${question.number} requires its visual. Rewrite the question and answer or rubric to be self-contained before removing it.`);
+      }
+      const visualRemoved = !!input.removeVisual && !!question.visual;
+      const changed = visualRemoved || text !== question.text || !sameStrings(options ?? [], question.options ?? []);
       const editableStimuli = (question.stimuli ?? []).filter((stimulus) => stimulus.type === "passage" || stimulus.type === "extract");
       const stimulusEdits = input.stimulusTextEdits ?? [];
       if (stimulusEdits.length !== editableStimuli.length || stimulusEdits.some((edit, index) => edit.id !== editableStimuli[index].id)) throw new ExamEditorError(`Question ${question.number} stimulus structure cannot be changed.`);
@@ -187,7 +199,7 @@ export function applyEditableChanges(
       const stimulusChanged = JSON.stringify(stimuli ?? []) !== JSON.stringify(question.stimuli ?? []);
       if (!changed && !stimulusChanged) return question;
       changedQuestionSlots.add(question.slotId);
-      return { ...question, text, ...(options ? { options } : {}), ...(stimuli ? { stimuli } : {}) };
+      return { ...question, ...(visualRemoved ? { visual: undefined } : {}), text, ...(options ? { options } : {}), ...(stimuli ? { stimuli } : {}) };
     }),
   }));
 

@@ -83,10 +83,11 @@ export async function saveExamEdits(examId: string, expectedRevision: number, in
   }
 }
 
-export async function regenerateExamQuestion(examId: string, slotId: string, expectedRevision: number, requestId: string): Promise<ExamEditorActionResult> {
+export async function regenerateExamQuestion(examId: string, slotId: string, expectedRevision: number, requestId: string, mode: "question" | "visual" = "question"): Promise<ExamEditorActionResult> {
   let stage = "authentication";
   regenerationDiagnostic(slotId, stage, "started");
   try {
+    if (mode !== "question" && mode !== "visual") throw new ExamEditorError("Invalid regeneration mode.");
     if (!slotId || slotId.length > 200) throw new ExamEditorError("The requested question is invalid.");
     stage = "canonical_load";
     const { exam, marking, teacherId } = await loadCanonical(examId);
@@ -95,6 +96,7 @@ export async function regenerateExamQuestion(examId: string, slotId: string, exp
     stage = "target_contract";
     const slot = blueprint.questionSlots.find((item) => item.id === slotId);
     if (!slot) throw new ExamEditorError("The requested question does not belong to this exam.");
+    if (mode === "visual" && !exam.content.sections.flatMap(section => section.questions).find(question => question.slotId === slotId)?.visual) throw new ExamEditorError("This question has no visual to regenerate.");
     regenerationDiagnostic(slotId, stage, "ok");
     stage = "reservation";
     const reservationClaim = await claimQuestionRegeneration({ teacherId, examId, slotId, requestId, expectedRevision });
@@ -118,7 +120,7 @@ export async function regenerateExamQuestion(examId: string, slotId: string, exp
     }
     regenerationDiagnostic(slotId, stage, "ok");
     stage = "generation";
-    const regenerated = await regenerateQuestion({ exam: exam.content, marking, blueprint, slotId, subjectName: meta.subjectName ?? blueprint.subjectName, gradeName: meta.gradeName ?? blueprint.gradeName, examType: exam.exam_type, difficulty: exam.difficulty, textbookName, textbookContext });
+    const regenerated = await regenerateQuestion({ mode, exam: exam.content, marking, blueprint, slotId, subjectName: meta.subjectName ?? blueprint.subjectName, gradeName: meta.gradeName ?? blueprint.gradeName, examType: exam.exam_type, difficulty: exam.difficulty, textbookName, textbookContext });
     regenerationDiagnostic(slotId, stage, "ok");
     const nextExam = provenance ? { ...regenerated.exam, meta: { ...regenerated.exam.meta, questionGrounding: { ...(meta.questionGrounding ?? {}), [slotId]: provenance } } } : regenerated.exam;
     stage = "rpc_call";

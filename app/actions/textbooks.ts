@@ -33,6 +33,9 @@ function safeNote(value: FormDataEntryValue | null): string | null {
 type ProcessingStage = "storage_download" | "pdf_extraction" | "chunking" | "embedding" | "chunk_insert" | "finalize";
 function diagnosticError(error: unknown): string { const message = error instanceof Error ? `${error.name}: ${error.message}` : "Unknown non-Error failure"; return message.replace(/Bearer\s+\S+/gi, "Bearer [redacted]").replace(/https?:\/\/\S+/gi, "[url redacted]").replace(/\s+/g, " ").slice(0, 500); }
 function processingFailureMessage(stage: ProcessingStage, error: unknown): string { if (stage === "storage_download") return "The private PDF could not be read."; if (stage === "pdf_extraction") return error instanceof Error && error.message.startsWith("The PDF") ? error.message : "PDF text extraction failed."; if (stage === "chunking") return error instanceof Error && error.message.startsWith("No usable") ? error.message : "Textbook chunking failed."; if (stage === "embedding") return "Embedding generation failed."; if (stage === "chunk_insert") return "Textbook indexing failed."; return "Could not finalize textbook processing."; }
+function ingestionTrace(event: string, documentId: string, details: Record<string, unknown> = {}) {
+  console.info("[Textbook Ingestion]", JSON.stringify({ event, documentId, ...details }));
+}
 export async function createTextbookRecord(_state: TextbookActionState, formData: FormData): Promise<TextbookActionState> {
   const context = await adminContext();
   if (!context) return result("error", "Administrator access is required.");
@@ -109,29 +112,39 @@ export async function processTextbookDocument(_state: TextbookActionState, formD
   if (!document) return result("error", "Textbook document not found.");
   if (document.processing_status === "processing") return result("error", "This document is already processing.");
   await repository.markProcessing(documentId, new Date().toISOString()).catch(() => undefined);
+  ingestionTrace("ingestion:start", document.id, { previousStatus: document.processing_status });
   let stage: ProcessingStage = "storage_download";
   try {
     const bytes = await getTextbookStorageProvider().get(document.storage_path);
+    ingestionTrace("storage:read", document.id, { bytes: bytes.byteLength });
     stage = "pdf_extraction";
     const extracted = await extractPdfText(bytes);
+    ingestionTrace("pdf:parsed", document.id, { pages: extracted.pageCount, characters: extracted.characterCount });
     stage = "chunking";
     const chunks = chunkTextbookPages(extracted.pages);
     if (!chunks.length) throw new Error("No usable textbook chunks could be extracted.");
+    ingestionTrace("chunks:drafted", document.id, { count: chunks.length });
     const rows: TextbookChunkInsert[] = [];
     stage = "embedding";
     for (let offset = 0; offset < chunks.length; offset += EMBEDDING_BATCH_SIZE) {
       const batch = chunks.slice(offset, offset + EMBEDDING_BATCH_SIZE);
+      ingestionTrace("embedding:start", document.id, { offset, inputCount: batch.length });
       const embeddings = await embedTexts(batch.map((chunk) => chunk.text), "passage");
+      ingestionTrace("embedding:complete", document.id, { offset, outputCount: embeddings.length, dimensions: [...new Set(embeddings.map((embedding) => embedding.length))] });
       batch.forEach((chunk, index) => rows.push({ document_id: document.id, textbook_id: document.textbook_id, chunk_index: chunk.chunkIndex, page_start: chunk.pageStart, page_end: chunk.pageEnd, text: chunk.text, character_count: chunk.characterCount, metadata: { pageStart: chunk.pageStart, pageEnd: chunk.pageEnd }, embedding: `[${embeddings[index].join(",")}]` }));
     }
     stage = "chunk_insert";
+    ingestionTrace("db:chunks-start", document.id, { rowCount: rows.length });
     const processedAt = new Date().toISOString();
     await repository.replaceChunksAndMarkReady(document.id, rows, { page_count: extracted.pageCount, extracted_character_count: extracted.characterCount, chunk_count: chunks.length, embedding_model: EMBEDDING_MODEL, embedding_dimension: EMBEDDING_DIMENSION, processed_at: processedAt, updated_at: processedAt });
+    ingestionTrace("db:chunks-complete", document.id, { rowCount: rows.length });
+    ingestionTrace("document:ready", document.id, { pages: extracted.pageCount, chunks: chunks.length });
     revalidatePath("/admin/textbooks");
     return result("success", `Textbook ready: ${extracted.pageCount} pages and ${chunks.length} chunks indexed.`);
   } catch (error) {
     if (error instanceof Error && error.message === "Could not finalize textbook processing.") stage = "finalize";
     const safeError = processingFailureMessage(stage, error);
+    ingestionTrace("ingestion:failed", document.id, { stage });
     if (process.env.NODE_ENV === "development") {
       console.error(`[Textbook Processing] stage=${stage} document=${document.id} error=${diagnosticError(error)}`);
     }

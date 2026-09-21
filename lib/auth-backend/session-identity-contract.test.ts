@@ -73,6 +73,6 @@ test("credential, recovery, and proxy authentication use the backend boundary", 
   assert.match(proxyAdapter, /updateSupabaseSession\(request\)/);
   assert.match(proxyAdapter, /getBetterAuthAuthenticatedUserFromHeaders\(request\.headers\)/);
   assert.match(session, /getCurrentUser = getCurrentAuthUser/);
-  assert.match(generation, /const user = await getCurrentUser\(\)/);
+  assert.match(generation, /user = await getCurrentUser\(\)/);
   assert.doesNotMatch(generation, /supabase\.auth\.getUser\(\)/);
 });

@@ -38,6 +38,7 @@ export interface TrustedRpcDatabase {
   matchTextbookChunks(input: { textbookId: string; queryEmbedding: number[]; limit: number; documentId?: string }): Promise<TextbookChunkRow[]>;
   updateExamAndSchemeAtomic(input: { examId: string; teacherId: string; expectedRevision: number; examContent: unknown; markingContent: unknown }): Promise<number>;
   claimAiGeneration(input: { teacherId: string; requestKey: string }): Promise<AiClaimRow[]>;
+  resetDevelopmentGenerationQuota(input: { teacherId: string }): Promise<boolean>;
   claimAiRegeneration(input: { teacherId: string; examId: string; slotId: string; requestKey: string; expectedRevision: number }): Promise<AiClaimRow[]>;
   persistGeneratedExam(input: { teacherId: string; reservationId: string; requestKey: string; subjectId: string; gradeId: string; examType: string; marks: number; duration: number; difficulty: string; term: string; year: number; examContent: unknown; markingContent: unknown }): Promise<string>;
   persistRegeneratedExam(input: { teacherId: string; reservationId: string; requestKey: string; examId: string; slotId: string; expectedRevision: number; examContent: unknown; markingContent: unknown }): Promise<number>;

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import nextConfig from "../../next.config.ts";
 import { chunkTextbookPages } from "./chunking.ts";
-import { extractPdfTextCore } from "./pdf-core.ts";
+import { extractPdfTextCore, extractPdfTextWithLoader } from "./pdf-core.ts";
 import { hasPdfSignature, safePdfFilename, validateUploadMetadata } from "./validation.ts";
 import { MAX_PDF_BYTES } from "./constants.ts";
 
@@ -39,4 +39,21 @@ test("text PDF extraction preserves page order and content", async () => {
 });
 test("empty or scanned-like PDF fails instead of becoming ready", async () => {
   await assert.rejects(() => extractPdfTextCore(textPdf("image only")), /too little extractable text/);
+});
+test("PDF loading resources are destroyed after successful and failed extraction", async () => {
+  const destroyed: string[] = [];
+  const loader = (label: string, text: string) => () => ({
+    promise: Promise.resolve({
+      numPages: 1,
+      getPage: async () => ({ getTextContent: async () => ({ items: [{ str: text }] }) }),
+    }),
+    destroy: async () => { destroyed.push(label); },
+  });
+  const extracted = await extractPdfTextWithLoader(new Uint8Array([1]), loader("success", "Resource-safe textbook content. ".repeat(5)));
+  assert.equal(extracted.pageCount, 1);
+  await assert.rejects(
+    () => extractPdfTextWithLoader(new Uint8Array([1]), loader("failure", "too short")),
+    /too little extractable text/,
+  );
+  assert.deepEqual(destroyed, ["success", "failure"]);
 });

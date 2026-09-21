@@ -8,7 +8,7 @@ export function ExamDocumentView({ document }: { document: ExamDocument }) {
   return <article className="exam-paper mx-auto bg-white text-black" aria-label="Exam paper preview">
     <header className="exam-header">
       {document.school && <p className="school-name">{document.school}</p>}
-      <p className="practice-notice">{document.authorityNotice}</p>
+      <p className="practice-notice">{document.authorityNotice ?? "Teacher-generated assessment — not an official KNEC examination."}</p>
       <h1>{document.subject}</h1>
       <h2>{document.title}</h2>
       <div className="paper-meta">
@@ -29,7 +29,7 @@ export function ExamDocumentView({ document }: { document: ExamDocument }) {
         {!!section.instructions.length && <ul className="section-instructions">{section.instructions.map((instruction, index) => <li key={index}>{instruction}</li>)}</ul>}
         <div className="questions">{section.questions.map((question) => <article key={question.slotId || `${section.id}-${question.number}`} className="exam-question">
           <div className="question-row"><span className="question-number">{question.number}.</span><div className="question-body"><p>{question.text}</p>{question.options?.map((option, index) => <p key={index} className="option"><span>{String.fromCharCode(65 + index)}.</span>{option}</p>)}</div><span className="question-marks">[{question.marks} mark{question.marks === 1 ? "" : "s"}]</span></div>
-          <RichStimuli stimuli={question.stimuli}/>
+          <RichStimuli stimuli={question.stimuli} visual={question.visual}/>
         </article>)}</div>
       </section>)}
     </div>

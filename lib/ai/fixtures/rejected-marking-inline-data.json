@@ -1,0 +1,32 @@
+{
+  "createdAt": "2026-09-21T16:08:51.723Z",
+  "entryIndex": 3,
+  "slotId": "slot-01-03",
+  "retryNumber": 0,
+  "startedAt": 1790006928003,
+  "marking": {
+    "marking_notes": "Award marks for correct summation of data, correct division by number of days, and correct final value with units. No marks for answer alone without working. Accept 18 pawpaws or 18 as final answer.",
+    "numericalMethod": {
+      "finalAnswer": "18 pawpaws per day",
+      "methodSteps": [
+        {
+          "step": "Add all the recorded values: 14 + 19 + 11 + 22 + 24 = 90",
+          "marks": 2
+        },
+        {
+          "step": "Divide the total by the number of days (5): 90 ÷ 5",
+          "marks": 1
+        }
+      ],
+      "accuracyMarks": 1,
+      "units": "pawpaws per day"
+    }
+  },
+  "error": "marking entry slot-01-03 has generic marking notes instead of concrete awardable guidance; marking entry slot-01-03 references a resource that is not validly attached to the same question",
+  "reason": "marking_visual_reference_mismatch",
+  "question": {
+    "text": "A fruit vendor at Kongowea Market recorded the number of pawpaws sold each day for five days as follows: 14, 19, 11, 22, 24. Calculate the mean number of pawpaws sold per day. Show all your working clearly. (4 marks)",
+    "marks": 4,
+    "stimulusTypes": []
+  }
+}

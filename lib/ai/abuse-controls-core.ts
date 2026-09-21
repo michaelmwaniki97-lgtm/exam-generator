@@ -10,7 +10,7 @@ export const AI_ABUSE_LIMITS = {
   regenerationBudgetMs: AI_OPERATION_TIMING.regenerationBudgetMs,
   questionBatchSize: 2,
   questionAttemptsPerBatch: 2,
-  markingAttemptsPerSlot: 5,
+  markingAttemptsPerSlot: 2,
   regenerationAttempts: 2,
   // Every supported blueprint has positive integer slot marks whose sum is
   // bounded by the existing 300-mark application/blueprint limit.
@@ -22,6 +22,13 @@ export const MAX_GENERATION_PROVIDER_CALLS =
     AI_ABUSE_LIMITS.maximumQuestionSlots / AI_ABUSE_LIMITS.questionBatchSize
   ) * AI_ABUSE_LIMITS.questionAttemptsPerBatch +
   AI_ABUSE_LIMITS.maximumQuestionSlots * AI_ABUSE_LIMITS.markingAttemptsPerSlot;
+
+/** This is intentionally opt-in and cannot be enabled in production. */
+export function developmentGenerationQuotaBypassEnabled(
+  environment: { NODE_ENV?: string; AI_DEVELOPMENT_BYPASS_GENERATION_QUOTA?: string } = process.env
+): boolean {
+  return environment.NODE_ENV !== "production" && environment.AI_DEVELOPMENT_BYPASS_GENERATION_QUOTA === "true";
+}
 
 export type AiReservationClaim =
   | { outcome: "acquired"; reservationId: string }

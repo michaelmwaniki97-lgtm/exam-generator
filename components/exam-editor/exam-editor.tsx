@@ -38,11 +38,11 @@ export function ExamEditor({ examId, initialRevision, exam, marking }: { examId:
     });
   }
 
-  function regenerate(slotId: string) {
+  function regenerate(slotId: string, mode: "question" | "visual" = "question") {
     if (dirty) return setMessage({ kind: "error", text: "Save or refresh your current edits before regenerating a question." });
     setMessage(null); setActiveSlot(slotId);
     startTransition(async () => {
-      const result = await regenerateExamQuestion(examId, slotId, revision, crypto.randomUUID());
+      const result = await regenerateExamQuestion(examId, slotId, revision, crypto.randomUUID(), mode);
       setActiveSlot(null);
       if (!result.ok) return setMessage({ kind: "error", text: result.error });
       setRevision(result.revision); setMessage({ kind: "success", text: "The question and its matching marking entry were regenerated." }); router.refresh();
@@ -60,7 +60,12 @@ export function ExamEditor({ examId, initialRevision, exam, marking }: { examId:
         </div>
         <div className="mt-4 grid gap-4">
           <label className="text-sm font-semibold">Question text<textarea value={input.questionText} maxLength={8000} onChange={(event) => update(question.slotId, { questionText: event.target.value })} className="mt-1 min-h-28 w-full rounded-lg border border-border bg-background p-3 font-normal" /></label>
-          <RichStimuli stimuli={question.stimuli} />
+          <RichStimuli stimuli={question.stimuli} visual={input.removeVisual ? undefined : question.visual} />
+          {question.visual && <div className="flex flex-wrap items-center gap-3 text-sm">
+            <button type="button" disabled={pending || dirty} onClick={() => regenerate(question.slotId, "visual")} className="rounded border border-border px-3 py-2 disabled:opacity-50">Regenerate visual and matching answer</button>
+            <button type="button" disabled={pending} onClick={() => update(question.slotId, { removeVisual: !input.removeVisual })} className="rounded border border-border px-3 py-2">{input.removeVisual ? "Restore visual" : "Remove visual"}</button>
+            {input.removeVisual && <p role="status">Update the question and marking scheme to include any needed information before saving. Required visuals need a rewritten question and answer or rubric.</p>}
+          </div>}
           {input.options && <div className="grid gap-2"><p className="text-sm font-semibold">Options</p>{input.options.map((option, index) => <label key={index} className="flex items-center gap-2 text-sm"><span className="w-5 font-semibold">{String.fromCharCode(65 + index)}.</span><input value={option} maxLength={1000} onChange={(event) => { const options = [...input.options!]; options[index] = event.target.value; update(question.slotId, { options }); }} className="w-full rounded-lg border border-border bg-background px-3 py-2" /></label>)}</div>}
           {(input.stimulusTextEdits ?? []).map((stimulus, index) => <label key={stimulus.id} className="text-sm font-semibold">Passage / extract content<textarea value={stimulus.content} maxLength={5000} onChange={(event) => { const stimulusTextEdits = [...(input.stimulusTextEdits ?? [])]; stimulusTextEdits[index] = { ...stimulus, content: event.target.value }; update(question.slotId, { stimulusTextEdits }); }} className="mt-1 min-h-36 w-full rounded-lg border border-border bg-background p-3 font-normal" /></label>)}
           {!entry.rubric && <label className="text-sm font-semibold">{entry.markingModel === "numerical_method" ? "Expected final answer" : "Model answer"}<textarea value={input.answer} maxLength={12000} onChange={(event) => update(question.slotId, { answer: event.target.value })} className="mt-1 min-h-24 w-full rounded-lg border border-border bg-background p-3 font-normal" /></label>}

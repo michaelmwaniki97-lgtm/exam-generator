@@ -4,6 +4,7 @@ import { UUID_PATTERN } from "../admin/validation";
 import { getTrustedRpcDatabase } from "../db";
 import {
   AiAbuseControlError,
+  developmentGenerationQuotaBypassEnabled,
   reservationError,
   type AiReservationClaim,
 } from "./abuse-controls-core";
@@ -42,7 +43,14 @@ function parseClaim(data: unknown, operation: "generation" | "regeneration"): Ai
 
 export async function claimFullGeneration(teacherId: string, requestId: string): Promise<AiReservationClaim> {
   try {
-    return parseClaim(await getTrustedRpcDatabase().claimAiGeneration({ teacherId, requestKey: requestKey(requestId) }), "generation");
+    const database = getTrustedRpcDatabase();
+    const key = requestKey(requestId);
+    const claim = parseClaim(await database.claimAiGeneration({ teacherId, requestKey: key }), "generation");
+    if (claim.outcome === "quota_exceeded" && developmentGenerationQuotaBypassEnabled()) {
+      await database.resetDevelopmentGenerationQuota({ teacherId });
+      return parseClaim(await database.claimAiGeneration({ teacherId, requestKey: key }), "generation");
+    }
+    return claim;
   } catch {
     throw new AiAbuseControlError("UNAVAILABLE", "Generation controls are temporarily unavailable.");
   }

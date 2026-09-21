@@ -288,3 +288,30 @@ test("malformed stored rubric fails safely and cannot be saved back", () => {
   assert.throws(() => storedContentForDisplayOrThrow(value.exam, value.marking), new RegExp(INVALID_STORED_CONTENT_MESSAGE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   assert.throws(() => applyEditableChanges(value.exam, value.marking, inputs(value)), /unsupported or invalid stored content/);
 });
+
+
+test("visuals survive save and reload; required removal demands self-contained question and answer", () => {
+  const value = stored();
+  value.exam.sections[0].questions[1].visual = { type: "table", required: true, specification: { columns: ["Material"], rows: [["Sand"]] } };
+  const editable = inputs(value);
+  assert.deepEqual(applyEditableChanges(value.exam, value.marking, editable).exam.sections[0].questions[1].visual, value.exam.sections[0].questions[1].visual);
+  const removal = editable.map((e,i) => ({ ...e, removeVisual: i === 1 }));
+  assert.throws(() => applyEditableChanges(value.exam, value.marking, removal), /requires its visual/);
+  removal[1].questionText = "State two benefits of purifying water.";
+  removal[1].answer = "Purifying water removes harmful impurities and makes it suitable for drinking.";
+  const result = applyEditableChanges(value.exam, value.marking, removal);
+  assert.equal(result.exam.sections[0].questions[1].visual, undefined);
+  assert.deepEqual(result.exam.sections[0].questions[0], value.exam.sections[0].questions[0]);
+  assert.doesNotThrow(() => storedContentForDisplayOrThrow(JSON.parse(JSON.stringify(result.exam)), result.marking));
+});
+
+test("visual regeneration supplies the existing visual and preserves unrelated slots", async () => {
+  const value = stored();
+  value.exam.sections[0].questions[1].visual = { type: "table", required: true, specification: { columns: ["Material"], rows: [["Sand"]] } };
+  const result = await regenerateSlotWithCompletion({ ...value, blueprint: blueprint(), slotId: "slot-02", subjectName: "Science", gradeName: "Grade 5", examType: "Test", difficulty: "medium", mode: "visual" }, async messages => {
+    assert.match(messages[1].content, /CURRENT_QUESTION=.*Sand/);
+    return JSON.stringify({ question: value.exam.sections[0].questions[1], marking_entry: value.marking.entries[1] });
+  });
+  assert.deepEqual(result.exam.sections[0].questions[0], value.exam.sections[0].questions[0]);
+  assert.deepEqual(result.marking.entries[0], value.marking.entries[0]);
+});

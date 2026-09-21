@@ -7,12 +7,17 @@ import {
   AiAbuseControlError,
   MAX_GENERATION_PROVIDER_CALLS,
   assertGenerationProviderBudget,
+  developmentGenerationQuotaBypassEnabled,
   regenerationRequestTimeoutMs,
 } from "./abuse-controls-core.ts";
 import { AI_OPERATION_TIMING, REGENERATION_LEASE_SECONDS } from "./timing.ts";
 
 const migration = readFileSync(
   new URL("../../supabase/migrations/20260825120000_add_ai_operation_reservations.sql", import.meta.url),
+  "utf8"
+);
+const quotaMigration = readFileSync(
+  new URL("../../supabase/migrations/20260921150000_add_development_generation_quota_bypass.sql", import.meta.url),
   "utf8"
 );
 const examAction = readFileSync(new URL("../../app/actions/exams.ts", import.meta.url), "utf8");
@@ -37,6 +42,15 @@ test("full generation claim is atomic, exclusive, quota-bound and stale-recovera
   assert.match(migration, /return query select 'busy'/);
   assert.match(migration, />= 10[\s\S]*?'quota_exceeded'/);
   assert.match(migration, /values \(p_teacher_id, 'generation',[\s\S]*?'active'/);
+});
+
+test("development quota bypass is explicit and production cannot enable it", () => {
+  assert.equal(developmentGenerationQuotaBypassEnabled({ NODE_ENV: "development", AI_DEVELOPMENT_BYPASS_GENERATION_QUOTA: "true" }), true);
+  assert.equal(developmentGenerationQuotaBypassEnabled({ NODE_ENV: "production", AI_DEVELOPMENT_BYPASS_GENERATION_QUOTA: "true" }), false);
+  assert.equal(developmentGenerationQuotaBypassEnabled({ NODE_ENV: "development" }), false);
+  assert.match(quotaMigration, /status in \('active', 'completed'\)/);
+  assert.match(quotaMigration, /reset_development_generation_quota/);
+  assert.match(quotaMigration, /revoke all on function public\.reset_development_generation_quota\(uuid\) from public, anon, authenticated/);
 });
 
 test("reservation rows enforce operation-specific target shape", () => {

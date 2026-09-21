@@ -1,3 +1,4 @@
+import { completeAnthropic } from "../ai/anthropic";
 import "server-only";
 import { aiClient } from "@/lib/ai/client";
 import { AI_CONFIG } from "@/lib/ai/config";
@@ -18,6 +19,7 @@ export async function regenerateQuestion(params: RegenerationParams) {
     const signal = AbortSignal.timeout(timeoutMs);
     let completion;
     try {
+      if (AI_CONFIG.provider === "anthropic") return await completeAnthropic({ apiKey: AI_CONFIG.apiKey!, model: AI_CONFIG.model, messages, signal });
       completion = await aiClient.chat.completions.create({ model: AI_CONFIG.model, temperature: 0.3, max_tokens: 4096, messages }, { signal });
     } catch (error) {
       if (signal.aborted) throw new RegenerationDeadlineError();

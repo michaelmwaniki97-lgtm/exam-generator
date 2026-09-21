@@ -1,0 +1,547 @@
+drop policy if exists curriculum_source_exceptions_admin_select
+  on public.curriculum_source_exceptions;
+create policy curriculum_source_exceptions_admin_select
+  on public.curriculum_source_exceptions for select
+  to authenticated
+  using (public.is_admin());
+
+grant select, insert, update, delete on public.strand_objectives to authenticated;
+grant select on public.curriculum_imports to authenticated;
+grant select on public.curriculum_import_legacy_records to authenticated;
+grant select on public.curriculum_source_exceptions to authenticated;
+grant all on public.strand_objectives, public.curriculum_imports, public.curriculum_import_legacy_records, public.curriculum_source_exceptions to service_role;
+
+create or replace function public.import_verified_curriculum(p_payload jsonb)
+returns jsonb
+language plpgsql
+security definer
+set search_path = public, pg_temp
+as $$
+declare
+  v_import_id uuid;
+  v_existing_summary jsonb;
+  v_dataset_hash text := p_payload ->> 'dataset_hash';
+  v_dataset_version text := p_payload ->> 'dataset_version';
+  v_expected jsonb := p_payload -> 'expected_counts';
+  v_preconditions jsonb := p_payload -> 'preconditions';
+  v_legacy_strands integer;
+  v_legacy_sub_strands integer;
+  v_legacy_outcomes integer;
+  v_historical_topic_references integer;
+  v_summary jsonb;
+begin
+  if auth.role() <> 'service_role' then
+    raise exception 'service_role is required for verified curriculum import'
+      using errcode = '42501';
+  end if;
+
+  if coalesce((p_payload ->> 'schema_version')::integer, 0) <> 1 then
+    raise exception 'Unsupported curriculum import payload schema version';
+  end if;
+  if v_dataset_hash is null or v_dataset_hash !~ '^[0-9a-f]{64}$' then
+    raise exception 'A valid SHA-256 dataset hash is required';
+  end if;
+  if nullif(v_dataset_version, '') is null then
+    raise exception 'A dataset version is required';
+  end if;
+
+  select summary
+  into v_existing_summary
+  from public.curriculum_imports
+  where dataset_hash = v_dataset_hash
+    and status = 'complete';
+
+  if found then
+    return v_existing_summary || jsonb_build_object('repeat_run', true);
+  end if;
+
+  if (select count(*) from public.subjects) <> (v_preconditions ->> 'subjects')::bigint
+    or (select count(*) from public.grades) <> (v_preconditions ->> 'grades')::bigint
+    or (select count(*) from public.strands) <> (v_preconditions ->> 'strands')::bigint
+    or (select count(*) from public.sub_strands) <> (v_preconditions ->> 'sub_strands')::bigint
+    or (select count(*) from public.learning_outcomes) <> (v_preconditions ->> 'learning_outcomes')::bigint
+    or (select count(*) from public.textbooks) <> (v_preconditions ->> 'textbooks')::bigint
+    or (select count(*) from public.exams) <> (v_preconditions ->> 'exams')::bigint
+    or (select count(*) from public.marking_schemes) <> (v_preconditions ->> 'marking_schemes')::bigint
+  then
+    raise exception 'Live database changed after preflight; regenerate the import plan';
+  end if;
+
+  create temp table tmp_curriculum_subjects (
+    id uuid primary key,
+    name text not null
+  ) on commit drop;
+  create temp table tmp_curriculum_grades (
+    id uuid primary key,
+    name text not null
+  ) on commit drop;
+  create temp table tmp_curriculum_contexts (
+    id uuid primary key,
+    grade_id uuid not null,
+    subject_id uuid not null,
+    education_system text not null,
+    verification_status text not null,
+    outcome_status text not null,
+    source_ref text not null
+  ) on commit drop;
+  create temp table tmp_curriculum_strands (
+    id uuid primary key,
+    context_id uuid not null,
+    grade_id uuid not null,
+    subject_id uuid not null,
+    name text not null,
+    sort_order integer not null,
+    source_code text,
+    verification_status text not null,
+    outcome_status text not null,
+    source_ref text not null,
+    source_metadata jsonb not null
+  ) on commit drop;
+  create temp table tmp_curriculum_sub_strands (
+    id uuid primary key,
+    strand_id uuid not null,
+    name text not null,
+    sort_order integer not null,
+    source_code text,
+    verification_status text not null,
+    outcome_status text not null,
+    source_ref text not null,
+    source_metadata jsonb not null
+  ) on commit drop;
+  create temp table tmp_curriculum_strand_objectives (
+    id uuid primary key,
+    strand_id uuid not null,
+    description text not null,
+    label text,
+    sort_order integer not null,
+    verification_status text not null,
+    source_ref text not null,
+    source_metadata jsonb not null
+  ) on commit drop;
+  create temp table tmp_curriculum_source_exceptions (
+    id uuid primary key,
+    grade_id uuid not null,
+    subject_id uuid not null,
+    status text not null,
+    details jsonb not null
+  ) on commit drop;
+
+  insert into tmp_curriculum_subjects
+  select * from jsonb_to_recordset(coalesce(p_payload -> 'subjects', '[]'::jsonb))
+    as row(id uuid, name text);
+  insert into tmp_curriculum_grades
+  select * from jsonb_to_recordset(coalesce(p_payload -> 'grades', '[]'::jsonb))
+    as row(id uuid, name text);
+  insert into tmp_curriculum_contexts
+  select * from jsonb_to_recordset(coalesce(p_payload -> 'contexts', '[]'::jsonb))
+    as row(
+      id uuid,
+      grade_id uuid,
+      subject_id uuid,
+      education_system text,
+      verification_status text,
+      outcome_status text,
+      source_ref text
+    );
+  insert into tmp_curriculum_strands
+  select * from jsonb_to_recordset(coalesce(p_payload -> 'strands', '[]'::jsonb))
+    as row(
+      id uuid,
+      context_id uuid,
+      grade_id uuid,
+      subject_id uuid,
+      name text,
+      sort_order integer,
+      source_code text,
+      verification_status text,
+      outcome_status text,
+      source_ref text,
+      source_metadata jsonb
+    );
+  insert into tmp_curriculum_sub_strands
+  select * from jsonb_to_recordset(coalesce(p_payload -> 'sub_strands', '[]'::jsonb))
+    as row(
+      id uuid,
+      strand_id uuid,
+      name text,
+      sort_order integer,
+      source_code text,
+      verification_status text,
+      outcome_status text,
+      source_ref text,
+      source_metadata jsonb
+    );
+  insert into tmp_curriculum_strand_objectives
+  select * from jsonb_to_recordset(coalesce(p_payload -> 'strand_objectives', '[]'::jsonb))
+    as row(
+      id uuid,
+      strand_id uuid,
+      description text,
+      label text,
+      sort_order integer,
+      verification_status text,
+      source_ref text,
+      source_metadata jsonb
+    );
+  insert into tmp_curriculum_source_exceptions
+  select * from jsonb_to_recordset(coalesce(p_payload -> 'source_exceptions', '[]'::jsonb))
+    as row(id uuid, grade_id uuid, subject_id uuid, status text, details jsonb);
+
+  if (select count(*) from tmp_curriculum_contexts) <> (v_expected ->> 'official_contexts')::integer
+    or (select count(*) from tmp_curriculum_strands) <> (v_expected ->> 'strands_and_topics')::integer
+    or (select count(*) from tmp_curriculum_sub_strands) <> (v_expected ->> 'sub_strands_and_sub_topics')::integer
+    or (select count(*) from tmp_curriculum_strand_objectives) <> (v_expected ->> 'strand_objectives')::integer
+    or (select count(*) from tmp_curriculum_source_exceptions) <> (v_expected ->> 'source_exceptions')::integer
+  then
+    raise exception 'Payload row counts do not match expected counts';
+  end if;
+
+  if (select count(*) from tmp_curriculum_contexts where education_system = 'CBC') <> 117
+    or (select count(*) from tmp_curriculum_contexts where education_system = '8-4-4') <> 24
+    or (
+      select count(*)
+      from tmp_curriculum_strands s
+      join tmp_curriculum_contexts c on c.id = s.context_id
+      where c.education_system = '8-4-4'
+    ) <> 191
+    or (
+      select count(*)
+      from tmp_curriculum_sub_strands ss
+      join tmp_curriculum_strands s on s.id = ss.strand_id
+      join tmp_curriculum_contexts c on c.id = s.context_id
+      where c.education_system = '8-4-4'
+    ) <> 1101
+    or (select count(*) from tmp_curriculum_strand_objectives) <> 1287
+    or (select count(*) from tmp_curriculum_source_exceptions) <> 4
+  then
+    raise exception 'Payload does not match the locked verified curriculum milestone totals';
+  end if;
+
+  if exists (
+    select 1
+    from tmp_curriculum_contexts
+    group by grade_id, subject_id
+    having count(*) > 1
+  ) or exists (
+    select 1
+    from tmp_curriculum_strands
+    group by grade_id, subject_id, sort_order
+    having count(*) > 1
+  ) or exists (
+    select 1
+    from tmp_curriculum_sub_strands
+    group by strand_id, sort_order
+    having count(*) > 1
+  ) or exists (
+    select 1
+    from tmp_curriculum_strand_objectives
+    group by strand_id, lower(description)
+    having count(*) > 1
+  ) then
+    raise exception 'Payload contains a duplicate parent-context key';
+  end if;
+
+  if exists (
+    select 1
+    from tmp_curriculum_grades incoming
+    left join public.grades live on live.id = incoming.id
+    where live.id is null or live.name <> incoming.name
+  ) then
+    raise exception 'Required grade/class IDs and exact names do not match the live database';
+  end if;
+
+  if exists (
+    select 1
+    from tmp_curriculum_subjects incoming
+    join public.subjects live on lower(live.name) = lower(incoming.name)
+    where live.id <> incoming.id
+  ) or exists (
+    select 1
+    from tmp_curriculum_subjects incoming
+    join public.subjects live on live.id = incoming.id
+    where lower(live.name) <> lower(incoming.name)
+  ) then
+    raise exception 'Subject name or deterministic ID collision detected';
+  end if;
+
+  if exists (
+    select 1
+    from tmp_curriculum_strands incoming
+    join public.strands live on live.id = incoming.id
+    where live.grade_id <> incoming.grade_id
+      or live.subject_id <> incoming.subject_id
+      or live.name <> incoming.name
+  ) or exists (
+    select 1
+    from tmp_curriculum_sub_strands incoming
+    join public.sub_strands live on live.id = incoming.id
+    where live.strand_id <> incoming.strand_id or live.name <> incoming.name
+  ) or exists (
+    select 1
+    from tmp_curriculum_strand_objectives incoming
+    join public.strand_objectives live on live.id = incoming.id
+    where live.strand_id <> incoming.strand_id
+      or live.description <> incoming.description
+  ) then
+    raise exception 'Deterministic curriculum UUID collision detected';
+  end if;
+
+  if (
+    select count(*)
+    from tmp_curriculum_strands s
+    join tmp_curriculum_contexts c on c.id = s.context_id
+    join tmp_curriculum_grades g on g.id = c.grade_id
+    join tmp_curriculum_subjects subject on subject.id = c.subject_id
+    where g.name = 'Form 3'
+      and subject.name = 'Christian Religious Education'
+      and s.outcome_status = 'source_required'
+  ) <> 6 then
+    raise exception 'The six source-required Form 3 CRE topics were not preserved';
+  end if;
+
+  insert into public.curriculum_imports (
+    dataset_version,
+    dataset_hash,
+    status,
+    expected_counts,
+    source_manifest
+  ) values (
+    v_dataset_version,
+    v_dataset_hash,
+    'running',
+    v_expected,
+    coalesce(p_payload -> 'source_manifest', '[]'::jsonb)
+  ) returning id into v_import_id;
+
+  insert into public.subjects (id, name)
+  select id, name from tmp_curriculum_subjects
+  on conflict (id) do nothing;
+
+  insert into public.curriculum_import_legacy_records (
+    import_id,
+    record_type,
+    record_id,
+    snapshot
+  )
+  select
+    v_import_id,
+    'strand',
+    s.id,
+    to_jsonb(s)
+  from public.strands s
+  join tmp_curriculum_contexts c
+    on c.grade_id = s.grade_id and c.subject_id = s.subject_id
+  where s.is_active
+    and not exists (select 1 from tmp_curriculum_strands incoming where incoming.id = s.id)
+  on conflict do nothing;
+
+  insert into public.curriculum_import_legacy_records (
+    import_id,
+    record_type,
+    record_id,
+    snapshot
+  )
+  select
+    v_import_id,
+    'sub_strand',
+    ss.id,
+    to_jsonb(ss)
+  from public.sub_strands ss
+  join public.strands s on s.id = ss.strand_id
+  join tmp_curriculum_contexts c
+    on c.grade_id = s.grade_id and c.subject_id = s.subject_id
+  where s.is_active
+    and not exists (select 1 from tmp_curriculum_strands incoming where incoming.id = s.id)
+  on conflict do nothing;
+
+  insert into public.curriculum_import_legacy_records (
+    import_id,
+    record_type,
+    record_id,
+    snapshot
+  )
+  select
+    v_import_id,
+    'learning_outcome',
+    lo.id,
+    to_jsonb(lo)
+  from public.learning_outcomes lo
+  join public.sub_strands ss on ss.id = lo.sub_strand_id
+  join public.strands s on s.id = ss.strand_id
+  join tmp_curriculum_contexts c
+    on c.grade_id = s.grade_id and c.subject_id = s.subject_id
+  where s.is_active
+    and not exists (select 1 from tmp_curriculum_strands incoming where incoming.id = s.id)
+  on conflict do nothing;
+
+  select count(*) filter (where record_type = 'strand'),
+         count(*) filter (where record_type = 'sub_strand'),
+         count(*) filter (where record_type = 'learning_outcome')
+  into v_legacy_strands, v_legacy_sub_strands, v_legacy_outcomes
+  from public.curriculum_import_legacy_records
+  where import_id = v_import_id;
+
+  select count(*)
+  into v_historical_topic_references
+  from public.exams e
+  cross join lateral jsonb_array_elements_text(
+    coalesce(e.content #> '{meta,topicIds}', '[]'::jsonb)
+  ) topic_id
+  join public.sub_strands ss on ss.id::text = topic_id.value
+  join public.strands s on s.id = ss.strand_id
+  join tmp_curriculum_contexts c
+    on c.grade_id = s.grade_id and c.subject_id = s.subject_id;
+
+  update public.strands s
+  set is_active = false
+  from tmp_curriculum_contexts c
+  where c.grade_id = s.grade_id
+    and c.subject_id = s.subject_id
+    and s.is_active
+    and not exists (select 1 from tmp_curriculum_strands incoming where incoming.id = s.id);
+
+  insert into public.strands (
+    id,
+    grade_id,
+    subject_id,
+    name,
+    sort_order,
+    source_code,
+    verification_status,
+    outcome_status,
+    source_ref,
+    source_metadata,
+    is_active,
+    curriculum_import_id
+  )
+  select
+    id,
+    grade_id,
+    subject_id,
+    name,
+    sort_order,
+    source_code,
+    verification_status,
+    outcome_status,
+    source_ref,
+    source_metadata,
+    true,
+    v_import_id
+  from tmp_curriculum_strands
+  on conflict (id) do update set
+    sort_order = excluded.sort_order,
+    source_code = excluded.source_code,
+    verification_status = excluded.verification_status,
+    outcome_status = excluded.outcome_status,
+    source_ref = excluded.source_ref,
+    source_metadata = excluded.source_metadata,
+    is_active = true,
+    curriculum_import_id = excluded.curriculum_import_id;
+
+  insert into public.sub_strands (
+    id,
+    strand_id,
+    name,
+    sort_order,
+    source_code,
+    verification_status,
+    outcome_status,
+    source_ref,
+    source_metadata,
+    curriculum_import_id
+  )
+  select
+    id,
+    strand_id,
+    name,
+    sort_order,
+    source_code,
+    verification_status,
+    outcome_status,
+    source_ref,
+    source_metadata,
+    v_import_id
+  from tmp_curriculum_sub_strands
+  on conflict (id) do update set
+    sort_order = excluded.sort_order,
+    source_code = excluded.source_code,
+    verification_status = excluded.verification_status,
+    outcome_status = excluded.outcome_status,
+    source_ref = excluded.source_ref,
+    source_metadata = excluded.source_metadata,
+    curriculum_import_id = excluded.curriculum_import_id;
+
+  insert into public.strand_objectives (
+    id,
+    strand_id,
+    description,
+    label,
+    sort_order,
+    verification_status,
+    source_ref,
+    source_metadata,
+    curriculum_import_id
+  )
+  select
+    id,
+    strand_id,
+    description,
+    label,
+    sort_order,
+    verification_status,
+    source_ref,
+    source_metadata,
+    v_import_id
+  from tmp_curriculum_strand_objectives
+  on conflict (id) do update set
+    label = excluded.label,
+    sort_order = excluded.sort_order,
+    verification_status = excluded.verification_status,
+    source_ref = excluded.source_ref,
+    source_metadata = excluded.source_metadata,
+    curriculum_import_id = excluded.curriculum_import_id;
+
+  insert into public.curriculum_source_exceptions (
+    id,
+    grade_id,
+    subject_id,
+    status,
+    details,
+    curriculum_import_id
+  )
+  select id, grade_id, subject_id, status, details, v_import_id
+  from tmp_curriculum_source_exceptions
+  on conflict (grade_id, subject_id) do update set
+    id = excluded.id,
+    status = excluded.status,
+    details = excluded.details,
+    curriculum_import_id = excluded.curriculum_import_id,
+    updated_at = now();
+
+  v_summary := jsonb_build_object(
+    'repeat_run', false,
+    'dataset_hash', v_dataset_hash,
+    'official_contexts', (select count(*) from tmp_curriculum_contexts),
+    'active_strands_and_topics', (select count(*) from tmp_curriculum_strands),
+    'sub_strands_and_sub_topics', (select count(*) from tmp_curriculum_sub_strands),
+    'strand_objectives', (select count(*) from tmp_curriculum_strand_objectives),
+    'learning_outcomes_imported', 0,
+    'source_exceptions', (select count(*) from tmp_curriculum_source_exceptions),
+    'legacy_strands_retained_inactive', v_legacy_strands,
+    'legacy_sub_strands_retained', v_legacy_sub_strands,
+    'legacy_learning_outcomes_retained', v_legacy_outcomes,
+    'historical_exam_topic_references_preserved', v_historical_topic_references
+  );
+
+  update public.curriculum_imports
+  set status = 'complete', summary = v_summary, completed_at = now()
+  where id = v_import_id;
+
+  return v_summary || jsonb_build_object('import_id', v_import_id);
+end;
+$$;
+
+revoke all on function public.import_verified_curriculum(jsonb) from public;
+revoke all on function public.import_verified_curriculum(jsonb) from anon;
+revoke all on function public.import_verified_curriculum(jsonb) from authenticated;
+grant execute on function public.import_verified_curriculum(jsonb) to service_role;

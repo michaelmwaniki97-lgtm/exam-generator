@@ -5,6 +5,7 @@ type SemanticQuestion = {
   type: string;
   questionFamily: string;
   stimuli?: { type: string }[];
+  visual?: { type: string } | null;
 };
 
 type SemanticMarkingEntry = {
@@ -21,7 +22,7 @@ type SemanticExam = {
   marking_scheme: SemanticMarkingEntry[];
 };
 
-const RESOURCE_NOUN = "(?:graph|chart|diagram|image|picture|photo(?:graph)?|figure|illustration|table|map|passage|source extract|extract|case study|dataset|data|experiment(?:al)? setup)";
+const RESOURCE_NOUN = "(?:coordinate grid|number line|graph|chart|diagram|image|picture|photo(?:graph)?|figure|illustration|table|map|passage|source extract|extract|case study|dataset|data|experiment(?:al)? setup)";
 const DEPENDENT_RESOURCE_REFERENCE = new RegExp(
   `\\b(?:interpret|study|examine|refer to|use|using|look at|observe|according to|from)\\b[^.!?]{0,100}\\b${RESOURCE_NOUN}\\b|\\b${RESOURCE_NOUN}\\s+(?:below|above|shown|provided|given|illustrated|displayed|showing)\\b`,
   "i"
@@ -56,14 +57,23 @@ function isCalculationLike(question: SemanticQuestion): boolean {
 
 function hasRequiredStimulus(question: SemanticQuestion, text = question.text): boolean {
   const types = new Set((question.stimuli ?? []).map((stimulus) => stimulus.type));
+  if (question.visual) { types.add(question.visual.type); if (question.visual.type === "illustration") types.add("diagram"); }
   if (/\b(?:graph|chart)\b/i.test(text) && !types.has("graph")) return false;
+  if (/\bnumber line\b/i.test(text) && !types.has("diagram")) return false;
+  if (/\bcoordinate grid\b/i.test(text) && !types.has("graph")) return false;
   if (/\btable\b/i.test(text) && !types.has("table")) return false;
   if (/\bdataset\b/i.test(text) && !types.has("dataset")) return false;
   if (/\b(?:passage|source extract|extract)\b/i.test(text) && !types.has("passage") && !types.has("extract")) return false;
   if (/\b(?:diagram|experiment(?:al)? setup)\b/i.test(text) && !types.has("diagram")) return false;
-  if (/\b(?:image|picture|photo(?:graph)?|figure|illustration|map)\b/i.test(text)) return false;
-  if (/\bdata\b/i.test(text) && !types.has("dataset") && !types.has("table") && !types.has("graph")) return false;
-  return types.size > 0;
+  if (/\b(?:photo(?:graph)?|map)\b/i.test(text)) return false;
+  if (/\b(?:image|picture|figure|illustration)\b/i.test(text) && !question.visual) return false;
+  // Data can be supplied directly in the question prose. Explicit attachment
+  // references above still require their matching resource, even with numbers.
+  const inlineData = /\bdata\b/i.test(text) && hasConcreteGiven(
+    question.text.replace(/\(\s*\d+\s*marks?\s*\)/gi, "")
+  );
+  if (/\bdata\b/i.test(text) && !types.has("dataset") && !types.has("table") && !types.has("graph") && !inlineData) return false;
+  return types.size > 0 || inlineData;
 }
 
 export type SemanticValidationScope = {
@@ -120,6 +130,7 @@ export function describeSemanticViolations(exam: SemanticExam, scope?: SemanticV
     }
     const markingResourceTexts = [
       entry.answer,
+      entry.numericalMethod?.finalAnswer,
       entry.marking_notes,
       ...(entry.allocations ?? []).map((allocation) => allocation.label),
       ...(entry.numericalMethod?.methodSteps ?? []).map((step) => step.step),

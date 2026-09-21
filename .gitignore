@@ -58,3 +58,6 @@ supabase/.temp/
 deploy/selfhosted.env
 deploy/secrets/*
 !deploy/secrets/*.example
+*.dump
+*.bak
+*.backup

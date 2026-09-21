@@ -94,3 +94,12 @@ test("marking answers and allocation labels cannot introduce phantom resources",
 test("marking references to an actual same-slot stimulus pass", () => {
   assert.deepEqual(semanticResource("Study the graph below and state the trend.", [{ type: "graph" }], "According to the graph, the values rise steadily."), []);
 });
+
+test("inline data supports marking references without excusing missing attachments", () => {
+  const question = "Find the mean of 14, 19, 11, 22, 24.";
+  assert.deepEqual(semanticResource(question, undefined, "From the data, the mean is 18."), []);
+  for (const resource of ["graph", "table", "diagram", "passage", "dataset", "number line", "coordinate grid"]) {
+    assert.match(semanticResource(question, undefined, `From the ${resource}, the data gives 18.`).join(" "), /not validly attached/);
+  }
+  assert.match(semanticResource("Find the mean from the data. (4 marks)", undefined, "From the data, the mean is 18.").join(" "), /not validly attached/);
+});

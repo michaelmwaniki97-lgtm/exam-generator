@@ -41,7 +41,7 @@ test("migration source accepts only the reviewed ON_ERROR_STOP psql directive", 
 
 test("repository migration plan keeps the vector migration explicit and ordered", () => {
   const files = migrationFiles(fileURLToPath(new URL("../supabase/migrations", import.meta.url)));
-  assert.equal(files.length, 27);
+  assert.equal(files.length, 28);
   assert.ok(files.some((file) => file.name === VECTOR_MIGRATION));
   assert.deepEqual(files.map((file) => file.name), files.map((file) => file.name).toSorted());
 });

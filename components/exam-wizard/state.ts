@@ -108,9 +108,9 @@ export function canProceedWizardStep(step: number, data: WizardData): boolean {
     case 2:
       return Boolean(data.subjectId);
     case 3:
-      return Boolean(data.examType && data.term);
-    case 4:
       return data.topicIds.length > 0;
+    case 4:
+      return Boolean(data.examType && data.term);
     case 5:
       return Boolean(
         data.difficulty &&

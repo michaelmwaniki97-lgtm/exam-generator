@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["cables-preparing-celebrities-broker.trycloudflare.com"],
   output: "standalone",
   serverExternalPackages: ["pdfjs-dist"],
   outputFileTracingIncludes: {

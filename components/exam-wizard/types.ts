@@ -63,8 +63,8 @@ export const EMPTY_WIZARD_DATA: WizardData = {
 export const STEP_LABELS = [
   "Class Details",
   "Subject",
-  "Assessment",
   "Curriculum",
+  "Assessment",
   "Settings",
   "Review",
 ];
