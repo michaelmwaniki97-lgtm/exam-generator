@@ -1,4 +1,4 @@
-import { AnthropicIncompleteResponseError, completeAnthropicWithDetails, type AnthropicUsage } from "./anthropic";
+﻿import { AnthropicIncompleteResponseError, completeAnthropicWithDetails, type AnthropicUsage } from "./anthropic";
 import { composeKenyanAssessmentStyle, stylePrompt } from "../assessment-style/profiles";
 import "server-only";
 import { aiClient } from "./client";
@@ -71,7 +71,7 @@ export async function generateExam(params: GenerateExamParams): Promise<Generate
     for (let attempt = 0; ; attempt++) {
     try {
       if (AI_CONFIG.provider === "anthropic") {
-        const maxTokens = active.stage === "questions" ? 8192 : active.stage === "marking" ? 2048 : 8192;
+        const maxTokens = active.stage === "questions" ? 8192 : active.stage === "marking" ? 4096 : 8192;
         try {
           const result = await completeAnthropicWithDetails({ apiKey: AI_CONFIG.apiKey!, model: AI_CONFIG.model, messages, signal, responseFormat, maxTokens });
           for (const key of Object.keys(usageTotals) as Array<keyof AnthropicUsage>) usageTotals[key] += result.usage[key] ?? 0;
@@ -155,3 +155,4 @@ export async function generateExam(params: GenerateExamParams): Promise<Generate
     throw error;
   }
 }
+

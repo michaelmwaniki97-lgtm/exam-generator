@@ -1,4 +1,4 @@
-import { validateQuestionVisual, VISUAL_GUIDANCE, type QuestionVisual } from "../assessment/question-visual.ts";
+﻿import { validateQuestionVisual, VISUAL_GUIDANCE, type QuestionVisual } from "../assessment/question-visual.ts";
 import { COMPACT_QUESTION_VISUAL_SCHEMA } from "../assessment/visual-schema.ts";
 import { composeKenyanAssessmentStyle, stylePrompt } from "../assessment-style/profiles.ts";
 import type { ExamBlueprint, QuestionFamily } from "../blueprint/types.ts";
@@ -453,7 +453,7 @@ export async function generateMarkingContentWithCompletion(
 
       const numericalGuidance =
         requiredModel === "numerical_method"
-          ? ` TOTAL AVAILABLE MARKS: ${slot.marks}. Return only the final answer, 1–${Math.min(
+          ? ` TOTAL AVAILABLE MARKS: ${slot.marks}. Return only the final answer, 1â€“${Math.min(
               slot.marks,
               4
             )} concise worked steps and accuracyMarks. The server will normalize mark allocation. Omit tolerance and alternativeMethod unless genuinely required.`
@@ -502,17 +502,19 @@ export async function generateMarkingContentWithCompletion(
           ? {
               answer: {
                 type: "string",
+                maxLength: 4000,
               },
             }
           : {};
 
       const allocationsSchema = {
         type: "array",
+        maxItems: Math.max(1, Math.min(slot.marks, 8)),
         items: {
           type: "object",
           additionalProperties: false,
           properties: {
-            label: { type: "string" },
+            label: { type: "string", maxLength: 500 },
             marks: { type: "integer", minimum: 1 },
           },
           required: ["label", "marks"],
@@ -565,12 +567,13 @@ export async function generateMarkingContentWithCompletion(
 
       const rubric = {
         type: "array",
+        maxItems: Math.max(1, Math.min(slot.marks, 8)),
         items: {
           type: "object",
           additionalProperties: false,
           properties: {
-            criterion: { type: "string" },
-            descriptor: { type: "string" },
+            criterion: { type: "string", maxLength: 250 },
+            descriptor: { type: "string", maxLength: 800 },
             marks: { type: "integer", minimum: 1 },
           },
           required: ["criterion", "descriptor", "marks"],
@@ -1164,4 +1167,5 @@ export function describeGroundingProvenanceViolations(exam: GeneratedExam, conte
   }
   return problems;
 }
+
 
